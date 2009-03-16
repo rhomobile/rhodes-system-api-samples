@@ -1,0 +1,8 @@
+<div>
+	<%= link_to '[Choose Picture]', { :action => :edit }%>
+	<%= link_to '[Take Picture]', { :action => :new }%><br/>
+
+	<% @images.reverse_each do |x|%>
+ 		<img src='<%= x.image_uri%>' width='300px'></img><br/>
+	<% end %>
+</div>
