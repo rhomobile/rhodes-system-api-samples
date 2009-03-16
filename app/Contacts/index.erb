@@ -1,0 +1,12 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		My Contacts
+	</h1>
+</div>
+
+<ul id="contacts" title="My Contacts...">
+<%=link_to "New...", { :action => :new }, "class=\"button right_button\"" %>	
+<%@contacts.each do |x|%>
+<li><%=link_to "#{x[1]['first_name']} #{x[1]['last_name']}", :action => :show, :id => x[1]['id']%></li>
+<%end%>
+</ul>
