@@ -1,0 +1,14 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		Blobs
+	</h1>
+</div>
+
+<ul id="blobs" title="Blobs" selected="true">
+  	<a class="button right_button" href="Blob/new" target="_self">New</a>
+	<%@blobs.each do |x|%>
+	
+	<li><%=link_to "#{x.name}", :action => :show, :id => x.object%></li>
+	
+	<%end%>
+</ul>

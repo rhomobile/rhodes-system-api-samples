@@ -1,0 +1,22 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		New Blob
+	</h1>
+</div>
+
+<form title="New Blob" 
+	  class="panel"
+	  id="blob_new_form" 
+	  method="POST" 
+	  action="<%=url_for(:action => :create)%>" selected="true">
+	<fieldset>
+		<input type="hidden" name="id" value="<%=@blob.object%>"/>
+		
+		  <div class="row">
+			  <label>Name: </label>
+			  <input type="text" name="blob[name]"/>
+		  </div>
+		
+	</fieldset>
+	<input type="submit" value="Create"/>
+</form>
