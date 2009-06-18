@@ -6,28 +6,27 @@ class DateTimeController < Rho::RhoController
   $choosed = 'none'
   
   def index
-    puts "Choosed date/time: " + $choosed
     render
   end
 
   def new
-    #puts "params: " + @params
-    #puts "query: " + @query
-    #$fmt = @query['fmt']
+    puts "Choose date/time"
+    DateTimePicker::choose( url_for( :action => :datetime_callback ), "Choose date/time", Time.new )
+    render
+  end
 
-    #if $fmt.nil?
-      $dt = DateTimePicker::choose("Choose date/time", Time.new)
-    #else
-    #  puts "fmt received: " + $fmt
-    #  $dt = DateTimePicker::choose("Choose date/time", Time.new, $fmt)
-    #end
-    
-    if $dt.nil?
-      $choosed = "none"
-    else
-      $choosed = $dt.strftime('%FT%T')
+  def datetime_callback
+    print "datetime_callback: received params:"
+    p @params
+    #@params.each { |k,v| puts "#{k} => #{v}" }
+
+    $status = @params['status']
+    if $status == 'ok'
+      $dt = Time.at( @params['result'].to_i )
+      $choosed = $dt.strftime( '%FT%T' )
     end
-    redirect :action => :index
+    #reply on the callback
+    render :action => :index
   end
 
 end
