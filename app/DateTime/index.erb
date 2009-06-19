@@ -1,5 +1,16 @@
 <div>
-	<%= link_to '[Choose date/time]', { :action => :new } %> <br/>
-	<br/>
-	Choosed date/time: <b><%= $choosed %></b>
+    <form action="DateTime/save">
+      <input type="text" name="date1" readonly value="<%= $choosed['1'] %>"></input>
+      <%= link_to "Edit", { :action => "choose", :query => { :flag => '1' } } %><br/>
+      <input type="text" name="date2" readonly value="<%= $choosed['2'] %>"></input>
+      <%= link_to "Edit", { :action => "choose", :query => { :flag => '2' } } %><br/>
+      <input type="submit" value="Save"></input>
+    </form>
+    <br/>
+    <% if not $saved.nil? %>
+      Choosed date/time values:<br/>
+      <% $choosed.each do |k,v| %>
+        <b><%= v %></b><br/>
+      <% end %>
+	<% end %>
 </div>

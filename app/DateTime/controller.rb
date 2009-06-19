@@ -3,30 +3,40 @@ require 'dateME'
 
 class DateTimeController < Rho::RhoController
   @layout = :simplelayout
-  $choosed = 'none'
+  $saved = nil
+  $flag = ''
+  $choosed = {}
   
   def index
     render
   end
 
-  def new
+  def choose
     puts "Choose date/time"
-    DateTimePicker::choose( url_for( :action => :datetime_callback ), "Choose date/time", Time.new )
+
+    $flag = @params['flag']
+    if $flag == '1' or $flag == '2'
+      $saved = nil
+      DateTimePicker::choose( url_for( :action => :datetime_callback ), "Choose date/time", Time.new )
+    end
     render
   end
 
+  def save
+    $saved = 1
+    redirect :action => :index
+  end
+
   def datetime_callback
-    print "datetime_callback: received params:"
-    p @params
-    #@params.each { |k,v| puts "#{k} => #{v}" }
+    puts "datetime_callback"
 
     $status = @params['status']
     if $status == 'ok'
       $dt = Time.at( @params['result'].to_i )
-      $choosed = $dt.strftime( '%FT%T' )
+      $choosed[$flag] = $dt.strftime( '%F %T' )
     end
     #reply on the callback
-    render :action => :index
+    redirect :action => :index
   end
 
 end
