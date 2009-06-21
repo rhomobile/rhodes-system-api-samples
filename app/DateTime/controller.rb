@@ -19,7 +19,7 @@ class DateTimeController < Rho::RhoController
       $saved = nil
       DateTimePicker::choose( url_for( :action => :datetime_callback ), "Choose date/time", Time.new )
     end
-    render
+    redirect :action => :index
   end
 
   def save
@@ -34,9 +34,10 @@ class DateTimeController < Rho::RhoController
     if $status == 'ok'
       $dt = Time.at( @params['result'].to_i )
       $choosed[$flag] = $dt.strftime( '%F %T' )
+      WebView::refresh
     end
     #reply on the callback
-    redirect :action => :index
+    render :action => :index
   end
 
 end
