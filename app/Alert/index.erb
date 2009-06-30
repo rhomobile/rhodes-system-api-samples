@@ -1,0 +1,8 @@
+<div>
+    <%= link_to '[Show popup]', { :action => :show_popup }%><br/>
+    <%= link_to '[Play test.mp3]', { :action => :play_file, :query => {:file_name => 'test.mp3'} }%><br/>
+    <%= link_to '[Play information_bar.wav]', { :action => :play_file, :query => {:file_name => '/apps/public/information_bar.wav'} }%><br/>
+    <%= link_to '[Play test.mpeg]', { :action => :play_file, :query => {:file_name => 'test.mpeg', :media_type => 'audio/mpeg'} }%><br/> 
+    <%= link_to '[Vibrate]', { :action => :vibrate }%><br/>
+    <%= link_to '[Vibrate for 10 sec]', { :action => :vibrate_for_10sec }%><br/>
+</div>

@@ -16,7 +16,7 @@ use_bb_full_browser = 0
 # Rhodes runtime properties
 MinSeverity  = 1
 LogToOutput = 1
-LogCategories = APP
+LogCategories = *
 ExcludeLogCategories =
 KeepTrackOfLastVisitedPage = 0 
 LastVisitedPage = ''
