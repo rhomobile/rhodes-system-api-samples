@@ -1,5 +1,5 @@
 <div>
 	<% @ringtones.each do |k,v| %>
-		<%= link_to k, { :action => 'play', :query => { :name => k, :file => v } } %>
+		<%= link_to k, { :action => 'play', :query => { :name => k, :file => v } } %> <br/>
 	<% end %>
 </div>
