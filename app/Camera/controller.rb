@@ -18,6 +18,12 @@ class CameraController < Rho::RhoController
     Camera::choose_picture(url_for :action => :camera_callback)
     redirect :action => :index
   end
+  
+  def delete
+    @image = Image.find(@params['id'])
+    @image.destroy
+    redirect :action => :index
+  end
 
   def camera_callback
     if @params['status'] == 'ok'
