@@ -3,6 +3,6 @@
 	<%= link_to '[Take Picture]', { :action => :new }%><br/>
 
 	<% @images.reverse_each do |x|%>
- 		<img src='<%= x.image_uri%>' width='300px'></img><br/>
+ 		<p><%=x.inspect%></p><br/><img src='<%= x.image_uri%>' width='300px'></img><br/>
 	<% end %>
 </div>
