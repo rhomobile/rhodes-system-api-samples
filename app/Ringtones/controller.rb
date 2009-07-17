@@ -4,6 +4,7 @@ class RingtonesController < Rho::RhoController
   @layout = :simplelayout
   
   def index
+    RingtoneManager::stop
     @ringtones = RingtoneManager::get_all_ringtones
     render
   end
@@ -13,7 +14,7 @@ class RingtonesController < Rho::RhoController
 
     $selected = @params['name']
     RingtoneManager::play @params['file']
-    render :action => :playing, layout => false
+    render :action => :playing, :layout => false
   end
 
   def stop
