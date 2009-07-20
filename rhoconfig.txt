@@ -21,3 +21,5 @@ ExcludeLogCategories =
 KeepTrackOfLastVisitedPage = 0 
 LastVisitedPage = ''
 
+syncserver = 'http://dev.rhosync.rhohub.com/apps/SystemApiSamples/sources/'
+
