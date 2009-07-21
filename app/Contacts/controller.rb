@@ -5,7 +5,8 @@ class ContactsController < Rho::RhoController
  
   # GET /Contacts
   def index
-    @contacts = Rho::RhoContact.find(:all).to_a.sort! {|x,y| x[1]['first_name'] <=> y[1]['first_name'] }
+    @contacts = Rho::RhoContact.find(:all)
+    @contacts.to_a.sort! {|x,y| x[1]['first_name'] <=> y[1]['first_name'] } if @contacts
     render
   end
  
