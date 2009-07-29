@@ -34,9 +34,9 @@ class SettingsController < Rho::RhoController
       begin
         SyncEngine::login(@params['login'], @params['password'], (url_for :action => :login_callback) )
         render :action => :wait
-      rescue RhoError => e
-          @msg = e.message
-          render :action => :login, :query => {:msg => @msg}
+      rescue Rho::RhoError => e
+        @msg = e.message
+        render :action => :login, :query => {:msg => @msg}
       end
     else
         @msg = "You entered an invalid login/password, please try again." unless @msg.length    
