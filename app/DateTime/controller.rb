@@ -4,7 +4,6 @@ require 'dateME'
 class DateTimeController < Rho::RhoController
   @layout = :simplelayout
   $saved = nil
-  $flag = ''
   $choosed = {}
   
   def index
@@ -14,10 +13,10 @@ class DateTimeController < Rho::RhoController
   def choose
     puts "Choose date/time"
 
-    $flag = @params['flag']
-    if $flag == '1' or $flag == '2'
+    flag = @params['flag']
+    if flag == '1' or flag == '2'
       $saved = nil
-      DateTimePicker::choose( url_for( :action => :datetime_callback ), "Choose date/time", Time.new )
+      DateTimePicker::choose( url_for( :action => :datetime_callback ), "Choose date/time", Time.new, 0, Marshal.dump(flag) )
     end
     redirect :action => :index
   end
@@ -33,7 +32,8 @@ class DateTimeController < Rho::RhoController
     $status = @params['status']
     if $status == 'ok'
       $dt = Time.at( @params['result'].to_i )
-      $choosed[$flag] = $dt.strftime( '%F %T' )
+      flag = Marshal.load(@params['opaque'])
+      $choosed[flag] = $dt.strftime( '%F %T' )
       WebView::refresh
     end
     #reply on the callback
