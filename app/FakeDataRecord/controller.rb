@@ -30,19 +30,19 @@ class FakeDataRecordController < Rho::RhoController
     @FakeDataRecord = FakeDataRecord.new()
 
     0.upto(numRecords) do |i|
-
-	0.upto(10) do |j|      
-          attrib = "attr" + j.to_s
-          @FakeDataRecord.send("#{attrib}=".to_sym(), rand_str(10 + rand(30)) )
-	end
-	attrib = "object"
-	@FakeDataRecord.send("#{attrib}=".to_sym(), rand_str(36) )
+      0.upto(10) do |j|      
+        attrib = "attr" + j.to_s
+        @FakeDataRecord.send("#{attrib}=".to_sym(), rand_str(10 + rand(30)) )
+  	  end
+  	  attrib = "object"
+  	  @FakeDataRecord.send("#{attrib}=".to_sym(), rand_str(36) )
 
       attrib = "update_type"
-	@FakeDataRecord.send("#{attrib}=".to_sym(), "query" )
+  	  @FakeDataRecord.send("#{attrib}=".to_sym(), "query" )
 
       @FakeDataRecord.save
     end
+    redirect :action => :index
   end
 
   def rand_str(len)
