@@ -33,7 +33,13 @@ class DateTimeController < Rho::RhoController
     if $status == 'ok'
       $dt = Time.at( @params['result'].to_i )
       flag = Marshal.load(@params['opaque'])
-      $choosed[flag] = $dt.strftime( '%F %T' )
+      format = case flag
+        when "0" then '%F %T'
+        when "1" then '%F'
+        when "2" then '%T'
+        else '%F %T'
+      end
+      $choosed[flag] = $dt.strftime( format )
       WebView::refresh
     end
     #reply on the callback
