@@ -14,9 +14,9 @@ class DateTimeController < Rho::RhoController
     puts "Choose date/time"
 
     flag = @params['flag']
-    if flag == '1' or flag == '2'
+    if flag == '0' or flag == '1' or flag == '2'
       $saved = nil
-      DateTimePicker::choose( url_for( :action => :datetime_callback ), "Choose date/time", Time.new, 0, Marshal.dump(flag) )
+      DateTimePicker.choose( url_for( :action => :datetime_callback ), "Choose date/time", Time.new, flag.to_i, Marshal.dump(flag) )
     end
     redirect :action => :index
   end

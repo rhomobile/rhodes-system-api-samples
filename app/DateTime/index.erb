@@ -1,14 +1,20 @@
 <div>
+	<p>Test Date/Time Pickers (note: chosen date/time is stored in same format, only displayed picker will change)</p>
     <form action="DateTime/save">
+	  <b>Date and Time:</b><br/>
+      <input type="text" name="date0" readonly value="<%= $choosed['0'] %>"></input>
+      <%= link_to "Edit", { :action => "choose", :query => { :flag => '0' } } %><br/>
+      <b>Date Only:</b><br/>
       <input type="text" name="date1" readonly value="<%= $choosed['1'] %>"></input>
       <%= link_to "Edit", { :action => "choose", :query => { :flag => '1' } } %><br/>
+	  <b>Time Only:</b><br/>
       <input type="text" name="date2" readonly value="<%= $choosed['2'] %>"></input>
       <%= link_to "Edit", { :action => "choose", :query => { :flag => '2' } } %><br/>
       <input type="submit" value="Save"></input>
     </form>
     <br/>
     <% if not $saved.nil? %>
-      Choosed date/time values:<br/>
+      Chosen date/time values (these should all be in same format):<br/>
       <% $choosed.each do |k,v| %>
         <b><%= v %></b><br/>
       <% end %>
