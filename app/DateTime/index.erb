@@ -3,13 +3,13 @@
     <form action="DateTime/save">
 	  <b>Date and Time:</b><br/>
       <input type="text" name="date0" readonly value="<%= $choosed['0'] %>"></input>
-      <%= link_to "Edit", { :action => "choose", :query => { :flag => '0' } } %><br/>
+      <%= link_to "Edit", { :action => "choose", :query => { :flag => '0', :title => 'Choose Date & Time' } } %><br/>
       <b>Date Only:</b><br/>
       <input type="text" name="date1" readonly value="<%= $choosed['1'] %>"></input>
-      <%= link_to "Edit", { :action => "choose", :query => { :flag => '1' } } %><br/>
+      <%= link_to "Edit", { :action => "choose", :query => { :flag => '1', :title => 'Choose Date' } } %><br/>
 	  <b>Time Only:</b><br/>
       <input type="text" name="date2" readonly value="<%= $choosed['2'] %>"></input>
-      <%= link_to "Edit", { :action => "choose", :query => { :flag => '2' } } %><br/>
+      <%= link_to "Edit", { :action => "choose", :query => { :flag => '2', :title => 'Choose Time' } } %><br/>
       <input type="submit" value="Save"></input>
     </form>
     <br/>
