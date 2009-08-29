@@ -1,5 +1,9 @@
 <div>
-	<% @ringtones.each do |k,v| %>
-		<%= link_to k, { :action => 'play', :query => { :name => k, :file => v } } %> <br/>
+	<% if @ringtones.empty? %>
+		Ring tones are not accessible
+	<% else %>
+		<% @ringtones.each do |k,v| %>
+			<%= link_to k, { :action => 'play', :query => { :name => k, :file => v } } %> <br/>
+		<% end %>
 	<% end %>
 </div>
