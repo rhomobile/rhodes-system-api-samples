@@ -8,12 +8,14 @@
 	<br/>
 	
 	<p>Your location using ruby api:</p>
-	<%= GeoLocation.latitude.abs.to_s + " " + (GeoLocation.latitude < 0 ? "South" : "North") + ", " +
-	GeoLocation.longitude.abs.to_s + " " + (GeoLocation.longitude < 0 ? "West" : "East") %>
-	<br/>
+	<p>
+	<a href="/system/map?q=<%= GeoLocation.latitude.to_s+','+GeoLocation.longitude.to_s %>"><%= GeoLocation.latitude.abs.to_s + " " + (GeoLocation.latitude < 0 ? "South" : "North") + ", " +
+	GeoLocation.longitude.abs.to_s + " " + (GeoLocation.longitude < 0 ? "West" : "East") %></a>
+	</p>
+	<p>
 	Latitude: <%= GeoLocation.latitude.to_s %><br/>
 	Longitude: <%= GeoLocation.longitude.to_s %>
-	<br/>
+	</p>
   	<p>Geo-location information available asynchronously, 
 	so you may have to <a href="/app/GeoLocation" target="_self">refresh page</a> 
 	to see results of ruby calls</p>
