@@ -17,6 +17,9 @@ class DateTimeController < Rho::RhoController
     title = @params['title']
     if flag == '0' or flag == '1' or flag == '2'
       $saved = nil
+      # preset_time = Time.parse("2009-10-20 14:30:00")
+      # puts "Parsed Time Object: #{preset_time.inspect.to_s}"
+      # DateTimePicker.choose( url_for( :action => :datetime_callback ), title, preset_time, flag.to_i, Marshal.dump(flag) )
       DateTimePicker.choose( url_for( :action => :datetime_callback ), title, Time.new, flag.to_i, Marshal.dump(flag) )
     end
     redirect :action => :index
