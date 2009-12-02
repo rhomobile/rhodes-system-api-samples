@@ -1,0 +1,21 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+        Localization Test
+    </h1>
+</div>
+
+<ul id="home" selected="true">
+	<li>Russian text(7 Letters): Евгений</li>
+    <li>Greeting text from app\lang\lang_* : <br/><%= Localization::Views[:greeting] %></li>
+    <li>Time.now.to_formatted_s("%a, %d %b %Y %H:%M:%S %z"): <br/><%= Time.now.strftime("%a, %d %b %Y %H:%M:%S %z") %></li>
+    <li>Time.now.to_formatted_s(:long): <br/><%= Time.now.to_formatted_s(:long) %></li>
+    <li>Time.now.strftime("%B %d, %Y %H:%M"): <br/><%= Time.now.strftime("%B %d, %Y %H:%M") %></li>
+    <li>Date.today.to_formatted_s(:long): <br/><%= Date.today.to_formatted_s(:long) %></li>
+    <li>Date.today.strftime("%B %e, %Y"): <br/><%= Date.today.strftime("%B %e, %Y") %></li>
+    <li>Rho::NumberHelper::number_to_currency(10000): <br/><%= Rho::NumberHelper.number_to_currency(10000) %></li>
+</ul>
+<p>To test do the following</p>
+1. run on the phone with non-english default language(russian for example) <br/>
+2. see rhodes\lib\extensions\rholang for supported languages <br/>
+3. add lang_* to app\lang folder where * is phone language and add greeting string <br/>
+4. Test datetime on localized phone
