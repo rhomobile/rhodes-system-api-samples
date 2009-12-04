@@ -1,5 +1,5 @@
 require 'rho/rhocontroller'
-require 'dateME'
+require 'date'
 
 class DateTimeController < Rho::RhoController
   @layout = :simplelayout
@@ -22,7 +22,8 @@ class DateTimeController < Rho::RhoController
       # DateTimePicker.choose( url_for( :action => :datetime_callback ), title, preset_time, flag.to_i, Marshal.dump(flag) )
       DateTimePicker.choose( url_for( :action => :datetime_callback ), title, Time.new, flag.to_i, Marshal.dump(flag) )
     end
-    redirect :action => :index
+    #redirect :action => :index
+    ""
   end
 
   def save
@@ -44,10 +45,12 @@ class DateTimeController < Rho::RhoController
         else '%F %T'
       end
       $choosed[flag] = $dt.strftime( format )
-      WebView::refresh
+      #WebView::refresh
+      WebView.navigate( url_for :action => :index )
     end
     #reply on the callback
-    render :action => :index
+    #render :action => :index
+    ""
   end
 
 end
