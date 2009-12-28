@@ -16,7 +16,9 @@ class CameraController < Rho::RhoController
 
   def edit
     Camera::choose_picture(url_for :action => :camera_callback)
-    redirect :action => :index
+    
+    #redirect :action => :index
+    ""
   end
   
   def delete
@@ -31,10 +33,13 @@ class CameraController < Rho::RhoController
       image = Image.new({'image_uri'=>@params['image_uri']})
       image.save
       puts "new Image object: " + image.inspect
-      WebView::refresh
+      
+      WebView.navigate( url_for :action => :index )
+      #WebView::refresh
     end  
     #reply on the callback
-    render :action => :ok, :layout => false
+    #render :action => :ok, :layout => false
+    ""
   end
       
 end
