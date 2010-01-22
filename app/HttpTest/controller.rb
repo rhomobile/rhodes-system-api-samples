@@ -9,6 +9,30 @@ class HttpTestController < Rho::RhoController
   #GET /HttpTest
   def index
 
+    #clnt.set_auth(domain, user, password)
+    #
+    #query = {
+    #  'auth_type'=>'basic',
+    #  'fields'=> 'id acd_number claim_number status adjuster_fullname date_time_created',
+    #  'limit'=>'25'
+    #}
+    #res = clnt.get('http://api.acd.local.cj.nu/v1/propertylink/claim/format/json?auth_type=basic',query)
+
+    #user = "superuser"
+    #password = "1a1dc91c907325c69271ddf0c944bc72" #Digest::MD5.hexdigest("pass")
+    
+    #url = URI.parse('http://api.acd.local.cj.nu/v1/propertylink/claim/format/json?auth_type=basic')
+    
+    #Net::HTTP.start(url.host, url.port) {|http|
+    #      req = Net::HTTP::Get.new(url.path)
+    #      req.basic_auth user, password
+    #      response = http.request(req)
+    #      
+    #      puts "JSON: #{response.body}"
+    #      parsed = JSON.parse(response.body)
+    #      puts "JSON parsed: #{parsed}"
+    #}
+
     #res = JSON.parse("[{\"count\":10}]")
     #puts 'JSON.parse():' + res.inspect
 

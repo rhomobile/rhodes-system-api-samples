@@ -17,7 +17,7 @@ use_bb_full_browser = 0
 use_persistent_storage = 0
 
 # Rhodes runtime properties
-MinSeverity  = 0
+MinSeverity  = 1
 LogToOutput = 1
 LogCategories = *
 ExcludeLogCategories =

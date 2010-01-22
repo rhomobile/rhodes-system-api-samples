@@ -5,7 +5,7 @@ sdk: /Users/lars/Dev/code/rhomobile/rhodes
 applog: rholog.txt
 version: 1.0.0
 vendor: rhomobile
-extensions: ["net-http", "rholang", "json"]
+extensions: ["fcntl", "digest", "openssl", "net-http", "rholang", "json"]
 iphone: 
   sdk: iphonesimulator3.0
   entitlements: ""
