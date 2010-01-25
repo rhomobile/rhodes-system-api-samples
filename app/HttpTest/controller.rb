@@ -53,7 +53,7 @@ class HttpTestController < Rho::RhoController
     puts "scheme: #{uri.scheme}"
     puts "path: #{uri.path}"
     puts "query: #{uri.query}"
-    puts "request_uri: #{uri.request_uri}"
+    puts "request_uri: #{uri.request_uri}" # exact the same as 'uri.path + "?" + uri.query'
 	  http = Net::HTTP.new(uri.host, uri.port)
   	http.use_ssl = true if uri.scheme == 'https'
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE if http.use_ssl?
