@@ -45,13 +45,20 @@ class HttpTestController < Rho::RhoController
     
     #@get_result = Net::HTTP.get 'www.apache.org', '/licenses/LICENSE-2.0'
 
-    strurl = 'https://gmail.google.com/mail/'
+    strurl = 'https://gmail.google.com/mail/?param1=1&param2=2'
+    puts "strurl: #{strurl}"
   	uri = URI.parse(strurl)
+    puts "host: #{uri.host}"
+    puts "port: #{uri.port}"
+    puts "scheme: #{uri.scheme}"
+    puts "path: #{uri.path}"
+    puts "query: #{uri.query}"
+    puts "request_uri: #{uri.request_uri}"
 	  http = Net::HTTP.new(uri.host, uri.port)
   	http.use_ssl = true if uri.scheme == 'https'
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE if http.use_ssl?
 	  http.start {
-		  http.request_get(uri.path) { |res| 
+		  http.request_get(uri.request_uri) { |res| 
 			  @get_result = res.body
 		  }
 	  }
