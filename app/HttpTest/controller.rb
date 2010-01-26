@@ -54,9 +54,9 @@ class HttpTestController < Rho::RhoController
     puts "path: #{uri.path}"
     puts "query: #{uri.query}"
     puts "request_uri: #{uri.request_uri}" # exact the same as 'uri.path + "?" + uri.query'
-	  http = Net::HTTP.new(uri.host, uri.port)
-  	http.use_ssl = true if uri.scheme == 'https'
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE if http.use_ssl?
+    http = Net::HTTP.new(uri.host, uri.port)
+  	http.use_ssl = uri.scheme == 'https'
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE if http.use_ssl? and System::get_property('platform') != 'Blackberry'
 	  http.start {
 		  http.request_get(uri.request_uri) { |res| 
 			  @get_result = res.body
