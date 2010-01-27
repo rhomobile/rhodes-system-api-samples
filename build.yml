@@ -12,3 +12,5 @@ iphone:
   codesignidentity: ""
   configuration: Debug
   extensions: ["fcntl", "digest", "openssl"]
+android:
+  extensions: ["fcntl", "digest", "openssl"]
