@@ -1,5 +1,5 @@
 require 'rho/rhocontroller'
-require 'date'
+require 'time'
 
 class DateTimeController < Rho::RhoController
   @layout = :simplelayout
