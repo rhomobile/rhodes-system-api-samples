@@ -1,6 +1,5 @@
 require 'rho/rhocontroller'
 require 'net/http'
-require 'net/https'
 require 'uri'
 #require 'json'
 
@@ -43,26 +42,8 @@ class HttpTestController < Rho::RhoController
 
     #@get_result = Net::HTTP.post_form(URI.parse('http://www.example.com/search.cgi'), {'q' => 'ruby', 'max' => '50'})
     
-    #@get_result = Net::HTTP.get 'www.apache.org', '/licenses/LICENSE-2.0'
+    @get_result = Net::HTTP.get 'www.apache.org', '/licenses/LICENSE-2.0'
 
-    strurl = 'https://gmail.google.com/mail/?param1=1&param2=2'
-    puts "strurl: #{strurl}"
-  	uri = URI.parse(strurl)
-    puts "host: #{uri.host}"
-    puts "port: #{uri.port}"
-    puts "scheme: #{uri.scheme}"
-    puts "path: #{uri.path}"
-    puts "query: #{uri.query}"
-    puts "request_uri: #{uri.request_uri}" # exact the same as 'uri.path + "?" + uri.query'
-    http = Net::HTTP.new(uri.host, uri.port)
-  	http.use_ssl = uri.scheme == 'https'
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE if http.use_ssl? and System::get_property('platform') != 'Blackberry'
-	  http.start {
-		  http.request_get(uri.request_uri) { |res| 
-			  @get_result = res.body
-		  }
-	  }
-  
     render
   end
 end

@@ -16,7 +16,7 @@ class GeoLocationController < Rho::RhoController
      puts @params.inspect
      #pin color
      map_params = {
-          :settings => {:map_type => "hybrid",:region => [@params['latitude'], @params['longitude'], 0.2, 0.2],
+          :settings => {:map_type => "roadmap",:region => [@params['latitude'], @params['longitude'], 0.2, 0.2],
                         :zoom_enabled => true,:scroll_enabled => true,:shows_user_location => true},
           :annotations => [{:latitude => @params['latitude'], :longitude => @params['longitude'], :title => "Current location", :subtitle => ""},
                            {:street_address => "Cupertino, CA 95014", :title => "Cupertino", :subtitle => "zip: 95014", :url => "/app/GeoLocation/show?city=Cupertino"},
