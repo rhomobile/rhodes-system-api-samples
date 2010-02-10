@@ -7,6 +7,7 @@ class AsyncHttpTestController < Rho::RhoController
 
     @@get_result = ""
     AsyncHttp.get(
+      #:url => 'http://wiki.rhomobile.com/index.php/Rhodes',
       :url => 'http://www.apache.org/licenses/LICENSE-2.0',
       :headers => {'Cookie2' => 'test'},
       :callback => (url_for :action => :httpget_callback),
@@ -32,7 +33,7 @@ class AsyncHttpTestController < Rho::RhoController
   end
     
   def cancel_httpcall
-    AsyncHttp.cancel
+    AsyncHttp.cancel( url_for( :action => :httpget_callback) )
 
     @@get_result  = 'Request was cancelled.'
     render :action => :index, :back => '/app'
