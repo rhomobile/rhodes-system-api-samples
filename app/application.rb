@@ -11,5 +11,9 @@ class AppApplication < Rho::RhoApplication
                       "Log" => :log, 
                       :separator => nil, 
                       "Close" => :close } 
+    
+    #start geolocation
+    GeoLocation.known_position?
+                      
   end
 end
