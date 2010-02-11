@@ -23,6 +23,7 @@ LogCategories = *
 ExcludeLogCategories =
 KeepTrackOfLastVisitedPage = 0 
 LastVisitedPage = ''
+MaxLogFileSize=0
 
 syncserver = 'http://dev.rhosync.rhohub.com/apps/SystemApiSamples/sources/'
 sync_poll_interval=0
