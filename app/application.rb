@@ -12,8 +12,12 @@ class AppApplication < Rho::RhoApplication
                       :separator => nil, 
                       "Close" => :close } 
     
+  end
+  
+  def on_activate_app
     #start geolocation
     GeoLocation.known_position?
-                      
+  
   end
+  
 end
