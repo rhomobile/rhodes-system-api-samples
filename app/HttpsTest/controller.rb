@@ -7,7 +7,7 @@ class HttpsTestController < Rho::RhoController
   #GET /HttpsTest
   def index
 
-    strurl = 'https://gmail.google.com/mail/?param1=1&param2=2'
+    strurl = 'https://www.paypal.com/'
     puts "strurl: #{strurl}"
   	uri = URI.parse(strurl)
     puts "host: #{uri.host}"
