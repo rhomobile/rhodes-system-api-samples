@@ -6,7 +6,7 @@ class AsyncHttpsTestController < Rho::RhoController
   def index
 
     @@get_result = ""
-    AsyncHttp.get(
+    Rho::AsyncHttp.get(
       #:url => 'http://wiki.rhomobile.com/index.php/Rhodes',
       :url => 'https://www.paypal.com/',
       :headers => {'Cookie2' => 'test'},

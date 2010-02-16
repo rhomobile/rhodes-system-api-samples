@@ -6,7 +6,7 @@ class AsyncHttpTestController < Rho::RhoController
   def index
 
     @@get_result = ""
-    AsyncHttp.get(
+    Rho::AsyncHttp.get(
       #:url => 'http://wiki.rhomobile.com/index.php/Rhodes',
       :url => 'http://www.apache.org/licenses/LICENSE-2.0',
       :headers => {'Cookie2' => 'test'},
