@@ -20,15 +20,29 @@ class AsyncDownloadFileController < Rho::RhoController
   def get_res
     @@file_name    
   end
+
+  def get_error
+    @@error_params
+  end
   
   def httpdownload_callback
     puts "httpdownload_callback: #{@params}"
 
-    WebView.navigate ( url_for :action => :show_result )
+    if @params['status'] != 'ok'
+        @@error_params = @params
+        WebView.navigate ( url_for :action => :show_error )        
+    else
+        WebView.navigate ( url_for :action => :show_result )
+    end
+
   end
 
   def show_result
     render :action => :index, :back => '/app'
+  end
+
+  def show_error
+    render :action => :error, :back => '/app'
   end
     
   def cancel_httpcall
