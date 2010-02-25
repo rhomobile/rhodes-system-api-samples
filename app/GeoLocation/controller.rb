@@ -15,8 +15,10 @@ class GeoLocationController < Rho::RhoController
   def showmap
      puts @params.inspect
      #pin color
-     #@params['latitude'] = '43'
-     #@params['longitude'] = '-80'
+     if @params['latitude'].to_i == 0 and @params['longitude'].to_i == 0
+       @params['latitude'] = '37.349691'
+       @params['longitude'] = '-121.983261'
+     end
      map_params = {
           :settings => {:map_type => "roadmap",:region => [@params['latitude'], @params['longitude'], 0.2, 0.2],
                         :zoom_enabled => true,:scroll_enabled => true,:shows_user_location => true},
