@@ -19,17 +19,30 @@ class AsyncHttpTestController < Rho::RhoController
   def get_res
     @@get_result    
   end
+
+  def get_error
+    @@error_params
+  end
   
   def httpget_callback
     puts "httpget_callback: #{@params}"
 
-    @@get_result = @params['body']
-    
-    WebView.navigate ( url_for :action => :show_result )
+    if @params['status'] != 'ok'
+        @@error_params = @params
+        WebView.navigate ( url_for :action => :show_error )        
+    else
+        @@get_result = @params['body']
+        WebView.navigate ( url_for :action => :show_result )
+    end
+
   end
 
   def show_result
     render :action => :index, :back => '/app'
+  end
+
+  def show_error
+    render :action => :error, :back => '/app'
   end
     
   def cancel_httpcall

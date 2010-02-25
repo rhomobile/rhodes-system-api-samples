@@ -19,21 +19,30 @@ class AsyncUploadFileController < Rho::RhoController
   def get_res
     @@get_result    
   end
+
+  def get_error
+    @@error_params
+  end
   
   def httpupload_callback
     puts "httpupload_callback: #{@params}"
 
     if @params['status'] != 'ok'
-        @@get_result = "Failed to upload. File: " + @@file_name + "Http error:" + @params['http_error'] + "; Rho Error: " + Rho::RhoError.new(@params['error_code'].to_i).message
+        @@error_params = @params
+        WebView.navigate ( url_for :action => :show_error )        
     else
         @@get_result = "Success. File: " + @@file_name;
+        WebView.navigate ( url_for :action => :show_result )
     end
         
-    WebView.navigate ( url_for :action => :show_result )
   end
 
   def show_result
     render :action => :index, :back => '/app'
+  end
+
+  def show_error
+    render :action => :error, :back => '/app'
   end
     
   def cancel_httpcall
