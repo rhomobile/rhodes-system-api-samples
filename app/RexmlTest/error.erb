@@ -1,0 +1,13 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+        Error
+    </h1>
+</div>
+
+<ul>
+    <li>Rho  error: <%= Rho::RhoError.new(get_error()['error_code'].to_i).message%> </li>
+    <li>Http error: <%=get_error()['http_error']%></li>
+    <li>Http response: </li>
+</ul>
+
+<%=get_error()['body']%>
