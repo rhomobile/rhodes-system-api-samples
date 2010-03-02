@@ -11,7 +11,8 @@ class GeoLocationController < Rho::RhoController
   
   def geo_viewcallback
     puts "geo_viewcallback : #{@params}"
-    WebView.refresh
+    
+    WebView.refresh if @params['known_position'].to_i != 0 && @params['status'] =='ok'
   end
   
   def show 
