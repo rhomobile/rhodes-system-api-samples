@@ -5,6 +5,8 @@ sdk: /Users/lars/Dev/code/rhomobile/rhodes
 applog: rholog.txt
 version: 1.0.6
 vendor: rhomobile
+
+extensions: ["rexml", "set"]
  
 iphone: 
   sdk: iphonesimulator3.0
