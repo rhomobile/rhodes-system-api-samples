@@ -13,4 +13,5 @@ iphone:
   configuration: Debug
 
 android:
+  mapping: yes
 
