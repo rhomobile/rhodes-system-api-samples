@@ -5,7 +5,14 @@ class GeoLocationController < Rho::RhoController
   
   def index
     puts "GeoLocation index controller"
+    set_geoview_notification( url_for(:action => :geo_viewcallback), "", 2)  if System::get_property('platform') == 'Blackberry'
     render
+  end
+  
+  def geo_viewcallback
+    puts "geo_viewcallback : #{@params}"
+    
+    WebView.refresh if @params['known_position'].to_i != 0 && @params['status'] =='ok'
   end
   
   def show 

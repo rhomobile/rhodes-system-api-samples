@@ -71,4 +71,9 @@ class SettingsController < Rho::RhoController
     @msg =  "Sync has been triggered."
     redirect :action => :index, :query => {:msg => @msg}
   end
+  
+  def geo_callback
+    puts "geo_callback : #{@params}"
+  end
+ 
 end
