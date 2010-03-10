@@ -16,8 +16,8 @@ class AppApplication < Rho::RhoApplication
   
   def on_activate_app
     #start geolocation
-    #GeoLocation.known_position?
-    GeoLocation.set_notification("/app/Settings/geo_callback", "")
+    GeoLocation.known_position?
+    #GeoLocation.set_notification("/app/Settings/geo_callback", "")
     
   end
 
