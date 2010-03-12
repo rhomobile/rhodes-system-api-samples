@@ -1,12 +1,12 @@
 --- 
 name: rhodes-system-api-samples
-bbver: 4.2
+bbver: 4.6.1
 sdk: /Users/lars/Dev/code/rhomobile/rhodes
 applog: rholog.txt
-version: 1.0.6
+version: 1.0.7
 vendor: rhomobile
 
-extensions: ["rexml", "set"]
+#extensions: ["rexml", "set"]
  
 iphone: 
   sdk: iphonesimulator3.0
