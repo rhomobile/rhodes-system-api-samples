@@ -30,7 +30,7 @@ class AsyncHttpsTestController < Rho::RhoController
         if http_error == 301 || http_error == 302 #redirect
             
             Rho::AsyncHttp.get(
-              :url => @params['headers']['Location'],
+              :url => @params['headers']['location'],
               :callback => (url_for :action => :httpget_callback),
               :callback_param => "" )
             
