@@ -33,10 +33,9 @@ class CameraController < Rho::RhoController
       image = Image.new({'image_uri'=>@params['image_uri']})
       image.save
       puts "new Image object: " + image.inspect
-      
-      WebView.navigate( url_for :action => :index )
-      #WebView::refresh
     end  
+    WebView.navigate( url_for :action => :index )
+    #WebView::refresh
     #reply on the callback
     #render :action => :ok, :layout => false
     ""
