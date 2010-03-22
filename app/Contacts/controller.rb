@@ -6,7 +6,12 @@ class ContactsController < Rho::RhoController
   # GET /Contacts
   def index
     @contacts = Rho::RhoContact.find(:all)
-    @contacts.to_a.sort! {|x,y| x[1]['first_name'] <=> y[1]['first_name'] } if @contacts
+    @contacts = @contacts.sort do |x,y| 
+      res = 1 if x[1]['first_name'].nil? 
+      res = -1 if y[1]['first_name'].nil?
+      res = x[1]['first_name'] <=> y[1]['first_name'] unless res
+      res
+    end
     render
   end
  
