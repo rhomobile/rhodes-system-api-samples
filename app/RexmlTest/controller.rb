@@ -76,7 +76,7 @@ class RexmlTestController < Rho::RhoController
   end
     
   def cancel_httpcall
-    AsyncHttp.cancel( url_for( :action => :httpget_callback) )
+    Rho::AsyncHttp.cancel( url_for( :action => :httpget_callback) )
 
     @@get_result  = 'Request was cancelled.'
     render :action => :webservicetest, :back => '/app/RexmlTest'

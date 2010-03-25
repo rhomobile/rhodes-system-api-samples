@@ -47,7 +47,7 @@ class AsyncDownloadFileController < Rho::RhoController
     
   def cancel_httpcall
     puts "cancel_httpcall"
-    AsyncHttp.cancel()# url_for( :action => :httpdownload_callback) )
+    Rho::AsyncHttp.cancel()# url_for( :action => :httpdownload_callback) )
 
     @@get_result  = 'Request was cancelled.'
     render :action => :index, :back => '/app'
