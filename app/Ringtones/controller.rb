@@ -6,6 +6,7 @@ class RingtonesController < Rho::RhoController
   def index
     Rho::RingtoneManager.stop
     @ringtones = Rho::RingtoneManager.get_all_ringtones
+    @ringtones = [] if @ringtones.nil?
     render
   end
 

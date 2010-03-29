@@ -37,5 +37,10 @@ class AlertController < Rho::RhoController
     Alert.play_file @params['file_name']
     render :action => :index    
   end  
+
+  def stop_playing
+    Rho::RingtoneManager.stop
+    render :action => :index
+  end
   
 end
