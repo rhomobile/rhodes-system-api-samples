@@ -4,17 +4,21 @@ class AsyncHttpTestController < Rho::RhoController
 
   #GET /AsyncHttpTest
   def index
-
+=begin
+    res = Rho::AsyncHttp.get( :url => 'http://www.apache.org/licenses/LICENSE-2.0')
+    puts "Sync http call: #{res}"
+    @@get_result = res['body']
+    
+    render
+=end
+#=begin    
     @@get_result = ""
-    #(1..10).each do
     Rho::AsyncHttp.get(
-      #:url => 'http://wiki.rhomobile.com/index.php/Rhodes',
       :url => 'http://www.apache.org/licenses/LICENSE-2.0',
-      :headers => {'Cookie2' => 'test'},
       :callback => (url_for :action => :httpget_callback),
       :callback_param => "" )
-    #end  
     render :action => :wait
+#=end    
   end
   
   def get_res
