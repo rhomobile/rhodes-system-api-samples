@@ -15,7 +15,8 @@ class NativeBarTestController < Rho::RhoController
       {:action => :forward, :icon => '/public/images/bar/forward_btn.png'},
       {:action => :separator},
       {:action => :home,    :icon => '/public/images/bar/home_btn.png'},
-      {:action => :refresh},
+      {:action => :refresh },
+      {:action => 'callback:' + url_for(:action => :callback), :label => 'Callback' },
       {:action => :options}
     ]
     NativeBar.create(Rho::RhoApplication::TOOLBAR_TYPE, toolbar)
@@ -30,6 +31,11 @@ class NativeBarTestController < Rho::RhoController
     NativeBar.create(Rho::RhoApplication::TABBAR_TYPE, tabbar)
     NativeBar.switch_tab(0)
     WebView.navigate(@@this_page, 0)
+  end
+
+  def callback
+    puts "+++--- callback"
+    WebView.navigate '/app'
   end
 
 end
