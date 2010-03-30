@@ -26,4 +26,12 @@
 			target="_self">[show map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
 	<% end %>
 
+	<p>Distance calculation test:</p>
+	<p> Distance between Washington, D.C. and Moscow, Russia: expected  4856.99 miles, geolocation returns
+	<%= GeoLocation.haversine_distance(38.895, -77.036667, 55.755786, 37.617633).to_s %> miles
+	</p>
+	<p> Distance between Washington, D.C. and New York: expected 204.34 miles, geolocation returns
+	<%= GeoLocation.haversine_distance(38.895, -77.036667, 40.716667, -74).to_s %> miles
+	</p>
+
 </div>
