@@ -46,8 +46,10 @@ class DateTimeController < Rho::RhoController
       end
       $choosed[flag] = $dt.strftime( format )
       #WebView::refresh
-      WebView.navigate( url_for :action => :index )
     end
+    
+    WebView.navigate( url_for :action => :index )
+    
     #reply on the callback
     #render :action => :index
     ""
