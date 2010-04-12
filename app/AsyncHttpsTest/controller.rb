@@ -7,7 +7,8 @@ class AsyncHttpsTestController < Rho::RhoController
 
     @@get_result = ""
     Rho::AsyncHttp.get(
-      :url => 'https://www.paypal.com/',
+      #:url => 'https://www.paypal.com/',
+      :url => 'https://mail.google.com/',
       :callback => (url_for :action => :httpget_callback),
       :callback_param => "" )
       
