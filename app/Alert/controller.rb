@@ -13,6 +13,22 @@ class AlertController < Rho::RhoController
     Alert.show_popup "Some message!"
     render :action => :index
   end
+
+  def show_popup2
+    @flash = "Show popup page"
+    Alert.show_popup :title => "This is popup", :message => "Some message!",
+      :buttons => ["Yes", "No", {:id => 'cancel', :title => "Cancel"}],
+      :callback => url_for(:action => :popup_callback)
+    render :action => :index
+  end
+
+  def popup_callback
+    id = @params['button_id']
+    title = @params['button_title']
+    index = @params['button_index']
+    puts "popup_callback: id: '#{id}', title: '#{title}', index: #{index}"
+    WebView.navigate url_for(:action => :index)
+  end
   
   def vibrate
     @flash = "Vibrate page"
