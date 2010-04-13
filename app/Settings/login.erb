@@ -17,11 +17,19 @@
   <table class="grid">
     <tr>
       <td class="gridleft" style="color:#000000">Login</td>
-      <td class="gridright"><input type="text" maxlength="100" name="login"/></td>
+	  <% if System::get_property('platform') == 'WINDOWS' %>
+		<td class="gridright"><input type="text"  size=15 maxlength="50" name="login"/></td>
+	  <% else %>
+		<td class="gridright"><input type="text" maxlength="50" name="login"/></td>
+	  <% end %>
     </tr>
     <tr>
       <td class="gridleft" style="color:#000000">Password</td>
-      <td class="gridright"><input type="text" maxlength="100" name="password"/></td>
+	  <% if System::get_property('platform') == 'WINDOWS' %>
+		<td class="gridright"><input type="text" size=15 maxlength="50" name="password"/></td>
+	  <% else %>
+		<td class="gridright"><input type="text" maxlength="50" name="password"/></td>
+	  <% end %>
     </tr>
   </table>
  
