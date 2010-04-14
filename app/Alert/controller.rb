@@ -16,7 +16,7 @@ class AlertController < Rho::RhoController
 
   def show_popup2
     @flash = "Show popup page"
-    Alert.show_popup :title => "This is popup", :message => "Some message!",
+    Alert.show_popup :title => "This is popup", :message => "Some message!", :icon => :info,
       :buttons => ["Yes", "No", {:id => 'cancel', :title => "Cancel"}],
       :callback => url_for(:action => :popup_callback)
     render :action => :index
