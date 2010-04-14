@@ -7,6 +7,13 @@ version: 1.0.7
 vendor: rhomobile
 
 #extensions: ["rexml", "set"]
+
+capabilities:
+  - gps
+  - pim
+  - camera
+  - vibrate
+  - phone
  
 iphone: 
   sdk: iphonesimulator3.0
@@ -16,4 +23,6 @@ iphone:
 
 android:
   mapping: yes
+  capabilities:
+    - network_state
 

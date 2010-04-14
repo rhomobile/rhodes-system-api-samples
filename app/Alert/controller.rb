@@ -25,8 +25,7 @@ class AlertController < Rho::RhoController
   def popup_callback
     id = @params['button_id']
     title = @params['button_title']
-    index = @params['button_index']
-    puts "popup_callback: id: '#{id}', title: '#{title}', index: #{index}"
+    puts "popup_callback: id: '#{id}', title: '#{title}'"
     WebView.navigate url_for(:action => :index)
   end
   
