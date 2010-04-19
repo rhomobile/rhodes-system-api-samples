@@ -1,3 +1,11 @@
+<head>
+    <script type="text/javascript">
+        function test() {
+            alert("Test");
+        }
+    </script>
+</head>
+
 <div class="toolbar">
 	<h1 id="pageTitle">
 		Async Http Test result
@@ -15,3 +23,9 @@ has_camera : <%=System.get_property('has_camera') %> <br/>
 phone_number : <%=System.get_property('phone_number') %> <br/>
 device_id : <%=System.get_property('device_id') %> <br/>
 full_browser : <%=System.get_property('full_browser') %> <br/>
+
+<br/>WebView class:<br/>
+<a href="#" onclick="test();">JS Popup</a><br/>
+current_location : <%=WebView.current_location() %> <br/>
+<li><%=link_to "execute_js", :action => :call_js%></li>
+
