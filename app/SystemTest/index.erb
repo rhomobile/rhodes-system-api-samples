@@ -24,6 +24,8 @@ phone_number : <%=System.get_property('phone_number') %> <br/>
 device_id : <%=System.get_property('device_id') %> <br/>
 full_browser : <%=System.get_property('full_browser') %> <br/>
 
+<%= link_to 'Exit application', url_for(:action => :app_exit) %> <br/>
+
 <br/>WebView class:<br/>
 <a href="#" onclick="test();">JS Popup</a><br/>
 current_location : <%=WebView.current_location() %> <br/>
