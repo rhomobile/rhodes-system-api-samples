@@ -23,6 +23,10 @@ has_camera : <%=System.get_property('has_camera') %> <br/>
 phone_number : <%=System.get_property('phone_number') %> <br/>
 device_id : <%=System.get_property('device_id') %> <br/>
 full_browser : <%=System.get_property('full_browser') %> <br/>
+device_name : <%=System.get_property('device_name') %> <br/>
+os_version : <%=System.get_property('os_version') %> <br/>
+
+<%= link_to 'Exit application', url_for(:action => :app_exit) %> <br/>
 
 <br/>WebView class:<br/>
 <a href="#" onclick="test();">JS Popup</a><br/>
