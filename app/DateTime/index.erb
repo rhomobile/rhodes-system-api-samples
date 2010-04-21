@@ -9,7 +9,11 @@
       <%= link_to "Edit", { :action => "choose", :query => { :flag => '1', :title => 'Choose Date' } } %><br/>
 	  <b>Time Only:</b><br/>
       <input type="text" name="date2" readonly value="<%= $choosed['2'] %>"></input>
-      <%= link_to "Edit", { :action => "choose", :query => { :flag => '2', :title => 'Choose Time' } } %><br/>
+      <a href="<%= url_for(:action => "choose", :query => { :flag => '2', :title => 'Choose Time' }) %>" >
+          <img src="/public/images/listArrow.png"/>
+        </a>
+      <!-- <%= link_to "Edit", { :action => "choose", :query => { :flag => '2', :title => 'Choose Time' } } %><br/>
+      -->
       <input type="submit" value="Save"></input>
     </form>
     <br/>
