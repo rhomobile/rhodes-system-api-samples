@@ -32,4 +32,3 @@ full_screen = 0
 
 logserver = 'http://logserver.staging.rhohub.com/log_handler'
 logname=sas
-use_bb_full_browser='touch'
