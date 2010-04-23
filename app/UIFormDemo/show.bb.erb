@@ -1,0 +1,46 @@
+<div id="pageTitle">
+	<h1><%= @task.title%></h1>
+</div>
+
+<div id="toolbar">
+        <%= link_to "Back", :action => :index %>
+        <%= link_to "Edit", :action => :edit, :id => @task.object %>
+</div>
+
+
+<div id="content">
+
+    <table>
+      
+      <tr>
+    	<td>Title</td>
+        <td><%= @task.title%></td>
+      </tr>
+      
+      <tr>
+    	<td>Description</td>
+        <td><%= @task.description%></td>
+      </tr>
+      
+      <tr>
+    	<td>Status</td>
+        <td><%= @task.status%></td>
+      </tr>
+      
+      <tr>
+    	<td>Project</td>
+        <td><%= @task.project%></td>
+      </tr>
+      
+      <tr>
+    	<td>Deadline</td>
+        <td><%= @task.deadline%></td>
+      </tr>
+      
+      <tr>
+    	<td>Shared</td>
+        <td><%= @task.shared%></td>
+      </tr>
+      
+    </table>
+</div>

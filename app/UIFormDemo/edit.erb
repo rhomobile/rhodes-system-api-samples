@@ -1,0 +1,48 @@
+<div id="pageTitle">
+	<h1>Edit <%= @task.title%></h1>
+</div>
+
+<div id="toolbar">
+    <div id="leftItem" class="backButton"><%= link_to "Cancel", :action => :show, :id => @task.object %></div>
+    <div id="rightItem" class="regularButton"><%= link_to "Delete", :action => :delete, :id => @task.object %></div>
+</div>
+
+<div id="content">
+    <form method="POST" action="<%= url_for :action => :update %>">
+            <input type="hidden" name="id" value="<%= @task.object %>"/>
+            <ul>
+                
+                <li>
+                    <label for="task[title]" class="fieldLabel">Title</label>
+                    <input type="text" name="task[title]" value="<%= @task.title%>" <%= placeholder( "Title" ) %> />
+                </li>
+                
+                <li>
+                    <label for="task[description]" class="fieldLabel">Description</label>
+                    <input type="text" name="task[description]" value="<%= @task.description%>" <%= placeholder( "Description" ) %> />
+                </li>
+                
+                <li>
+                    <label for="task[status]" class="fieldLabel">Status</label>
+                    <input type="text" name="task[status]" value="<%= @task.status%>" <%= placeholder( "Status" ) %> />
+                </li>
+                
+                <li>
+                    <label for="task[project]" class="fieldLabel">Project</label>
+                    <input type="text" name="task[project]" value="<%= @task.project%>" <%= placeholder( "Project" ) %> />
+                </li>
+                
+                <li>
+                    <label for="task[deadline]" class="fieldLabel">Deadline</label>
+                    <input type="text" name="task[deadline]" value="<%= @task.deadline%>" <%= placeholder( "Deadline" ) %> />
+                </li>
+                
+                <li>
+                    <label for="task[shared]" class="fieldLabel">Shared</label>
+                    <input type="text" name="task[shared]" value="<%= @task.shared%>" <%= placeholder( "Shared" ) %> />
+                </li>
+                
+            </ul>
+            <input type="submit" class="standardButton" value="Update" />
+    </form>
+</div>

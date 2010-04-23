@@ -1,0 +1,62 @@
+<div id="pageTitle">
+	<h1>New <%= @task.title %></h1>
+</div>
+
+<div id="toolbar">
+     <div id="leftItem" class="backButton"><%= link_to "Cancel", :action => :index %></div>
+</div>
+
+<div id="content">
+    <form method="POST" action="<%= url_for :action => :create %>">
+        <input type="hidden" name="id" value="<%= @task.object %>"/>
+        <ul>
+            <li>
+                <label for="task[title]" class="fieldLabel">Title</label>
+                <input type="text" name="task[title]" <%= placeholder( "Title" ) %> />
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <label for="task[status]">Not started</label>
+                <input type="radio" name="task[status]" value="new"/>
+            </li>
+            <li>
+                <label for="task[status]">In progress</label>
+                <input type="radio" name="task[status]" value="current"/>
+            </li>
+            <li>
+                <label for="task[status]">Finished</label>
+                <input type="radio" name="task[status]" value="complete"/>
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <select name="task[project]">
+                    <option selected>Please select</option>
+                    <option value="apple">iPhone</option>
+                    <option value="android">Android</option>
+                    <option value="blackberry">BlackBerry</option>
+                    <option value="winmo">Windows Mobile</option>
+                </select>
+            </li>
+        </ul>
+
+
+        <ul>
+            <li>
+                <label for="task[shared]">Shared</label>
+                <input type="checkbox" name="task[shared]" />
+            </li>
+            <li>
+                <label for="task[deadline]"  class="fieldLabel">Deadline</label>
+                <input type="text" name="task[deadline]" <%= placeholder( "Deadline" ) %> />
+            </li>
+            <li class="textarea">
+                <textarea name="task[description]" rows="5" cols="30" />
+            </li>
+
+        </ul>
+        <input type="submit" class="standardButton" value="Create" />
+    </form>
+</div>

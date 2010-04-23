@@ -1,0 +1,23 @@
+<div id="pageTitle">
+	<h1>Tasks</h1>
+</div>
+
+<div id="toolbar">
+    <div id="leftItem" class="regularButton"><%= link_to "Home", Rho::RhoConfig.start_path %></div>
+    <div id="rightItem" class="regularButton"><%= link_to "New", :controller => :Task, :action => :new %></div>
+</div>
+
+<div id="content">
+    <ul>
+        <% @tasks.each do |obj| %>
+            
+            <li>
+                <a href="<%= url_for :action => :show, :id => obj.object %>">
+                    <span class="title"><%= obj.title %></span>
+                    <span class="disclosure_indicator"></span>
+                </a>
+            </li>
+            
+        <% end %>
+    </ul>
+</div>
