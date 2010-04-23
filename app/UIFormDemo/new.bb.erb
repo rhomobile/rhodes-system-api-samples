@@ -11,28 +11,82 @@
 
     <form method="POST" action="<%= url_for :action => :create %>">
 	    <input type="hidden" name="id" value="<%= @uiformdemo.object %>"/>
+
+        <h3 class="groupTitle">Textbox</h3>
         <table>
-    		
-    		  <tr>
-    			  <td width="125">Textbox: </td>
-    			  <td><input type="text" name="uiformdemo[textbox]"/></td>
-    		  </tr>
-    		
-    		  <tr>
-    			  <td width="125">Checkbox: </td>
-    			  <td><input type="text" name="uiformdemo[checkbox]"/></td>
-    		  </tr>
-    		
-    		  <tr>
-    			  <td width="125">Radiobutton: </td>
-    			  <td><input type="text" name="uiformdemo[radiobutton]"/></td>
-    		  </tr>
-    		
-    		  <tr>
-    			  <td width="125">Textarea: </td>
-    			  <td><input type="text" name="uiformdemo[textarea]"/></td>
-    		  </tr>
-    		
+              <tr>
+                  <td width="125">Textbox1: </td>
+                  <td><input type="text" name="uiformdemo[textbox1]"/></td>
+              </tr>
+
+              <tr>
+                  <td width="125">Textbox2: </td>
+                  <td><input type="text" name="uiformdemo[textbox2]"/></td>
+              </tr>
+
+              <tr>
+                  <td width="125">Textbox3: </td>
+                  <td><input type="text" name="uiformdemo[textbox3]"/></td>
+              </tr>
+        </table>
+
+        <h3 class="groupTitle">Checkbox</h3>
+        <table>
+            <tr>
+              <td width="125">Checkbox1: </td>
+              <td><input type="text" name="uiformdemo[checkbox1]"/></td>
+            </tr>
+
+            <tr>
+              <td width="125">Checkbox2: </td>
+              <td><input type="text" name="uiformdemo[checkbox2]"/></td>
+            </tr>
+
+            <tr>
+              <td width="125">Checkbox3: </td>
+              <td><input type="text" name="uiformdemo[checkbox3]"/></td>
+            </tr>
+        </table>
+
+        <h3 class="groupTitle">Radio Button</h3>
+        <table>
+            <tr>
+              <td width="125">Radiobutton1: </td>
+              <td><input type="text" name="uiformdemo[radiobutton]"  value="radiobutton1" /></td>
+            </tr>
+
+            <tr>
+              <td width="125">Radiobutton2: </td>
+              <td><input type="text" name="uiformdemo[radiobutton]"  value="radiobutton2" /></td>
+            </tr>
+
+            <tr>
+              <td width="125">Radiobutton3: </td>
+              <td><input type="text" name="uiformdemo[radiobutton]"  value="radiobutton3" /></td>
+            </tr>
+        </table>
+
+        <h3 class="groupTitle">Select Box</h3>
+        <table>
+            <tr>
+                <td>
+                    <select name="uiformdemo[selectbox]">
+                        <option selected>Please select</option>
+                        <option value="apple">iPhone</option>
+                        <option value="android">Android</option>
+                        <option value="blackberry">BlackBerry</option>
+                        <option value="winmo">Windows Mobile</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <h3 class="groupTitle">TextArea</h3>
+        <table>
+            <tr>
+                <td width="125">Textarea: </td>
+                <td><textarea name="uiformdemo[textarea]" rows="5" cols="30"/></td>
+            </tr>
         </table>
         <input type="submit" class="standardButton" value="Create" />
     </form>
