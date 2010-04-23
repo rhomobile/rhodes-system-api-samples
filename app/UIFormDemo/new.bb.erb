@@ -1,5 +1,5 @@
 <div id="pageTitle">
-    <h1>New Task</h1>
+    <h1>New UIFormDemo</h1>
 </div>
 
 <div id="toolbar">
@@ -10,53 +10,27 @@
 <div id="content">
 
     <form method="POST" action="<%= url_for :action => :create %>">
-	    <input type="hidden" name="id" value="<%= @task.object %>"/>
+	    <input type="hidden" name="id" value="<%= @uiformdemo.object %>"/>
         <table>
     		
     		  <tr>
-    			  <td width="125">Title: </td>
-    			  <td><input type="text" name="task[title]"/></td>
-    		  </tr>
-    		
-  		
-      		  <tr>
-      			  <td width="125">Description: </td>
-      			  <td><input type="text" name="task[description]"/></td>
-      		  </tr>
-
-    		  <tr>
-    			  <td width="125">Not started </td>
-    			  <td><input type="radio" name="task[status]" value="new"/></td>
-              </tr>
-              <tr>
-                  <td width="125">In progress </td>
-            	  <td><input type="radio" name="task[status]" value="current"/></td>
-              </tr>
-              <tr>
-                  <td width="125">Finished </td>
-                  <td><input type="radio" name="task[status]" value="complete"/></td>
-    		  </tr>    		
-    		  <tr>
-    			  <td width="125">Project: </td>
-    			  <td>
-    			      <select name="task[project]">
-                          <option selected>Please select</option>
-                          <option value="apple">iPhone</option>
-                          <option value="android">Android</option>
-                          <option value="blackberry">BlackBerry</option>
-                          <option value="winmo">Windows Mobile</option>
-                      </select>
-                  </td>
+    			  <td width="125">Textbox: </td>
+    			  <td><input type="text" name="uiformdemo[textbox]"/></td>
     		  </tr>
     		
     		  <tr>
-    			  <td width="125">Deadline: </td>
-    			  <td><input type="text" name="task[deadline]"/></td>
+    			  <td width="125">Checkbox: </td>
+    			  <td><input type="text" name="uiformdemo[checkbox]"/></td>
     		  </tr>
     		
     		  <tr>
-    			  <td width="125">Shared: </td>
-    			  <td><input type="checkbox" name="task[shared]"/></td>
+    			  <td width="125">Radiobutton: </td>
+    			  <td><input type="text" name="uiformdemo[radiobutton]"/></td>
+    		  </tr>
+    		
+    		  <tr>
+    			  <td width="125">Textarea: </td>
+    			  <td><input type="text" name="uiformdemo[textarea]"/></td>
     		  </tr>
     		
         </table>

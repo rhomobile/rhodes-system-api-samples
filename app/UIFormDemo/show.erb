@@ -1,43 +1,53 @@
 <div id="pageTitle">
-	<h1><%= @task.title%></h1>
+	<h1><%= @uiformdemo.textbox%></h1>
 </div>
 
 <div id="toolbar">
     <div id="leftItem" class="backButton"><%= link_to "Back", :action => :index %></div>
-    <div id="rightItem" class="regularButton"><%= link_to "Edit", :action => :edit, :id => @task.object %></div>
+    <div id="rightItem" class="regularButton"><%= link_to "Edit", :action => :edit, :id => @uiformdemo.object %></div>
 </div>
 
 <div id="content">
     <ul>
         
         <li>
-            <div class="itemLabel">Title</div>
-            <div class="itemValue"><%= @task.title%></div>
+            <div class="itemLabel">Textbox1</div>
+            <div class="itemValue"><%= @uiformdemo.textbox1%></div>
         </li>
-        
+
         <li>
-            <div class="itemLabel">Description</div>
-            <div class="itemValue"><%= @task.description%></div>
+            <div class="itemLabel">Textbox2</div>
+            <div class="itemValue"><%= @uiformdemo.textbox2%></div>
         </li>
-        
+
         <li>
-            <div class="itemLabel">Status</div>
-            <div class="itemValue"><%= @task.status%></div>
+            <div class="itemLabel">Textbox3</div>
+            <div class="itemValue"><%= @uiformdemo.textbox3%></div>
         </li>
-        
+
         <li>
-            <div class="itemLabel">Project</div>
-            <div class="itemValue"><%= @task.project%></div>
+            <div class="itemLabel">Checkbox1</div>
+            <div class="itemValue"><%= @uiformdemo.checkbox1%></div>
         </li>
-        
-        <li>
-            <div class="itemLabel">Deadline</div>
-            <div class="itemValue"><%= @task.deadline%></div>
+
+       <li>
+            <div class="itemLabel">Checkbox2</div>
+            <div class="itemValue"><%= @uiformdemo.checkbox2%></div>
         </li>
-        
+
+       <li>
+            <div class="itemLabel">Checkbox3</div>
+            <div class="itemValue"><%= @uiformdemo.checkbox3%></div>
+        </li>
+
         <li>
-            <div class="itemLabel">Shared</div>
-            <div class="itemValue"><%= @task.shared%></div>
+            <div class="itemLabel">Radiobutton</div>
+            <div class="itemValue"><%= @uiformdemo.radiobutton%></div>
+        </li>
+
+        <li>
+            <div class="itemLabel">Textarea</div>
+            <div class="itemValue"><%= @uiformdemo.textarea%></div>
         </li>
         
     </ul>

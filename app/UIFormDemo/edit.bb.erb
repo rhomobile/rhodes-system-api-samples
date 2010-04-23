@@ -1,46 +1,36 @@
 <div id="pageTitle">
-		<h1>Edit <%= @task.title%></h1>
+		<h1>Edit <%= @uiformdemo.textbox%></h1>
 </div>
 
 <div id="toolbar">
-    <%= link_to "Back", :action => :show, :id => @task.object %>
-    <%= link_to "Delete", :action => :delete, :id => @task.object %>
+    <%= link_to "Back", :action => :show, :id => @uiformdemo.object %>
+    <%= link_to "Delete", :action => :delete, :id => @uiformdemo.object %>
 </div>
 
 
 <div id="content">
     <form method="POST" action="<%= url_for :action => :update %>">
-    	<input type="hidden" name="id" value="<%= @task.object %>"/>
+    	<input type="hidden" name="id" value="<%= @uiformdemo.object %>"/>
             <table>
         		
                     <tr>
-            			<td width="125" class="fieldLabel">Title: </td>
-              			<td><input type="text" name="task[title]" value="<%= @task.title %>"/></td>
+            			<td width="125" class="fieldLabel">Textbox: </td>
+              			<td><input type="text" name="uiformdemo[textbox]" value="<%= @uiformdemo.textbox %>"/></td>
           		    </tr>
         		
                     <tr>
-            			<td width="125" class="fieldLabel">Description: </td>
-              			<td><input type="text" name="task[description]" value="<%= @task.description %>"/></td>
+            			<td width="125" class="fieldLabel">Checkbox: </td>
+              			<td><input type="text" name="uiformdemo[checkbox]" value="<%= @uiformdemo.checkbox %>"/></td>
           		    </tr>
         		
                     <tr>
-            			<td width="125" class="fieldLabel">Status: </td>
-              			<td><input type="text" name="task[status]" value="<%= @task.status %>"/></td>
+            			<td width="125" class="fieldLabel">Radiobutton: </td>
+              			<td><input type="text" name="uiformdemo[radiobutton]" value="<%= @uiformdemo.radiobutton %>"/></td>
           		    </tr>
         		
                     <tr>
-            			<td width="125" class="fieldLabel">Project: </td>
-              			<td><input type="text" name="task[project]" value="<%= @task.project %>"/></td>
-          		    </tr>
-        		
-                    <tr>
-            			<td width="125" class="fieldLabel">Deadline: </td>
-              			<td><input type="text" name="task[deadline]" value="<%= @task.deadline %>"/></td>
-          		    </tr>
-        		
-                    <tr>
-            			<td width="125" class="fieldLabel">Shared: </td>
-              			<td><input type="text" name="task[shared]" value="<%= @task.shared %>"/></td>
+            			<td width="125" class="fieldLabel">Textarea: </td>
+              			<td><input type="text" name="uiformdemo[textarea]" value="<%= @uiformdemo.textarea %>"/></td>
           		    </tr>
         		
             </table>

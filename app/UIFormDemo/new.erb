@@ -1,5 +1,5 @@
 <div id="pageTitle">
-	<h1>New <%= @task.title %></h1>
+	<h1>New <%= @uiformdemo.title %></h1>
 </div>
 
 <div id="toolbar">
@@ -8,55 +8,69 @@
 
 <div id="content">
     <form method="POST" action="<%= url_for :action => :create %>">
-        <input type="hidden" name="id" value="<%= @task.object %>"/>
-        <ul>
-            <li>
-                <label for="task[title]" class="fieldLabel">Title</label>
-                <input type="text" name="task[title]" <%= placeholder( "Title" ) %> />
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <label for="task[status]">Not started</label>
-                <input type="radio" name="task[status]" value="new"/>
-            </li>
-            <li>
-                <label for="task[status]">In progress</label>
-                <input type="radio" name="task[status]" value="current"/>
-            </li>
-            <li>
-                <label for="task[status]">Finished</label>
-                <input type="radio" name="task[status]" value="complete"/>
-            </li>
-        </ul>
+            <input type="hidden" name="id" value="<%= @uiformdemo.object %>"/>
+            <ul>
+                <li>
+                    <label for="uiformdemo[textbox1]" class="fieldLabel">Textbox1</label>
+                    <input type="text" name="uiformdemo[textbox1]" <%= placeholder( "Textbox1" ) %> />
+                </li>
+                <li>
+                    <label for="uiformdemo[textbox2]" class="fieldLabel">Textbox2</label>
+                    <input type="text" name="uiformdemo[textbox2]" <%= placeholder( "Textbox2" ) %> />
+                </li>
+                <li>
+                    <label for="uiformdemo[textbox3]" class="fieldLabel">Textbox3</label>
+                    <input type="text" name="uiformdemo[textbox3]" <%= placeholder( "Textbox3" ) %> />
+                </li>
+            </ul>
 
-        <ul>
-            <li>
-                <select name="task[project]">
-                    <option selected>Please select</option>
-                    <option value="apple">iPhone</option>
-                    <option value="android">Android</option>
-                    <option value="blackberry">BlackBerry</option>
-                    <option value="winmo">Windows Mobile</option>
-                </select>
-            </li>
-        </ul>
+            <ul>
+                <li>
+                    <label for="uiformdemo[checkbox]">Checkbox1</label>
+                    <input type="checkbox" name="uiformdemo[checkbox1]" value="TRUE" />
+                </li>
+                <li>
+                    <label for="uiformdemo[checkbox]">Checkbox2</label>
+                    <input type="checkbox" name="uiformdemo[checkbox2]" value="TRUE" />
+                </li>
+                <li>
+                    <label for="uiformdemo[checkbox]">Checkbox3</label>
+                    <input type="checkbox" name="uiformdemo[checkbox3]" value="TRUE" />
+                </li>
+            </ul>
 
+            <ul>
+                <li>
+                    <label for="uiformdemo[radiobutton]">Not started</label>
+                    <input type="radio" name="uiformdemo[radiobutton]" value="new"/>
+                </li>
+                <li>
+                    <label for="uiformdemo[radiobutton]">In progress</label>
+                    <input type="radio" name="uiformdemo[radiobutton]" value="current"/>
+                </li>
+                <li>
+                    <label for="uiformdemo[radiobutton]">Finished</label>
+                    <input type="radio" name="uiformdemo[radiobutton]" value="complete"/>
+                </li>
+            </ul>
 
-        <ul>
-            <li>
-                <label for="task[shared]">Shared</label>
-                <input type="checkbox" name="task[shared]" />
-            </li>
-            <li>
-                <label for="task[deadline]"  class="fieldLabel">Deadline</label>
-                <input type="text" name="task[deadline]" <%= placeholder( "Deadline" ) %> />
-            </li>
-            <li class="textarea">
-                <textarea name="task[description]" rows="5" cols="30" />
-            </li>
+            <ul>
+                <li>
+                    <select name="uiformdemo[selectbox]">
+                        <option selected>Please select</option>
+                        <option value="apple">iPhone</option>
+                        <option value="android">Android</option>
+                        <option value="blackberry">BlackBerry</option>
+                        <option value="winmo">Windows Mobile</option>
+                    </select>
+                </li>
+            </ul>
 
-        </ul>
-        <input type="submit" class="standardButton" value="Create" />
+            <ul>
+                <li class="textarea">
+                    <textarea name="uiformdemo[textarea]" rows="5" cols="30" />
+                </li>
+            </ul>
+            <input type="submit" class="standardButton" value="Create" />
     </form>
 </div>

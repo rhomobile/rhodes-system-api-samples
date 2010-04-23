@@ -1,10 +1,10 @@
 <div id="pageTitle">
-	<h1><%= @task.title%></h1>
+	<h1><%= @uiformdemo.textbox%></h1>
 </div>
 
 <div id="toolbar">
         <%= link_to "Back", :action => :index %>
-        <%= link_to "Edit", :action => :edit, :id => @task.object %>
+        <%= link_to "Edit", :action => :edit, :id => @uiformdemo.object %>
 </div>
 
 
@@ -13,33 +13,23 @@
     <table>
       
       <tr>
-    	<td>Title</td>
-        <td><%= @task.title%></td>
+    	<td>Textbox</td>
+        <td><%= @uiformdemo.textbox%></td>
       </tr>
       
       <tr>
-    	<td>Description</td>
-        <td><%= @task.description%></td>
+    	<td>Checkbox</td>
+        <td><%= @uiformdemo.checkbox%></td>
       </tr>
       
       <tr>
-    	<td>Status</td>
-        <td><%= @task.status%></td>
+    	<td>Radiobutton</td>
+        <td><%= @uiformdemo.radiobutton%></td>
       </tr>
       
       <tr>
-    	<td>Project</td>
-        <td><%= @task.project%></td>
-      </tr>
-      
-      <tr>
-    	<td>Deadline</td>
-        <td><%= @task.deadline%></td>
-      </tr>
-      
-      <tr>
-    	<td>Shared</td>
-        <td><%= @task.shared%></td>
+    	<td>Textarea</td>
+        <td><%= @uiformdemo.textarea%></td>
       </tr>
       
     </table>
