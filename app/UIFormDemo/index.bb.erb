@@ -1,5 +1,5 @@
 <div id="pageTitle">
-	<h1>Tasks</h1>
+	<h1>UIFormDemos</h1>
 </div>
 
 
@@ -10,9 +10,9 @@
 
 <div id="content">
     <ul>
-    <% @tasks.each do |obj| %>
+    <% @uiformdemos.each do |obj| %>
     	
-    	    <li><%= link_to "#{obj.title}", :action => :show, :id => obj.object %></li>
+    	    <li><%= link_to "#{obj.textbox1}", :action => :show, :id => obj.object %></li>
     	
     <% end %>
     </ul>
