@@ -22,6 +22,14 @@ class AlertController < Rho::RhoController
     render :action => :index
   end
 
+  def show_popup3
+    @flash = "Show popup page"
+    Alert.show_popup :title => "Wait...", :message => "Wait ..."
+    sleep 3
+    Alert.hide_popup
+    render :action => :index
+  end
+
   def popup_callback
     id = @params['button_id']
     title = @params['button_title']

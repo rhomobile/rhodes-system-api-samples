@@ -9,6 +9,7 @@
 <div id="content">
     <form method="POST" action="<%= url_for :action => :create %>">
             <input type="hidden" name="id" value="<%= @uiformdemo.object %>"/>
+            <h2 class="groupTitle">text fields</h2>
             <ul>
                 <li>
                     <label for="uiformdemo[textbox1]" class="fieldLabel">Textbox1</label>
@@ -23,7 +24,7 @@
                     <input type="text" name="uiformdemo[textbox3]" <%= placeholder( "Textbox3" ) %> />
                 </li>
             </ul>
-
+            <h2 class="groupTitle">checkboxes</h2>
             <ul>
                 <li>
                     <label for="uiformdemo[checkbox1]">Checkbox1</label>
@@ -39,6 +40,7 @@
                 </li>
             </ul>
 
+            <h2 class="groupTitle">radio buttons</h2>
             <ul>
                 <li>
                     <label for="uiformdemo[radiobutton]">Radio Button1</label>
@@ -53,7 +55,7 @@
                     <input type="radio" name="uiformdemo[radiobutton]" value="radiobutton3"/>
                 </li>
             </ul>
-
+            <h2 class="groupTitle">select box</h2>
             <ul>
                 <li>
                     <select name="uiformdemo[selectbox]">
@@ -65,10 +67,11 @@
                     </select>
                 </li>
             </ul>
+            <h2 class="groupTitle">textarea</h2>
 
             <ul>
                 <li class="textarea">
-                    <textarea name="uiformdemo[textarea]" rows="5" cols="30" />
+                    <textarea name="uiformdemo[textarea]" rows="5" cols="30" ></textarea>
                 </li>
             </ul>
             <input type="submit" class="standardButton" value="Create" />
