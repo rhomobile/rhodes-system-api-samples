@@ -12,7 +12,7 @@ class AsyncHttpsTestController < Rho::RhoController
       :callback => (url_for :action => :httpget_callback),
       :callback_param => "" )
 =begin      
-file = IO.read(File.join(Rho::RhoApplication::get_model_path('app','AsyncHttpsTest'), 'body.xml'))
+    file = IO.read(File.join(Rho::RhoApplication::get_model_path('app','AsyncHttpsTest'), 'body.xml'))
     Rho::AsyncHttp.post(
 		  :headers => {'Content-Type' => 'text/xml; charset=utf-8', 'SOAPAction' => "http://agentfirstws.firstam.com/Login"},
 		  :url => "https://test2.myagent1st.com/private/AgentFirstWS/AgentFirstWS.asmx",
