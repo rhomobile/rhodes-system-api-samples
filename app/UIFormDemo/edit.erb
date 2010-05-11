@@ -9,69 +9,70 @@
 
 <div id="content">
     <form method="POST" action="<%= url_for :action => :update %>">
-            <input type="hidden" name="id" value="<%= @uiformdemo.object %>"/>
-            <ul>
-                <li>
-                    <label for="uiformdemo[textbox1]" class="fieldLabel">Textbox1</label>
-                    <input type="text" name="uiformdemo[textbox1]" value="<%= @uiformdemo.textbox1%>" <%= placeholder( "Textbox1" ) %> />
-                </li>
-                <li>
-                    <label for="uiformdemo[textbox2]" class="fieldLabel">Textbox2</label>
-                    <input type="text" name="uiformdemo[textbox2]" value="<%= @uiformdemo.textbox2%>" <%= placeholder( "Textbox2" ) %> />
-                </li>
-                <li>
-                    <label for="uiformdemo[textbox3]" class="fieldLabel">Textbox3</label>
-                    <input type="text" name="uiformdemo[textbox3]" value="<%= @uiformdemo.textbox3%>" <%= placeholder( "Textbox3" ) %> />
-                </li>
-            </ul>
+        <input type="hidden" name="id" value="<%= @uiformdemo.object %>"/>
 
-            <ul>
-                <li>
-                    <label for="uiformdemo[checkbox]">Checkbox1</label>
-                    <input type="checkbox" name="uiformdemo[checkbox1]" value="<%= @uiformdemo.checkbox1%>" />
-                </li>
-                <li>
-                    <label for="uiformdemo[checkbox]">Checkbox2</label>
-                    <input type="checkbox" name="uiformdemo[checkbox2]" value="<%= @uiformdemo.checkbox2%>" />
-                </li>
-                <li>
-                    <label for="uiformdemo[checkbox]">Checkbox3</label>
-                    <input type="checkbox" name="uiformdemo[checkbox3]" value="<%= @uiformdemo.checkbox3%>" />
-                </li>
-            </ul>
+        <h2 class="groupTitle">TextBoxes</h2>
+        <ul>
+            <li>
+                <label for="uiformdemo[title]" class="fieldLabel">Textbox1</label>
+                <input type="text" name="uiformdemo[title]" value="<%= @uiformdemo.title%>" <%= placeholder( "Title" ) %> />
+            </li>
+            <li>
+                <label for="uiformdemo[description]" class="fieldLabel">Textbox2</label>
+                <input type="text" name="uiformdemo[description]" value="<%= @uiformdemo.description%>" <%= placeholder( "Description" ) %> />
+            </li>
+        </ul>
 
-            <ul>
-                <li>
-                    <label for="uiformdemo[radiobutton]">Radio Button 1</label>
-                    <input type="radio" name="uiformdemo[radiobutton]" value="radiobutton1"/>
-                </li>
-                <li>
-                    <label for="uiformdemo[radiobutton]">Radio Button 2</label>
-                    <input type="radio" name="uiformdemo[radiobutton]" value="radiobutton2"/>
-                </li>
-                <li>
-                    <label for="uiformdemo[radiobutton]">Radio Button 3</label>
-                    <input type="radio" name="uiformdemo[radiobutton]" value="radiobutton3"/>
-                </li>
-            </ul>
+        <h2 class="groupTitle">Checboxes</h2>
+        <ul>
+            <li>
+                <label for="uiformdemo[checkbox1]">Checkbox1</label>
+                <input type="checkbox" name="uiformdemo[checkbox1]" value="checkbox1" <%= checked("checkbox1",@uiformdemo.checkbox1)%>/>
+            </li>
+            <li>
+                <label for="uiformdemo[checkbox2]">Checkbox2</label>
+                <input type="checkbox" name="uiformdemo[checkbox2]" value="checkbox2" <%= checked("checkbox2",@uiformdemo.checkbox2)%>/>
+            </li>
+            <li>
+                <label for="uiformdemo[checkbox3]">Checkbox3</label>
+                <input type="checkbox" name="uiformdemo[checkbox3]" value="checkbox3" <%= checked("checkbox3",@uiformdemo.checkbox3)%>/>
+            </li>
+        </ul>
 
-            <ul>
-                <li>
-                    <select name="uiformdemo[selectbox]">
-                        <option selected>Please select</option>
-                        <option value="apple">iPhone</option>
-                        <option value="android">Android</option>
-                        <option value="blackberry">BlackBerry</option>
-                        <option value="winmo">Windows Mobile</option>
-                    </select>
-                </li>
-            </ul>
+        <h2 class="groupTitle">Radio Buttons</h2>
+        <ul>
+            <li>
+                <label for="uiformdemo[radiobutton]">Radio Button1</label>
+                <input type="radio" name="uiformdemo[radiobutton]" value="radio1" <%= checked("radio1",@uiformdemo.radiobutton)%>/>
+            </li>
+            <li>
+                <label for="uiformdemo[radiobutton]">Radio Button2</label>
+                <input type="radio" name="uiformdemo[radiobutton]" value="radio2" <%= checked("radio2",@uiformdemo.radiobutton)%>/>
+            </li>
+            <li>
+                <label for="uiformdemo[radiobutton]">Radio Button3</label>
+                <input type="radio" name="uiformdemo[radiobutton]" value="radio3" <%= checked("radio3",@uiformdemo.radiobutton)%>/>
+            </li>
+        </ul>
 
-            <ul>
-                <li class="textarea">
-                    <textarea name="uiformdemo[textarea]" rows="5" cols="30"><%= @uiformdemo.textarea%></textarea>
-                </li>
-            </ul>
-            <input type="submit" class="standardButton" value="Update" />
+        <h2 class="groupTitle">Select Box</h2>
+        <ul>
+            <li>
+                <select name="uiformdemo[selectbox]">
+                    <option value="apple" <%= selected("apple",@uiformdemo.selectbox) %>>iPhone</option>
+                    <option value="android" <%= selected("android",@uiformdemo.selectbox) %>>Android</option>
+                    <option value="blackberry" <%= selected("blackberry",@uiformdemo.selectbox) %>>BlackBerry</option>
+                    <option value="winmo" <%= selected("winmo",@uiformdemo.selectbox) %>>Windows Mobile</option>
+                </select>
+            </li>
+        </ul>
+
+        <h2 class="groupTitle">Textarea</h2>
+        <ul>
+            <li class="textarea">
+                <textarea name="uiformdemo[textarea]" rows="5" cols="30" ><%= @uiformdemo.textarea%></textarea>
+            </li>
+        </ul>
+        <input type="submit" class="standardButton" value="Update" />
     </form>
 </div>

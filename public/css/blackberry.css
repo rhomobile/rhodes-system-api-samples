@@ -59,7 +59,7 @@ div#content div.warning{
 }
 
 div#content p{
-	font-size:14px; 
+	font-size:14px;
 }
 
 /* bb list styles */
@@ -81,7 +81,7 @@ div#content ul li a {
 	font-weight:bold;
 	color:black;
 	display:block;
-	overflow: hidden; 
+	overflow: hidden;
 }
 
 /* bb table styles */

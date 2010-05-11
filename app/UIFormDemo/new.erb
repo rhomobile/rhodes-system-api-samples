@@ -8,72 +8,71 @@
 
 <div id="content">
     <form method="POST" action="<%= url_for :action => :create %>">
-            <input type="hidden" name="id" value="<%= @uiformdemo.object %>"/>
-            <h2 class="groupTitle">text fields</h2>
-            <ul>
-                <li>
-                    <label for="uiformdemo[textbox1]" class="fieldLabel">Textbox1</label>
-                    <input type="text" name="uiformdemo[textbox1]" <%= placeholder( "Textbox1" ) %> />
-                </li>
-                <li>
-                    <label for="uiformdemo[textbox2]" class="fieldLabel">Textbox2</label>
-                    <input type="text" name="uiformdemo[textbox2]" <%= placeholder( "Textbox2" ) %> />
-                </li>
-                <li>
-                    <label for="uiformdemo[textbox3]" class="fieldLabel">Textbox3</label>
-                    <input type="text" name="uiformdemo[textbox3]" <%= placeholder( "Textbox3" ) %> />
-                </li>
-            </ul>
-            <h2 class="groupTitle">checkboxes</h2>
-            <ul>
-                <li>
-                    <label for="uiformdemo[checkbox1]">Checkbox1</label>
-                    <input type="checkbox" name="uiformdemo[checkbox1]" value="checkbox1" />
-                </li>
-                <li>
-                    <label for="uiformdemo[checkbox2]">Checkbox2</label>
-                    <input type="checkbox" name="uiformdemo[checkbox2]" value="checkbox2" />
-                </li>
-                <li>
-                    <label for="uiformdemo[checkbox3]">Checkbox3</label>
-                    <input type="checkbox" name="uiformdemo[checkbox3]" value="checkbox3" />
-                </li>
-            </ul>
+        <input type="hidden" name="id" value="<%= @uiformdemo.object %>"/>
 
-            <h2 class="groupTitle">radio buttons</h2>
-            <ul>
-                <li>
-                    <label for="uiformdemo[radiobutton]">Radio Button1</label>
-                    <input type="radio" name="uiformdemo[radiobutton]" value="radiobutton1"/>
-                </li>
-                <li>
-                    <label for="uiformdemo[radiobutton]">Radio Button2</label>
-                    <input type="radio" name="uiformdemo[radiobutton]" value="radiobutton2"/>
-                </li>
-                <li>
-                    <label for="uiformdemo[radiobutton]">Radio Button3</label>
-                    <input type="radio" name="uiformdemo[radiobutton]" value="radiobutton3"/>
-                </li>
-            </ul>
-            <h2 class="groupTitle">select box</h2>
-            <ul>
-                <li>
-                    <select name="uiformdemo[selectbox]">
-                        <option selected>Please select</option>
-                        <option value="apple">iPhone</option>
-                        <option value="android">Android</option>
-                        <option value="blackberry">BlackBerry</option>
-                        <option value="winmo">Windows Mobile</option>
-                    </select>
-                </li>
-            </ul>
-            <h2 class="groupTitle">textarea</h2>
+        <h2 class="groupTitle">TextBoxes</h2>
+        <ul>
+            <li>
+                <label for="uiformdemo[title]" class="fieldLabel">Textbox1</label>
+                <input type="text" name="uiformdemo[title]" <%= placeholder( "Title" ) %> />
+            </li>
+            <li>
+                <label for="uiformdemo[description]" class="fieldLabel">Textbox2</label>
+                <input type="text" name="uiformdemo[description]" <%= placeholder( "Description" ) %> />
+            </li>
+        </ul>
 
-            <ul>
-                <li class="textarea">
-                    <textarea name="uiformdemo[textarea]" rows="5" cols="30" ></textarea>
-                </li>
-            </ul>
-            <input type="submit" class="standardButton" value="Create" />
+        <h2 class="groupTitle">Checkboxes</h2>
+        <ul>
+            <li>
+                <label for="uiformdemo[checkbox1]">Checkbox1</label>
+                <input type="checkbox" name="uiformdemo[checkbox1]" value="checkbox1" />
+            </li>
+            <li>
+                <label for="uiformdemo[checkbox2]">Checkbox2</label>
+                <input type="checkbox" name="uiformdemo[checkbox2]" value="checkbox2" />
+            </li>
+            <li>
+                <label for="uiformdemo[checkbox3]">Checkbox3</label>
+                <input type="checkbox" name="uiformdemo[checkbox3]" value="checkbox3" />
+            </li>
+        </ul>
+
+        <h2 class="groupTitle">Radio Buttons</h2>
+        <ul>
+            <li>
+                <label for="uiformdemo[radiobutton]">Radio Button1</label>
+                <input type="radio" name="uiformdemo[radiobutton]" value="radio1"/>
+            </li>
+            <li>
+                <label for="uiformdemo[radiobutton]">Radio Button2</label>
+                <input type="radio" name="uiformdemo[radiobutton]" value="radio2"/>
+            </li>
+            <li>
+                <label for="uiformdemo[radiobutton]">Radio Button3</label>
+                <input type="radio" name="uiformdemo[radiobutton]" value="radio3"/>
+            </li>
+        </ul>
+
+        <h2 class="groupTitle">Select Box</h2>
+        <ul>
+            <li>
+                <select name="uiformdemo[selectbox]">
+                    <option selected>Please select</option>
+                    <option value="apple">iPhone</option>
+                    <option value="android">Android</option>
+                    <option value="blackberry">BlackBerry</option>
+                    <option value="winmo">Windows Mobile</option>
+                </select>
+            </li>
+        </ul>
+
+        <h2 class="groupTitle">Textarea</h2>
+        <ul>
+            <li class="textarea">
+                <textarea name="uiformdemo[textarea]" rows="5" cols="30" ></textarea>
+            </li>
+        </ul>
+        <input type="submit" class="standardButton" value="Create" />
     </form>
 </div>
