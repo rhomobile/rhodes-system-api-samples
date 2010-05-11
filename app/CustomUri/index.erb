@@ -1,13 +1,6 @@
 <div>
 	<p>Test custom URI schemes</p>
-  <form action="CustomUri/mailto">
-    <b>Enter e-mail address:</b><br/>
-    mailto:<input type="text" name="mailto" value="<%= @mailto %>"></input>
-    <input type="submit" value="Open URI"></input>
-  </form>
-  <form action="CustomUri/tel">
-    <b>Enter phone number:</b><br/>
-    tel:<input type="text" name="tel" value="<%= @tel %>"></input>
-    <input type="submit" value="Open URI"></input>
-  </form>
+  <a href="mailto:test@host.com">mailto:test@host.com</a><br/>
+  <a href="tel:+1222333444">tel:+1222333444</a><br/>
+  <a href="sms:+1222333444">sms:+1222333444</a><br/>
 </div>
