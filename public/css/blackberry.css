@@ -3,19 +3,19 @@ body {
     margin: 0;
     font-family: Arial, Helvetica;
     font-size:16px;
-		background: white;
+	background: white;
     color: black;
     overflow-x: hidden;
 }
 
 div#pageTitle {
-		background: black;
+	background: black;
     width: auto;
 }
 
 div#pageTitle h1 {
-		margin: 0;
-		padding: 4px;
+	margin: 0;
+	padding: 4px;
     width: auto;
     font-size: 16px;
     max-height: 16px;
@@ -33,6 +33,10 @@ div#toolbar{
 	line-height: 25px;
 	padding-left: 4px;
 	width:100%;
+}
+
+div#toolbar .noButton {
+    display:hidden;
 }
 
 /*content div styling*/
@@ -87,10 +91,10 @@ div#content ul li a {
 /* bb table styles */
 
 div#content table {
-  display:block;
+    display:block;
 	border:none;
 	border-spacing:0;
-  font-size: 80%;
+    font-size: 80%;
 	margin:4px;
 }
 
