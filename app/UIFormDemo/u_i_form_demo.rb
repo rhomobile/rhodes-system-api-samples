@@ -2,5 +2,6 @@
 # You can add more methods here
 
 class UIFormDemo
-  #add model specifc code here
+  include Rhom::PropertyBag
+  
 end
