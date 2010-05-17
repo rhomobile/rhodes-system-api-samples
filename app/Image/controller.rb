@@ -1,6 +1,6 @@
 require 'rho/rhocontroller'
 
-class CameraController < Rho::RhoController
+class ImageController < Rho::RhoController
   @layout = :simplelayout
   
   def index

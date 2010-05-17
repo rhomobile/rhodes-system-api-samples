@@ -5,10 +5,10 @@ start_path = '/app'
 options_path = '/app/Settings'
 
 # Location of bundle url (i.e. from rhohub.com)
-rhobundle_zip_url = nil
+rhobundle_zip_url = ''
 
 # Optional password to access bundle (usually not required)
-rhobundle_zip_pwd = nil
+rhobundle_zip_pwd = ''
 
 # Use Full Browser in Blackberry 4.6
 use_bb_full_browser = 0
