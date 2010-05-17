@@ -8,12 +8,14 @@
     <%= link_to "Home", RhoConfig::start_path %>
 </div>
 
-<div id="content">
-    <ul>
-    <% @uiformdemos.each do |obj| %>
-    	
-    	    <li><%= link_to "#{obj.textbox1}", :action => :show, :id => obj.object %></li>
-    	
-    <% end %>
-    </ul>
+<div id="content"> 
+    <table>
+      <tr>
+         <% @uiformdemos.each do |obj| %>
+
+    	    <td><%= link_to "#{obj.textbox1}", :action => :show, :id => obj.object %></td>
+
+         <% end %>
+      </tr>
+    </table>
 </div>
