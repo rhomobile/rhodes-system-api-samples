@@ -9,6 +9,11 @@ class NavbarController < Rho::RhoController
     render :action => :index
   end
 
+  def enable1
+    NavBar.create :title => "NavBar test", :left => {:action => :back, :lable => 'Back'}
+    render :action => :index
+  end
+
   def disable
     NavBar.remove
     render :action => :index
