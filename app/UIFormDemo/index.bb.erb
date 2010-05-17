@@ -13,7 +13,7 @@
       <tr>
          <% @uiformdemos.each do |obj| %>
 
-    	    <td><%= link_to "#{obj.textbox1}", :action => :show, :id => obj.object %></td>
+    	    <td class="recordLabel"><%= link_to "#{obj.textbox1}", :action => :show, :id => obj.object %></td>
 
          <% end %>
       </tr>
