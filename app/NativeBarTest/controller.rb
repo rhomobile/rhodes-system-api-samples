@@ -2,14 +2,20 @@ require 'rho/rhocontroller'
 
 class NativeBarTestController < Rho::RhoController
 
-  @@this_page = '/app/NativeBarTest'
+  def save_location
+    location = WebView.current_location
+    puts "location: #{location}"
+    @@this_page = location
+  end
 
   def set_no_bar
+    save_location
     NativeBar.create(Rho::RhoApplication::NOBAR_TYPE, [])
     WebView.navigate @@this_page
   end
 
   def set_toolbar
+    save_location
     toolbar = [
       {:action => :back,    :icon => '/public/images/bar/back_btn.png'},
       {:action => :forward, :icon => '/public/images/bar/forward_btn.png'},
@@ -24,6 +30,7 @@ class NativeBarTestController < Rho::RhoController
   end
 
   def set_tabbar
+    save_location
     tabbar = [
       {:label => 'Native bar', :action => '/app/NativeBarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
       {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true}
