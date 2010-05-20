@@ -34,7 +34,7 @@ if (location.search =='?settings=true') {
     <li><a href="AnimationTest">Animation test</a></li>
     <li><a href="NativeBarTest">Native bar test</a></li>
     <li><a href="UIFormDemo">UI Form Demo</a></li>
-  <% if System::get_property('platform') == 'APPLE' %>
+  <% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
     <li><a href="Navbar">Navigation bar</a></li>
   <% end %>
     <br/><br/>
