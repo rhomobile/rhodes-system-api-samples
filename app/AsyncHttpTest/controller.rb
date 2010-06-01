@@ -15,6 +15,7 @@ class AsyncHttpTestController < Rho::RhoController
     @@get_result = ""
     Rho::AsyncHttp.get(
       :url => 'http://www.apache.org/licenses/LICENSE-2.0',
+      #:authorization => {:type => :basic, :username => 'user', :password => 'none'},
       :callback => (url_for :action => :httpget_callback),
       :callback_param => "" )
     render :action => :wait

@@ -11,7 +11,7 @@ class NativeBarTestController < Rho::RhoController
   def set_no_bar
     save_location
     NativeBar.create(Rho::RhoApplication::NOBAR_TYPE, [])
-    WebView.navigate @@this_page
+    render :action => :index
   end
 
   def set_toolbar
@@ -26,7 +26,7 @@ class NativeBarTestController < Rho::RhoController
       {:action => :options}
     ]
     NativeBar.create(Rho::RhoApplication::TOOLBAR_TYPE, toolbar)
-    WebView.navigate @@this_page
+    render :action => :index
   end
 
   def set_tabbar
@@ -37,7 +37,6 @@ class NativeBarTestController < Rho::RhoController
     ]
     NativeBar.create(Rho::RhoApplication::TABBAR_TYPE, tabbar)
     NativeBar.switch_tab(0)
-    WebView.navigate(@@this_page, 0)
   end
 
   def callback
