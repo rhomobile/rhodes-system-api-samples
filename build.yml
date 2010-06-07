@@ -1,28 +1,23 @@
 --- 
 name: rhodes-system-api-samples
+capabilities: 
+- gps
+- pim
+- camera
+- vibrate
+- phone
 bbver: 4.6.1
-sdk: ~/rhodes/
+android: 
+  capabilities: 
+  - network_state
+  mapping: true
+sdk: /Users/brian/work/rhodes
 applog: rholog.txt
 version: 1.0.7
 vendor: rhomobile
-
-#extensions: ["rexml", "set"]
-
-capabilities:
-  - gps
-  - pim
-  - camera
-  - vibrate
-  - phone
- 
 iphone: 
-  sdk: iphonesimulator3.0
-  entitlements: ""
+  sdk: iphonesimulator4.0
   codesignidentity: ""
+  entitlements: ""
   configuration: Debug
-
-android:
-  mapping: yes
-  capabilities:
-    - network_state
-
+extensions: ["rhodes_translator", "json"]
