@@ -13,5 +13,13 @@ class RhoTestController < Rho::RhoController
   def render_file
     render :file => "RhoTest/file_test"
   end
+
+  def raise_400
+    raise ::Rhom::RecordNotFound
+  end
+
+  def raise_500
+    raise ArgumentError, "test error" 
+  end
   
 end
