@@ -5,6 +5,9 @@ class JsonTestController < Rho::RhoController
 
   #GET /JsonTest
   def index
+  end
+  
+  def filetest
     
     #begin
         file_name = File.join(Rho::RhoApplication::get_model_path('app','JsonTest'), 'test.json')
@@ -28,8 +31,51 @@ class JsonTestController < Rho::RhoController
         
   end
 
+  def webservicetest
+    Rho::AsyncHttp.get(
+      :url => 'http://rhostore.heroku.com/products.json',
+      :callback => (url_for :action => :httpget_callback),
+      :callback_param => "" )
+      
+    render :action => :wait
+  end
+
+  def get_error
+    @@error_params
+  end
+  
+  def httpget_callback
+    puts "httpget_callback: #{@params}"
+
+    if @params['status'] != 'ok'
+        @@error_params = @params
+        WebView.navigate ( url_for :action => :show_error )        
+    else
+        @@get_result = @params['body']
+        puts "@@get_result : #{@@get_result}"
+
+        WebView.navigate ( url_for :action => :show_result )
+    end
+
+  end
+
   def get_res
     @@get_result    
+  end
+
+  def show_result
+    render :action => :webservicetest, :back => '/app/JsonTest'
+  end
+
+  def show_error
+    render :action => :error, :back => '/app/JsonTest'
+  end
+    
+  def cancel_httpcall
+    Rho::AsyncHttp.cancel( url_for( :action => :httpget_callback) )
+
+    @@get_result  = 'Request was cancelled.'
+    render :action => :webservicetest, :back => '/app/JsonTest'
   end
 
 end

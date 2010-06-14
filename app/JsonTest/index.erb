@@ -4,4 +4,8 @@
 	</h1>
 </div>
 
-RESULT: <%=get_res() %> <br/>
+<ul id="home" selected="true" title="System Api Samples">
+	<li><%=link_to "Parse test.json", :action => :filetest%></li>
+	<li><%=link_to "Call webservice", :action => :webservicetest%></li>
+    <br/><br/>
+</ul>
