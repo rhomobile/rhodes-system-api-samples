@@ -1,0 +1,148 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg id="svg_image" onload="Initialize(evt)"  onmouseup="fun_mouseUP(evt)" onmousedown="fun_mouseDOWN(evt)" onmousemove="fun_mouseMOVE(evt)" width="350px" height="60px" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+
+<script type="text/ecmascript">
+  <![CDATA[
+	SVGDocument = null;
+	var svgns = "http://www.w3.org/2000/svg";
+	var d_attr = 0 ;
+	var signature_started = 0 ;
+	var path_elememt = 0 ;
+	var path_num = 1 ;
+	top.clear_svg = SVGclear_svg ;
+	top.submit_svg = SVGsubmit_svg ;
+		
+	   function Initialize(LoadEvent)
+	   {
+	      SVGDocument = LoadEvent.target.ownerDocument
+	   }
+
+	function SVGsubmit_svg(){
+
+		var str = "<?xml version=\"1.0\" standalone=\"no\"?> \
+<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \
+\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\"> \n  \
+<svg width=\"350px\" height=\"60px\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"> ";
+
+		for(var i=1; i<path_num; i++){
+			var element = SVGDocument.getElementById("path_" + i);
+			if(element != null ) { str = str  +  SvgToString(element);} 
+
+	        }
+	        str = str + "</svg>"
+	        	
+		top.return_str_to_html(str);
+
+	}
+
+
+	   function fun_mouseUP(evt)
+	   {
+		signature_started = 0 ;
+		path_num = path_num + 1 ;
+		d_attr = 0 ;
+	   }
+
+	   
+	   function fun_mouseDOWN(evt)
+	   {
+			var x = evt.pageX;
+			var y = evt.pageY;
+
+			d_attr = "M" + x + " " + y + " ";
+			signature_started = 1 ;
+			SVG_insert_to_svg();//create element
+	   }
+
+	   function fun_mouseMOVE(evt)
+	   {
+		   if (signature_started == 1 )
+			{
+				var x = evt.pageX;
+				var y = evt.pageY;
+				d_attr = d_attr + "L" + x + " " + y + " ";
+				
+				var shape = SVGDocument.getElementById("path_" + path_num);
+				shape.setAttributeNS(null, "d", d_attr);
+			}
+	   }
+	   
+	   function SVG_insert_to_svg()
+	   {
+	      
+		var shape = SVGDocument.createElementNS(svgns, "path");
+		shape.setAttributeNS(null, "d", d_attr);
+		shape.setAttributeNS(null, "id", "path_" + path_num);
+		shape.setAttributeNS(null, "fill", "none");
+		shape.setAttributeNS(null, "stroke", "green");
+		SVGDocument.documentElement.appendChild(shape);
+
+	   }
+
+	   function SVGclear_svg()
+	   {
+	   	for(var i=1; i<path_num; i++){
+			var element = SVGDocument.getElementById("path_" + i);
+			if(element != null ) { element.parentNode.removeChild(element); } 
+
+	        }
+	        path_num = 1 ;
+	   }
+
+	var out = "", indent=0;
+	function SvgToString(elem)
+	{
+		out = "" ;
+	   if (elem)
+	   {
+	      var attrs = elem.attributes;
+	      var attr;
+	      var i;
+	      var childs = elem.childNodes;
+
+	      for (i=0; i<indent; i++) out += "  ";
+	      out += "<" + elem.nodeName;
+	
+
+	      for (i=attrs.length-1; i>=0; i--)
+	      {
+	         attr = attrs.item(i);
+	         out += " " + attr.nodeName + "=\"" + attr.nodeValue+ "\"";
+	      }
+
+
+	
+	      if (elem.hasChildNodes())
+	      {
+	         out += ">\n";
+	         indent++;
+	         for (i=0; i<childs.length; i++)
+	         {
+	            if (childs.item(i).nodeType == 1) // element node ..
+	               SvgToString(childs.item(i));
+	            else if (childs.item(i).nodeType == 3) // text node ..
+	            {
+	               for (j=0; j<indent; j++) out += "  ";
+	               out += childs.item(i).nodeValue + "\n";
+	            }
+	         }
+	         indent--;
+	         for (i=0; i<indent; i++) out += "  ";
+	         out += "</" + elem.nodeName + ">\n";
+	      }
+	      else
+	      {
+	         out += " />\n";
+	      }
+
+	   }
+	   return out;
+	}
+  ]]>
+  
+  </script>
+</svg>
