@@ -8,11 +8,11 @@ if (location.search =='?settings=true') {
 
 <div class="toolbar">
     <h1 id="pageTitle">
-        System Api Samples
+        System Tests
     </h1>
 </div>
 
-<ul id="home" selected="true" title="System Api Samples">
+<ul id="home" selected="true" title="System Tests">
     <li><a href="Contacts">My Contacts...</a></li>
     <li><a href="GeoLocation">My Location...</a></li>
     <li><a href="Image">My Camera Images...</a></li>   
@@ -22,24 +22,31 @@ if (location.search =='?settings=true') {
     <li><a href="AsyncHttpTest">Async Http test</a></li>
     <li><a href="AsyncHttpsTest">Async HttpS test</a></li>
     <li><a href="AsyncDownloadFile">Async download file</a></li>
-    <li><a href="AsyncUploadFile">Async upload file</a></li>
     <li><a href="SystemTest">System test</a></li>
-    <li><a href="SignatureTest">Signature Test</a></li>
     <li><a href="Localization">Localization test</a></li>
+    <li><a href="DynamicMenu">Dynamic Menu Test</a></li>
+    <li><a href="RhoTest">Rho test</a></li>    
+    <li><a href="CustomUri">Custom URI schemes</a></li>
+
+  <% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
+    <li><a href="NativeBarTest">Native bar test</a></li>
+    <li><a href="Navbar">Navigation bar</a></li>
+  <% end %>
+    <br/><br/>
+      
+</ul>
+Api Samples
+<ul id="home" selected="true" title="System Tests">
+
     <li><a href="RexmlTest">Rexml test</a></li>
     <li><a href="JsonTest">Json test</a></li>    
-    <li><a href="RhoTest">Rho test</a></li>    
-    <li><a href="DynamicMenu">Dynamic Menu Test</a></li>
-    <li><a href="CustomUri">Custom URI schemes</a></li>
     <li><a href="FakeDataRecord">Generate Fake Data...</a></li>
     <li><a href="Noresponse">Test No Response</a></li>
     <li><a href="Loadofflinedata">Load offline data test</a></li>
-    <li><a href="AnimationTest">Animation test</a></li>
-    <li><a href="NativeBarTest">Native bar test</a></li>
     <li><a href="UIFormDemo">UI Form Demo</a></li>
     <li><a href="Metadata">Metadata</a></li>
-  <% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
-    <li><a href="Navbar">Navigation bar</a></li>
-  <% end %>
+    <li><a href="AsyncUploadFile">Async upload file</a></li>
+    <li><a href="AnimationTest">Animation test</a></li>
+      
     <br/><br/>
 </ul>

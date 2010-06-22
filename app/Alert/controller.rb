@@ -4,7 +4,7 @@ class AlertController < Rho::RhoController
   @layout = :simplelayout
   
   def index
-    @flash = "Index page"
+    @flash = "Alerts"
     render
   end
 
