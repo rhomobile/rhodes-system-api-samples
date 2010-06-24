@@ -11,7 +11,7 @@ rhobundle_zip_url = ''
 rhobundle_zip_pwd = ''
 
 # Use Full Browser in Blackberry 4.6
-use_bb_full_browser = 0
+#use_bb_full_browser = 'touch'
 
 # Use Persistent Storage in Blackberry for storing files instead of SD card
 use_persistent_storage = 0
@@ -30,5 +30,5 @@ sync_poll_interval=0
 
 full_screen = 0
 
-logserver = 'http://logserver.staging.rhohub.com/log_handler'
+logserver = 'http://rhologs.heroku.com'
 logname=sas
