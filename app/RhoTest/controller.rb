@@ -14,6 +14,11 @@ class RhoTestController < Rho::RhoController
     render :file => "RhoTest/file_test"
   end
 
+  def navigate_fragment
+    WebView.navigate(url_for(:action => :frag_test, :fragment => "moreButton"))
+    render :index
+  end
+
   def raise_400
     raise ::Rhom::RecordNotFound
   end
