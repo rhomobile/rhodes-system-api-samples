@@ -57,12 +57,12 @@ class BarcodeRecognizerController < Rho::RhoController
   end
 
   def scan1
-    show_barcode_info (Barcode.barcode_recognize(File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'barcode_06.png')))
+    show_barcode_info (Barcode.barcode_recognize(File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'Barcode_UPC_01.png')))
     redirect :action => :index
   end
 
   def scan2
-    show_barcode_info (Barcode.barcode_recognize(File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'barcode_09.jpg')))
+    show_barcode_info (Barcode.barcode_recognize(File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'Barcode_UPC_02.jpg')))
     redirect :action => :index
   end
 
