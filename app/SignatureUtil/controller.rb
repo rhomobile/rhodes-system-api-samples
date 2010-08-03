@@ -10,7 +10,7 @@ class SignatureUtilController < Rho::RhoController
   end
 
   def new
-    SignatureTool::take_signature(url_for :action => :signature_callback)
+    SignatureTool::take_signature(url_for( :action => :signature_callback), 'jpg')
     redirect :action => :index
   end
 
