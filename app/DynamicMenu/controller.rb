@@ -10,7 +10,7 @@ class DynamicMenuController < Rho::RhoController
                 "Call callback" => 'callback:' + url_for(:action => :callback),
                 "Full screen" => 'fullscreen' }
 
-    render
+    render :back => '/app'
   end
   
   def callback
@@ -23,6 +23,26 @@ class DynamicMenuController < Rho::RhoController
     res = @@callback_result
     @@callback_result = ""
     res
+  end
+
+  def popup_callback
+    id = @params['button_id']
+    title = @params['button_title']
+    puts "popup_callback: id: '#{id}', title: '#{title}'"
+    
+    WebView.navigate url_for(:action => :index) if title.downcase() == 'yes'
+  end
+  
+  def callback_alert
+    puts "+++--- callback_alert"
+    
+    Alert.show_popup( :title => "", :message => "Do you want to leave?", :icon => :question,
+      :buttons => ["Yes", "No"], :callback => url_for(:action => :popup_callback) )
+    
+  end
+  
+  def back_with_alert
+    render :action => :page_alert, :back => 'callback:' + url_for(:action => :callback_alert)
   end
   
 end
