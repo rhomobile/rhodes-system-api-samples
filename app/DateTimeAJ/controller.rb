@@ -5,7 +5,6 @@ require 'dateME'
 class DateTimeAJController < Rho::RhoController
   $saved = nil
   $choosed = {}
-  $date_time = {}
   @layout = 'DateTimeAJ/layout'
   
   def index
@@ -24,14 +23,9 @@ class DateTimeAJController < Rho::RhoController
     end
   end
  
-  def selection
-    @datetime = $date_time[@params['field_key']] ? $date_time[@params['field_key']] : ''
-    render :action => :selection, :layout => false, :use_layout_on_ajax => false
-  end
-
   def callback
     if @params['status'] == 'ok'
-      $dt = Time.at( @params['result'].to_i )
+     $saved = nil
      datetime_vars = Marshal.load(@params['opaque'])
       format = case datetime_vars[:flag]
         when "0" then '%F %T'
@@ -39,8 +33,9 @@ class DateTimeAJController < Rho::RhoController
         when "2" then '%T'
         else '%F %T'
       end
-      $date_time[datetime_vars[:field_key]] = Time.at(@params['result'].to_i).strftime(format)
-      $choosed[datetime_vars[:flag]] = $dt.strftime( format )
+      formatted_result = Time.at(@params['result'].to_i).strftime(format)
+      $choosed[datetime_vars[:flag]] = formatted_result
+      WebView.execute_js('setFieldValue("'+datetime_vars[:field_key]+'","'+formatted_result+'");')
     end
   end
 

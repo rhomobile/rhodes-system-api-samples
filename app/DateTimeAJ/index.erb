@@ -29,19 +29,8 @@
 
   <script type="text/javascript">
 
-function displaySelectedDateTime(dom_id) {
-    setInterval(function(){
-      $.get('/app/DateTimeAJ/selection', {field_key: dom_id}, function(data){
-        $('#'+dom_id).val(data);
-      });
-      return false;
-    }, 300);
-}
-
-function startDTTimers() {
-   displaySelectedDateTime("date0");
-   displaySelectedDateTime("date1");
-   displaySelectedDateTime("date2");
+function setFieldValue(field, value) {
+  document.getElementById(field).value=value;
 }
  
 function popupDateTimeAJPicker(flag, title, field_key) {
@@ -49,8 +38,6 @@ function popupDateTimeAJPicker(flag, title, field_key) {
   return false;
 }
 
-$(document).ready(function(){startDTTimers();});
-    
   </script>
 
 <%end%>
