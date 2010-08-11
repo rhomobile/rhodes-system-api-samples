@@ -30,14 +30,12 @@
   <script type="text/javascript">
 
 function displaySelectedDateTime(dom_id) {
-  $(document).ready(function() {
     setInterval(function(){
       $.get('/app/DateTimeAJ/selection', {field_key: dom_id}, function(data){
         $('#'+dom_id).val(data);
       });
       return false;
     }, 300);
-  });
 }
 
 function startDTTimers() {
