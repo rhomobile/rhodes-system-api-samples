@@ -1,0 +1,43 @@
+<div>
+<p>Test DateTime Pickers using AJAX call</p>
+ Click to field or button to set value<br/> 
+    <form action="DateTimeAJ/save">
+      <b>Date and Time:</b><br/>
+      <input id="date0" type="text" name="date0" readonly value="<%= $choosed['0'] %>"  onClick="popupDateTimeAJPicker('0', 'Choose Date & Time', 'date0');"></input>
+      <INPUT type="button" value="edit..." name="button0" onClick="popupDateTimeAJPicker('0', 'Choose Date & Time', 'date0');">
+    
+      <br/><b>Date Only:</b><br/>
+      <input id="date1" type="text" name="date1" readonly value="<%= $choosed['1'] %>"  onClick="popupDateTimeAJPicker('1', 'Choose Date', 'date1');"></input>
+      <INPUT type="button" value="edit..." name="button1" onClick="popupDateTimeAJPicker('1', 'Choose Date', 'date1');">
+    
+      <br/><b>Time Only:</b><br/>
+      <input id="date2" type="text" name="date2" readonly value="<%= $choosed['2'] %>"  onClick="popupDateTimeAJPicker('2', 'Choose Time', 'date2');"></input>
+      <INPUT type="button" value="edit..." name="button2" onClick="popupDateTimeAJPicker('2', 'Choose Time', 'date2');">
+
+      <br/><input type="submit" value=" Save and Reload page "></input>
+    </form>
+    
+    <br/>
+    <% if not $saved.nil? %>
+      Saved date/time values:<br/>
+      <% $choosed.each do |k,v| %>
+        <b>Format (<%=k%>): <%= v %></b><br/>
+      <% end %>
+    <% end %>
+
+<% unless System::get_property('platform') == 'Blackberry'%>
+
+  <script type="text/javascript">
+
+function setFieldValue(field, value) {
+  document.getElementById(field).value=value;
+}
+ 
+function popupDateTimeAJPicker(flag, title, field_key) {
+  $.get('/app/DateTimeAJ/popup', { flag: flag, title: title, field_key: field_key });
+  return false;
+}
+
+  </script>
+
+<%end%>
