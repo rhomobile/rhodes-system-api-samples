@@ -6,7 +6,7 @@ capabilities:
 - camera
 - vibrate
 - phone
-bbver: 5.0
+bbver: 4.6.1
 android: 
   capabilities: 
   - network_state
@@ -20,4 +20,12 @@ iphone:
   codesignidentity: ""
   entitlements: ""
   configuration: Debug
-extensions: ["rhodes_translator", "json", "rexml", "set"]
+  extensions: ["barcode"]
+wm:
+  extensions: ["barcode"]
+bb:
+  extensions: ["barcode"]
+android:
+  extensions: ["barcode"]
+
+extensions: ["rhodes_translator", "json", "rhoxml"]
