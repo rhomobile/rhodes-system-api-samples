@@ -75,5 +75,9 @@ class SettingsController < Rho::RhoController
   def geo_callback
     puts "geo_callback : #{@params}"
   end
+
+  def push_callback
+    puts "push_callback : #{@params}"
+  end
  
 end

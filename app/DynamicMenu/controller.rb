@@ -25,6 +25,18 @@ class DynamicMenuController < Rho::RhoController
     res
   end
 
+  def back_with_close
+    render :action => :page_close, :back => :close
+  end
+
+  def back_with_back
+    @menu = { "Back" => :back,
+        "Main Menu" => :home
+    }
+
+    render :action => :page_back
+  end
+
   def popup_callback
     id = @params['button_id']
     title = @params['button_title']
