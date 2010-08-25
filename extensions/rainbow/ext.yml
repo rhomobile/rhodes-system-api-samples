@@ -1,0 +1,3 @@
+entry: Init_Rainbow
+javaentry: com.rho.rubyext.RainbowExtension
+libraries: ["Rainbow"]
