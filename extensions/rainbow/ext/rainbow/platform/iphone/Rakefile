@@ -52,9 +52,9 @@ namespace "build" do
 
     args = ['build', '-target', 'Rainbow', '-configuration', $configuration, '-sdk', $sdk]
 
-   include_dirs = ENV['USER_HEADER_SEARCH_PATHS']
+   include_dirs = '' + ENV['USER_HEADER_SEARCH_PATHS']
 
-   include_dirs = include_dirs + ' ' + $rootdir + '/platform/iphone/Classes' + ' ' + $rootdir + '/platform/shared/rubyext' + ' ' + $rootdir + '/platform/shared/ruby/include' + ' ' + $rootdir + '/platform/shared' + ' ' + $rootdir + '/platform/shared/ruby/iphone'
+   include_dirs = include_dirs + ' ' + $rootdir + '/platform/iphone/Classes' + ' ' + $rootdir + '/platform/shared/rubyext' + ' ' + $rootdir + '/platform/shared/ruby/include' + ' ' + $rootdir + '/platform/shared' + ' ' + $rootdir + '/platform/shared/ruby/iphone'+ ' ' + $rootdir + '/platform/shared/common'
    ENV['USER_HEADER_SEARCH_PATHS'] = include_dirs
 
    require   $rootdir + '/lib/build/jake.rb'

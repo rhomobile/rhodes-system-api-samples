@@ -9,9 +9,17 @@
 
 #import "RainbowView.h"
 
-
-void rho_webview_navigate(const char* url, int index);
+// rhodes/platform/shared/rubyext/WebView.h
 //#import "WebView.h"
+void rho_webview_navigate(const char* url, int index);
+
+
+// rhodes/platform/shared/common/RhodesApp.h
+#import "RhodesApp.h"
+//void rho_net_request(const char *url);
+//char* rho_http_normalizeurl(const char* szUrl);
+
+
 
 @implementation RainbowEffectView
 
@@ -97,8 +105,9 @@ void rho_webview_navigate(const char* url, int index);
 }
 
 - (void)setBaseColor:(CGColorRef)color {
-	CGColorRelease(baseColor);
+	//CGColorRelease(baseColor);
 	baseColor = color;
+	CGColorRetain(baseColor);
 	[self setNeedsDisplay];
 }
 
@@ -157,7 +166,7 @@ void rho_webview_navigate(const char* url, int index);
 	button.hidden = NO;
 	button.frame = CGRectMake(213,130,86,30);
 	[button addTarget: self 
-               action: @selector(onGreen:) 
+               action: @selector(onBlue:) 
      forControlEvents: UIControlEventTouchDown];
 	[self addSubview:button];
 	//[button release];
@@ -199,15 +208,18 @@ void rho_webview_navigate(const char* url, int index);
 
 
 - (void)onRed:(id)info {
-	rho_webview_navigate("/app/NativeView/goto_red", 0);
+	//do not change location or view - just execute Ruby code
+	rho_net_request(rho_http_normalizeurl("/app/NativeView/goto_red"));
 }
 
 - (void)onGreen:(id)info {
-	rho_webview_navigate("/app/NativeView/goto_green", 0);
+	//do not change location or view - just execute Ruby code
+	rho_net_request(rho_http_normalizeurl("/app/NativeView/goto_green"));
 }
 
 - (void)onBlue:(id)info {
-	rho_webview_navigate("/app/NativeView/goto_blue", 0);
+	//do not change location or view - just execute Ruby code
+	rho_net_request(rho_http_normalizeurl("/app/NativeView/goto_blue"));
 }
 
 - (void)onStop:(id)info {
@@ -219,6 +231,7 @@ void rho_webview_navigate(const char* url, int index);
 }
 
 - (void)onClose:(id)info {
+	//need to change view - should be use navigate instead of net_request
 	rho_webview_navigate("/app/NativeView/goto_html", 0);	
 }
 
