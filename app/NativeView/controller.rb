@@ -24,8 +24,4 @@ class NativeViewController < Rho::RhoController
     WebView.navigate 'rainbow_view:blue'
   end
 
-  def show_alert
-    Alert.show_popup @params['message']    
-  end 
-
 end
