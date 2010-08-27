@@ -1,5 +1,5 @@
 
-// rhodes/platform/iphone/Classes/RhoNativeViewManager.h
+// rhodes/platform/shared/common/RhoNativeViewManager.h
 #include "RhoNativeViewManager.h"
 
 #include "RainbowViewFactory.h"

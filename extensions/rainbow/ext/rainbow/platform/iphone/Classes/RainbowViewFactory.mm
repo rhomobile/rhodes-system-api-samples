@@ -17,7 +17,7 @@ public:
 		mView = nil;
 	}
 	
-	virtual UIView* getView() {
+	virtual void* getView() {
 		return mView;
 	}
 	

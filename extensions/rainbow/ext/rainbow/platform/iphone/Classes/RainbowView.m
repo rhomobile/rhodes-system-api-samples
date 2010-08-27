@@ -10,8 +10,8 @@
 #import "RainbowView.h"
 
 // rhodes/platform/shared/rubyext/WebView.h
-//#import "WebView.h"
-void rho_webview_navigate(const char* url, int index);
+#import "WebView.h"
+//void rho_webview_navigate(const char* url, int index);
 
 
 // rhodes/platform/shared/common/RhodesApp.h
