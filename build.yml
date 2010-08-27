@@ -11,16 +11,18 @@ android:
   capabilities: 
   - network_state
   mapping: true
-sdk: /Users/brian/work/rhodes
+sdk: /Users/evgeny/Projects/rhodes
 applog: rholog.txt
 version: 1.0.7
 vendor: rhomobile
 iphone: 
+  emulator: 4.0.2
   sdk: iphonesimulator4.0
   codesignidentity: ""
   entitlements: ""
   configuration: Debug
-  extensions: ["barcode"]
+  extensions: ["barcode", "rainbow"]
+  
 wm:
   extensions: ["barcode"]
 bb:
