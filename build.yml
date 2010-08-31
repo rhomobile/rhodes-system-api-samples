@@ -28,6 +28,6 @@ wm:
 bb:
   extensions: ["barcode"]
 android:
-  extensions: ["barcode"]
+  extensions: ["barcode", "rainbow"]
 
 extensions: ["rhodes_translator", "json", "rhoxml"]

@@ -9,5 +9,15 @@
   <li><%= link_to "Switch to TabBar Views", :action => :goto_tabs %></li>
   <li><%= link_to "Switch to ToolBar WebView", :action => :goto_single %></li>
   <li><%= link_to "Switch to NoBar WebView", :action => :goto_nobar %></li>
-
+</ul>
+<br>
+Small Native View
+<ul id="NativeView2" selected="true" title="Small Native View Demo">
+  <li><%= link_to "Open Native View inside WebView", :action => :open_native_view %></li>
+  <li><%= link_to "Close Native View", :action => :close_native_view %></li>
+  <li><%= link_to "Play", :action => :play_native_view %></li>
+  <li><%= link_to "Stop", :action => :stop_native_view %></li>
+  <li><%= link_to "set Red", :action => :red_native_view %></li>
+  <li><%= link_to "set Green", :action => :green_native_view %></li>
+  <li><%= link_to "set Blue", :action => :blue_native_view %></li>
 </ul>

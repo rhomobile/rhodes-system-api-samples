@@ -33,6 +33,45 @@ class NativeViewController < Rho::RhoController
     WebView.navigate 'rainbow_view:blue'
   end
 
+  def open_native_view
+    puts "Native View controller -> open_native_view"
+    Rainbow.open_native_view
+    redirect :action => :index
+  end
+
+  def close_native_view
+    puts "Native View controller -> close_native_view"
+    Rainbow.close_native_view
+    redirect :action => :index
+  end
+
+  def play_native_view
+    puts "Native View controller -> close_native_view"
+    Rainbow.execute_command_in_native_view 'play'
+    redirect :action => :index
+  end
+  def stop_native_view
+    puts "Native View controller -> close_native_view"
+    Rainbow.execute_command_in_native_view 'stop'
+    redirect :action => :index
+  end
+  def red_native_view
+    puts "Native View controller -> close_native_view"
+    Rainbow.execute_command_in_native_view 'red'
+    redirect :action => :index
+  end
+  def green_native_view
+    puts "Native View controller -> close_native_view"
+    Rainbow.execute_command_in_native_view 'green'
+    redirect :action => :index
+  end
+  def blue_native_view
+    puts "Native View controller -> close_native_view"
+    Rainbow.execute_command_in_native_view 'blue'
+    redirect :action => :index
+  end
+
+
   def goto_tabs
     save_location
     tabbar = [
