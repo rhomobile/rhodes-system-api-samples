@@ -78,6 +78,8 @@ class SettingsController < Rho::RhoController
 
   def push_callback
     puts "push_callback : #{@params}"
+    
+    "rho_push"
   end
  
 end
