@@ -7,10 +7,6 @@ capabilities:
 - vibrate
 - phone
 bbver: 4.6.1
-android: 
-  capabilities: 
-  - network_state
-  mapping: true
 sdk: /Users/evgeny/Projects/rhodes
 applog: rholog.txt
 version: 1.0.7
@@ -29,5 +25,8 @@ bb:
   extensions: ["barcode"]
 android:
   extensions: ["barcode", "rainbow"]
+  capabilities:
+  - network_state
+  mapping: yes
 
 extensions: ["rhodes_translator", "json", "rhoxml"]
