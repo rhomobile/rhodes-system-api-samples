@@ -1,0 +1,72 @@
+<div>
+<p>Bluetooth Chat</p>
+
+My Name: 
+<input id="id_name" type="text" name="id_name" value="<%= $device_name %>"  onChange="onDeviceNameChanged();"></input>
+<br>
+My Status:
+<input id="id_status" type="text" name="id_status" readonly value="<%= $current_status %>"></input>
+<br>
+
+<% if not $connected_device_name.nil? %>
+  <INPUT type="button" id="id_button" value="Disconnect" name="button_disconnect" onClick="onDisconnect();">
+<% else %>
+  <INPUT type="button" id="id_button" value="Connect" name="button_connect" onClick="onConnect();">
+<% end %>
+<br>
+
+History:<br>
+<TEXTAREA id="id_history" ROWS="10" type="text" name="id_history" readonly></TEXTAREA>
+<br>
+
+Message:<br>
+<input id="id_message" type="text" name="id_message"></input>
+<INPUT type="button" value="Send" name="button_send" onClick="onSend();">
+<br>
+
+
+<% unless System::get_property('platform') == 'Blackberry'%>
+
+<script type="text/javascript">
+
+function onDeviceNameChanged() {
+  $.get('/app/BluetoothChat/on_change_name', { device_name: document.getElementById("id_name").value});
+  return false;
+}
+
+function onConnect() {
+  $.get('/app/BluetoothChat/on_connect', {});
+  return false;
+}
+
+function onDisconnect() {
+  $.get('/app/BluetoothChat/on_disconnect', {});
+  return false;
+}
+
+function onSend() {
+  $.get('/app/BluetoothChat/on_send', { message: document.getElementById("id_message").value});
+  document.getElementById("id_message").value = "";
+  return false;
+}
+
+
+function setHistory(history) {
+  document.getElementById("id_history").value = history
+}
+
+function setName(name) {
+  document.getElementById("id_name").value = name
+}
+
+function setStatus(status) {
+  document.getElementById("id_status").value = status
+}
+
+function setButtonCaption(caption) {
+  document.getElementById("id_button").value = caption
+}
+
+</script>
+
+<%end%>
