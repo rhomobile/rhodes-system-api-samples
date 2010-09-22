@@ -11,11 +11,14 @@ class BluetoothChatController < Rho::RhoController
   $history = ''
   
   def index
-    $device_name = Rho::BluetoothManager.get_device_name()
+    puts 'BluetoothChatController.index'
+    $device_name = 'test'    
+    #Rho::BluetoothManager.get_device_name()
     render
   end
 
   def on_send
+    puts 'BluetoothChatController.on_send'
     message = @params['message']
     $history = $device_name+':'+ message + '\n'+$history
     Rho::BluetoothSession.write_string($connected_device_name, message)
@@ -29,7 +32,8 @@ class BluetoothChatController < Rho::RhoController
     Rho::BluetoothSession.write($connected_device_name, ar)
   end
 
-  def on_connect
+  def on_connect_server
+    puts 'BluetoothChatController.on_connect_server'
     if $connected_device_name == nil
        puts 'BluetoothChat::on_connect()'
        $current_status = 'Connecting ...'
@@ -42,7 +46,23 @@ class BluetoothChatController < Rho::RhoController
     end
   end
 
+  def on_connect_client
+    puts 'BluetoothChatController.on_connect_client'
+    if $connected_device_name == nil
+       puts 'BluetoothChat::on_connect()'
+       $current_status = 'Connecting ...'
+       WebView.execute_js('setStatus("'+$current_status+'");')
+       Rho::BluetoothManager.create_session(Rho::BluetoothManager::ROLE_CLIENT, url_for(:action => :create_session_callback) )
+       #WebView.navigate( url_for :action => :index )
+       #redirect :action => :index
+    else
+        on_disconnect
+    end
+  end
+
+
   def on_disconnect
+    puts 'BluetoothChatController.on_disconnect'
     if $connected_device_name == nil
        Alert.show_popup "You are not connected now !"    
     else
@@ -50,7 +70,7 @@ class BluetoothChatController < Rho::RhoController
        $connected_device_name = nil
        $current_status = 'Disconnected'
        WebView.execute_js('setStatus("'+$current_status+'");')
-       WebView.execute_js('setButtonCaption("Connect");')
+       WebView.execute_js('restoreButtonCaption();')
        #WebView.navigate( url_for :action => :index )
        #redirect :action => :index
      end    
@@ -116,7 +136,7 @@ class BluetoothChatController < Rho::RhoController
           $connected_device_name = nil
           $current_status = 'Disconnected'
           WebView.execute_js('setStatus("'+$current_status+'");')
-          WebView.execute_js('setButtonCaption("Connect");')
+          WebView.execute_js('restoreButtonCaption();')
           #WebView.navigate( url_for :action => :index )
           #redirect :action => :index
        else

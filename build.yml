@@ -6,6 +6,7 @@ capabilities:
 - camera
 - vibrate
 - phone
+- bluetooth
 bbver: 4.6.1
 sdk: /Users/evgeny/Projects/rhodes
 applog: rholog.txt

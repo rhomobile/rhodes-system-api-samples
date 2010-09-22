@@ -9,9 +9,11 @@ My Status:
 <br>
 
 <% if not $connected_device_name.nil? %>
-  <INPUT type="button" id="id_button" value="Disconnect" name="button_disconnect" onClick="onDisconnect();">
+  <INPUT type="button" id="id_button1" value="Disconnect" name="button_disconnect1" onClick="onDisconnect();">
+  <INPUT type="button" id="id_button2" value="Disconnect" name="button_disconnect2" onClick="onDisconnect();">
 <% else %>
-  <INPUT type="button" id="id_button" value="Connect" name="button_connect" onClick="onConnect();">
+  <INPUT type="button" id="id_button1" value="Connect as Server" name="button_connect_server" onClick="onConnectServer();">
+  <INPUT type="button" id="id_button2" value="Connect as Client" name="button_connect_client" onClick="onConnectClient();">
 <% end %>
 <br>
 
@@ -34,8 +36,13 @@ function onDeviceNameChanged() {
   return false;
 }
 
-function onConnect() {
-  $.get('/app/BluetoothChat/on_connect', {});
+function onConnectServer() {
+  $.get('/app/BluetoothChat/on_connect_server', {});
+  return false;
+}
+
+function onConnectClient() {
+  $.get('/app/BluetoothChat/on_connect_client', {});
   return false;
 }
 
@@ -50,21 +57,26 @@ function onSend() {
   return false;
 }
 
-
 function setHistory(history) {
-  document.getElementById("id_history").value = history
+  document.getElementById("id_history").value = history;
 }
 
 function setName(name) {
-  document.getElementById("id_name").value = name
+  document.getElementById("id_name").value = name;
 }
 
 function setStatus(status) {
-  document.getElementById("id_status").value = status
+  document.getElementById("id_status").value = status;
 }
 
 function setButtonCaption(caption) {
-  document.getElementById("id_button").value = caption
+  document.getElementById("id_button1").value = caption;
+  document.getElementById("id_button2").value = caption;
+}
+
+function restoreButtonCaption() {
+  document.getElementById("id_button1").value = "Connect as Server";
+  document.getElementById("id_button2").value = "Connect as Client";
 }
 
 </script>
