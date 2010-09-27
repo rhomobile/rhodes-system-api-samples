@@ -1,0 +1,34 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		Edit Calendar Event
+	</h1>
+</div>
+<form title="Edit Calendar Event"
+   class="panel"
+   id="event_edit_form"
+   method="POST"
+   action="<%=url_for(:action => :update)%>">
+  <fieldset>
+    <input type="hidden" name="event[<%= Event::ID %>]" value="<%=@event[Event::ID]%>"/>
+    <div class="row">
+      <label>Title: </label>
+      <input type="text" name="event[<%= Event::TITLE %>]" value="<%=@event[Event::TITLE]%>"/>
+    </div>
+    <div class="row">
+      <label>Organizer: </label>
+      <input type="text" name="event[<%= Event::ORGANIZER %>]" value="<%=@event[Event::ORGANIZER]%>"/>
+    </div>
+    <div class="row">
+      <label>Start Date: </label>
+      <input type="text" name="event[<%= Event::START_DATE %>]" value="<%=@event[Event::START_DATE]%>"/>
+    </div>
+    <div class="row">
+      <label>End Date: </label>
+      <input type="text" name="event[<%= Event::END_DATE %>]" value="<%=@event[Event::END_DATE]%>"/>
+    </div>
+  </fieldset>
+  <input type="submit" value="Update"/>
+  <div align="center">
+    <a href="<%=url_for(:action => :delete, :id => @event[Event::ID])%>"><font color="#990000">Delete</font></a>
+  </div>
+</form>

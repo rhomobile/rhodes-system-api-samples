@@ -1,0 +1,12 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		My Calendar Events
+	</h1>
+</div>
+
+<ul id="calendar" title="My Calendar Events...">
+  <%=link_to "New...", { :action => :new }, "class=\"button right_button\"" %>
+  <% @events.each do |e| %>
+    <li><%= link_to e[Event::TITLE], { :action => :edit, :id => e[Event::ID] } %></li>
+  <% end %>
+</ul>

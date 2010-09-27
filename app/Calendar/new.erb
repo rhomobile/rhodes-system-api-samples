@@ -1,0 +1,43 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		New Calendar Event
+	</h1>
+</div>
+<form title="New Calendar Event"
+   class="panel"
+   id="event_new_form"
+   method="POST"
+   action="<%=url_for(:action => :create)%>">
+  <fieldset>
+    <div class="row">
+      <label>Title: </label>
+      <input type="text" name="event[<%= Event::TITLE %>]"/>
+    </div>
+    <div class="row">
+      <label>Start Date: </label>
+      <input id="start_date" type="text" name="event[<%= Event::START_DATE %>]" readonly onClick="popupDateTimeAJPicker('Choose Start Date', 'start_date');"></input>
+    </div>
+    <div class="row">
+      <label>End Date: </label>
+      <input id="end_date" type="text" name="event[<%= Event::END_DATE %>]" readonly onClick="popupDateTimeAJPicker('Choose End Date', 'end_date');"></input>
+    </div>
+  </fieldset>
+  <input type="submit" value="Create"/>
+</form>
+
+<% unless System::get_property('platform') == 'Blackberry'%>
+
+<script type="text/javascript">
+
+function setFieldValue(field, value) {
+  document.getElementById(field).value=value;
+}
+
+function popupDateTimeAJPicker(title, field_key) {
+  $.get('/app/Calendar/date_popup', { title: title, field_key: field_key });
+  return false;
+}
+
+</script>
+
+<%end%>

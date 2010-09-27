@@ -18,6 +18,9 @@ if (location.search =='?settings=true') {
     <li><a href="Events">My Events...</a></li>
   <% end %>      
     <li><a href="GeoLocation">My Location...</a></li>
+  <% if System::get_property('platform') == 'APPLE' %>
+    <li><a href="Calendar">My Calendar Events...</a></li>
+  <% end %>
     <li><a href="Image">My Camera Images...</a></li>   
     <li><a href="SignatureUtil">My Signatures...</a></li>   
     <li><a href="ScreenRotation">Screen Rotation callback...</a></li>   
