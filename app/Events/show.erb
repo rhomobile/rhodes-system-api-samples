@@ -1,0 +1,14 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		Event
+	</h1>
+</div>
+<div id="settings" title="Event" class="panel">
+  <%= link_to "Edit", {:action => :edit, :id => @event['id']}, "class=\"button right_button\"" %>		
+  <fieldset>
+    <div class="row">
+      <label>Title: </label>
+      <span><%=@event['title']%></span>
+    </div>
+  </fieldset>
+</div>

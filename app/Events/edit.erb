@@ -1,0 +1,24 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		Edit Event
+	</h1>
+</div>
+<form title="Edit Event"
+   class="panel"
+   id="event_edit_form"
+   method="POST"
+   action="<%=url_for(:action => :update)%>">
+  <fieldset>
+    <input type="hidden" name="event[id]" value="<%=@event['id']%>"/>
+    <div class="row">
+      <label>Title: </label>
+      <input type="text" name="event[title]" value="<%=@event['title']%>"/>
+    </div>
+  </fieldset>
+  <input type="submit" value="Update"/>
+  <div align="center">
+    <a href="<%=url_for(:action => :delete, :id => @event['id'])%>">
+      <font color="#990000">Delete</font>
+    </a>
+  </div>
+</form>

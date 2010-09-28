@@ -1,0 +1,18 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		New Event
+	</h1>
+</div>
+<form title="New Event"
+   class="panel"
+   id="event_new_form"
+   method="POST"
+   action="<%=url_for(:action => :create)%>">
+  <fieldset>
+    <div class="row">
+      <label>Title: </label>
+      <input type="text" name="event[title]"/>
+    </div>
+  </fieldset>
+  <input type="submit" value="Create"/>
+</form>
