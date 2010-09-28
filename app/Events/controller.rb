@@ -7,9 +7,9 @@ class EventsController < Rho::RhoController
   def index
     @events = Rho::RhoEvent.find(:all)
     @events = @events.sort do |x,y| 
-      res = 1 if x[1]['title'].nil? 
-      res = -1 if y[1]['title'].nil?
-      res = x[1]['title'] <=> y[1]['title'] unless res
+      res = 1 if x[1]['start_date'].nil? 
+      res = -1 if y[1]['start_date'].nil?
+      res = x[1]['start_date'] <=> y[1]['start_date'] unless res
       res
     end
     render

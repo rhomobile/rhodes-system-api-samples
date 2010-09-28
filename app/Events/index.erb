@@ -1,12 +1,12 @@
 <div class="toolbar">
 	<h1 id="pageTitle">
-		My Event
+		My Events
 	</h1>
 </div>
 
 <ul id="events" title="My Events...">
 <%=link_to "New...", { :action => :new }, "class=\"button right_button\"" %>	
 <%@events.each do |x|%>
-<li><%=link_to "#{x[1]['title']}", :action => :show, :id => x[1]['id']%></li>
+<li><%=link_to "#{x[1]['start_date']} - #{x[1]['end_date']} : #{x[1]['title']}", :action => :show, :id => x[1]['id']%></li>
 <%end%>
 </ul>

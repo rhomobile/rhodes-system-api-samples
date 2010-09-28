@@ -10,5 +10,30 @@
       <label>Title: </label>
       <span><%=@event['title']%></span>
     </div>
+
+      <div class="row">
+          <label>Location: </label>
+          <span><%= @event['location']%></span>
+      </div>
+      <div class="row">
+          <label>Start Date: </label>
+          <span><%= @event['start_date'] %></span>
+      </div>
+      <div class="row">
+          <label>End Date: </label>
+          <span><%= @event['end_date'] %></span>
+      </div>
+      <div class="row">
+          <label>Notes: </label>
+          <span><%= @event['notes']%></span>
+      </div>
+      <div class="row">
+          <label>Privacy: </label>
+          <span><%= @event['privacy']%></span>
+      </div>
+      <div class="row">
+          <label>Reminder: </label>
+          <span><%= @event['reminder']%></span>
+      </div>      
   </fieldset>
 </div>
