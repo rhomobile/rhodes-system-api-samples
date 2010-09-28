@@ -17,6 +17,11 @@ class SystemTestController < Rho::RhoController
     System.exit
   end
 
+  def read_log
+    @log_text = Rho::RhoConfig.read_log(20000)
+    render :action => :show_log
+  end
+    
   def call_js
     WebView.execute_js("test();", 0)
     
