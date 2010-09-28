@@ -14,7 +14,9 @@ if (location.search =='?settings=true') {
 
 <ul id="home" selected="true" title="System Tests">
     <li><a href="Contacts">My Contacts...</a></li>
+  <% if System::get_property('platform') == 'Blackberry' %>
     <li><a href="Events">My Events...</a></li>
+  <% end %>      
     <li><a href="GeoLocation">My Location...</a></li>
     <li><a href="Image">My Camera Images...</a></li>   
     <li><a href="SignatureUtil">My Signatures...</a></li>   

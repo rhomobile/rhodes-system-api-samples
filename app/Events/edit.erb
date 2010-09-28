@@ -20,11 +20,27 @@
     </div>
     <div class="row">
         <label>Start Date: </label>
-        <input id="start_date" type="text" name="event[start_date]" value="<%= @event['start_date'] %>" onClick="popupDateTimeAJPicker('Choose Start Date', 'start_date');"></input>
-    </div>
-    <div class="row">
-        <label>End Date: </label>
-        <input id="end_date" type="text" name="event[end_date]" value="<%= @event['end_date'] %>" readonly="" onClick="popupDateTimeAJPicker('Choose End Date', 'end_date');"></input>
+        <input id="start_date" type="text" name="event[start_date]" value="<%= $choosed_start_date.strftime( '%F %T' ) %>"  readonly="" 
+<% if System::get_property('platform') == 'Blackberry' %>
+               ></input>    
+      <%= link_to "Edit", { :action => "edit_date", :query => { :type => 'start_date', :title => 'Choose Start Date', :id=>@event['id'] } } %><br/>
+
+          <% else %>
+          onClick="popupDateTimeAJPicker('Choose Start Date', 'start_date');">
+  </input>
+  <%end%></div>
+  <div class="row">
+      <label>End Date: </label>
+      <input id="end_date" type="text" name="event[end_date]" value="<%= $choosed_end_date.strftime( '%F %T' ) %>" readonly=""
+
+          <% if System::get_property('platform') == 'Blackberry' %>
+          >
+      </input>
+      <%= link_to "Edit", { :action => "edit_date", :query => { :type => 'end_date', :title => 'Choose End Date', :id=>@event['id'] } } %><br/>
+        
+<% else %>                           
+               onClick="popupDateTimeAJPicker('Choose End Date', 'end_date');"></input>
+<% end %>                                      
     </div>
     <div class="row">
         <label>Notes: </label>
