@@ -27,6 +27,11 @@ full_browser : <%=System.get_property('full_browser') %> <br/>
 device_name : <%=System.get_property('device_name') %> <br/>
 os_version : <%=System.get_property('os_version') %> <br/>
 
+<% if $sleeping %>    
+    <%= link_to 'Disable sleep', url_for(:action => :disable_sleep) %> <br/>
+<%else%>
+    <%= link_to 'Enable sleep', url_for(:action => :disable_sleep) %> <br/>    
+<%end%>    
 <%= link_to 'Exit application', url_for(:action => :app_exit) %> <br/>
 
 <br/>WebView class:<br/>

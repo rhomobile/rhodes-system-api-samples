@@ -5,6 +5,9 @@ class SystemTestController < Rho::RhoController
   #GET /SystemTest
   def index
 	puts "System index controller"
+	
+    $sleeping = true unless $sleeping
+
 	System.set_screen_rotation_notification( url_for(:action => :screen_rotation_callback), "")
   end
 
@@ -13,6 +16,12 @@ class SystemTestController < Rho::RhoController
     WebView::refresh
   end
 
+  def disable_sleep
+    $sleeping = !$sleeping
+    System.set_sleeping($sleeping)
+    render :action => :index
+  end
+  
   def app_exit
     System.exit
   end
