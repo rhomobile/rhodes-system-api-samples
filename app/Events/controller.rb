@@ -23,6 +23,7 @@ class EventsController < Rho::RhoController
   # GET /Events/1
   def show
     @event = Rho::RhoEvent.find(@params['id'])
+    puts "@event : #{@event}"
     render :action => :show
   end
  

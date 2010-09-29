@@ -34,6 +34,11 @@
       <div class="row">
           <label>Reminder: </label>
           <span><%= @event['reminder']%></span>
-      </div>      
+      </div>
+      <div class="row">
+          <label>Recurrence: </label>
+          <span><%=@event['recurrence'].inspect%></span>
+      </div>
+
   </fieldset>
 </div>
