@@ -61,7 +61,8 @@ class CalendarController < Rho::RhoController
       event['recurrence'] = { 'frequency' => frequency, 'interval' => interval }
     end
     puts "event: #{event.inspect}"
-    if event[Rho::RhoEvent::ID].nil?
+    id = event[Rho::RhoEvent::ID]
+    if id.nil? or id.empty?
       Rho::RhoEvent.create! event
     else
       Rho::RhoEvent.update_attributes event
@@ -79,7 +80,6 @@ class CalendarController < Rho::RhoController
 
   def edit
     id = @params[Rho::RhoEvent::ID]
-    id = $1 if id =~ /^{(.*)}$/
     puts "id: #{id}"
     @event = Rho::RhoEvent.find(id)
     render :action => :edit
@@ -87,7 +87,6 @@ class CalendarController < Rho::RhoController
 
   def delete
     id = @params[Rho::RhoEvent::ID]
-    id = $1 if id =~ /^{(.*)}$/
     Rho::RhoEvent.destroy(id)
 
     fetch_events
