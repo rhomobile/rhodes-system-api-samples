@@ -9,27 +9,188 @@ My Status:
 <br>
 
 <% if not $connected_device_name.nil? %>
-  <INPUT type="button" id="id_button1" value="Disconnect" name="button_disconnect1" onClick="onDisconnect();">
-  <INPUT type="button" id="id_button2" value="Disconnect" name="button_disconnect2" onClick="onDisconnect();">
+  <INPUT type="button" id="id_button1" value="Disconnect" name="id_button1" onClick="onDisconnect();">
+  <INPUT type="button" id="id_button2" value="Disconnect" name="id_button2" onClick="onDisconnect();">
 <% else %>
-  <INPUT type="button" id="id_button1" value="Connect as Server" name="button_connect_server" onClick="onConnectServer();">
-  <INPUT type="button" id="id_button2" value="Connect as Client" name="button_connect_client" onClick="onConnectClient();">
+  <INPUT type="button" id="id_button1" value="Connect as Server" name="id_button1" onClick="onConnectServer();">
+  <INPUT type="button" id="id_button2" value="Connect as Client" name="id_button2" onClick="onConnectClient();">
 <% end %>
 <br>
 
 History:<br>
-<TEXTAREA id="id_history" ROWS="10" type="text" name="id_history" readonly></TEXTAREA>
+<TEXTAREA id="id_history" ROWS="10" type="text" name="id_history" readonly value="<%= $history %>"></TEXTAREA>
 <br>
 
 Message:<br>
-<input id="id_message" type="text" name="id_message"></input>
-<INPUT type="button" value="Send" name="button_send" onClick="onSend();">
+<input id="id_message" type="text" name="id_message" value =""></input>
+<INPUT type="button" id="id_button_send" value="Send" name="id_button_send" onClick="onMessageSend();">
 <br>
 
 
-<% unless System::get_property('platform') == 'Blackberry'%>
+
+<% if System::get_property('platform') == 'WINDOWS' %>
 
 <script type="text/javascript">
+
+
+var xmlHttpReq = null;
+
+function setTag(tag,value) {
+	if (document.getElementsByTagName) {
+		var el=document.getElementsByTagName(tag);
+		for (i=0;i<el.length;i++) {
+			el[i].innerText = value;
+  		}
+	}
+}
+
+function ajaxCall(url)
+{
+  //alert("ajaxCall() START");
+        //Construct an XMLHTTP Object to handle our HTTP Request
+        if (xmlHttpReq != null){
+		xmlHttpReq = null;
+	}
+	if (xmlHttpReq == null) {
+		try { xmlHttpReq = new ActiveXObject("Msxml2.XMLHTTP"); }
+        	catch(e) {}
+	}
+	if (xmlHttpReq == null) {
+		try { xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP"); }
+        	catch(e) {}
+	}
+	if (xmlHttpReq == null) {
+        	alert("Can't make the call - xmlHttpReq is not available");
+        	return;
+	}
+	//alert("about to open xmlHttpReq");
+	xmlHttpReq.open("GET", url, true);
+        //xmlHttpReq.onreadystatechange = doHttpReadyStateChange;
+	//alert("about to send Req");
+   	xmlHttpReq.send();
+}
+
+function ajaxCallWithParam(url, param_name, param_value)
+{
+  //alert("ajaxCallWithParam() START");
+        //Construct an XMLHTTP Object to handle our HTTP Request
+        if (xmlHttpReq != null){
+		xmlHttpReq = null;
+	}
+	if (xmlHttpReq == null) {
+		try { xmlHttpReq = new ActiveXObject("Msxml2.XMLHTTP"); }
+        	catch(e) {}
+	}
+	if (xmlHttpReq == null) {
+		try { xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP"); }
+        	catch(e) {}
+	}
+	if (xmlHttpReq == null) {
+        	alert("Can't make the call - xmlHttpReq is not available");
+        	return;
+	}
+  //alert("ajaxCallWithParam() 2");
+	//alert("about to open xmlHttpReq");
+        var params = param_name+'=' + encodeURIComponent(param_value);
+  //alert("ajaxCallWithParam() 3");
+	xmlHttpReq.open("GET", url+'?&'+params, true);
+  //alert("ajaxCallWithParam() 4");
+        //xmlHttpReq.onreadystatechange = doHttpReadyStateChange;
+	//alert("about to send Req");
+   	xmlHttpReq.send();
+  //alert("ajaxCallWithParam() FINISH");
+}
+
+
+function onDeviceNameChanged() {
+  ajaxCallWithParam('/app/BluetoothChat/on_change_name', 'device_name', document.getElementById("id_name").value);
+  return false;
+}
+
+function onConnectServer() {
+  ajaxCall('/app/BluetoothChat/on_connect_server');
+  return false;
+}
+
+function onConnectClient() {
+  ajaxCallWithParam("/app/BluetoothChat/on_connect_client", "message", "text");
+  //ajaxCall('/app/BluetoothChat/on_connect_client');
+  return false;
+}
+
+function onDisconnect() {
+  ajaxCall('/app/BluetoothChat/on_disconnect');
+  return false;
+}
+
+function onMessageSend() {
+  //alert("onSend() START");	
+  var mmm = document.getElementById("id_message").value;
+  //alert("onSend() 2");	
+  document.getElementById("id_message").value = "";
+  //alert("onSend() 3");	
+  ajaxCallWithParam("/app/BluetoothChat/on_send", "message", mmm);
+  //alert("onSend() FINISH");	
+  return false;
+}
+
+function setHistory(shistory) {
+  //alert("setHistory() called");	
+  document.getElementById("id_history").value = shistory;
+}
+
+function setName(name) {
+  document.getElementsById("id_name").value = name;
+}
+
+function setStatus(status) {
+  document.getElementById("id_status").value = status;
+}
+
+function setButtonCaption(caption) {
+  document.getElementById("id_button1").value = caption;
+  document.getElementById("id_button2").value = caption;
+}
+
+function restoreButtonCaption() {
+  document.getElementById("id_button1").value = "Connect as Server";
+  document.getElementById("id_button2").value = "Connect as Client";
+}
+
+function onUnload() {
+  ajaxCall('/app/BluetoothChat/on_close');
+  return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+<% elsif System::get_property('platform') != 'Blackberry' %>
+
+<script type="text/javascript">
+
 
 function onDeviceNameChanged() {
   $.get('/app/BluetoothChat/on_change_name', { device_name: document.getElementById("id_name").value});
@@ -78,6 +239,12 @@ function restoreButtonCaption() {
   document.getElementById("id_button1").value = "Connect as Server";
   document.getElementById("id_button2").value = "Connect as Client";
 }
+
+function onUnload() {
+  $.get('/app/BluetoothChat/on_close', {});
+  return false;
+}
+
 
 </script>
 
