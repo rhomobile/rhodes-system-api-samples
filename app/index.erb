@@ -18,7 +18,7 @@ if (location.search =='?settings=true') {
     <li><a href="Events">My Events...</a></li>
   <% end %>      
     <li><a href="GeoLocation">My Location...</a></li>
-  <% if System::get_property('platform') == 'APPLE' %>
+  <% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
     <li><a href="Calendar">My Calendar Events...</a></li>
   <% end %>
     <li><a href="Image">My Camera Images...</a></li>   

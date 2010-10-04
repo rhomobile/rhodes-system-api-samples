@@ -1,34 +1,87 @@
+<%
+  if @event.nil?
+    title = "New Calendar Rho::RhoEvent"
+    button = "Create"
+  else
+    title = "Edit Calendar Rho::RhoEvent"
+    button = "Update"
+  end
+%>
 <div class="toolbar">
 	<h1 id="pageTitle">
-		Edit Calendar Event
+    <%= title %>
 	</h1>
 </div>
-<form title="Edit Calendar Event"
+<form title="<%= title %>"
    class="panel"
-   id="event_edit_form"
+   id="event_new_form"
    method="POST"
-   action="<%=url_for(:action => :update)%>">
+   action="<%=url_for(:action => :save)%>">
   <fieldset>
-    <input type="hidden" name="event[<%= Event::ID %>]" value="<%=@event[Event::ID]%>"/>
+    <input type="hidden" name="event[<%= Rho::RhoEvent::ID %>]" value="<%= @event[Rho::RhoEvent::ID] unless @event.nil? %>" />
     <div class="row">
       <label>Title: </label>
-      <input type="text" name="event[<%= Event::TITLE %>]" value="<%=@event[Event::TITLE]%>"/>
-    </div>
-    <div class="row">
-      <label>Organizer: </label>
-      <input type="text" name="event[<%= Event::ORGANIZER %>]" value="<%=@event[Event::ORGANIZER]%>"/>
+      <input type="text" name="event[<%= Rho::RhoEvent::TITLE %>]" value="<%= @event[Rho::RhoEvent::TITLE] unless @event.nil? %>" />
     </div>
     <div class="row">
       <label>Start Date: </label>
-      <input type="text" name="event[<%= Event::START_DATE %>]" value="<%=@event[Event::START_DATE]%>"/>
+      <input id="start_date" type="text" name="event[<%= Rho::RhoEvent::START_DATE %>]" value="<%= @event[Rho::RhoEvent::START_DATE] unless @event.nil? %>" readonly onClick="popupDateTimeAJPicker('Choose Start Date', 'start_date');" />
     </div>
     <div class="row">
       <label>End Date: </label>
-      <input type="text" name="event[<%= Event::END_DATE %>]" value="<%=@event[Event::END_DATE]%>"/>
+      <input id="end_date" type="text" name="event[<%= Rho::RhoEvent::END_DATE %>]" value="<%= @event[Rho::RhoEvent::END_DATE] unless @event.nil? %>" readonly onClick="popupDateTimeAJPicker('Choose End Date', 'end_date');" />
+    </div>
+    <div class="row">
+      <label>Location: </label>
+      <input type="text" name="event[<%= Rho::RhoEvent::LOCATION %>]" value="<%= @event[Rho::RhoEvent::LOCATION] unless @event.nil? %>" />
+    </div>
+    <div class="row">
+      <label>Notes: </label>
+      <input type="text" name="event[<%= Rho::RhoEvent::NOTES %>]" value="<%= @event[Rho::RhoEvent::NOTES] unless @event.nil? %>" />
+    </div>
+    <!-- Read only section -->
+    <div class="row">
+      <label>Organizer: </label>
+      <%= @event[Rho::RhoEvent::ORGANIZER] unless @event.nil? %>
+    </div>
+    <div class="row">
+      <label>Privacy: </label>
+      <%= @event[Rho::RhoEvent::PRIVACY] unless @event.nil? %>
+    </div>
+    <!-- Recurrency -->
+    <div class="row">
+      <input type="checkbox" name="recurrence" value="<%= !@event[Rho::RhoEvent::RECURRENCE].nil? unless @event.nil? %>" />
+      <label> Recurrent</label><br/>
+      <label>Frequency: </label>
+      <select name="frequency" value="<%= @event[Rho::RhoEvent::RECURRENCE][Rho::RhoEvent::RECURRENCE_FREQUENCY] unless @event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil? %>">
+        <option><%= Rho::RhoEvent::RECURRENCE_FREQUENCY_DAILY %></option>
+        <option><%= Rho::RhoEvent::RECURRENCE_FREQUENCY_WEEKLY %></option>
+        <option><%= Rho::RhoEvent::RECURRENCE_FREQUENCY_MONTHLY %></option>
+        <option><%= Rho::RhoEvent::RECURRENCE_FREQUENCY_YEARLY %></option>
+      </select><br/>
+      <label>Interval: </label>
+      <input type="number" name="interval" value="<%= @event[Rho::RhoEvent::RECURRENCE][Rho::RhoEvent::RECURRENCE_INTERVAL] unless @event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil? %>" />
     </div>
   </fieldset>
-  <input type="submit" value="Update"/>
+  <input type="submit" value="<%= button %>"/>
+  <input type="button" value="Cancel" onClick="history.back();" />
+  <% unless @event.nil? %>
   <div align="center">
-    <a href="<%=url_for(:action => :delete, :id => @event[Event::ID])%>"><font color="#990000">Delete</font></a>
+    <a href="<%=url_for(:action => :delete, :id => @event[Rho::RhoEvent::ID])%>"><font color="#990000">Delete</font></a>
   </div>
+  <% end %>
 </form>
+
+<script type="text/javascript">
+
+function setFieldValue(field, value) {
+  document.getElementById(field).value=value;
+}
+
+function popupDateTimeAJPicker(title, field_key) {
+  $.get('/app/Calendar/date_popup', { title: title, field_key: field_key });
+  return false;
+}
+
+</script>
+
