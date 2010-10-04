@@ -10,7 +10,6 @@ class CalendarController < Rho::RhoController
     start = Time.utc(2007, 'jan', 1, 0, 0, 0)
     finish = Time.utc(2030, 'dec', 31, 23, 59, 59)
     events = Rho::RhoEvent.find(:all, :start_date => start, :end_date => finish)
-    puts "sas events: #{events.inspect}"
 
     @events = []
     events.each do |k, e|
@@ -23,6 +22,13 @@ class CalendarController < Rho::RhoController
         end
       end
       @events << e
+    end
+
+    @events = @events.sort do |x,y|
+      res = 1 if x[1]['start_date'].nil?
+      res = -1 if y[1]['start_date'].nil?
+      res = x[1]['start_date'] <=> y[1]['start_date'] unless res
+      res
     end
 
     @event = nil

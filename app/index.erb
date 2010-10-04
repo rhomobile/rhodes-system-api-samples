@@ -14,13 +14,10 @@ if (location.search =='?settings=true') {
 
 <ul id="home" selected="true" title="System Tests">
     <li><a href="Contacts">My Contacts...</a></li>
-  <% if System::get_property('platform') == 'Blackberry' %>
-    <li><a href="Events">My Events...</a></li>
+  <% unless System::get_property('platform') == 'WINDOWS' %>
+    <li><a href="Calendar">My Calendar Events...</a></li>
   <% end %>      
     <li><a href="GeoLocation">My Location...</a></li>
-  <% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
-    <li><a href="Calendar">My Calendar Events...</a></li>
-  <% end %>
     <li><a href="Image">My Camera Images...</a></li>   
     <li><a href="SignatureUtil">My Signatures...</a></li>   
     <li><a href="ScreenRotation">Screen Rotation callback...</a></li>   

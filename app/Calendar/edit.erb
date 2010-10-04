@@ -25,11 +25,11 @@
     </div>
     <div class="row">
       <label>Start Date: </label>
-      <input id="start_date" type="text" name="event[<%= Rho::RhoEvent::START_DATE %>]" value="<%= @event[Rho::RhoEvent::START_DATE] unless @event.nil? %>" readonly onClick="popupDateTimeAJPicker('Choose Start Date', 'start_date');" />
+      <input id="start_date" type="text" name="event[<%= Rho::RhoEvent::START_DATE %>]" value="<%= @event[Rho::RhoEvent::START_DATE] unless @event.nil? %>" <%= "readonly" unless System::get_property('platform') == 'Blackberry' %> onClick="popupDateTimeAJPicker('Choose Start Date', 'start_date');" />
     </div>
     <div class="row">
       <label>End Date: </label>
-      <input id="end_date" type="text" name="event[<%= Rho::RhoEvent::END_DATE %>]" value="<%= @event[Rho::RhoEvent::END_DATE] unless @event.nil? %>" readonly onClick="popupDateTimeAJPicker('Choose End Date', 'end_date');" />
+      <input id="end_date" type="text" name="event[<%= Rho::RhoEvent::END_DATE %>]" value="<%= @event[Rho::RhoEvent::END_DATE] unless @event.nil? %>" <%= "readonly" unless System::get_property('platform') == 'Blackberry' %> onClick="popupDateTimeAJPicker('Choose End Date', 'end_date');" />
     </div>
     <div class="row">
       <label>Location: </label>
@@ -41,12 +41,12 @@
     </div>
     <!-- Read only section -->
     <div class="row">
-      <label>Organizer: </label>
-      <%= @event[Rho::RhoEvent::ORGANIZER] unless @event.nil? %>
+      <label>Privacy: </label>
+      <input type="text" name="event[<%= Rho::RhoEvent::PRIVACY %>]" value="<%= @event[Rho::RhoEvent::PRIVACY] unless @event.nil? %>" />
     </div>
     <div class="row">
-      <label>Privacy: </label>
-      <%= @event[Rho::RhoEvent::PRIVACY] unless @event.nil? %>
+      <label>Reminder: </label>
+      <input type="text" name="event[<%= Rho::RhoEvent::REMINDER %>]" value="<%= @event[Rho::RhoEvent::REMINDER] unless @event.nil? %>" />
     </div>
     <!-- Recurrency -->
     <div class="row">
