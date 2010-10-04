@@ -12,8 +12,7 @@ class BluetoothChatController < Rho::RhoController
   
   def index
     puts 'BluetoothChatController.index'
-    $device_name = 'test'    
-    #Rho::BluetoothManager.get_device_name()
+    $device_name = Rho::BluetoothManager.get_device_name()
     render
   end
 
@@ -95,6 +94,7 @@ class BluetoothChatController < Rho::RhoController
     if @params['status'] == Rho::BluetoothManager::OK
       $current_status = 'Connected to ['+$connected_device_name+']'
       Rho::BluetoothSession.set_callback($connected_device_name, url_for(:action => :session_callback))
+      #Rho::BluetoothSession.write_string($connected_device_name, 'Hello another Bluetooth device !')	
       WebView.execute_js('setButtonCaption("Disconnect");')
     else 
        if @params['status'] == Rho::BluetoothManager::CANCEL
@@ -109,12 +109,14 @@ class BluetoothChatController < Rho::RhoController
   end
 
   def on_data_received
-    puts 'BluetoothChat::on_data_received'
+    puts 'BluetoothChat::on_data_received START'
     while Rho::BluetoothSession.get_status($connected_device_name) > 0
        message = Rho::BluetoothSession.read_string($connected_device_name)
+       puts 'BluetoothChat::on_data_received MESSAGE='+message	
        $history = $connected_device_name+':'+ message + '\n'+$history
        WebView.execute_js('setHistory("'+$history+'");')
     end
+    puts 'BluetoothChat::on_data_received FINISH'
   end
 
   def example_receive_byte_array
@@ -146,6 +148,11 @@ class BluetoothChatController < Rho::RhoController
           #redirect :action => :index
        end
     end
+  end
+
+  def on_close
+    puts 'BluetoothChat::on_close()'
+    Rho::BluetoothManager.off_bluetooth()
   end
 
 end
