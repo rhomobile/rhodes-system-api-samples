@@ -1,7 +1,7 @@
 class BarcodeRecognizer
   include Rhom::PropertyBag
 
-  enable :sync
+  #enable :sync
     
   property :image_uri, :blob
 end
