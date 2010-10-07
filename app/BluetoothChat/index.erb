@@ -212,7 +212,7 @@ function onDisconnect() {
   return false;
 }
 
-function onSend() {
+function onMessageSend() {
   $.get('/app/BluetoothChat/on_send', { message: document.getElementById("id_message").value});
   document.getElementById("id_message").value = "";
   return false;
