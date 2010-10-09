@@ -9,6 +9,7 @@ class BluetoothChatController < Rho::RhoController
   $connected_device_name = nil
   $current_status = 'Not connected'
   $history = ''
+  $is_blackberry = (System::get_property('platform') == 'Blackberry')
   
   def index
     puts 'BluetoothChatController.index'
@@ -23,7 +24,9 @@ class BluetoothChatController < Rho::RhoController
     Rho::BluetoothSession.write_string($connected_device_name, message)
     WebView.execute_js('setHistory("'+$history+'");')
     #WebView.navigate( url_for :action => :index )
-    #redirect :action => :index
+    if $is_blackberry
+      redirect :action => :index
+    end
   end
 
   def example_send_byte_array
@@ -39,7 +42,9 @@ class BluetoothChatController < Rho::RhoController
        WebView.execute_js('setStatus("'+$current_status+'");')
        Rho::BluetoothManager.create_session(Rho::BluetoothManager::ROLE_SERVER, url_for(:action => :create_session_callback) )
        #WebView.navigate( url_for :action => :index )
-       #redirect :action => :index
+       if $is_blackberry
+         redirect :action => :index
+       end
     else
         on_disconnect
     end
@@ -53,7 +58,9 @@ class BluetoothChatController < Rho::RhoController
        WebView.execute_js('setStatus("'+$current_status+'");')
        Rho::BluetoothManager.create_session(Rho::BluetoothManager::ROLE_CLIENT, url_for(:action => :create_session_callback) )
        #WebView.navigate( url_for :action => :index )
-       #redirect :action => :index
+       if $is_blackberry
+         redirect :action => :index
+       end
     else
         on_disconnect
     end
@@ -71,7 +78,9 @@ class BluetoothChatController < Rho::RhoController
        WebView.execute_js('setStatus("'+$current_status+'");')
        WebView.execute_js('restoreButtonCaption();')
        #WebView.navigate( url_for :action => :index )
-       #redirect :action => :index
+       if $is_blackberry
+         redirect :action => :index
+       end
      end    
   end
 
@@ -105,7 +114,9 @@ class BluetoothChatController < Rho::RhoController
     end
     WebView.execute_js('setStatus("'+$current_status+'");')
     #WebView.navigate( url_for :action => :index )
-    #redirect :action => :index
+    if $is_blackberry
+      redirect :action => :index
+    end
   end
 
   def on_data_received
@@ -117,6 +128,9 @@ class BluetoothChatController < Rho::RhoController
        WebView.execute_js('setHistory("'+$history+'");')
     end
     puts 'BluetoothChat::on_data_received FINISH'
+    if $is_blackberry
+      redirect :action => :index
+    end
   end
 
   def example_receive_byte_array
@@ -140,12 +154,16 @@ class BluetoothChatController < Rho::RhoController
           WebView.execute_js('setStatus("'+$current_status+'");')
           WebView.execute_js('restoreButtonCaption();')
           #WebView.navigate( url_for :action => :index )
-          #redirect :action => :index
+          if $is_blackberry
+            redirect :action => :index
+          end
        else
           $current_status = 'Error occured !'
           WebView.execute_js('setStatus("'+$current_status+'");')
           #WebView.navigate( url_for :action => :index )
-          #redirect :action => :index
+          if $is_blackberry
+            redirect :action => :index
+          end
        end
     end
   end

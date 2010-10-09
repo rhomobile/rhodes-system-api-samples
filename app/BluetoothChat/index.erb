@@ -8,6 +8,8 @@ My Status:
 <input id="id_status" type="text" name="id_status" readonly value="<%= $current_status %>"></input>
 <br>
 
+<% if System::get_property('platform') != 'Blackberry' %>
+
 <% if not $connected_device_name.nil? %>
   <INPUT type="button" id="id_button1" value="Disconnect" name="id_button1" onClick="onDisconnect();">
   <INPUT type="button" id="id_button2" value="Disconnect" name="id_button2" onClick="onDisconnect();">
@@ -15,6 +17,19 @@ My Status:
   <INPUT type="button" id="id_button1" value="Connect as Server" name="id_button1" onClick="onConnectServer();">
   <INPUT type="button" id="id_button2" value="Connect as Client" name="id_button2" onClick="onConnectClient();">
 <% end %>
+<% else %>
+
+
+<% if not $connected_device_name.nil? %>
+  <%= link_to "[Connect as Server]", :action => :on_disconnect %>
+<% else %>
+  <%= link_to "[Connect as Server]", :action => :on_connect_server %>
+  <%= link_to "[Connect as Client]", :action => :on_connect_client %>
+<% end %>
+
+
+<% end %>
+
 <br>
 
 History:<br>
@@ -23,7 +38,17 @@ History:<br>
 
 Message:<br>
 <input id="id_message" type="text" name="id_message" value =""></input>
-<INPUT type="button" id="id_button_send" value="Send" name="id_button_send" onClick="onMessageSend();">
+
+<% if System::get_property('platform') != 'Blackberry' %>
+
+  <INPUT type="button" id="id_button_send" value="Send" name="id_button_send" onClick="onMessageSend();">
+<% else %>
+
+  <%= link_to "[send]", { :action => "on_send", :query => { :message => 'test message' } } %>
+
+<% end %>
+
+
 <br>
 
 
@@ -247,5 +272,66 @@ function onUnload() {
 
 
 </script>
+
+<% elsif System::get_property('platform') == 'Blackberry' %>
+
+<script type="text/javascript">
+
+
+function onDeviceNameChanged() {
+  return false;
+}
+
+function onConnectServer() {
+  $.get('/app/BluetoothChat/on_connect_server', {});
+  return false;
+}
+
+function onConnectClient() {
+  $.get('/app/BluetoothChat/on_connect_client', {});
+  return false;
+}
+
+function onDisconnect() {
+  $.get('/app/BluetoothChat/on_disconnect', {});
+  return false;
+}
+
+function onMessageSend() {
+  $.get('/app/BluetoothChat/on_send', { message: document.getElementById("id_message").value});
+  document.getElementById("id_message").value = "";
+  return false;
+}
+
+function setHistory(history) {
+  document.getElementById("id_history").value = history;
+}
+
+function setName(name) {
+  document.getElementById("id_name").value = name;
+}
+
+function setStatus(status) {
+  document.getElementById("id_status").value = status;
+}
+
+function setButtonCaption(caption) {
+  document.getElementById("id_button1").value = caption;
+  document.getElementById("id_button2").value = caption;
+}
+
+function restoreButtonCaption() {
+  document.getElementById("id_button1").value = "Connect as Server";
+  document.getElementById("id_button2").value = "Connect as Client";
+}
+
+function onUnload() {
+  $.get('/app/BluetoothChat/on_close', {});
+  return false;
+}
+
+
+</script>
+
 
 <%end%>
