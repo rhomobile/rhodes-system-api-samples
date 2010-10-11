@@ -25,11 +25,11 @@
     </div>
     <div class="row">
       <label>Start Date: </label>
-      <input id="start_date" type="text" name="event[<%= Rho::RhoEvent::START_DATE %>]" value="<%= @event[Rho::RhoEvent::START_DATE] unless @event.nil? %>" <%= "readonly" unless System::get_property('platform') == 'Blackberry' %> onClick="popupDateTimeAJPicker('Choose Start Date', 'start_date');" />
+      <input id="start_date" type="text" name="event[<%= Rho::RhoEvent::START_DATE %>]" value="<%= @event[Rho::RhoEvent::START_DATE] unless @event.nil? %>" <%= "readonly" unless System::get_property('platform') == 'Blackberry' ||System::get_property('platform') == 'WINDOWS' %> onClick="popupDateTimeAJPicker('Choose Start Date', 'start_date');" />
     </div>
     <div class="row">
       <label>End Date: </label>
-      <input id="end_date" type="text" name="event[<%= Rho::RhoEvent::END_DATE %>]" value="<%= @event[Rho::RhoEvent::END_DATE] unless @event.nil? %>" <%= "readonly" unless System::get_property('platform') == 'Blackberry' %> onClick="popupDateTimeAJPicker('Choose End Date', 'end_date');" />
+      <input id="end_date" type="text" name="event[<%= Rho::RhoEvent::END_DATE %>]" value="<%= @event[Rho::RhoEvent::END_DATE] unless @event.nil? %>" <%= "readonly" unless System::get_property('platform') == 'Blackberry' ||System::get_property('platform') == 'WINDOWS' %> onClick="popupDateTimeAJPicker('Choose End Date', 'end_date');" />
     </div>
     <div class="row">
       <label>Location: </label>

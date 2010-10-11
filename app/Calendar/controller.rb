@@ -8,26 +8,15 @@ class CalendarController < Rho::RhoController
 
   def fetch_events
     start = Time.utc(2007, 'jan', 1, 0, 0, 0)
-    finish = Time.utc(2030, 'dec', 31, 23, 59, 59)
-    events = Rho::RhoEvent.find(:all, :start_date => start, :end_date => finish)
-
-    @events = []
-    events.each do |k, e|
-      class << e
-        def pretty_print(io)
-          io.puts "Id: #{e[Rho::RhoEvent::ID]}"
-          io.puts "Title: #{e[Rho::RhoEvent::TITLE]}"
-          io.puts "Start Date: #{e[Rho::RhoEvent::START_DATE].to_s}"
-          io.puts "End Date: #{e[Rho::RhoEvent::END_DATE].to_s}"
-        end
-      end
-      @events << e
-    end
-
-    @events = @events.sort do |x,y|
-      res = 1 if x[1]['start_date'].nil?
-      res = -1 if y[1]['start_date'].nil?
-      res = x[1]['start_date'] <=> y[1]['start_date'] unless res
+    finish = Time.utc(2010, 'dec', 31, 23, 59, 59)
+    @@events = Rho::RhoEvent.find(:all, :start_date => start, :end_date => finish, :find_type => 'starting', 
+        :include_repeating => true)
+    puts "events : #{@@events}"
+    
+    @@events = @@events.sort do |x,y|
+      res = 1 if x['start_date'].nil?
+      res = -1 if y['start_date'].nil?
+      res = x['start_date'] <=> y['start_date'] unless res
       res
     end
 
@@ -35,6 +24,10 @@ class CalendarController < Rho::RhoController
   end
   private :fetch_events
 
+  def get_events
+    @@events    
+  end
+  
   def index
     fetch_events
     render :action => :index
@@ -79,9 +72,11 @@ class CalendarController < Rho::RhoController
   end
 
   def edit
-    id = @params[Rho::RhoEvent::ID]
-    puts "id: #{id}"
-    @event = Rho::RhoEvent.find(id)
+    #id = @params[Rho::RhoEvent::ID]
+    #puts "id: #{id}"
+    #@event = Rho::RhoEvent.find(id)
+    
+    @event = @@events[strip_braces(@params['id']).to_i ]
     render :action => :edit
   end
 

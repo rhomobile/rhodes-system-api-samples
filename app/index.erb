@@ -14,9 +14,7 @@ if (location.search =='?settings=true') {
 
 <ul id="home" selected="true" title="System Tests">
     <li><a href="Contacts">My Contacts...</a></li>
-  <% unless System::get_property('platform') == 'WINDOWS' %>
     <li><a href="Calendar">My Calendar Events...</a></li>
-  <% end %>      
     <li><a href="GeoLocation">My Location...</a></li>
     <li><a href="Image">My Camera Images...</a></li>   
     <li><a href="SignatureUtil">My Signatures...</a></li>   

@@ -29,3 +29,7 @@ class AppApplication < Rho::RhoApplication
   end
 
 end
+
+at_exit do
+	puts "at_exit"
+end

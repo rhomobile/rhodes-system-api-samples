@@ -6,7 +6,7 @@
 
 <ul id="calendar" title="My Calendar Events...">
   <%=link_to "New...", { :action => :new }, "class=\"button right_button\"" %>
-  <% @events.each do |e| %>
-    <li><%= link_to e[Rho::RhoEvent::TITLE], { :action => :edit, :id => e[Rho::RhoEvent::ID] } %></li>
+  <% get_events().each_index do |i| %>
+    <li><%= link_to get_events()[i][Rho::RhoEvent::TITLE], { :action => :edit, :id => i } %></li>
   <% end %>
 </ul>
