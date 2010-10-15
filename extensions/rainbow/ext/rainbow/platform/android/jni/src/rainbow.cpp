@@ -43,3 +43,11 @@ extern "C" void rainbow_execute_command_in_native_view(const char* command) {
     env->CallStaticVoidMethod(cls, mid, objCommand);
     env->DeleteLocalRef(objCommand);
 }
+
+
+extern "C" void Init_RainbowRuby(void);	
+
+extern "C" void Init_Rainbow() {
+	Init_RainbowRuby();
+};
+

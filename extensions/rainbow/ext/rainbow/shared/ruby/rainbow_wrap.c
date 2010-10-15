@@ -2184,7 +2184,7 @@ SWIG_PropagateClientData(void) {
 #ifdef __cplusplus
 extern "C"
 #endif
-SWIGEXPORT void Init_Rainbow(void) {
+SWIGEXPORT void Init_RainbowRuby(void) {
   size_t i;
   
   SWIG_InitRuntime();
