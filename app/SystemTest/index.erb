@@ -26,6 +26,8 @@ device_id : <%=System.get_property('device_id') %> <br/>
 full_browser : <%=System.get_property('full_browser') %> <br/>
 device_name : <%=System.get_property('device_name') %> <br/>
 os_version : <%=System.get_property('os_version') %> <br/>
+rhodes_port : <%=System.get_property('rhodes_port') %> <br/>
+is_emulator : <%=System.get_property('is_emulator') %> <br/>
 
 <% if $sleeping %>    
     <%= link_to 'Disable sleep', url_for(:action => :disable_sleep) %> <br/>
