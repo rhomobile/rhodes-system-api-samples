@@ -11,10 +11,15 @@
 		FAD45FD01225FEBD00141873 /* RainbowView.h in Headers */ = {isa = PBXBuildFile; fileRef = FAD45FCB1225FEBD00141873 /* RainbowView.h */; };
 		FAD45FD11225FEBD00141873 /* RainbowView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD45FCC1225FEBD00141873 /* RainbowView.m */; };
 		FAD45FD21225FEBD00141873 /* RainbowViewFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = FAD45FCD1225FEBD00141873 /* RainbowViewFactory.h */; };
-		FAD45FD31225FEBD00141873 /* RainbowViewFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAD45FCE1225FEBD00141873 /* RainbowViewFactory.mm */; };
 		FAD45FD41225FEBD00141873 /* RainbowViewFactoryRegister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD45FCF1225FEBD00141873 /* RainbowViewFactoryRegister.cpp */; };
 		FAD45FD61225FED600141873 /* Rainbow_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = FAD45FD51225FED600141873 /* Rainbow_Prefix.pch */; };
 		FAD4602D12260A8500141873 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD4602C12260A8500141873 /* UIKit.framework */; };
+		FAF7A6171268BBAC00447309 /* RainbowEffectView.h in Headers */ = {isa = PBXBuildFile; fileRef = FAF7A6131268BBAC00447309 /* RainbowEffectView.h */; };
+		FAF7A6181268BBAC00447309 /* RainbowEffectView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF7A6141268BBAC00447309 /* RainbowEffectView.m */; };
+		FAF7A6191268BBAC00447309 /* RainbowSmallViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FAF7A6151268BBAC00447309 /* RainbowSmallViewManager.h */; };
+		FAF7A61C1268BBC200447309 /* rainbow_wrap.c in Sources */ = {isa = PBXBuildFile; fileRef = FAF7A61B1268BBC200447309 /* rainbow_wrap.c */; };
+		FAF7A6C91269098100447309 /* RainbowSmallViewManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF7A6C81269098100447309 /* RainbowSmallViewManager.mm */; };
+		FAF7A6DF12690CC900447309 /* RainbowViewFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF7A6DE12690CC900447309 /* RainbowViewFactory.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,10 +28,15 @@
 		FAD45FCB1225FEBD00141873 /* RainbowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RainbowView.h; path = Classes/RainbowView.h; sourceTree = "<group>"; };
 		FAD45FCC1225FEBD00141873 /* RainbowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RainbowView.m; path = Classes/RainbowView.m; sourceTree = "<group>"; };
 		FAD45FCD1225FEBD00141873 /* RainbowViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RainbowViewFactory.h; path = Classes/RainbowViewFactory.h; sourceTree = "<group>"; };
-		FAD45FCE1225FEBD00141873 /* RainbowViewFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RainbowViewFactory.mm; path = Classes/RainbowViewFactory.mm; sourceTree = "<group>"; };
 		FAD45FCF1225FEBD00141873 /* RainbowViewFactoryRegister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RainbowViewFactoryRegister.cpp; path = Classes/RainbowViewFactoryRegister.cpp; sourceTree = "<group>"; };
 		FAD45FD51225FED600141873 /* Rainbow_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rainbow_Prefix.pch; sourceTree = "<group>"; };
 		FAD4602C12260A8500141873 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FAF7A6131268BBAC00447309 /* RainbowEffectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RainbowEffectView.h; path = Classes/RainbowEffectView.h; sourceTree = "<group>"; };
+		FAF7A6141268BBAC00447309 /* RainbowEffectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RainbowEffectView.m; path = Classes/RainbowEffectView.m; sourceTree = "<group>"; };
+		FAF7A6151268BBAC00447309 /* RainbowSmallViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RainbowSmallViewManager.h; path = Classes/RainbowSmallViewManager.h; sourceTree = "<group>"; };
+		FAF7A61B1268BBC200447309 /* rainbow_wrap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rainbow_wrap.c; path = ../../shared/ruby/rainbow_wrap.c; sourceTree = SOURCE_ROOT; };
+		FAF7A6C81269098100447309 /* RainbowSmallViewManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RainbowSmallViewManager.mm; path = Classes/RainbowSmallViewManager.mm; sourceTree = "<group>"; };
+		FAF7A6DE12690CC900447309 /* RainbowViewFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RainbowViewFactory.mm; path = Classes/RainbowViewFactory.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +83,15 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FAF7A6DE12690CC900447309 /* RainbowViewFactory.mm */,
+				FAF7A6C81269098100447309 /* RainbowSmallViewManager.mm */,
+				FAF7A61B1268BBC200447309 /* rainbow_wrap.c */,
+				FAF7A6131268BBAC00447309 /* RainbowEffectView.h */,
+				FAF7A6141268BBAC00447309 /* RainbowEffectView.m */,
+				FAF7A6151268BBAC00447309 /* RainbowSmallViewManager.h */,
 				FAD45FCB1225FEBD00141873 /* RainbowView.h */,
 				FAD45FCC1225FEBD00141873 /* RainbowView.m */,
 				FAD45FCD1225FEBD00141873 /* RainbowViewFactory.h */,
-				FAD45FCE1225FEBD00141873 /* RainbowViewFactory.mm */,
 				FAD45FCF1225FEBD00141873 /* RainbowViewFactoryRegister.cpp */,
 			);
 			name = Classes;
@@ -100,6 +115,8 @@
 				FAD45FD01225FEBD00141873 /* RainbowView.h in Headers */,
 				FAD45FD21225FEBD00141873 /* RainbowViewFactory.h in Headers */,
 				FAD45FD61225FED600141873 /* Rainbow_Prefix.pch in Headers */,
+				FAF7A6171268BBAC00447309 /* RainbowEffectView.h in Headers */,
+				FAF7A6191268BBAC00447309 /* RainbowSmallViewManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +147,14 @@
 			isa = PBXProject;
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Rainbow" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* Barcode */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
@@ -147,8 +171,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAD45FD11225FEBD00141873 /* RainbowView.m in Sources */,
-				FAD45FD31225FEBD00141873 /* RainbowViewFactory.mm in Sources */,
 				FAD45FD41225FEBD00141873 /* RainbowViewFactoryRegister.cpp in Sources */,
+				FAF7A6181268BBAC00447309 /* RainbowEffectView.m in Sources */,
+				FAF7A61C1268BBC200447309 /* rainbow_wrap.c in Sources */,
+				FAF7A6C91269098100447309 /* RainbowSmallViewManager.mm in Sources */,
+				FAF7A6DF12690CC900447309 /* RainbowViewFactory.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,35 +223,43 @@
 		1DEB922308733DC00010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(RHO_ROOT)/platform/shared/common",
+					"$(RHO_ROOT)/platform/shared/rubyext",
+					"$(RHO_ROOT)/platform/shared/ruby/include",
+					"$(RHO_ROOT)/platform/shared/ruby/iphone",
+					"$(RHO_ROOT)/platform/shared",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.0;
+				SDKROOT = iphonesimulator4.1;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
-				VALID_ARCHS = armv6;
 			};
 			name = Debug;
 		};
 		1DEB922408733DC00010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(RHO_ROOT)/platform/shared/common",
+					"$(RHO_ROOT)/platform/shared/rubyext",
+					"$(RHO_ROOT)/platform/shared/ruby/include",
+					"$(RHO_ROOT)/platform/shared/ruby/iphone",
+					"$(RHO_ROOT)/platform/shared",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.0;
+				SDKROOT = iphonesimulator4.1;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
-				VALID_ARCHS = armv6;
 			};
 			name = Release;
 		};
