@@ -39,6 +39,10 @@ class NativeBarTestController < Rho::RhoController
     NativeBar.switch_tab(0)
   end
 
+  def switch_to_tab_1
+    NativeBar.switch_tab(1)
+  end
+
   def callback
     puts "+++--- callback"
     WebView.navigate '/app'
