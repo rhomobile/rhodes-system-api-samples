@@ -7,7 +7,12 @@
   <li><%= link_to "Toolbar", :action => :set_toolbar %></li>
   <li><%= link_to "Tab bar", :action => :set_tabbar %></li>
 </ul>
-
+<br>
+<ul id="tabswitch" selected="true" title="iPad SplitView test">
+  <li><%= link_to "Tab bar using iPad Split View", :action => :set_iPad_tabbar %></li>
+  <li>(works only on iPad)</li>
+</ul>
+<br>
 <ul id="tabswitch" selected="true" title="Program Switch Tab test">
   <li><%= link_to "Switch to Tab 1", :action => :switch_to_tab_1 %></li>
 </ul>
