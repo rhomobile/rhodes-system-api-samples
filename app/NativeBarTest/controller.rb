@@ -45,7 +45,7 @@ class NativeBarTestController < Rho::RhoController
       {:label => 'Native bar', :action => '/app/NativeBarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
       {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
-    NativeBar.create(Rho::RhoApplication::SPLITTABBAR_TYPE, tabbar)
+    NativeBar.create(Rho::RhoApplication:: VTABBAR_TYPE, tabbar)
     NativeBar.switch_tab(0)
   end
 
