@@ -39,6 +39,20 @@ class NativeBarTestController < Rho::RhoController
     NativeBar.switch_tab(0)
   end
 
+  def set_iPad_tabbar
+    save_location
+    tabbar = [
+      {:label => 'Native bar', :action => '/app/NativeBarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
+      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true}
+    ]
+    NativeBar.create(Rho::RhoApplication:: VTABBAR_TYPE, tabbar)
+    NativeBar.switch_tab(0)
+  end
+
+  def switch_to_tab_1
+    NativeBar.switch_tab(1)
+  end
+
   def callback
     puts "+++--- callback"
     WebView.navigate '/app'

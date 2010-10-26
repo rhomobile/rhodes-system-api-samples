@@ -19,7 +19,14 @@ class DateTimeAJController < Rho::RhoController
   def popup
     flag = @params['flag']
     if ['0', '1', '2'].include?(flag)
-      DateTimePicker.choose url_for(:action => :callback), @params['title'], Time.new, flag.to_i, Marshal.dump({:flag => flag, :field_key => @params['field_key']})
+      ttt = $choosed[flag]
+      if ttt.nil?
+        preset_time = Time.new
+      else
+        preset_time = Time.parse(ttt)  
+      end
+	
+      DateTimePicker.choose url_for(:action => :callback), @params['title'], preset_time, flag.to_i, Marshal.dump({:flag => flag, :field_key => @params['field_key']})
     end
   end
  
