@@ -11,6 +11,7 @@ class NativeBarTestController < Rho::RhoController
   def set_no_bar
     save_location
     NativeBar.create(Rho::RhoApplication::NOBAR_TYPE, [])
+    $tabbar_active = false
     render :action => :index
   end
 
@@ -26,6 +27,7 @@ class NativeBarTestController < Rho::RhoController
       {:action => :options}
     ]
     NativeBar.create(Rho::RhoApplication::TOOLBAR_TYPE, toolbar)
+    $tabbar_active = false
     render :action => :index
   end
 
@@ -33,10 +35,16 @@ class NativeBarTestController < Rho::RhoController
     save_location
     tabbar = [
       {:label => 'Native bar', :action => '/app/NativeBarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
-      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true}
+      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
     NativeBar.create(Rho::RhoApplication::TABBAR_TYPE, tabbar)
+    $tabbar_active = true
     NativeBar.switch_tab(0)
+  end
+
+  def show_main_page
+    WebView.navigate '/app'
   end
 
   def set_iPad_tabbar
@@ -46,11 +54,16 @@ class NativeBarTestController < Rho::RhoController
       {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
     NativeBar.create(Rho::RhoApplication:: VTABBAR_TYPE, tabbar)
+    $tabbar_active = true
     NativeBar.switch_tab(0)
   end
 
   def switch_to_tab_1
     NativeBar.switch_tab(1)
+  end
+
+  def switch_to_tab_2
+    NativeBar.switch_tab(2)
   end
 
   def callback

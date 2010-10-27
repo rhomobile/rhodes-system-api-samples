@@ -13,6 +13,9 @@
   <li>(works only on iPad)</li>
 </ul>
 <br>
+<% if $tabbar_active %>
 <ul id="tabswitch" selected="true" title="Program Switch Tab test">
   <li><%= link_to "Switch to Tab 1", :action => :switch_to_tab_1 %></li>
+  <li><%= link_to "Switch to Tab 2 (using 'callback:' uri)", :action => :switch_to_tab_2 %></li>
 </ul>
+<% end %>
