@@ -51,7 +51,8 @@ class NativeBarTestController < Rho::RhoController
     save_location
     tabbar = [
       {:label => 'Native bar', :action => '/app/NativeBarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
-      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true}
+      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
     NativeBar.create(Rho::RhoApplication:: VTABBAR_TYPE, tabbar)
     $tabbar_active = true
