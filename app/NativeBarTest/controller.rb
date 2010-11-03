@@ -21,7 +21,7 @@ class NativeBarTestController < Rho::RhoController
       {:action => :back,    :icon => '/public/images/bar/back_btn.png'},
       {:action => :forward, :icon => '/public/images/bar/forward_btn.png'},
       {:action => :separator},
-      {:action => :home,    :icon => '/public/images/bar/colored_btn.png' :colored_icon => true},
+      {:action => :home,    :icon => '/public/images/bar/colored_btn.png', :colored_icon => true},
       {:action => :refresh },
       {:action => 'callback:' + url_for(:action => :callback), :label => 'Callback' },
       {:action => :options}
