@@ -36,4 +36,8 @@ class SystemTestController < Rho::RhoController
     
     redirect :action => :index
   end  
+
+  def start_music_app
+    System.run_app('com.android.music', nil)
+  end
 end
