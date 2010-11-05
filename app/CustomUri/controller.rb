@@ -15,6 +15,7 @@ class CustomUriController < Rho::RhoController
     elsif System::get_property('platform') == 'ANDROID'        
         System.open_url('http://192.168.0.101:8080/myapp_signed.apk')
     elsif System::get_property('platform') == 'APPLE'
+        System.open_url('itms-services://?action=download-manifest&url=http://192.168.0.101:8080/myapp.plist')
     else
         System.open_url('http://192.168.0.101:8080/myapp.cab')
     end    
