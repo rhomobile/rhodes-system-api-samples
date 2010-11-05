@@ -7,7 +7,8 @@ class AsyncUploadFileController < Rho::RhoController
 
     @@file_name = File.join(Rho::RhoApplication::get_base_app_path(), 'rhoconfig.txt')
     Rho::AsyncHttp.upload_file(
-      :url => 'http://dev.rhosync.rhohub.com/apps/SystemApiSamples/sources/client_log?client_id=19bdcf15-aca2-4e5a-9676-3c297c09bb11&device_pin=&log_name=',
+      #:url => 'http://dev.rhosync.rhohub.com/apps/SystemApiSamples/sources/client_log?client_id=19bdcf15-aca2-4e5a-9676-3c297c09bb11&device_pin=&log_name=',
+      :url => 'http://rhologs.heroku.com/client_log?client_id=&device_pin=&log_name=uptest',
       :filename => @@file_name,
       :headers => {},
       :callback => (url_for :action => :httpupload_callback),

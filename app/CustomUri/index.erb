@@ -5,6 +5,6 @@
   <a href="sms:+1222333444">Send SMS to +1222333444</a><br/>
   <a href="http://www.google.com">Open Google in current window</a><br/>
   <a href="http://www.google.com/?rho_open_target=_blank">Open Google in external browser</a><br/>
-
+  <a href="<%= url_for :action => :install_app %>">Install app</a><br/>
   <%=link_to "sms by controller:+1222333444", :action => :send_sms%>
 </div>
