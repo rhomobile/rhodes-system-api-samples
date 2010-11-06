@@ -10,15 +10,41 @@ class AlertController < Rho::RhoController
 
   def show_popup
     @flash = "Show popup page"
-    Alert.show_popup "Some message!"
+    Alert.show_popup "Some message!Long Message.Very Long Meeesage"
+    render :action => :index
+  end
+
+  def show_popup1
+    @flash = "Show popup page"
+    
+    Alert.show_popup(
+        :message=>"The new password can't be empty.\n",
+        :title=>"",
+        :buttons => ["Ok"]
+     )
+    
     render :action => :index
   end
 
   def show_popup2
     @flash = "Show popup page"
+    
+    Alert.show_popup(
+        :message=>"The new password can't be empty.\n",
+        :title=>"MyTest",
+        :buttons => ["Ok", "Cancel"],
+        :callback => url_for(:action => :popup_callback)
+     )
+    render :action => :index
+  end
+  
+  def show_popup_complex
+    @flash = "Show popup page"
+    
     Alert.show_popup :title => "This is popup", :message => "Some message!", :icon => :info,
       :buttons => ["Yes", "No", {:id => 'cancel', :title => "Cancel"}],
       :callback => url_for(:action => :popup_callback)
+      
     render :action => :index
   end
 
@@ -31,9 +57,7 @@ class AlertController < Rho::RhoController
   end
 
   def popup_callback
-    id = @params['button_id']
-    title = @params['button_title']
-    puts "popup_callback: id: '#{id}', title: '#{title}'"
+    puts "popup_callback: #{@params}"
     WebView.navigate url_for(:action => :index)
   end
   

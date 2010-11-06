@@ -1,7 +1,9 @@
 <h3><%= @flash%></h3>
 <div>
     <%= link_to '[Show popup]', { :action => :show_popup }%><br/>
+    <%= link_to '[Show popup 1]', { :action => :show_popup1 }%><br/>
     <%= link_to '[Show popup 2]', { :action => :show_popup2 }%><br/>
+    <%= link_to '[Show complex popup]', { :action => :show_popup_complex }%><br/>
     <%= link_to '[Show wait dialog]', { :action => :show_popup3 }%><br/>
     <%= link_to '[Play 20 Flip Strings.mp3]', { :action => :play_file_1, :query => {:file_name => '/public/alerts/20 Flip Strings.mp3'} }%><br/>
     <%= link_to '[Play information_bar.wav]', { :action => :play_file_1, :query => {:file_name => '/public/alerts/information_bar.wav'} }%><br/>
