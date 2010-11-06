@@ -9,6 +9,11 @@ class CustomUriController < Rho::RhoController
     render :action => :index
   end
 
+  def open_external_url
+    System.open_url('http://www.rhomobile.com')
+    redirect :action => :index
+  end
+  
   def install_app
     if System::get_property('platform') == 'Blackberry'
         System.open_url('http://192.168.0.101:8080/ota-web/myapp.jad')    
