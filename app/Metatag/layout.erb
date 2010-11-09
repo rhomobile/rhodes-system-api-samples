@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <title>Battery</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <META HTTP-Equiv="Battery" Content="BatteryEvent:url('Javascript:updateBatteryStatus('%s', '%s', '%s');')"/>
+
+	<script type="text/javascript">
+       function updateBatteryStatus(is_external,percent,backup_percent)
+	   {
+	      //alert("updateBatteryStatus: " + is_external + ";" + percent); 
+	      //document.getElementById('BSTRpercent').innerText = percent
+	      var text = '<div id="Bpercent" style="width: ' + percent + '%;height: 40%;background: green" ><div>' + percent + '%</div></div>'
+	      //alert(text)
+	      document.getElementById('Battery').innerHTML = text
+	   }
+    </script>
+</head>
+
+<body>
+    <%= @content %>
+</body>
+
+</html>
