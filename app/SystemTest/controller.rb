@@ -39,5 +39,17 @@ class SystemTestController < Rho::RhoController
 
   def start_music_app
     System.run_app('com.android.music', nil)
+    redirect :action => :index
+  end
+
+  def is_music_app_installed
+    installed = System.app_installed?('com.android.music')
+    Alert.show_popup(installed ? "installed" : "not installed")
+    redirect :action => :index
+  end
+
+  def uninstall_music_app
+    System.app_uninstall('com.android.music')
+    redirect :action => :index
   end
 end
