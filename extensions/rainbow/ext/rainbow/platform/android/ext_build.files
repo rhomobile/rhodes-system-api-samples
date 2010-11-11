@@ -1,2 +1,3 @@
 ext/rainbow/platform/android/src/com/rainbow/Rainbow.java
 ext/rainbow/platform/android/src/com/rainbow/RainbowView.java
+ext/rainbow/platform/android/src/com/rainbow/RainbowBigView.java

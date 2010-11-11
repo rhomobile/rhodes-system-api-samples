@@ -17,8 +17,10 @@ import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewParent;
 import android.webkit.WebView;
+import android.widget.Button;
 
 import java.io.Serializable;
 import java.io.IOException;
@@ -226,6 +228,7 @@ class RainbowView extends SurfaceView implements SurfaceHolder.Callback {
         if (surfaceHolder != null) {
         		surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_NORMAL);
     	}
+        
 
     }
 	

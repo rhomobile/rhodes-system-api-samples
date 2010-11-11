@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 public class Rainbow {
 
+	// Part 1 - Native View inside WebView - open manually
 	
 	private static RainbowView ourView = null;
 	
@@ -70,9 +71,44 @@ public class Rainbow {
 	}
 
 
+	// Part 2 - Native View entire WebView, open by view type name as prefix of URL
+	
+	
 	public static native WebView getWebViewObject(int tab_index);
 	//{
 	//	return RhodesService.getInstance().getMainView().getWebView(tab_index);
 	//}
 
+	public static View makeNativeView() {
+		Context ctx = RhodesService.getInstance().getContext();
+		View view = new RainbowBigView(ctx, null);
+		return view;
+	}
+	
+	public static void navigateInNativeView(View view, String command) {
+		RainbowBigView rbv = (RainbowBigView)view;
+		RainbowView rv = rbv.mRainbowView;
+		if (command.equals("play")) {
+			rv.playAnimation();
+		}
+		else if (command.equals("stop")) {
+			rv.stopAnimation();
+		}
+		else if (command.equals("red")) {
+			rv.setColor(255, 0, 0);
+		}
+		else if (command.equals("green")) {
+			rv.setColor(0, 255, 0);
+		}
+		else if (command.equals("blue")) {
+			rv.setColor(0, 0, 255);
+		}
+	}
+	
+	public static void destroyNativeView(View view) {
+		// nothing - Java objects will remove automatically
+	}
+	
+	public static native void returnToHTML();
+	
 }
