@@ -52,4 +52,18 @@ class SystemTestController < Rho::RhoController
     System.app_uninstall('com.android.music')
     redirect :action => :index
   end
+
+  def start_skype_app
+    System.run_app('skype', nil)
+    redirect :action => :index
+  end
+
+  def is_skype_app_installed
+    installed = System.app_installed?('skype')
+    Alert.show_popup(installed ? "installed" : "not installed")
+    redirect :action => :index
+  end
+
+
+
 end
