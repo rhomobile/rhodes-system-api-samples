@@ -1,0 +1,26 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		New Contact
+	</h1>
+</div>
+<form title="New Contact"
+   class="panel"
+   id="contact_new_form"
+   method="POST"
+   action="<%=url_for(:action => :create)%>">
+  <fieldset>
+    <div class="row">
+      <label>First Name: </label>
+      <input type="text" name="contact[first_name]"/>
+    </div>
+    <div class="row">
+      <label>Last Name: </label>
+      <input type="text" name="contact[last_name]"/>
+    </div>
+    <div class="row">
+      <label>Mobile #: </label>
+      <input type="text" name="contact[mobile_number]"/>
+    </div>
+  </fieldset>
+  <input type="submit" value="Create"/>
+</form>
