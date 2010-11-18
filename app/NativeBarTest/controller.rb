@@ -39,6 +39,7 @@ class NativeBarTestController < Rho::RhoController
       {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
     NativeBar.create(Rho::RhoApplication::TABBAR_TYPE, tabbar)
+    NativeBar.set_tab_badge(1,'12')
     $tabbar_active = true
     NativeBar.switch_tab(0)
   end
