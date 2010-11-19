@@ -13,6 +13,9 @@
   <li>(works only on iPad)</li>
 </ul>
 <br>
+<%= link_to "Run switch button Toolbar Test", :action => :switch_to_1 %>
+
+<br>
 <% if $tabbar_active %>
 <ul id="tabswitch" selected="true" title="Program Switch Tab test">
   <li><%= link_to "Switch to Tab 1", :action => :switch_to_tab_1 %></li>
