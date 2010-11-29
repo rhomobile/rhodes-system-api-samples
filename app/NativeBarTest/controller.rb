@@ -49,6 +49,26 @@ class NativeBarTestController < Rho::RhoController
     NativeBar.switch_tab(0)
   end
 
+  def set_tabbar_many_items
+    save_location
+    tabbar = [
+      {:label => 'Native bar', :action => '/app/NativeBarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
+      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Native bar A', :action => '/app/NativeBarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
+      {:label => 'Main page B',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Main page C', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Native bar D', :action => '/app/NativeBarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
+      {:label => 'Main page E',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Main page G', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
+    ]
+    NativeBar.create(Rho::RhoApplication::TABBAR_TYPE, tabbar)
+    NativeBar.set_tab_badge(7,'12')
+    $tabbar_active = true
+    NativeBar.switch_tab(0)
+  end
+
+
   def show_main_page
     WebView.navigate '/app'
   end
