@@ -1,5 +1,7 @@
 package com.rainbow;
 
+import java.util.ArrayList;
+
 import com.rhomobile.rhodes.RhodesService;
 
 import android.content.Context;
@@ -15,6 +17,9 @@ public class Rainbow {
 	// Part 1 - Native View inside WebView - open manually
 	
 	private static RainbowView ourView = null;
+	private static ArrayList ourViews = new ArrayList();
+	
+	private static final boolean logging_enable = false;	
 	
 	public static void openNativeView() {
 		RhodesService.getInstance().post( new Runnable() {
@@ -79,13 +84,27 @@ public class Rainbow {
 	//	return RhodesService.getInstance().getMainView().getWebView(tab_index);
 	//}
 
-	public static View makeNativeView() {
+	public static int makeNativeView() {
 		Context ctx = RhodesService.getInstance().getContext();
 		View view = new RainbowBigView(ctx, null);
-		return view;
+		ourViews.add(view);
+		return ourViews.size()-1;
 	}
 	
-	public static void navigateInNativeView(View view, String command) {
+	public static View getViewById(int id) {
+		if ((id >= 0) && (id < ourViews.size())) {
+			return (View)ourViews.get(id);
+		}
+		return null;
+	}
+	
+	public static void navigateInNativeView(int id, String command) {
+		if (logging_enable) RhodesService.platformLog("Rainbow", "navigateInNativeView() START");
+		View view = getViewById(id);
+		if ((view == null) || (command == null)) {
+			if (logging_enable) RhodesService.platformLog("Rainbow", "navigateInNativeView() view or command is null !!!");
+			return;
+		}
 		RainbowBigView rbv = (RainbowBigView)view;
 		RainbowView rv = rbv.mRainbowView;
 		if (command.equals("play")) {
@@ -103,10 +122,12 @@ public class Rainbow {
 		else if (command.equals("blue")) {
 			rv.setColor(0, 0, 255);
 		}
+		if (logging_enable) RhodesService.platformLog("Rainbow", "navigateInNativeView() FINISH");
 	}
 	
-	public static void destroyNativeView(View view) {
+	public static void destroyNativeView(int id) {
 		// nothing - Java objects will remove automatically
+		ourViews.set(id, null);
 	}
 	
 	public static native void returnToHTML();
