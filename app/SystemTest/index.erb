@@ -45,6 +45,7 @@ current_location : <%=WebView.current_location() %> <br/>
 <%= link_to 'Read log', url_for(:action => :read_log) %> <br/>
 
 <b>Android application section :</b><br>
+<%= link_to 'Install simple app', url_for(:action => :install_apk) %> <br/>
 <%= link_to 'Start Music app', url_for(:action => :start_music_app) %> <br/>
 <%= link_to 'Is Music app installed?', url_for(:action => :is_music_app_installed) %> <br/>
 <%= link_to 'Uninstall Music application', url_for(:action => :uninstall_music_app) %> <br/>

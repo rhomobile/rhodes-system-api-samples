@@ -64,6 +64,11 @@ class SystemTestController < Rho::RhoController
     redirect :action => :index
   end
 
+  def install_apk
+    url = 'https://rhohub-prod-ota.s3.amazonaws.com/129b1fd5930d4d40b906addd08d61058/simpleapp-rhodes_signed.apk'
+    System.app_install url
+    redirect :action => :index
+  end
 
 
 end

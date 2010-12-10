@@ -30,6 +30,7 @@ android:
   extensions: ["barcode", "rainbow"]
   capabilities:
   - network_state
+  - sdcard
   mapping: yes
 
 extensions: ["rhodes_translator", "json", "rhoxml"]
