@@ -11,6 +11,15 @@
       <input type="text" name="date2" readonly value="<%= $choosed['2'] %>"></input>
       <%= link_to "Edit", { :action => "choose", :query => { :flag => '2', :title => 'Choose Time' } } %><br/>
       <input type="submit" value="Save"></input>
+      <br>
+      <b>Minimal Date for enter:</b><br/>
+      <input type="text" name="datemin" readonly value="<%= $datemin_s %>"></input>
+      <%= link_to "Edit", { :action => "choose_min", :query => { :flag => '1', :title => 'Choose Minimum Date' } } %>
+      <%= link_to "Clear", { :action => "clear_min", :query => {} } %><br/>
+      <b>Maximal Date for enter:</b><br/>
+      <input type="text" name="datemax" readonly value="<%= $datemax_s %>"></input>
+      <%= link_to "Edit", { :action => "choose_max", :query => { :flag => '1', :title => 'Choose Maximum Date' } } %><br/>
+      <%= link_to "Clear", { :action => "clear_max", :query => {} } %><br/>
     </form>
     <br/>
     <% if not $saved.nil? %>
