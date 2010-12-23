@@ -36,15 +36,48 @@ class NativeBarTestController < Rho::RhoController
     render :action => :index
   end
 
+  def set_toolbar_new
+    save_location
+    toolbar = [
+      {:background_color => 0x00004F },
+      {:action => :back,    :icon => '/public/images/bar/back_btn.png'},
+      {:action => :forward, :icon => '/public/images/bar/forward_btn.png'},
+      {:action => :separator},
+      {:action => :home,    :icon => '/public/images/bar/colored_btn.png', :colored_icon => true},
+      {:action => :refresh },
+      {:action => 'callback:' + url_for(:action => :callback), :label => 'Callback' },
+      {:action => :options}
+    ]
+    NativeBar.create(Rho::RhoApplication::TOOLBAR_TYPE, toolbar)
+    $tabbar_active = false
+    render :action => :index
+  end
+
+
   def set_tabbar
     save_location
     tabbar = [
       {:label => 'Native bar', :action => '/app/NativeBarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
-      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
       {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
     NativeBar.create(Rho::RhoApplication::TABBAR_TYPE, tabbar)
     NativeBar.set_tab_badge(1,'12')
+    $tabbar_active = true
+    NativeBar.switch_tab(0)
+  end
+
+  def set_tabbar_new
+    save_location
+    tabbar = [
+      {:background_color => 0x004F00 },
+      {:label => 'Native bar', :action => '/app/NativeBarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :selected_color => 0xFF0000},
+      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :selected_color => 0xFFFF00},
+      {:label => 'Main page 1',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :disabled => true},
+      {:label => 'Main page 2',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
+      {:label => 'Main page 3', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
+    ]
+    NativeBar.create(Rho::RhoApplication::TABBAR_TYPE, tabbar)
     $tabbar_active = true
     NativeBar.switch_tab(0)
   end
