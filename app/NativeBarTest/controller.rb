@@ -75,7 +75,12 @@ class NativeBarTestController < Rho::RhoController
       {:label => 'Main page 2',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :selected_color => 0xFFFF00},
       {:label => 'Main page 3', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true, :selected_color => 0xFFFF00}
     ]
-    NativeBar.create(Rho::RhoApplication::TABBAR_TYPE, :tabs => tabbar, :background_color => 0x008FFF)
+    bkg_color = 0x008FFF 
+    if System::get_property('platform') == 'APPLE' 
+        # TabBar on iPhone have nice view with dark bkg instead of light bkg on Android
+        bkg_color = 0x000F4F
+    end
+    NativeBar.create(Rho::RhoApplication::TABBAR_TYPE, :tabs => tabbar, :background_color => bkg_color)
     $tabbar_active = true
     NativeBar.switch_tab(0)
   end
