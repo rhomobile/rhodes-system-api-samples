@@ -27,7 +27,7 @@ wm:
 bb:
   extensions: ["barcode"]
 android:
-  extensions: ["barcode"] #, "rainbow"]
+  extensions: ["barcode", "rainbow"]
   capabilities:
   - network_state
   - sdcard
