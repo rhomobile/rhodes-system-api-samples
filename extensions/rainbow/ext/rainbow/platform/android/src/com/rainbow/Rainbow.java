@@ -2,7 +2,9 @@ package com.rainbow;
 
 import java.util.ArrayList;
 
+import com.rhomobile.rhodes.RhodesActivity;
 import com.rhomobile.rhodes.RhodesService;
+import com.rhomobile.rhodes.Utils;
 
 import android.content.Context;
 import android.view.View;
@@ -22,7 +24,7 @@ public class Rainbow {
 	private static final boolean logging_enable = false;	
 	
 	public static void openNativeView() {
-		RhodesService.getInstance().post( new Runnable() {
+		RhodesActivity.getInstance().post( new Runnable() {
 			public void run() {
 				if (ourView != null) {
 					return;
@@ -40,7 +42,7 @@ public class Rainbow {
 	}
 
 	public static void closeNativeView() {
-		RhodesService.getInstance().post( new Runnable() {
+		RhodesActivity.getInstance().post( new Runnable() {
 			public void run() {
 				if (ourView != null) {
 					ViewGroup wv = getWebViewObject(0);
@@ -99,10 +101,10 @@ public class Rainbow {
 	}
 	
 	public static void navigateInNativeView(int id, String command) {
-		if (logging_enable) RhodesService.platformLog("Rainbow", "navigateInNativeView() START");
+		if (logging_enable) Utils.platformLog("Rainbow", "navigateInNativeView() START");
 		View view = getViewById(id);
 		if ((view == null) || (command == null)) {
-			if (logging_enable) RhodesService.platformLog("Rainbow", "navigateInNativeView() view or command is null !!!");
+			if (logging_enable) Utils.platformLog("Rainbow", "navigateInNativeView() view or command is null !!!");
 			return;
 		}
 		RainbowBigView rbv = (RainbowBigView)view;
@@ -122,7 +124,7 @@ public class Rainbow {
 		else if (command.equals("blue")) {
 			rv.setColor(0, 0, 255);
 		}
-		if (logging_enable) RhodesService.platformLog("Rainbow", "navigateInNativeView() FINISH");
+		if (logging_enable) Utils.platformLog("Rainbow", "navigateInNativeView() FINISH");
 	}
 	
 	public static void destroyNativeView(int id) {
