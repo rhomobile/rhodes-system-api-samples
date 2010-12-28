@@ -1,0 +1,24 @@
+<div class="toolbar">
+  <h1 id="pageTitle">Native Tabbar test</h1>
+</div>
+
+<ul id="tabbar" selected="true" title="Native bar test">
+  <li><%= link_to "No bar", :action => :set_no_bar %></li>
+  <li><%= link_to "Tab bar", :action => :set_tabbar %></li>
+</ul>
+<br>
+<ul id="tabswitch" selected="true" title="iPad SplitView test">
+  <li><%= link_to "Tab bar using iPad Split View", :action => :set_iPad_tabbar %></li>
+  <li>(works only on iPad)</li>
+</ul>
+<br>
+<%= link_to "TabBar customized", :action => :set_tabbar_new %>
+<br>
+<%= link_to "TabBar test with more than 5 tabs", :action => :set_tabbar_many_items %>
+<br>
+<% if $tabbar_active %>
+<ul id="tabswitch" selected="true" title="Program Switch Tab test">
+  <li><%= link_to "Switch to Tab 1", :action => :switch_to_tab_1 %></li>
+  <li><%= link_to "Switch to Tab 2 (using 'callback:' uri)", :action => :switch_to_tab_2 %></li>
+</ul>
+<% end %>

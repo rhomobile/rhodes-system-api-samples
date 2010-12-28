@@ -5,7 +5,7 @@ class NavbarController < Rho::RhoController
   @@this_page = '/app/Navbar'
 
   def enable
-    NavBar.create :title => "NavBar test", :left => {:action => :back, :label => 'Back'}, :right => {:action => '/app/NativeBarTest', :label => "NativeBar"}
+    NavBar.create :title => "NavBar test", :left => {:action => :back, :label => 'Back'}, :right => {:action => '/app/NativeToolbarTest', :label => "NativeToolBar"}
     render :action => :index
   end
 

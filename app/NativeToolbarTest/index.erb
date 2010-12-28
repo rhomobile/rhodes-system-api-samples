@@ -1,0 +1,13 @@
+<div class="toolbar">
+  <h1 id="pageTitle">Native Toolbar test</h1>
+</div>
+
+<ul id="tabbar" selected="true" title="Native bar test">
+  <li><%= link_to "No bar", :action => :set_no_bar %></li>
+  <li><%= link_to "Toolbar", :action => :set_toolbar %></li>
+</ul>
+<br>
+<%= link_to "Toolbar with custom background color", :action => :set_toolbar_new %>
+<br>
+<%= link_to "Run switch button Toolbar Test", :action => :switch_to_1 %>
+<br>
