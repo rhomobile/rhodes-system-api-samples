@@ -4,14 +4,6 @@ class AsyncHttpTestController < Rho::RhoController
 
   #GET /AsyncHttpTest
   def index
-=begin
-    res = Rho::AsyncHttp.get( :url => 'http://www.apache.org/licenses/LICENSE-2.0')
-    puts "Sync http call: #{res}"
-    @@get_result = res['body']
-    
-    render
-=end
-#=begin    
     @@get_result = ""
     Rho::AsyncHttp.get(
       :url => 'http://www.apache.org/licenses/LICENSE-2.0',
@@ -19,7 +11,6 @@ class AsyncHttpTestController < Rho::RhoController
       :callback => (url_for :action => :httpget_callback),
       :callback_param => "" )
     render :action => :wait
-#=end    
   end
   
   def get_res
@@ -32,7 +23,6 @@ class AsyncHttpTestController < Rho::RhoController
   
   def httpget_callback
     puts "httpget_callback: #{@params}"
-#=begin
     if @params['status'] != 'ok'
         @@error_params = @params
         WebView.navigate ( url_for :action => :show_error )        
@@ -40,7 +30,6 @@ class AsyncHttpTestController < Rho::RhoController
         @@get_result = @params['body']
         WebView.navigate ( url_for :action => :show_result )
     end
-#=end
   end
 
   def show_result

@@ -15,14 +15,14 @@ class RingtonesController < Rho::RhoController
 
     $selected = @params['name']
     Rho::RingtoneManager.play @params['file']
-    render :action => :playing, :layout => false
+    render :action => :playing, :layout => false, :back => url_for( :action => :index )
   end
 
   def stop
     puts "Stop playing"
 
     Rho::RingtoneManager.stop
-    redirect :action => :index
+    redirect :action => :index, :back => url_for( :action => :index )
   end
 
 end

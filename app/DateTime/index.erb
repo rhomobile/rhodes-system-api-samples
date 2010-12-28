@@ -1,5 +1,5 @@
 <div>
-	<p>Test Date/Time Pickers</p>
+	<p>Date/Time Picker</p>
     <form action="DateTime/save">
 	  <b>Date and Time:</b><br/>
       <input type="text" name="date0" readonly value="<%= $choosed['0'] %>"></input>
@@ -12,6 +12,7 @@
       <%= link_to "Edit", { :action => "choose", :query => { :flag => '2', :title => 'Choose Time' } } %><br/>
       <input type="submit" value="Save"></input>
       <br>
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
       <b>Minimal Date for enter:</b><br/>
       <input type="text" name="datemin" readonly value="<%= $datemin_s %>"></input>
       <%= link_to "Edit", { :action => "choose_min", :query => { :flag => '1', :title => 'Choose Minimum Date' } } %>
@@ -20,6 +21,7 @@
       <input type="text" name="datemax" readonly value="<%= $datemax_s %>"></input>
       <%= link_to "Edit", { :action => "choose_max", :query => { :flag => '1', :title => 'Choose Maximum Date' } } %><br/>
       <%= link_to "Clear", { :action => "clear_max", :query => {} } %><br/>
+<% end %>                
     </form>
     <br/>
     <% if not $saved.nil? %>

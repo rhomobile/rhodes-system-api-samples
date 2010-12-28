@@ -5,59 +5,77 @@ if (location.search =='?settings=true') {
 }
 
 </script>
+Device capabilities:
+<ul id="home" selected="true" title="Device capabilities">
+    <li><a href="Contacts">Contacts</a></li>
+    <li><a href="Calendar">Calendar</a></li>
+    <li><a href="GeoLocation">Geo Location/Native Map</a></li>
+    <li><a href="Image">Camera</a></li>   
+    
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
+    <li><a href="SignatureUtil">Signature capture</a></li>   
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Signature capture'} %>">Signature capture</a></li>       
+<% end %>      
+    
+    <li><a href="DateTime">Date/Time picker</a></li>
+    
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
+    <li><a href="DateTimeAJ">Date/Time picker using AJAX</a></li>
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Date/Time picker using AJAX'} %>">Date/Time picker using AJAX</a></li>       
+<% end %>      
+    
+    <li><a href="Alert">Alerts/Audio file playback</a></li>
+    
+<% if System::get_property('platform') != 'APPLE' %>
+    <li><a href="Ringtones">Ringtones</a></li>
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Ringtones'} %>">Ringtones</a></li>       
+<% end %>      
+    
+    <li><a href="DynamicMenu">Native Menu</a></li>
+    
+<% if System::get_property('platform') != 'WINDOWS' %>
+    <li><a href="ScreenRotation">Screen rotation</a></li>   
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Screen rotation'} %>">Screen rotation</a></li>       
+<% end %>      
+    
+    <li><a href="CustomUri">Hyperlinks for Email, Phone Dialing, SMS</a></li>
+    
+    <li><a href="BarcodeRecognizer">Barcode</a></li>   
+    <li><a href="BluetoothChat">Bluetooth</a></li>   
 
-<div class="toolbar">
-    <h1 id="pageTitle">
-        System Tests
-    </h1>
-</div>
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
+    <li><a href="NativeBarTest">Native bar test</a></li>
+    <li><a href="Navbar">Navigation bar</a></li>
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Tabbar/Toolbar'} %>">Tabbar/Toolbar</a></li>       
+<% end %>      
+</ul>
 
-<ul id="home" selected="true" title="System Tests">
-    <li><a href="Contacts">My Contacts...</a></li>
-    <li><a href="Calendar">My Calendar Events...</a></li>
-    <li><a href="GeoLocation">My Location...</a></li>
-    <li><a href="Image">My Camera Images...</a></li>   
-    <li><a href="SignatureUtil">My Signatures...</a></li>   
-    <li><a href="ScreenRotation">Screen Rotation callback...</a></li>   
-    <li><a href="DateTime">Select date/time...</a></li>
-    <li><a href="DateTimeAJ">Select date/time using AJAX...</a></li>
-    <li><a href="Alert">Alerts...</a></li>
-    <li><a href="Ringtones">Ringtones...</a></li>
+Rhodes API tests
+<ul id="home" selected="true" title="Rhodes API tests">
     <li><a href="AsyncHttpTest">Async Http test</a></li>
     <li><a href="AsyncHttpsTest">Async HttpS test</a></li>
     <li><a href="AsyncDownloadFile">Async download file</a></li>
+    <li><a href="AsyncUploadFile">Async upload file</a></li>
     <li><a href="SystemTest">System test</a></li>
     <li><a href="Localization">Localization test</a></li>
-    <li><a href="DynamicMenu">Dynamic Menu Test</a></li>
     <li><a href="RhoTest">Rho test</a></li>    
-    <li><a href="CustomUri">Custom URI schemes</a></li>
-    <li><a href="BarcodeRecognizer">My Barcode recognize...</a></li>   
-    <li><a href="NativeView">Native View Demo...</a></li>   
-    <li><a href="BluetoothChat">Bluetooth Chat Demo...</a></li>   
+<% if System::get_property('platform') != 'Blackberry' %>
+    <li><a href="NativeView">Native View</a></li>   
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Native View'} %>">Native View</a></li>       
+<% end %>      
+    
     <li><a href="AnimationTest">Animation test</a></li>
     <li><a href="Media">Video/audio test</a></li>
-
-  <% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
-    <li><a href="NativeBarTest">Native bar test</a></li>
-    <li><a href="Navbar">Navigation bar</a></li>
-  <% end %>
-    <br/><br/>
-      
-</ul>
-Api Samples
-<ul id="home" selected="true" title="System Tests">
-
+    <li><a href="UIFormDemo">UI Form Demo</a></li>
     <li><a href="RexmlTest">Rexml test</a></li>
     <li><a href="JsonTest">Json test</a></li>    
-    <li><a href="FakeDataRecord">Generate Fake Data...</a></li>
-    <li><a href="Noresponse">Test No Response</a></li>
-    <li><a href="Loadofflinedata">Load offline data test</a></li>
-    <li><a href="UIFormDemo">UI Form Demo</a></li>
-    <li><a href="Metadata">Metadata</a></li>
-    <li><a href="AsyncUploadFile">Async upload file</a></li>
-    <li><a href="Metatag">META tag test</a></li>
-      
-    <br/><br/>
+   
 </ul>
 
 <%= $mt_string %>

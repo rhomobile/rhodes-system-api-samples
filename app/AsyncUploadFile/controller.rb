@@ -5,7 +5,14 @@ class AsyncUploadFileController < Rho::RhoController
   #GET /AsyncUploadFile
   def index
 
-    @@file_name = File.join(Rho::RhoApplication::get_base_app_path(), 'rhoconfig.txt')
+    @@file_name = File.join(Rho::RhoApplication::get_model_path('app', 'AsyncUploadFile'), 'test_upload.txt')
+    unless File.exists?(@@file_name)
+        write_data  = "this is rhodes test"
+        f = File.new(@@file_name, "w")
+        f.write(write_data)
+        f.close        
+    end
+    
     Rho::AsyncHttp.upload_file(
       #:url => 'http://dev.rhosync.rhohub.com/apps/SystemApiSamples/sources/client_log?client_id=19bdcf15-aca2-4e5a-9676-3c297c09bb11&device_pin=&log_name=',
       :url => 'http://rhologs.heroku.com/client_log?client_id=&device_pin=&log_name=uptest',

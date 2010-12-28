@@ -81,5 +81,22 @@ class SettingsController < Rho::RhoController
     
     "rho_push"
   end
- 
+
+  def not_supported
+    @ns_feature = @params['feature']
+    
+    platform = System::get_property('platform')
+    
+    if platform == 'APPLE'
+        @ns_platform = 'iPhone'
+    elsif platform == 'ANDROID'
+        @ns_platform = 'Android'    
+    elsif platform == 'Blackberry'
+        @ns_platform = 'Blackberry'
+    elsif platform == 'WINDOWS'
+        @ns_platform = 'Windows Mobile'
+    end
+        
+    render
+  end   
 end

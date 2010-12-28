@@ -9,7 +9,7 @@ capabilities:
 - bluetooth
 - calendar
 
-bbver: 4.6.1
+bbver: 5.0
 sdk: /Users/evgeny/Projects/rhodes
 applog: rholog.txt
 version: 1.0.7
@@ -27,10 +27,10 @@ wm:
 bb:
   extensions: ["barcode"]
 android:
-  extensions: ["barcode", "rainbow"]
+  extensions: ["barcode"] #, "rainbow"]
   capabilities:
   - network_state
   - sdcard
   mapping: yes
 
-extensions: ["rhodes_translator", "json", "rhoxml"]
+extensions: ["json", "rhoxml"]

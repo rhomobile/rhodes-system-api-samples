@@ -6,6 +6,7 @@ class ContactsController < Rho::RhoController
   # GET /Contacts
   def index
     @contacts = Rho::RhoContact.find(:all)
+    @contacts = {} unless @contacts
     @contacts = @contacts.sort do |x,y| 
       res = 1 if x[1]['first_name'].nil? 
       res = -1 if y[1]['first_name'].nil?
