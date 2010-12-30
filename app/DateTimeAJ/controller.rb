@@ -8,7 +8,7 @@ class DateTimeAJController < Rho::RhoController
   @layout = 'DateTimeAJ/layout'
   
   def index
-    render
+    render :back => '/app'
   end
 
   def save

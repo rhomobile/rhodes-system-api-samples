@@ -2,6 +2,10 @@ require 'rho/rhocontroller'
 
 class NativeBarTestController < Rho::RhoController
 
+  def index
+    render :back => '/app'
+  end
+
   def save_location
     location = WebView.current_location
     puts "location: #{location}"

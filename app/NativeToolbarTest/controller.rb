@@ -3,6 +3,10 @@ require 'rho/rhotoolbar'
 
 class NativeToolbarTestController < Rho::RhoController
 
+  def index
+    render :back => '/app'
+  end
+
   def save_location
     location = WebView.current_location
     puts "location: #{location}"

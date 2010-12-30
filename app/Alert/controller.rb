@@ -5,13 +5,13 @@ class AlertController < Rho::RhoController
   
   def index
     @flash = "Alerts"
-    render
+    render :back => '/app'
   end
 
   def show_popup
     @flash = "Show popup page"
     Alert.show_popup "Some message!Long Message.Very Long Meeesage"
-    render :action => :index, :back => url_for( :action => :index )
+    render :action => :index, :back => '/app'
   end
 
   def show_popup1
@@ -23,7 +23,7 @@ class AlertController < Rho::RhoController
         :buttons => ["Ok"]
      )
     
-    render :action => :index, :back => url_for( :action => :index )
+    render :action => :index, :back => '/app'
   end
 
   def show_popup2
@@ -35,7 +35,7 @@ class AlertController < Rho::RhoController
         :buttons => ["Ok", "Cancel"],
         :callback => url_for(:action => :popup_callback)
      )
-    render :action => :index, :back => url_for( :action => :index )
+    render :action => :index, :back => '/app'
   end
   
   def show_popup_complex
@@ -45,7 +45,7 @@ class AlertController < Rho::RhoController
       :buttons => ["Yes", "No", {:id => 'cancel', :title => "Cancel"}],
       :callback => url_for(:action => :popup_callback)
       
-    render :action => :index, :back => url_for( :action => :index )
+    render :action => :index, :back => '/app'
   end
 
   def show_popup3
@@ -53,7 +53,7 @@ class AlertController < Rho::RhoController
     Alert.show_popup :title => "Wait...", :message => "Wait ..."
     sleep 3
     Alert.hide_popup
-    render :action => :index, :back => url_for( :action => :index )
+    render :action => :index, :back => '/app'
   end
 
   def popup_callback
@@ -64,30 +64,30 @@ class AlertController < Rho::RhoController
   def vibrate
     @flash = "Vibrate page"
     Alert.vibrate
-    render :action => :index, :back => url_for( :action => :index )
+    render :action => :index, :back => '/app'
   end
   
   def vibrate_for_10sec
     @flash = "Vibrate for 10 sec page"    
     Alert.vibrate 10000
-    render :action => :index, :back => url_for( :action => :index )
+    render :action => :index, :back => '/app'
   end
     
   def play_file
     @flash = "Play file page"    
     Alert.play_file @params['file_name'], @params['media_type']
-    render :action => :index, :back => url_for( :action => :index )    
+    render :action => :index, :back => '/app'
   end
   
   def play_file_1
     @flash = "Play file page"    
     Alert.play_file @params['file_name']
-    render :action => :index, :back => url_for( :action => :index )    
+    render :action => :index, :back => '/app'
   end  
 
   def stop_playing
     Rho::RingtoneManager.stop
-    render :action => :index, :back => url_for( :action => :index )
+    render :action => :index, :back => '/app'
   end
   
 end

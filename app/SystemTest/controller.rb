@@ -9,6 +9,8 @@ class SystemTestController < Rho::RhoController
     $sleeping = true unless $sleeping
 
 	System.set_screen_rotation_notification( url_for(:action => :screen_rotation_callback), "")
+	
+    render :back => '/app'  	
   end
 
   def screen_rotation_callback

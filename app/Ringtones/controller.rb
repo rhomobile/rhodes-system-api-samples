@@ -7,7 +7,7 @@ class RingtonesController < Rho::RhoController
     Rho::RingtoneManager.stop
     @ringtones = Rho::RingtoneManager.get_all_ringtones
     @ringtones = [] if @ringtones.nil?
-    render
+    render :back => '/app'  
   end
 
   def play

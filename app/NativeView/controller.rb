@@ -10,7 +10,7 @@ class NativeViewController < Rho::RhoController
 
   def index
     puts "Native View index controller"
-    render
+    render :back => '/app'
   end
   
   def goto_html

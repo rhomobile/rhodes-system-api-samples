@@ -6,7 +6,7 @@ class GeoLocationController < Rho::RhoController
   def index
     puts "GeoLocation index controller"
     set_geoview_notification( url_for(:action => :geo_viewcallback), "", 2)  if System::get_property('platform') == 'Blackberry'
-    render
+    render :back => '/app'
   end
   
   def geo_viewcallback

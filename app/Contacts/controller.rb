@@ -13,7 +13,7 @@ class ContactsController < Rho::RhoController
       res = x[1]['first_name'] <=> y[1]['first_name'] unless res
       res
     end
-    render
+    render :back => '/app'
   end
  
   # GET /Contacts/1

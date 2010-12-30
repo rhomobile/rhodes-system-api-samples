@@ -6,7 +6,7 @@ class SignatureUtilController < Rho::RhoController
   def index
     puts "Signature index controller"
     @signatures = SignatureUtil.find(:all)
-    render
+    render :back => '/app'  
   end
 
   def new

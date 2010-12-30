@@ -3,6 +3,10 @@ require 'rho/rhocontroller'
 class CustomUriController < Rho::RhoController
   @layout = :simplelayout
  
+  def index
+    render :back => '/app'  
+  end
+  
   def send_sms
     WebView.navigate( 'sms:+1222333444' )
     

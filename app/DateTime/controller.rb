@@ -13,7 +13,7 @@ class DateTimeController < Rho::RhoController
   $datemax_s = ''
   
   def index
-    render
+    render :back => '/app'
   end
 
   def choose

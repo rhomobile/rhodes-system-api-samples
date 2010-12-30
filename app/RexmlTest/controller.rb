@@ -4,7 +4,7 @@ class RexmlTestController < Rho::RhoController
 
   #GET /RexmlTest
   def index
-
+    render :back => '/app'
   end
   
   def filetest

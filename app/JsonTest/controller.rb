@@ -5,6 +5,7 @@ class JsonTestController < Rho::RhoController
 
   #GET /JsonTest
   def index
+    render :back => '/app'
   end
   
   def filetest

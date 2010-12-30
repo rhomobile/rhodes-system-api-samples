@@ -5,7 +5,7 @@ class ScreenRotationController < Rho::RhoController
   
   def index
     System::set_screen_rotation_notification(url_for(:action => :screenRotateCallback), "" )
-    render
+    render :back => '/app'  
   end
 
   def screenRotateCallback

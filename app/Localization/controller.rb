@@ -7,6 +7,6 @@ class LocalizationController < Rho::RhoController
   #GET /Localization
   def index
   
-    render
+    render :back => '/app'
   end
 end

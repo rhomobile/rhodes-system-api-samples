@@ -12,12 +12,12 @@
       <%= link_to "Edit", { :action => "choose", :query => { :flag => '2', :title => 'Choose Time' } } %><br/>
       <input type="submit" value="Save"></input>
       <br>
-<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'WINDOWS'%>
-      <b>Minimal Date for enter:</b><br/>
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID'%>
+      <b>Minimum Date limit:</b><br/>
       <input type="text" name="datemin" readonly value="<%= $datemin_s %>"></input>
       <%= link_to "Edit", { :action => "choose_min", :query => { :flag => '1', :title => 'Choose Minimum Date' } } %>
       <%= link_to "Clear", { :action => "clear_min", :query => {} } %><br/>
-      <b>Maximal Date for enter:</b><br/>
+      <b>Maximum Date limit:</b><br/>
       <input type="text" name="datemax" readonly value="<%= $datemax_s %>"></input>
       <%= link_to "Edit", { :action => "choose_max", :query => { :flag => '1', :title => 'Choose Maximum Date' } } %><br/>
       <%= link_to "Clear", { :action => "clear_max", :query => {} } %><br/>

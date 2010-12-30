@@ -6,7 +6,7 @@ class ImageController < Rho::RhoController
   def index
     puts "Camera index controller"
     @images = Image.find(:all)
-    render
+    render :back => '/app'
   end
 
   def new

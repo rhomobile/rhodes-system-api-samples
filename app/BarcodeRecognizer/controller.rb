@@ -6,7 +6,7 @@ class BarcodeRecognizerController < Rho::RhoController
   def index
     puts "Barcode index controller"
     @barcodes = BarcodeRecognizer.find(:all)
-    render
+    render :back => '/app'
   end
 
   def new

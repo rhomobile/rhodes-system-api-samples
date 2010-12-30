@@ -4,6 +4,7 @@ class RhoTestController < Rho::RhoController
 
   #GET /RhoTest
   def index
+    render :back => '/app'  
   end
   
   def render_string

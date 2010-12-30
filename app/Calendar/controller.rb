@@ -30,7 +30,7 @@ class CalendarController < Rho::RhoController
   
   def index
     fetch_events
-    render :action => :index
+    render :back => '/app'
   end
 
   def date_popup
