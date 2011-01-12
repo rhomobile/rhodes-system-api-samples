@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>ESRI Map</title>
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1,user-scalable=yes,width=device-width"/>
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/2.1/js/dojo/dijit/themes/claro/claro.css">
+    <style>
+      html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+      .esriScalebar{
+        padding: 20px 20px;
+      }
+      #map{
+        padding:0;
+      }
+    </style>
+    <script type="text/javascript">var djConfig = {parseOnLoad: true};</script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=2.1"></script>
+    <script type="text/javascript">
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("esri.map");
+      dojo.require("esri.dijit.Scalebar");
+      var map;
+
+      function init() {
+        var initExtent = new esri.geometry.Extent({"xmin":-13632648.791420517,"ymin":4542594.847435551,"xmax":-13621699.187118681,"ymax":4546875.321019515,"spatialReference":{"wkid":102100}});
+        map = new esri.Map("map",{extent:initExtent});
+        //Add the topographic layer to the map. View the ArcGIS Online site for services http://arcgisonline/home/search.html?t=content&f=typekeywords:service    
+        var basemap = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer");
+        map.addLayer(basemap);
+
+        //resize the map when the browser resizes - view the 'Resizing and repositioning the map' section in 
+        //the following help topic for more details http://help.esri.com/EN/webapi/javascript/arcgis/help/jshelp_start.htm#jshelp/inside_guidelines.htm
+        var resizeTimer;
+        dojo.connect(map, 'onLoad', function(theMap) {
+            var scalebar = new esri.dijit.Scalebar({
+map: map,
+attachTo:"top-right"
+});
+            dojo.connect(dijit.byId('map'), 'resize', function() {  //resize the map if the div is resized
+              clearTimeout(resizeTimer);
+              resizeTimer = setTimeout( function() {
+                map.resize();
+                map.reposition();
+                }, 500);
+              });
+            });
+}
+
+      dojo.addOnLoad(init);
+    </script>
+  </head>
+  <body class="claro">
+  <%= @content %>
+  </body>
+</html>
