@@ -98,6 +98,7 @@
 	[self addSubview:button];
 	//[button release];
 	
+	[self setNeedsDisplay];
 	
     return self;
 	

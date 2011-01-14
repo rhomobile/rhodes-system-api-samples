@@ -1,8 +1,9 @@
 <div class="toolbar">
   <h1 id="pageTitle">Native View</h1>
 </div>
-
-<ul id="NativeView" selected="true" title="Native View Demo">
+<br>
+URL based Native View
+<ul id="NativeView" selected="true" title="URL based Native View Demo">
   <li><%= link_to "Switch to Native View(Red)", :action => :goto_red %></li>
   <li><%= link_to "Switch to Native View(Green)", :action => :goto_green %></li>
   <li><%= link_to "Switch to Native View(Blue)", :action => :goto_blue %></li>
@@ -23,3 +24,16 @@ Small Native View
   <li><%= link_to "set Blue", :action => :blue_native_view %></li>
   <li><%= link_to "Close Native View", :action => :close_native_view %></li>
 </ul>
+<br>
+<br>
+FullScreen Native View
+<ul id="NativeView3" selected="true" title="FullScreen Native View Demo">
+  <li><%= link_to "Open Fullscreen Native View", :action => :open_native_view_fullscreen %></li>
+</ul>
+<br>
+<br>
+Open Native View by Ruby code
+<ul id="NativeView4" selected="true" title="Open Native View by Ruby code Demo">
+  <li><%= link_to "Open Native View", :action => :open_native_view_by_ruby %></li>
+</ul>
+<br>

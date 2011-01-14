@@ -10,7 +10,7 @@
 class RainbowNativeView : public NativeView {
 public:
 	RainbowNativeView() {
-		mView = [[RainbowView alloc] init];
+		mView = nil;
 	}
 	virtual ~RainbowNativeView() {
 		[mView release];
@@ -18,6 +18,9 @@ public:
 	}
 	
 	virtual void* getView() {
+		if (mView == nil) {
+			mView = [[RainbowView alloc] init];
+		}
 		return mView;
 	}
 	
