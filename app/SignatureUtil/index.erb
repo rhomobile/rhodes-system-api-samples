@@ -2,6 +2,6 @@
     	<%= link_to '[Take Signature]', { :action => :new }%> <br>
     <br/>
 	<% @signatures.reverse_each do |x|%>
- 		<img src="<%=x.signature_uri%>" width='300px'></img><a href="<%=url_for(:action => :delete, :id =>x.object)%>">Delete</a><br/>
+ 		<img src="<%=Rho::RhoApplication::get_blob_path(x.signature_uri)%>" width='300px'></img><a href="<%=url_for(:action => :delete, :id =>x.object)%>">Delete</a><br/>
 	<% end %>
 </div>
