@@ -1,6 +1,9 @@
 require 'rho/rhocontroller'
+require 'rho/rhonativeviewmanager'
 
 class NativeViewController < Rho::RhoController
+
+  $native_view = nil
 
   def save_location
     location = WebView.current_location
@@ -15,22 +18,43 @@ class NativeViewController < Rho::RhoController
   
   def goto_html
     puts "Native View controller -> goto HTML"
+    if $native_view != nil
+       $native_view.destroy
+       $native_view = nil
+    end
     WebView.navigate( url_for :action => :index )
   end 
 
   def goto_red
     puts "Native View controller -> goto Red"
-    WebView.navigate 'rainbow_view:red'
+    if $native_view != nil
+       puts "Native View controller -> goto Red     (use @native_view)"
+       $native_view.navigate('red')
+       redirect :action => :index
+    else
+       puts "Native View controller -> goto Red     (use WebView.navigate)"
+        WebView.navigate 'rainbow_view:red'
+    end
   end
 
   def goto_green
     puts "Native View controller -> goto Green"
-    WebView.navigate 'rainbow_view:green'
+    if $native_view != nil
+       $native_view.navigate('green')
+       redirect :action => :index
+    else
+        WebView.navigate 'rainbow_view:green'
+    end
   end
 
   def goto_blue
     puts "Native View controller -> goto Blue"
-    WebView.navigate 'rainbow_view:blue'
+    if $native_view != nil
+       $native_view.navigate('blue')
+       redirect :action => :index
+    else
+        WebView.navigate 'rainbow_view:blue'
+    end
   end
 
   def open_native_view
@@ -38,6 +62,21 @@ class NativeViewController < Rho::RhoController
     Rainbow.open_native_view
     redirect :action => :index
   end
+
+  def open_native_view_fullscreen
+    puts "Native View controller -> open_native_view_fullcreen"
+    $native_view = Rho::NativeViewManager.create_native_view('rainbow_view',  Rho::NativeViewManager::OPEN_IN_MODAL_FULL_SCREEN_WINDOW, nil)
+    redirect :action => :index
+  end
+
+  def open_native_view_by_ruby
+    puts "Native View controller -> open_native_view_by_ruby"
+    $native_view = Rho::NativeViewManager.create_native_view('rainbow_view',  0, nil)
+    redirect :action => :index
+  end
+
+
+
 
   def close_native_view
     puts "Native View controller -> close_native_view"
