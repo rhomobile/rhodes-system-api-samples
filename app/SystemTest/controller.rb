@@ -44,6 +44,19 @@ class SystemTestController < Rho::RhoController
     redirect :action => :index
   end
 
+  def start_test_app
+    
+if System::get_property('platform') == 'ANDROID'    
+    System.run_app('com.rhomobile.store', "security_token=1234")
+elsif System::get_property('platform') == 'APPLE'    
+elsif System::get_property('platform') == 'Blackberry'    
+else
+    System.run_app('rhomobile store/store.exe', "security_token=123")
+end
+
+    redirect :action => :index
+  end
+
   def is_music_app_installed
     installed = System.app_installed?('com.android.music')
     Alert.show_popup(installed ? "installed" : "not installed")
