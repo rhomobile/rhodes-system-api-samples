@@ -47,9 +47,11 @@ class SystemTestController < Rho::RhoController
   def start_test_app
     
 if System::get_property('platform') == 'ANDROID'    
-    System.run_app('com.rhomobile.store', "security_token=1234")
+    System.run_app('com.rhomobile.store', "security_token=123")
 elsif System::get_property('platform') == 'APPLE'    
+    System.run_app('store', "security_token=123")
 elsif System::get_property('platform') == 'Blackberry'    
+    System.run_app('store', "security_token=123")
 else
     System.run_app('rhomobile store/store.exe', "security_token=123")
 end
