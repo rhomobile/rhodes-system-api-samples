@@ -28,11 +28,17 @@
 	to see results of ruby calls</p>
 	
 <% if System::get_property('platform') != 'WINDOWS' %>
-		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>"
-			target="_self">[show map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
+		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=Google"
+			target="_self">[show Google map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
+<% if System::get_property('platform') == 'APPLE' %>
+<br>
+		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=ESRI"
+			target="_self">[show ESRI map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
+
+<% end %>      
 <% else %>      
 		<p><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Native Map'} %>"
-			target="_self">[show map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
+			target="_self">[show Google map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
 <% end %>      
 
   <a href='/app/ESRI'>[show ESRI map]</a><br/>
