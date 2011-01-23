@@ -29,6 +29,7 @@ os_version : <%=System.get_property('os_version') %> <br/>
 rhodes_port : <%=System.get_property('rhodes_port') %> <br/>
 is_emulator : <%=System.get_property('is_emulator') %> <br/>
 has_calendar : <%=System.get_property('has_calendar') %> <br/>
+get_start_params : <%=System.get_start_params() %> <br/>
 
 <% if $sleeping %>    
     <%= link_to 'Disable sleep', url_for(:action => :disable_sleep) %> <br/>
