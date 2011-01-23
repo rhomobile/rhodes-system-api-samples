@@ -1,3 +1,7 @@
+# ESRI server URLs
+esri_map_url_roadmap = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/'
+esri_map_url_satellite = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/'
+
 # Startup page for your application
 start_path = '/app'
 
