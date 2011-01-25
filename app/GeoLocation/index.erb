@@ -30,7 +30,7 @@
 <% if System::get_property('platform') != 'WINDOWS' %>
 		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=Google"
 			target="_self">[show Google map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
-<% if System::get_property('platform') == 'APPLE' %>
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'Blackberry' %>
 <br>
 		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=ESRI"
 			target="_self">[show ESRI map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>

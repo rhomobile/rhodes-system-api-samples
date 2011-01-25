@@ -30,7 +30,7 @@ class GeoLocationController < Rho::RhoController
      #region = {:center => @params['latitude'] + ',' + @params['longitude'], :radius => 0.2}
      map_params = {
           :provider => @params['provider'],
-          :settings => {:map_type => "standard", :region => region,
+          :settings => {:map_type => "roadmap", :region => region,
                         :zoom_enabled => true, :scroll_enabled => true, :shows_user_location => true},
           :annotations => [{:latitude => @params['latitude'], :longitude => @params['longitude'], :title => "Current location", :subtitle => "test", :url => "/app/GeoLocation/show?city=Current Location"},
                            {:street_address => "Cupertino, CA 95014", :title => "Cupertino", :subtitle => "zip: 95014", :url => "/app/GeoLocation/show?city=Cupertino"},
