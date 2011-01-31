@@ -47,13 +47,18 @@ Device capabilities:
     <li><a href="BarcodeRecognizer">Barcode</a></li>   
     <li><a href="BluetoothChat">Bluetooth</a></li>   
 
-<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
+<% if System::get_property('platform') != 'Blackberry' %>
     <li><a href="NativeBarTest">NativeBar (deprecated API) test</a></li>
     <li><a href="NativeToolbarTest">Native Toolbar test</a></li>
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Tabbar/Toolbar'} %>">Tabbar/Toolbar</a></li>       
+<% end %>      
+    
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
     <li><a href="NativeTabbarTest">Native Tabbar test</a></li>
     <li><a href="Navbar">Navigation bar</a></li>
 <% else %>      
-    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Tabbar/Toolbar'} %>">Tabbar/Toolbar</a></li>       
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Tabbar/Navigation bar'} %>">Tabbar/Navigation bar</a></li>       
 <% end %>      
 </ul>
 
