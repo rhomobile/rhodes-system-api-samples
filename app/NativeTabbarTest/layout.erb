@@ -2,22 +2,8 @@
          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Tasklist</title>
+		<title>TabBar test</title>
 		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
-
-		<% if System::get_property('platform') == 'APPLE' %>
-            <link href="/public/css/webkit.css" type="text/css" rel="stylesheet"/>
-			<link href="/public/css/iphone.css" type="text/css" rel="stylesheet"/>
-		<% elsif System::get_property('platform') == 'Blackberry' %>
-			<link href="/public/css/blackberry.css" type="text/css" rel="stylesheet"/>	
-		<% elsif  System::get_property('platform') == 'ANDROID' %>
-            <link href="/public/css/webkit.css" type="text/css" rel="stylesheet"/>
-			<link href="/public/css/android.css" type="text/css" rel="stylesheet"/>
-		<% else %>
-			<link href="/public/css/windows_mobile.css" type="text/css" rel="stylesheet"/>
-		<% end %>	
-			
-				
 	</head>
 	<body bgcolor="#7F7F7F">
 		<%= @content %>
