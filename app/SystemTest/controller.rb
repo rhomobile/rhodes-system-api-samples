@@ -23,6 +23,16 @@ class SystemTestController < Rho::RhoController
     System.set_sleeping($sleeping)
     render :action => :index
   end
+
+  def enable_fullscreen
+    WebView.full_screen_mode(1)
+    render :action => :index
+  end
+
+  def disable_fullscreen
+    WebView.full_screen_mode(0)
+    render :action => :index
+  end
   
   def app_exit
     System.exit
