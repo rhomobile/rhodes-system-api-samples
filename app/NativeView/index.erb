@@ -25,6 +25,9 @@ Small Native View
   <li><%= link_to "Close Native View", :action => :close_native_view %></li>
 </ul>
 <br>
+
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'WINDOWS' %>
+
 <br>
 FullScreen Native View
 <ul id="NativeView3" selected="true" title="FullScreen Native View Demo">
@@ -37,3 +40,5 @@ Open Native View by Ruby code
   <li><%= link_to "Open Native View", :action => :open_native_view_by_ruby %></li>
 </ul>
 <br>
+
+<% end %>

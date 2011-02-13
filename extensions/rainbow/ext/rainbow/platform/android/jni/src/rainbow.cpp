@@ -48,7 +48,7 @@ extern "C" void rainbow_execute_command_in_native_view(const char* command) {
     if (!cls) return;
     jmethodID mid = env->GetStaticMethodID( cls, "executeCommandInNativeView", "(Ljava/lang/String;)V");
     if (!mid) return;
-    jstring objCommand = rho_cast<jstring>(command);
+    jstring objCommand = env->NewStringUTF(command);//rho_cast<jstring>(command);
     env->CallStaticVoidMethod(cls, mid, objCommand);
     env->DeleteLocalRef(objCommand);
 }
