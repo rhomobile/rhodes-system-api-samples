@@ -5,7 +5,7 @@ class AsyncUploadFileController < Rho::RhoController
   #GET /AsyncUploadFile
   def index
 
-    @@file_name = File.join(Rho::RhoApplication::get_model_path('app', 'AsyncUploadFile'), 'test_upload.txt')
+    @@file_name = File.join(Rho::RhoApplication::get_base_app_path(), 'test_upload.txt')
     unless File.exists?(@@file_name)
         write_data  = "this is rhodes test"
         f = File.new(@@file_name, "w")
