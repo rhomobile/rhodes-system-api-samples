@@ -49,6 +49,10 @@ class SystemTestController < Rho::RhoController
     redirect :action => :index
   end  
 
+  def show_alert
+	Alert.show_popup "Alert from AJAX call."
+  end
+
   def start_music_app
     System.run_app('com.android.music', nil)
     redirect :action => :index

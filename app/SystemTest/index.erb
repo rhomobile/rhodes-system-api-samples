@@ -3,6 +3,27 @@
         function test() {
             alert("Javascript alert");
         }
+        
+        function getPage(url,execute)
+        {
+	        if (window.XMLHttpRequest)
+	        {
+		        xmlhttp=new XMLHttpRequest();
+
+		        xmlhttp.open("GET",url,false);
+		        xmlhttp.send(null);
+		        if (xmlhttp.responseText != null)
+		        {
+			        if(execute) { return eval('(' + xmlhttp.responseText + ')'); }
+		        }
+	        }
+	        return -1;
+        }
+
+        function test_ajax() {
+	        return getPage('/app/SystemTest/show_alert',false);
+        }
+        
     </script>
 </head>
 
@@ -43,6 +64,7 @@ has_touchscreen : <%=System.get_property('has_touchscreen') %> <br/>
 
 <br/>WebView class:<br/>
 <a href="#" onclick="test();">JS Popup</a><br/>
+<a href="#" onclick="test_ajax();">AJAX Popup</a><br/>
 current_location : <%=WebView.current_location() %> <br/>
 <li><%=link_to "execute_js", :action => :call_js%></li>
 
