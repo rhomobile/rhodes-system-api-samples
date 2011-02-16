@@ -23,7 +23,7 @@ iphone:
   extensions: ["barcode", "rainbow"]
   
 wm:
-  extensions: ["barcode", "rainbow"]
+  extensions: ["barcode"] #, "rainbow"]
 bb:
   extensions: ["barcode"]
 android:
