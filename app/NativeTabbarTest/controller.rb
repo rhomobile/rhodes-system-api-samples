@@ -31,7 +31,20 @@ class NativeTabbarTestController < Rho::RhoController
     Rho::NativeTabbar.create(tabbar)
     Rho::NativeTabbar.set_tab_badge( 1, '12')
     $tabbar_active = true
-    Rho::NativeTabbar.switch_tab(0)
+    #Rho::NativeTabbar.switch_tab(0)
+  end
+
+  def switch_to_tabs
+    puts 'switch_to_tabs start'
+    save_location
+    tabbar = [
+      {:label => 'Native Tabbar', :icon => '/public/images/bar/gears.png', :use_current_view_for_tab => true},
+      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
+      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
+    ]
+    Rho::NativeTabbar.create(tabbar)
+    $tabbar_active = true
+    puts 'switch_to_tabs finish'
   end
 
   def set_tabbar_new

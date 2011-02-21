@@ -5,6 +5,9 @@
 <ul id="tabbar" selected="true" title="Native bar test">
   <li><%= link_to "No bar", :action => :set_no_bar %></li>
   <li><%= link_to "Tab bar", :action => :set_tabbar %></li>
+  <form>
+  <INPUT type="button" value="Switch to TabBar without reload" name="button1" onClick="switchToTab();">
+  </form>
 </ul>
 <br>
 <ul id="tabswitch" selected="true" title="iPad SplitView test">
@@ -24,3 +27,14 @@
   <li><%= link_to "Switch to Tab 2 (using 'callback:' uri)", :action => :switch_to_tab_2 %></li>
 </ul>
 <% end %>
+
+
+<script type="text/javascript">
+
+function switchToTab() {
+  $.get('/app/NativeTabbarTest/switch_to_tabs', {});
+  return false;
+}
+
+</script>
+
