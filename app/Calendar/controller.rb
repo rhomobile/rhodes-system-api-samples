@@ -8,7 +8,7 @@ class CalendarController < Rho::RhoController
 
   def fetch_events
     start = Time.utc(2007, 'jan', 1, 0, 0, 0)
-    finish = Time.utc(2010, 'dec', 31, 23, 59, 59)
+    finish = Time.utc(2012, 'dec', 31, 23, 59, 59)
     @@events = Rho::RhoEvent.find(:all, :start_date => start, :end_date => finish, :find_type => 'starting', 
         :include_repeating => true)
     puts "events : #{@@events}"
@@ -56,7 +56,11 @@ class CalendarController < Rho::RhoController
     puts "event: #{event.inspect}"
     id = event[Rho::RhoEvent::ID]
     if id.nil? or id.empty?
-      Rho::RhoEvent.create! event
+      new_event = Rho::RhoEvent.create!(event)
+      if new_event != nil
+          new_id = new_event['id']
+          puts 'created new event with id = ' + new_id
+      end
     else
       Rho::RhoEvent.update_attributes event
     end
