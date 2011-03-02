@@ -6,7 +6,8 @@
   <li><%= link_to "No bar", :action => :set_no_bar %></li>
   <li><%= link_to "Tab bar", :action => :set_tabbar %></li>
   <form>
-  <INPUT type="button" value="Switch to TabBar without reload" name="button1" onClick="switchToTab();">
+  <INPUT type="button" value="Switch to TabBar without reload" name="button1" onClick="switchToTab();"><br>
+  <INPUT type="button" value="Force to reload this Tab" name="button2" onClick="reloadTab();">
   </form>
 </ul>
 <br>
@@ -33,6 +34,11 @@
 
 function switchToTab() {
   $.get('/app/NativeTabbarTest/switch_to_tabs', {});
+  return false;
+}
+
+function reloadTab() {
+  $.get('/app/NativeTabbarTest/reload_tab', {});
   return false;
 }
 

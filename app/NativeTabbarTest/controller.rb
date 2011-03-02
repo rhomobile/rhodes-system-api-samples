@@ -47,6 +47,15 @@ class NativeTabbarTestController < Rho::RhoController
     puts 'switch_to_tabs finish'
   end
 
+  def reload_tab
+    puts 'reload_tab start'
+    save_location
+    tab_index_for_reload = 0
+    WebView.refresh(tab_index_for_reload)
+    puts 'reload_tab finish'
+  end
+
+
   def set_tabbar_new
     save_location
     tabbar = [
