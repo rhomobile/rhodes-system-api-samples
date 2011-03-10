@@ -1,0 +1,12 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		RhoTimer test
+	</h1>
+</div>
+<br/>
+
+<%= link_to 'Start 5 sec timer', url_for(:action => :start_timer) %> <br/>
+<%= link_to 'Stop timer', url_for(:action => :stop_timer) %> <br/>
+
+<%= get_timer_result() %>
+    
