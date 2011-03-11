@@ -34,6 +34,20 @@ class NativeTabbarTestController < Rho::RhoController
     #Rho::NativeTabbar.switch_tab(0)
   end
 
+  def set_tabbar_bottom
+    save_location
+    tabbar = [
+      {:label => 'Native Tabbar', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
+      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
+      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
+    ]
+    Rho::NativeTabbar.create(:tabs => tabbar, :place_tabs_bottom => true)
+    Rho::NativeTabbar.set_tab_badge( 1, '12')
+    $tabbar_active = true
+    #Rho::NativeTabbar.switch_tab(0)
+  end
+
+
   def switch_to_tabs
     puts 'switch_to_tabs start'
     save_location

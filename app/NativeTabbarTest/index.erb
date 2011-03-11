@@ -16,6 +16,9 @@
   <li>(works only on iPad)</li>
 </ul>
 <br>
+<% if System::get_property('platform') == 'ANDROID' %>  
+<%= link_to "TabBar placed bottom (only on Android)", :action => :set_tabbar_bottom %>
+<% end %>      
 <%= link_to "TabBar with disabled tab", :action => :set_tabbar_new2 %>
 <br>
 <%= link_to "TabBar customized", :action => :set_tabbar_new %>
