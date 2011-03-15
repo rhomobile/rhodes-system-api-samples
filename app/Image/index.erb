@@ -1,5 +1,5 @@
 <div>
-	<%= link_to '[Choose Picture]', { :action => :edit }%>
+	<%= link_to '[Choose Picture]', { :action => :edit }%><br/>
 	<% if System::get_property('has_camera') %>
     	<%= link_to '[Take Picture]', { :action => :new }%>
     <% end %>	
