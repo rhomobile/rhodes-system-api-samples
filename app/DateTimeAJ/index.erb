@@ -6,11 +6,15 @@
       <input id="date0" type="text" name="date0" readonly value="<%= $choosed['0'] %>"  onClick="popupDateTimeAJPicker('0', 'Choose Date & Time', 'date0');"></input>
       <INPUT type="button" value="edit..." name="button0" onClick="popupDateTimeAJPicker('0', 'Choose Date & Time', 'date0');">
     
-      <br/><b>Date Only:</b><br/>
+<% if System::get_property('platform') == 'APPLE' %>  
+      <br/><b>Date Only (use on-time value change via callback) :</b><br/>
+<% else %>
+      <br/><b>Date Only :</b><br/>
+<% end %>      
       <input id="date1" type="text" name="date1" readonly value="<%= $choosed['1'] %>"  onClick="popupDateTimeAJPicker('1', 'Choose Date', 'date1');"></input>
       <INPUT type="button" value="edit..." name="button1" onClick="popupDateTimeAJPicker('1', 'Choose Date', 'date1');">
     
-      <br/><b>Time Only:</b><br/>
+      <br/><b>Time Only: </b><br/>
       <input id="date2" type="text" name="date2" readonly value="<%= $choosed['2'] %>"  onClick="popupDateTimeAJPicker('2', 'Choose Time', 'date2');"></input>
       <INPUT type="button" value="edit..." name="button2" onClick="popupDateTimeAJPicker('2', 'Choose Time', 'date2');">
 

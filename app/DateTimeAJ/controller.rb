@@ -4,6 +4,7 @@ require 'date'
  
 class DateTimeAJController < Rho::RhoController
   $saved = nil
+  $saved_value = nil
   $choosed = {}
   @layout = 'DateTimeAJ/layout'
   
@@ -25,25 +26,48 @@ class DateTimeAJController < Rho::RhoController
       else
         preset_time = Time.parse(ttt)  
       end
-	
+
+      if flag == '1'
+          DateTimePicker.set_change_value_callback url_for(:action => :callback)
+          current_value = Time.at(preset_time).strftime('%F')
+          WebView.execute_js('setFieldValue("date1","'+current_value+'");')
+          $saved_value = $choosed[flag]
+          if $saved_value.nil?
+              $saved_value = ''
+          end
+      end	
       DateTimePicker.choose url_for(:action => :callback), @params['title'], preset_time, flag.to_i, Marshal.dump({:flag => flag, :field_key => @params['field_key']})
     end
   end
  
   def callback
     if @params['status'] == 'ok'
-     $saved = nil
-     datetime_vars = Marshal.load(@params['opaque'])
-      format = case datetime_vars[:flag]
-        when "0" then '%F %T'
-        when "1" then '%F'
-        when "2" then '%T'
-        else '%F %T'
-      end
-      formatted_result = Time.at(@params['result'].to_i).strftime(format)
-      $choosed[datetime_vars[:flag]] = formatted_result
-      WebView.execute_js('setFieldValue("'+datetime_vars[:field_key]+'","'+formatted_result+'");')
+        $saved = nil
+        datetime_vars = Marshal.load(@params['opaque'])
+        format = case datetime_vars[:flag]
+            when "0" then '%F %T'
+            when "1" then '%F'
+            when "2" then '%T'
+            else '%F %T'
+        end
+        formatted_result = Time.at(@params['result'].to_i).strftime(format)
+        $choosed[datetime_vars[:flag]] = formatted_result
+        WebView.execute_js('setFieldValue("'+datetime_vars[:field_key]+'","'+formatted_result+'");')
     end
-  end
+    if @params['status'] == 'cancel'
+        datetime_vars = Marshal.load(@params['opaque'])
+        if datetime_vars[:flag] == '1'
+            WebView.execute_js('setFieldValue("'+datetime_vars[:field_key]+'","'+$saved_value+'");')
+        end
+    end
+    if @params['status'] == 'change'
+       datetime_vars = Marshal.load(@params['opaque'])
+        if datetime_vars[:flag] == '1'
+           formatted_result = Time.at(@params['result'].to_i).strftime('%F')
+           WebView.execute_js('setFieldValue("date1","'+formatted_result+'");')
+       end
+   end
+ 
+ end
 
 end
