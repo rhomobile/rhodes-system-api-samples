@@ -1,0 +1,42 @@
+<div class="pageTitle">
+  <h1>Form test</h1>
+</div>
+
+<div class="toolbar">
+</div>
+
+
+<div class="content" >
+  <form method="POST" action="<%= url_for :action => :do_submit %>">
+    <% if get_msg() %>
+        <p style="color: red"><%= get_msg() %></p>
+    <% end %>
+    <ul>
+      <li>
+        <label for="login" class="fieldLabel">Login</label>
+        <input type="text" name="login" <%= placeholder("Login") %> />
+      </li>
+
+      <li>
+        <label for="password" class="fieldLabel">Password</label>
+        <input type="password" name="password" <%= placeholder("Password") %> />
+      </li>
+      
+      <li>
+        <label for="record[value]">Value1</label>
+        <input type="radio" name="record[value]" value="Value1" />
+      </li>
+      <li>
+        <label for="record[value]">Value2</label>
+        <input type="radio" name="record[value]"  value="Value2" />
+      </li>
+
+      <li>
+        <label for="number" class="fieldLabel">Enter number</label>
+        <input type="number" name="number_field"/>
+      </li>
+      
+    </ul>
+    <input type="submit" class="standardButton" value="Login"/>
+  </form>
+</div>
