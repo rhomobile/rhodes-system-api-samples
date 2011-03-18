@@ -37,6 +37,12 @@ class NativeViewController < Rho::RhoController
     end
   end
 
+  def open_native_view_with_helper
+    puts "Native View controller -> open_native_view_with_helper"
+    url = url_for_nativeview :name => 'rainbow_view', :param => 'red'
+    WebView.navigate url
+  end
+
   def goto_green
     puts "Native View controller -> goto Green"
     if $native_view != nil

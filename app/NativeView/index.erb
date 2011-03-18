@@ -25,6 +25,11 @@ Small Native View
   <li><%= link_to "Close Native View", :action => :close_native_view %></li>
 </ul>
 <br>
+Open Native view with url helper :<br>
+<ul id="NativeView3" selected="true" title="Open Native view with url helper">
+  <li><%= link_to "Open Native Red nativeview", :action => :open_native_view_with_helper %></li>
+</ul>
+
 
 <% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'WINDOWS' %>
 
