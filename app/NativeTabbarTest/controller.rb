@@ -34,6 +34,11 @@ class NativeTabbarTestController < Rho::RhoController
     #Rho::NativeTabbar.switch_tab(0)
   end
 
+  def show_current_tab
+     cur_tab = Rho::NativeTabbar.get_current_tab
+     Alert.show_popup "Current Tab index = "+cur_tab.to_s
+  end
+
   def set_tabbar_bottom
     save_location
     tabbar = [

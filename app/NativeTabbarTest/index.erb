@@ -29,6 +29,10 @@
 <ul id="tabswitch" selected="true" title="Program Switch Tab test">
   <li><%= link_to "Switch to Tab 1", :action => :switch_to_tab_1 %></li>
   <li><%= link_to "Switch to Tab 2 (using 'callback:' uri)", :action => :switch_to_tab_2 %></li>
+  <br>
+  <form>
+  <INPUT type="button" value="Show current Tab index" name="button3" onClick="ShowCurrentTab();">
+  </form>
 </ul>
 <% end %>
 
@@ -42,6 +46,11 @@ function switchToTab() {
 
 function reloadTab() {
   $.get('/app/NativeTabbarTest/reload_tab', {});
+  return false;
+}
+
+function ShowCurrentTab() {
+  $.get('/app/NativeTabbarTest/show_current_tab', {});
   return false;
 }
 
