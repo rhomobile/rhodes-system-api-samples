@@ -1,0 +1,38 @@
+<div>
+<p>Android Nfc Control page</p>
+<br>
+<INPUT type="button" value="enable NFC" onClick="onEnable();">
+<br>
+<INPUT type="button" value="disable NFC" onClick="onDisable();">
+<br>
+Current status :  
+<input id="id_status" type="text" name="id_status" readonly value="<%= $status %>"></input>
+<br>
+Support status :  
+<input id="id_status" type="text" name="id_status" readonly value="<%= $supported %>"></input>
+<br>
+
+Log :<br>
+<TEXTAREA id="id_log" WIDTH="200" COLS="20" ROWS="20" type="text" name="id_log" readonly value="<%= $log %>"></TEXTAREA>
+<br>
+
+<script type="text/javascript">
+
+function onEnable() {
+  $.get('/app/Nfc/do_enable', {});
+}
+
+function onDisable() {
+  $.get('/app/Nfc/do_disable', {});
+}
+
+function setStatus(status) {
+  document.getElementById("id_status").value = status;
+}
+
+function setLog(log) {
+  document.getElementById("id_log").value = log;
+}
+
+
+</script>

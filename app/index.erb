@@ -46,6 +46,12 @@ Device capabilities:
     
     <li><a href="BarcodeRecognizer">Barcode</a></li>   
     <li><a href="BluetoothChat">Bluetooth</a></li>   
+<% if System::get_property('platform') == 'ANDROID' %>
+    <li><a href="Nfc">NFC (Near Field Communication)</a></li>   
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'NFC (Near Field Communication)'} %>">NFC (Near Field Communication)</a></li>       
+<% end %>      
+
 
 <% if System::get_property('platform') != 'Blackberry' %>
     <li><a href="NativeBarTest">NativeBar (deprecated API) test</a></li>
