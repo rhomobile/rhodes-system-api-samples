@@ -17,19 +17,18 @@ class CustomUriController < Rho::RhoController
     System.open_url('http://www.rhomobile.com')
     redirect :action => :index
   end
-  
-  def install_app
-    if System::get_property('platform') == 'Blackberry'
-        System.open_url('http://192.168.0.101:8080/ota-web/myapp.jad')    
-    elsif System::get_property('platform') == 'ANDROID'        
-        System.open_url('http://192.168.0.101:8080/myapp_signed.apk')
-    elsif System::get_property('platform') == 'APPLE'
-        System.open_url('itms-services://?action=download-manifest&url=http://rhohub-staging-ota.s3.amazonaws.com/4cd4461afab3be7862000004/rhodes-system-api-samples.plist')
-    else
-        System.open_url('http://192.168.0.101:8080/myapp.cab')
-    end    
-    
+
+  def open_rhodes_pdf
+    # make full file path
+    rhodes_path = File.join(Rho::RhoApplication::get_base_app_path(), 'public', 'pdfs', 'Rhodes.pdf')
+    System.open_url(rhodes_path)
     redirect :action => :index
   end
- 
+
+  def open_rhomobile_pdf
+    # just use local application file path
+    System.open_url( '/public/pdfs/Rhomobile.pdf' )
+    render :action => :index
+  end
+  
 end

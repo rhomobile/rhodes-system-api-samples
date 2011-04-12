@@ -7,4 +7,9 @@
   <a href="http://www.google.com/?rho_open_target=_blank">Open Google in external browser</a><br/>
   <a href="<%= url_for :action => :open_external_url %>">Open default browser by System.open_url</a><br/>
   <%=link_to "sms by controller:+1222333444", :action => :send_sms%>
+  <br>
+  <a href="<%= url_for :action => :open_rhodes_pdf %>">Open Rhodes.pdf by System.open_url</a><br/>
+  <%=link_to "Open Rhomobile.pdf by System.open_url", :action => :open_rhomobile_pdf%>
+  <br>
+
 </div>
