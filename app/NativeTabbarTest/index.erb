@@ -25,6 +25,8 @@
 <br>
 <%= link_to "TabBar test with more than 5 tabs", :action => :set_tabbar_many_items %>
 <br>
+<%= link_to "TabBar with tab change callback", :action => :tabbar_with_callback %>
+<br>
 <% if $tabbar_active %>
 <ul id="tabswitch" selected="true" title="Program Switch Tab test">
   <li><%= link_to "Switch to Tab 1", :action => :switch_to_tab_1 %></li>

@@ -102,4 +102,34 @@ end
   end
 
 
+  def make_own_file
+       fileNameW = File.join(Rho::RhoApplication::get_base_app_path(), 'tempfile.txt')
+       f = File.new(fileNameW, 'w+')
+       f.write('my own file !')
+       f.close  
+       render :action => :index
+  end
+
+  def show_own_file
+      content = ''
+      fileName = File.join(Rho::RhoApplication::get_base_app_path(), 'tempfile.txt')
+      if File.exist?(fileName)
+           File.open(fileName).each do |line|
+               content = content + "\n" + line
+           end
+           Alert.show_popup(
+                 :message=>"Own File is Exist. Content : "+"\n"+content,
+                 :title=>"Own File",
+                 :buttons => ["Ok"]
+           )
+      else
+           Alert.show_popup(
+                 :message=>"Own File is NOT Exist !",
+                 :title=>"Own File",
+                 :buttons => ["Ok"]
+           )
+      end
+    render :action => :index
+  end
+
 end

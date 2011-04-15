@@ -84,5 +84,9 @@ current_location : <%=WebView.current_location() %> <br/>
 <%= link_to 'Is Skype app installed?', url_for(:action => :is_skype_app_installed) %> <br/>
 <%= link_to 'Start Skype app', url_for(:action => :start_skype_app) %> <br/>
 <br>
+<%= link_to 'Make own file in application root folder', url_for(:action => :make_own_file) %> <br/>
+<%= link_to 'Check own file in application root folder', url_for(:action => :show_own_file) %> <br/>
+
+
 <% end %>      
 

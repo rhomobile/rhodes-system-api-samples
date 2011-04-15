@@ -3,6 +3,9 @@ require 'rho/rhotabbar'
 
 class NativeTabbarTestController < Rho::RhoController
   @layout = 'NativeTabbarTest/layout'
+  $reload_text = ''
+  $reload_count = 0 
+
 
   def index
     render :back => '/app'
@@ -163,5 +166,35 @@ class NativeTabbarTestController < Rho::RhoController
   def nop
   end
 
+  def tabbar_with_callback
+    save_location
+    tabbar = [
+      {:label => 'Native Tabbar', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
+      {:label => 'Test Page', :action => '/app/NativeTabbarTest/reload_page', :icon => '/public/images/bar/home_btn.png',    :reload => false},
+    ]
+    Rho::NativeTabbar.create(:tabs => tabbar, :on_change_tab_callback => url_for(:action => :tabbar_on_tab_change_callback))
+  end
 
+  def tabbar_on_tab_change_callback
+      new_index = @params['tab_index']
+      if new_index.to_i == 1
+          $reload_count = $reload_count+1 
+          if ($reload_count % 2) == 1
+               WebView.refresh(1)
+          end
+          $reload_text = 'Current switch to page count = '+$reload_count.to_s 
+      end
+  end
+
+  def reload_page
+    render :action => :reload_page
+  end
+
+  def return_to_main
+    save_location
+    Rho::NativeTabbar.remove
+    $tabbar_active = false
+    render :action => :index
+  end
+ 
 end
