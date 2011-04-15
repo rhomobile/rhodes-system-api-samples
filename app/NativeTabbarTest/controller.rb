@@ -177,6 +177,7 @@ class NativeTabbarTestController < Rho::RhoController
 
   def tabbar_on_tab_change_callback
       new_index = @params['tab_index']
+      puts '$$$ onChangeTab callback tab_index = '+new_index
       if new_index.to_i == 1
           $reload_count = $reload_count+1 
           if ($reload_count % 2) == 1
@@ -187,6 +188,7 @@ class NativeTabbarTestController < Rho::RhoController
   end
 
   def reload_page
+    puts '$$$ reload page rendered !'
     render :action => :reload_page
   end
 
