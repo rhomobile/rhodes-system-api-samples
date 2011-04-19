@@ -25,10 +25,5 @@ class CustomUriController < Rho::RhoController
     redirect :action => :index
   end
 
-  def open_rhomobile_pdf
-    # just use local application file path
-    System.open_url( '/public/pdfs/Rhomobile.pdf' )
-    render :action => :index
-  end
-  
+ 
 end
