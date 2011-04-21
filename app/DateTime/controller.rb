@@ -27,7 +27,16 @@ class DateTimeController < Rho::RhoController
       # preset_time = Time.parse("2009-10-20 14:30:00")
       # puts "Parsed Time Object: #{preset_time.inspect.to_s}"
       # DateTimePicker.choose( url_for( :action => :datetime_callback ), title, preset_time, flag.to_i, Marshal.dump(flag) )
-      DateTimePicker.choose_with_range( url_for( :action => :datetime_callback ), title, Time.new, flag.to_i, Marshal.dump(flag), $datemin, $datemax )
+
+      ttt = $choosed[flag]
+      if ttt.nil?
+        preset_time = Time.new
+      else
+        preset_time = Time.parse(ttt)  
+      end
+
+
+      DateTimePicker.choose_with_range( url_for( :action => :datetime_callback ), title, preset_time, flag.to_i, Marshal.dump(flag), $datemin, $datemax )
     end
     #redirect :action => :index
     ""
