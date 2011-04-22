@@ -54,7 +54,6 @@ Device capabilities:
 
 
 <% if System::get_property('platform') != 'Blackberry' %>
-    <li><a href="NativeBarTest">NativeBar (deprecated API) test</a></li>
     <li><a href="NativeToolbarTest">Native Toolbar test</a></li>
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Tabbar/Toolbar'} %>">Tabbar/Toolbar</a></li>       
@@ -91,7 +90,13 @@ Rhodes API tests
     <li><a href="JQTouchTest">UI JQTouch Form Demo</a></li>  
     <li><a href="RexmlTest">Rexml test</a></li>
     <li><a href="JsonTest">Json test</a></li>    
-   
+
+<% if System::get_property('platform') != 'Blackberry' %>
+    <li><a href="NativeBarTest">NativeBar (deprecated API) test</a></li>
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Tabbar/Toolbar'} %>">Tabbar/Toolbar</a></li>       
+<% end %>
+    
 </ul>
 
 <%= $mt_string %>
