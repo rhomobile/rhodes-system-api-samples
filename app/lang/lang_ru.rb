@@ -1,4 +1,4 @@
-module Localization
+﻿module Localization
 Views = {
     :greeting          => "Это я написал!"
 }
