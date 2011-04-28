@@ -9,5 +9,9 @@
 	<img src="<%=File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'Barcode_UPC_01.png')%>" width='300px'></img><br/><a href="<%=url_for(:action => :scan1)%>">Scan</a><br/>
 	<img src="<%=File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'Barcode_UPC_02.jpg')%>" width='300px'></img><br/><a href="<%=url_for(:action => :scan2)%>">Scan</a><br/>
 
+	<% if System::get_property('platform') == 'Blackberry' or System::get_property('platform') == 'ANDROID' %>
+		<img src="<%=File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'Barcode_QR_01.png')%>" width='300px'></img><br/><a href="<%=url_for(:action => :scan3)%>">Scan</a><br/>
+	<% end %>      
+
 
 </div>

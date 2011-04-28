@@ -66,6 +66,11 @@ class BarcodeRecognizerController < Rho::RhoController
     redirect :action => :index
   end
 
+  def scan3
+    show_barcode_info (Barcode.barcode_recognize(File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'Barcode_QR_01.png')))
+    redirect :action => :index
+  end
+
   def show_barcode_info(recognized_code)
     Alert.show_popup  ('Barcode['+recognized_code+']')  
   end
