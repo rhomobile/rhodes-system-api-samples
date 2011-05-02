@@ -37,5 +37,5 @@ full_screen = 0
 logserver = 'http://rhologs.heroku.com'
 logname=sas
 
-debug_host = '127.0.0.1'
-debug_port = 9000
+# debug_host = '127.0.0.1'
+# debug_port = 9000
