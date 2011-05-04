@@ -13,6 +13,18 @@ class CustomUriController < Rho::RhoController
     render :action => :index
   end
 
+  def send_call
+    WebView.navigate( 'tel:+1222333444' )
+    
+    render :action => :index
+  end
+  
+  def send_mail
+    WebView.navigate( 'mailto:test@host.com' )
+    
+    render :action => :index
+  end
+    
   def open_external_url
     System.open_url('http://www.rhomobile.com')
     redirect :action => :index

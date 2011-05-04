@@ -6,7 +6,9 @@
   <a href="http://www.google.com">Open Google in current window</a><br/>
   <a href="http://www.google.com/?rho_open_target=_blank">Open Google in external browser</a><br/>
   <a href="<%= url_for :action => :open_external_url %>">Open default browser by System.open_url</a><br/>
-  <%=link_to "sms by controller:+1222333444", :action => :send_sms%>
+  <%=link_to "sms by controller:+1222333444", :action => :send_sms%><br/>
+  <%=link_to "call by controller:+1222333444", :action => :send_call%><br/>
+  <%=link_to "mailto by controller:test@host.com", :action => :send_mail%><br/>
   <br>
   <a href="<%= url_for :action => :open_rhodes_pdf %>">Open Rhodes.pdf by System.open_url</a><br/>
   <br>
