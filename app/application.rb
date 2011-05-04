@@ -12,7 +12,8 @@ class AppApplication < Rho::RhoApplication
                       :separator => nil, 
                       "Close" => :close } 
     $mt_string = ""
-    
+
+    SyncEngine.set_notification(-1, "/app/Settings/sync_notify", '')    
   end
   
   def on_activate_app
