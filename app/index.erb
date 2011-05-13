@@ -40,7 +40,7 @@ Device capabilities:
   </li>
   <% end %> 
     
-<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'WINDOWS' %>
     <li><a href="SignatureUtil">Signature capture</a></li>   
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Signature capture'} %>">Signature capture</a></li>       
@@ -98,7 +98,12 @@ Device capabilities:
   <li>
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Bluetooth'} %>">Bluetooth</a>
   </li>
-  <% end %>        
+  <% end %>  
+<% if System::get_property('platform') == 'ANDROID' %>
+    <li><a href="Nfc">NFC (Near Field Communication)</a></li>   
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'NFC (Near Field Communication)'} %>">NFC (Near Field Communication)</a></li>       
+<% end %>        
 
 <% if System::get_property('platform') != 'Blackberry' %>
     <li><a href="NativeBarTest">NativeBar (deprecated API) test</a></li>
@@ -112,7 +117,14 @@ Device capabilities:
     <li><a href="Navbar">Navigation bar</a></li>
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Tabbar/Navigation bar'} %>">Tabbar/Navigation bar</a></li>       
-<% end %>      
+<% end %>  
+ <% if System::get_property('platform') != 'WP7'%> 
+ <li><a href="RhoTimerTest">RhoTimer</a></li>  
+  <% else %>  
+  <li>
+    <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'RhoTimer'} %>">RhoTimer</a>
+  </li>
+ <% end %>  
 </ul>
 
 Rhodes API tests
@@ -157,6 +169,13 @@ Rhodes API tests
   </li>
   <% end %>   
     <li><a href="UIFormDemo">UI Form Demo</a></li>
+    <% if System::get_property('platform') != 'WP7' %>
+    <li><a href="JQTouchTest">UI JQTouch Form Demo</a></li> 
+    <% else %>
+  <li>
+    <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'UI JQTouch Form Demo'} %>">UI JQTouch Form Demo</a>
+  </li>
+  <% end %>  
     <li><a href="RexmlTest">Rexml test</a></li>
     <li><a href="JsonTest">Json test</a></li>    
    
