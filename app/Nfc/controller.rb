@@ -17,6 +17,7 @@ class NfcController < Rho::RhoController
     $supported = Rho::NFCManager.is_supported.to_s
     $log = ''
     Rho::NFCManager.set_nfc_callback(url_for(:action => :nfc_callback))
+    Rho::NFCManager.set_nfc_tech_callback(url_for(:action => :nfc_tech_callback))
     puts 'NfcController.index'
     render
   end
@@ -79,5 +80,57 @@ class NfcController < Rho::RhoController
       set_log($log)
       puts 'NfcController.nfc_callback FINISH'
   end
+
+  def nfc_tech_callback
+      puts 'NfcController.nfc_tech_callback START'
+      event = @params['Tag_event']
+      add_to_log('TECH received !')
+
+      puts 'Tag_event :'+event
+
+      tag = Rho::NFCManager.get_current_Tag
+      if tag != nil
+           puts 'Tag get from Manager OK'	
+           
+           techList = tag.get_tech_list
+           puts 'tech list = '
+           puts techList
+
+           mifareClassic = tag.get_tech(Rho::NFCTagTechnology::MIFARE_CLASSIC)
+           if mifareClassic != nil
+                  puts 'MifareClassic is supported !'
+ 
+                  #mifareClassic.connect
+
+                  #connected = mifareClassic.is_connected
+                  #puts ' MifareClassic.isConnected() = '+connected.to_s
+
+                  #block_count = mifareClassic.get_block_count
+                  #puts '       block_count = '+block_count.to_s
+
+                  #puts 'BLOCKS START:'
+                  #ind = 0
+                  #while ind < block_count do
+                  #        block = mifareClassic.read_block(ind)                   
+                  #        puts 'block['+ind.to_s+'] :'
+                  #        puts block
+                  #        ind = ind + 1
+                  #end
+                  #puts 'BLOCKS FINISH'
+
+                  #mifareClassic.close
+
+          else
+                  puts 'MifareClassic is not supported !'
+           end
+
+      else
+           puts 'Tag is NIL !'
+      end	
+
+      set_log($log)
+      puts 'NfcController.nfc_tech_callback FINISH'
+  end
+
 
 end
