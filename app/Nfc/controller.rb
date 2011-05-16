@@ -100,25 +100,60 @@ class NfcController < Rho::RhoController
            if mifareClassic != nil
                   puts 'MifareClassic is supported !'
  
-                  #mifareClassic.connect
+                  mifareClassic.connect
 
-                  #connected = mifareClassic.is_connected
-                  #puts ' MifareClassic.isConnected() = '+connected.to_s
+                  connected = mifareClassic.is_connected
+                  puts ' MifareClassic.isConnected() = '+connected.to_s
 
-                  #block_count = mifareClassic.get_block_count
-                  #puts '       block_count = '+block_count.to_s
+                  block_count = mifareClassic.get_block_count
+                  puts '       block_count = '+block_count.to_s
 
-                  #puts 'BLOCKS START:'
-                  #ind = 0
-                  #while ind < block_count do
-                  #        block = mifareClassic.read_block(ind)                   
-                  #        puts 'block['+ind.to_s+'] :'
-                  #        puts block
-                  #        ind = ind + 1
-                  #end
-                  #puts 'BLOCKS FINISH'
+                  sector_count = mifareClassic.get_sector_count
+                  puts '       sector_count = '+sector_count.to_s
+               
+                  cur_sector = 0
+                  while cur_sector < sector_count do
+                     puts 'process sector no '+cur_sector.to_s 
+                     blocks_in_sector = mifareClassic.get_blocks_in_sector_count(cur_sector)
+                     first_block_in_sector = mifareClassic.sector_to_block(cur_sector) 
 
-                  #mifareClassic.close
+                     auth = mifareClassic.authenticate_sector_with_key_A(cur_sector, Rho::NFCTagTechnology_MifareClassic::KEY_DEFAULT)
+                     if !auth
+                         auth = mifareClassic.authenticate_sector_with_key_A(cur_sector, Rho::NFCTagTechnology_MifareClassic::KEY_MIFARE_APPLICATION_DIRECTORY)
+                         
+                         if !auth
+                             auth = mifareClassic.authenticate_sector_with_key_A(cur_sector, Rho::NFCTagTechnology_MifareClassic::KEY_NFC_FORUM)
+                             if auth
+                                 puts 'sector authenticated by KEY_NFC_FORUM'     
+                             end    
+                         else
+                             puts 'sector authenticated by KEY_MIFARE_APPLICATION_DIRECTORY'     
+                         end    
+                         
+                     else
+                         puts 'sector authenticated by KEY_DEFAULT'     
+                     end
+                      
+                      
+                     if auth  
+                          cur_block = 0
+                          while cur_block < blocks_in_sector do
+                         
+                                block_index = first_block_in_sector + cur_block
+                         
+                              block = mifareClassic.read_block(block_index)                   
+                              puts 'block['+block_index.to_s+'] :'
+                              puts block
+                         
+                               cur_block = cur_block + 1
+                          end
+                     else
+                         puts 'sector is not authenticated !!!'     
+                     end         
+                     cur_sector = cur_sector + 1    
+                      
+                  end    
+               
 
           else
                   puts 'MifareClassic is not supported !'
