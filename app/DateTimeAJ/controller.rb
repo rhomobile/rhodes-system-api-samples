@@ -9,7 +9,20 @@ class DateTimeAJController < Rho::RhoController
   @layout = 'DateTimeAJ/layout'
   
   def index
-    render :back => '/app'
+    #render :back => '/app'
+    render :back => 'callback:' + url_for(:action => :callback_alert)
+  end
+
+  def callback_alert
+    Alert.show_popup( :message => "Back to home.\n\n Data will be discarded.", :icon => :alert,
+      :buttons => ["Ok", "Cancel"], :callback => url_for(:action => :popup_callback) )
+  end
+
+  def popup_callback
+    id = @params['button_id']
+    title = @params['button_title']
+    puts "popup_callback: id: '#{id}', title: '#{title}'"
+    WebView.navigate '/app' if title.downcase() == 'ok'
   end
 
   def save
@@ -38,6 +51,9 @@ class DateTimeAJController < Rho::RhoController
       end	
       DateTimePicker.choose url_for(:action => :callback), @params['title'], preset_time, flag.to_i, Marshal.dump({:flag => flag, :field_key => @params['field_key']})
     end
+    
+    render :string => '', :back => 'callback:' + url_for(:action => :callback_alert)
+   
   end
  
   def callback

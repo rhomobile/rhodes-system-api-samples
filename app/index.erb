@@ -5,6 +5,9 @@ if (location.search =='?settings=true') {
 }
 
 </script>
+
+<% is_webkit = System::get_property('webview').start_with?('WEBKIT') %>
+
 Device capabilities:
 <ul id="home" selected="true" title="Device capabilities">
   <% if System::get_property('platform') != 'WP7'%>
@@ -52,7 +55,7 @@ Device capabilities:
   <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Date/Time picker'} %>">Date/Time picker</a></li>
 <% end %>
     
-<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or is_webkit %>
     <li><a href="DateTimeAJ">Date/Time picker using AJAX</a></li>
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Date/Time picker using AJAX'} %>">Date/Time picker using AJAX</a></li>       

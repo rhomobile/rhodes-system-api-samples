@@ -9,8 +9,9 @@ capabilities:
 - bluetooth
 - calendar
 
-bbver: 5.0
+bbver: 6.0
 sdk: /Users/evgeny/Projects/rhodes
+
 applog: rholog.txt
 version: 1.0.7
 vendor: rhomobile
@@ -32,5 +33,9 @@ android:
   - network_state
   - sdcard
   mapping: yes
+  version: 2.3.3
+
+wp:
+  productid: 'fd55c4d0-51fa-012e-7844-3caec51bd50e'
 
 extensions: ["json", "rhoxml"]
