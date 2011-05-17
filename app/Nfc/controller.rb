@@ -91,20 +91,43 @@ class NfcController < Rho::RhoController
       tag = Rho::NFCManager.get_current_Tag
       if tag != nil
            puts 'Tag get from Manager OK'	
+          
+           id = tag.get_ID
+          
+           if id != nil
+               s = '  Tag ID = [ '
+               count = id.size
+               i = 0
+               while i < count do
+                   s = s + id[i].to_s
+                   i = i + 1
+                   if i < count
+                       s = s + ', '
+                   end    
+               end    
+               s = s + ' ]'
+               puts s    
+           else
+               puts 'Tag ID is NIL !'
+           end    
            
            techList = tag.get_tech_list
            puts 'tech list = '
            puts techList
+           puts ''
 
            mifareClassic = tag.get_tech(Rho::NFCTagTechnology::MIFARE_CLASSIC)
            if mifareClassic != nil
-                  puts 'MifareClassic is supported !'
+                  puts '    MifareClassic is supported !'
  
                   mifareClassic.connect
 
                   connected = mifareClassic.is_connected
-                  puts ' MifareClassic.isConnected() = '+connected.to_s
+                  puts '  MifareClassic.isConnected() = '+connected.to_s
 
+                  type = mifareClassic.get_type
+                  puts '       type = '+type.to_s+'    ['+mifareClassic.convert_type_to_string(type)+']'
+               
                   block_count = mifareClassic.get_block_count
                   puts '       block_count = '+block_count.to_s
 
@@ -117,38 +140,57 @@ class NfcController < Rho::RhoController
                      blocks_in_sector = mifareClassic.get_blocks_in_sector_count(cur_sector)
                      first_block_in_sector = mifareClassic.sector_to_block(cur_sector) 
 
-                     auth = mifareClassic.authenticate_sector_with_key_A(cur_sector, Rho::NFCTagTechnology_MifareClassic::KEY_DEFAULT)
-                     if !auth
-                         auth = mifareClassic.authenticate_sector_with_key_A(cur_sector, Rho::NFCTagTechnology_MifareClassic::KEY_MIFARE_APPLICATION_DIRECTORY)
-                         
+                     if mifareClassic.is_connected
+                         auth = mifareClassic.authenticate_sector_with_key_A(cur_sector, Rho::NFCTagTechnology_MifareClassic::KEY_DEFAULT)
                          if !auth
-                             auth = mifareClassic.authenticate_sector_with_key_A(cur_sector, Rho::NFCTagTechnology_MifareClassic::KEY_NFC_FORUM)
-                             if auth
-                                 puts 'sector authenticated by KEY_NFC_FORUM'     
-                             end    
-                         else
-                             puts 'sector authenticated by KEY_MIFARE_APPLICATION_DIRECTORY'     
-                         end    
+                             auth = mifareClassic.authenticate_sector_with_key_A(cur_sector, Rho::NFCTagTechnology_MifareClassic::KEY_MIFARE_APPLICATION_DIRECTORY)
                          
+                             if !auth
+                                 auth = mifareClassic.authenticate_sector_with_key_A(cur_sector, Rho::NFCTagTechnology_MifareClassic::KEY_NFC_FORUM)
+                                 if auth
+                                     puts '    sector authenticated by KEY_NFC_FORUM'     
+                                 else 
+                                     puts '    ERROR - Tag is connected but not authenticated !'
+                                     puts '    Current is_connected status = '+mifareClassic.is_connected.to_s
+                                 end    
+                             else
+                                 puts '    sector authenticated by KEY_MIFARE_APPLICATION_DIRECTORY'     
+                             end    
+                         
+                         else
+                             puts '    sector authenticated by KEY_DEFAULT'     
+                         end
                      else
-                         puts 'sector authenticated by KEY_DEFAULT'     
-                     end
-                      
+                         puts '   ERROR - MifareClassic tech is not connected now !' 
+                     end    
                       
                      if auth  
                           cur_block = 0
                           while cur_block < blocks_in_sector do
                          
-                                block_index = first_block_in_sector + cur_block
+                              block_index = first_block_in_sector + cur_block
                          
-                              block = mifareClassic.read_block(block_index)                   
-                              puts 'block['+block_index.to_s+'] :'
-                              puts block
+                              if mifareClassic.is_connected
+                                   block = mifareClassic.read_block(block_index)
+                                   if block != nil 
+                                       puts '        block['+block_index.to_s+']  = '+block[0].to_s+', '+block[1].to_s+', '+block[2].to_s+', '+block[3].to_s+', '+block[4].to_s+', '+block[5].to_s+', '+block[6].to_s+', '+block[7].to_s+', '+block[8].to_s+', '+block[9].to_s+', '+block[10].to_s+', '+block[11].to_s+', '+block[12].to_s+', '+block[13].to_s+', '+block[14].to_s+', '+block[15].to_s
+                                   else
+                                       puts '        block not readed !'
+                                   end    
+                                   # simple test for writing
+                                   #if block_index == 16
+                                   #    # test write !
+                                   #    test_block = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+                                   #    mifareClassic.write_block(block_index, test_block)
+                                   #end    
+                              else
+                                   puts '   ERROR - MifareClassic tech is not connected now !' 
+                              end    
                          
-                               cur_block = cur_block + 1
+                              cur_block = cur_block + 1
                           end
                      else
-                         puts 'sector is not authenticated !!!'     
+                         puts '    sector is not authenticated !!!'     
                      end         
                      cur_sector = cur_sector + 1    
                       
