@@ -6,7 +6,10 @@ if (location.search =='?settings=true') {
 
 </script>
 
-<% is_webkit = System::get_property('webview').start_with?('WEBKIT') %>
+<% 
+    webview = System::get_property('webview')
+    is_webkit = !webview.nil? and  webview.start_with?('WEBKIT')
+%>
 
 Device capabilities:
 <ul id="home" selected="true" title="Device capabilities">

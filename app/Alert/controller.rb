@@ -51,9 +51,13 @@ class AlertController < Rho::RhoController
   def show_popup3
     @flash = "Show popup page"
     Alert.show_popup :title => "Wait...", :message => "Wait ..."
-    sleep 3
-    Alert.hide_popup
+    Rho::Timer.start 5000, url_for(:action => :wait_callback), ""
     render :action => :index, :back => '/app'
+  end
+
+  def wait_callback
+    Alert.hide_popup
+    WebView.navigate url_for(:action => :index)
   end
 
   def popup_callback
