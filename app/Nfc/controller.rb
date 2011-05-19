@@ -63,8 +63,8 @@ class NfcController < Rho::RhoController
           s = s + ' ]'
           puts s
       end        
-      puts offset+$offset_step+'tnf = '+Rho::NFCManager.convert_Tnf_to_string(record['tnf'])
-      puts offset+$offset_step+'type = '+Rho::NFCManager.convert_RTD_to_string(record['type'])
+      puts offset+$offset_step+'tnf = '+Rho::NdefRecord.convert_Tnf_to_string(record['tnf'])
+      puts offset+$offset_step+'type = '+Rho::NdefRecord.convert_RTD_to_string(record['type'])
       puts offset+$offset_step+'payload_as_string = '+record['payload_as_string']
       subrecords = record['subrecords']
       if subrecords != nil
@@ -111,7 +111,7 @@ class NfcController < Rho::RhoController
                   puts '  MifareClassic.isConnected() = '+connected.to_s
                   
                   type = mifareClassic.get_type
-                  puts '       type = '+type.to_s+'    ['+mifareClassic.convert_type_to_string(type)+']'
+                  puts '       type = '+type.to_s+'    ['+Rho::NFCTagTechnology_MifareClassic.convert_type_to_string(type)+']'
                   
                   block_count = mifareClassic.get_block_count
                   puts '       block_count = '+block_count.to_s
@@ -320,7 +320,7 @@ class NfcController < Rho::RhoController
               
               payload = Rho::NFCManager.make_payload_with_well_known_uri(0, 'http://www.rhomobile.com')
               
-              hash = { 'id' => [0], 'type' => Rho::NFCManager::RTD_URI, 'tnf' => Rho::NFCManager::TNF_WELL_KNOWN, 'payload' => payload}
+              hash = { 'id' => [0], 'type' => Rho::NdefRecord::RTD_URI, 'tnf' => Rho::NdefRecord::TNF_WELL_KNOWN, 'payload' => payload}
               
               record = Rho::NFCManager.make_NdefRecord_from_hash(hash)
               
