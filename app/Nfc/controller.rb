@@ -13,11 +13,16 @@ class NfcController < Rho::RhoController
   $offset_step = '    '
 
   def index
+    #Rho::NFCManager.enable
     $status = Rho::NFCManager.is_enabled.to_s
     $supported = Rho::NFCManager.is_supported.to_s
     $log = ''
     Rho::NFCManager.set_nfc_callback(url_for(:action => :nfc_callback))
     Rho::NFCManager.set_nfc_tech_callback(url_for(:action => :nfc_tech_callback))
+      
+    # see doc about this method - it used for process events received when application was not started or in background
+    #Rho::NFCManager.perform_open_application_event  
+      
     puts 'NfcController.index'
     render
   end
@@ -263,6 +268,8 @@ class NfcController < Rho::RhoController
               puts '       can_make_read_only = '+ndef.can_make_read_only.to_s
               
               msg = ndef.read_NdefMessage
+
+              puts '      message readed !' 
               
               records = msg.get_records
               
