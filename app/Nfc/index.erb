@@ -2,8 +2,12 @@
 <p>Android Nfc Control page</p>
 <br>
 <INPUT type="button" value="enable NFC" onClick="onEnable();">
-<br>
 <INPUT type="button" value="disable NFC" onClick="onDisable();">
+<br>
+<INPUT type="button" value="Start P2P Message" onClick="onP2PEnable();">
+<INPUT type="button" value="Stop P2P Message" onClick="onP2PDisable();">
+<br>
+<INPUT type="button" value="PerformOpenApplicationEvent" onClick="onPerformOpenApplicationEvent();">
 <br>
 Current status :  
 <input id="id_status" type="text" name="id_status" readonly value="<%= $status %>"></input>
@@ -25,6 +29,19 @@ function onEnable() {
 function onDisable() {
   $.get('/app/Nfc/do_disable', {});
 }
+
+function onP2PEnable() {
+  $.get('/app/Nfc/do_p2p_enable', {});
+}
+
+function onP2PDisable() {
+  $.get('/app/Nfc/do_p2p_disable', {});
+}
+
+function onPerformOpenApplicationEvent() {
+  $.get('/app/Nfc/do_open_app_event', {});
+}
+
 
 function setStatus(status) {
   document.getElementById("id_status").value = status;

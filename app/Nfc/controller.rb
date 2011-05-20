@@ -13,15 +13,11 @@ class NfcController < Rho::RhoController
   $offset_step = '    '
 
   def index
-    #Rho::NFCManager.enable
     $status = Rho::NFCManager.is_enabled.to_s
     $supported = Rho::NFCManager.is_supported.to_s
     $log = ''
     Rho::NFCManager.set_nfc_callback(url_for(:action => :nfc_callback))
     Rho::NFCManager.set_nfc_tech_callback(url_for(:action => :nfc_tech_callback))
-      
-    # see doc about this method - it used for process events received when application was not started or in background
-    #Rho::NFCManager.perform_open_application_event  
       
     puts 'NfcController.index'
     render
@@ -51,6 +47,33 @@ class NfcController < Rho::RhoController
        set_status($status)    
   end
 
+  def do_p2p_enable
+      # prepare NdefMessage for send to another device
+      payload = Rho::NFCManager.make_payload_with_well_known_uri(0, 'http://www.rhomobile.com')
+      hash = { 'id' => [0], 'type' => Rho::NdefRecord::RTD_URI, 'tnf' => Rho::NdefRecord::TNF_WELL_KNOWN, 'payload' => payload}
+      record = Rho::NFCManager.make_NdefRecord_from_hash(hash)
+      records = [record]
+      msg = Rho::NFCManager.make_NdefMessage_from_array_of_NdefRecord(records)
+      # start push message
+      Rho::NFCManager.p2p_enable_foreground_nde_push(msg)
+
+      add_to_log('Enable PUSH P2P')
+      set_log($log)
+  end
+    
+  def do_p2p_disable
+      # stop push message
+      Rho::NFCManager.p2p_disable_foreground_nde_push
+      add_to_log('Disable PUSH P2P')
+      set_log($log)
+  end
+    
+  def do_open_app_event
+      # see doc about this method - it used for process events received when application was not started or in background
+      Rho::NFCManager.perform_open_application_event  
+  end    
+    
+    
   def print_record(offset, record)
       puts offset+'Record :'
       s = offset+$offset_step+'id = '
