@@ -24,15 +24,19 @@ class NativeBarTestController < Rho::RhoController
     render :action => :index
   end
 
-  def set_toolbar
+def set_toolbar
     save_location
+    iconpath = ''
+    if defined?( RHO_WP7 )
+        iconpath = '/public/images/bar/gears.png'
+    end
     toolbar = [
       {:action => :back,    :icon => '/public/images/bar/back_btn.png'},
       {:action => :forward, :icon => '/public/images/bar/forward_btn.png'},
       {:action => :separator},
       {:action => :home,    :icon => '/public/images/bar/colored_btn.png', :colored_icon => true},
       {:action => :refresh },
-      {:action => 'callback:' + url_for(:action => :callback), :label => 'Callback' },
+      {:action => 'callback:' + url_for(:action => :callback), :label => 'Callback', :icon => iconpath},
       {:action => :options}
     ]
     NativeBar.create(Rho::RhoApplication::TOOLBAR_TYPE, toolbar)
@@ -42,13 +46,16 @@ class NativeBarTestController < Rho::RhoController
 
   def set_toolbar_new
     save_location
+    if defined?( RHO_WP7 )
+        iconpath = '/public/images/bar/gears.png'
+    end
     toolbar = [
       {:action => :back,    :icon => '/public/images/bar/back_btn.png'},
       {:action => :forward, :icon => '/public/images/bar/forward_btn.png'},
       {:action => :separator},
       {:action => :home,    :icon => '/public/images/bar/colored_btn.png', :colored_icon => true},
       {:action => :refresh },
-      {:action => 'callback:' + url_for(:action => :callback), :label => 'Callback' },
+      {:action => 'callback:' + url_for(:action => :callback), :label => 'Callback', :icon => iconpath},
       {:action => :options}
     ]
     NativeBar.create(Rho::RhoApplication::TOOLBAR_TYPE, :buttons => toolbar, :background_color => 0x00004F)
