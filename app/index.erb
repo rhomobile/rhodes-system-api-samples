@@ -8,7 +8,7 @@ if (location.search =='?settings=true') {
 
 <% 
     webview = System::get_property('webview')
-    is_webkit = !webview.nil? and  webview.start_with?('WEBKIT')
+    is_webkit = (!webview.nil? and  webview.start_with?('WEBKIT'))
 %>
 
 Device capabilities:
