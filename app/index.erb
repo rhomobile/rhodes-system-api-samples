@@ -158,7 +158,7 @@ Rhodes API tests
   </li>
   <% end %> 
     <li><a href="RhoTest">Rho test</a></li>    
-<% if System::get_property('platform') != 'Blackberry' %>
+<% if System::get_property('platform') != 'Blackberry' && System::get_property('platform') != 'WP7'%>
     <li><a href="NativeView">Native View</a></li>   
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Native View'} %>">Native View</a></li>       
