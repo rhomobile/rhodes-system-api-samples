@@ -251,7 +251,6 @@
 
                 return publicObj;
             } else {
-                console.error('No pages in history.');
                 return false;
             }
         }
