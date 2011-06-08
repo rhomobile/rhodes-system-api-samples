@@ -3,9 +3,6 @@ require 'rho/rhotabbar'
 
 class NativeTabbarTestController < Rho::RhoController
   @layout = 'NativeTabbarTest/layout'
-  $reload_text = ''
-  $reload_count = 0 
-
 
   def index
     render :back => '/app'
@@ -178,6 +175,12 @@ class NativeTabbarTestController < Rho::RhoController
   def tabbar_on_tab_change_callback
       new_index = @params['tab_index']
       puts '$$$ onChangeTab callback tab_index = '+new_index
+      
+      if (!$reload_text)        
+        $reload_text = ''
+        $reload_count = 0 
+      end  
+      
       if new_index.to_i == 1
           $reload_count = $reload_count+1 
           if ($reload_count % 2) == 1
