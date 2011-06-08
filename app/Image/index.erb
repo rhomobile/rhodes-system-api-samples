@@ -1,7 +1,52 @@
 <div>
 	<%= link_to '[Choose Picture]', { :action => :edit }%><br/>
 	<% if System::get_property('has_camera') %>
+
+
+<% if ((System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE')) %>
+
+  <INPUT type="button" id="id_button1" value="Take Picture" name="id_button1" onClick="onCameraTake();">
+
+<br>
+Camera settings : <br>
+Camera : 
+<SELECT NAME="camera_type" ID="camera_type">
+<OPTION VALUE="main">Main back camera
+<OPTION VALUE="front">Front face camera
+</SELECT>
+<br>
+Color Model : 
+<SELECT NAME="color_model" ID="color_model">
+<OPTION VALUE="RGB">RGB Full color
+<OPTION VALUE="Grayscale">Monochrome grayscale
+</SELECT>
+<br>
+Preferred Size : 
+<SELECT NAME="preferred_size" ID="preferred_size">
+<OPTION VALUE="original">original
+<OPTION VALUE="size1">1000x1000
+<OPTION VALUE="size2">100x100
+</SELECT>
+<br>
+
+<% if ((System::get_property('platform') == 'APPLE')) %>
+Allow Editing : 
+<SELECT NAME="enable_editing" ID="enable_editing">
+<OPTION VALUE="enable">enable
+<OPTION VALUE="disable">disable
+</SELECT>
+<br>
+<% end %>
+
+
+<% else %>
+
+
     	<%= link_to '[Take Picture]', { :action => :new }%>
+
+<% end %>
+
+
     <% end %>	
         
     <br/>
@@ -9,3 +54,20 @@
  		<img src="<%=Rho::RhoApplication::get_blob_path(x.image_uri)%>" width='300px'></img><a href="<%=url_for(:action => :delete, :id =>x.object)%>">Delete</a><br/>
 	<% end %>
 </div>
+
+<% if ((System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE')) %>
+
+<script type="text/javascript">
+
+function onCameraTake() {
+  var en_ed = "enable";
+<% if ((System::get_property('platform') == 'APPLE')) %>
+  en_ed = document.getElementById("enable_editing").value;
+<% end %>
+  $.get('/app/Image/on_take', { camera_type: document.getElementById("camera_type").value, color_model: document.getElementById("color_model").value, enable_editing: en_ed, preferred_size: document.getElementById("preferred_size").value});
+  return false;
+}
+
+</script>
+
+<% end %>

@@ -10,7 +10,13 @@ class BarcodeRecognizerController < Rho::RhoController
   end
 
   def new
-    Camera::take_picture(url_for :action => :camera_callback)
+
+    if ((System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE'))
+          settings = { :color_model => 'Grayscale', :desired_width => 1000, :desired_height => 100 }
+          Camera::take_picture(url_for(:action => :camera_callback), settings)
+    else 
+          Camera::take_picture(url_for :action => :camera_callback)
+    end
     redirect :action => :index
   end
 
