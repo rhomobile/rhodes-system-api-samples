@@ -185,7 +185,10 @@ class NativeTabbarTestController < Rho::RhoController
       if new_index.to_i == 1
           $reload_count = $reload_count+1 
           if ($reload_count % 2) == 1
+               Rho::NativeTabbar.set_tab_badge(1, '')
                WebView.refresh(1)
+          else
+               Rho::NativeTabbar.set_tab_badge(1, $reload_count.to_s)
           end
           $reload_text = 'Current switch to page count = '+$reload_count.to_s 
       end
