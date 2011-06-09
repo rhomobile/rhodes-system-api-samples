@@ -26,7 +26,8 @@ class GeoLocationController < Rho::RhoController
        @params['latitude'] = '37.349691'
        @params['longitude'] = '-121.983261'
      end
-     region = [@params['latitude'], @params['longitude'], 0.2, 0.2]
+     
+     region = [@params['latitude'], @params['longitude'], 0.2, 0.2]     
      #region = {:center => @params['latitude'] + ',' + @params['longitude'], :radius => 0.2}
      map_params = {
           :provider => @params['provider'],
@@ -36,9 +37,34 @@ class GeoLocationController < Rho::RhoController
                            {:street_address => "Cupertino, CA 95014", :title => "Cupertino", :subtitle => "zip: 95014", :url => "/app/GeoLocation/show?city=Cupertino"},
                            {:street_address => "Santa Clara, CA 95051", :title => "Santa Clara", :subtitle => "zip: 95051", :url => "/app/GeoLocation/show?city=Santa%20Clara"}]
      }
+
      puts map_params.inspect            
      MapView.create map_params
      redirect :action => :index
   end
-        
+
+def showmap_coding
+     puts @params.inspect
+     #pin color
+     region = {:center => 'NG10 3XL', :radius => 0.2}
+
+    # Build up the parameters for the call
+    map_params = {
+        :provider => @params['provider'],
+        # General settings for the map, type, viewable area, zoom, scrolling etc.
+        # We center on the user, with 0.2 degrees view
+        :settings => {:map_type => "roadmap",:region => region,
+            :zoom_enabled => true,:scroll_enabled => true,:shows_user_location => false
+        }#,
+        # This annotation shows the user, give the marker a title, and a link directly to that user
+        #:annotations => [{
+        #    :title => "TEST",
+        #    :subtitle => "TEST"
+        #}]
+    }
+
+     puts map_params.inspect            
+     MapView.create map_params
+     redirect :action => :index
+  end        
 end
