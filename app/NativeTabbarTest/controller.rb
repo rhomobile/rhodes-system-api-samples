@@ -90,6 +90,7 @@ class NativeTabbarTestController < Rho::RhoController
         bkg_color = 0x000F4F
     end
     Rho::NativeTabbar.create(:tabs => tabbar, :background_color => bkg_color)
+    Rho::NativeTabbar.set_tab_badge( 1, '12')
     $tabbar_active = true
     Rho::NativeTabbar.switch_tab(0)
   end
@@ -184,7 +185,10 @@ class NativeTabbarTestController < Rho::RhoController
       if new_index.to_i == 1
           $reload_count = $reload_count+1 
           if ($reload_count % 2) == 1
+               Rho::NativeTabbar.set_tab_badge(1, '')
                WebView.refresh(1)
+          else
+               Rho::NativeTabbar.set_tab_badge(1, $reload_count.to_s)
           end
           $reload_text = 'Current switch to page count = '+$reload_count.to_s 
       end
