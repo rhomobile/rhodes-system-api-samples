@@ -90,6 +90,7 @@ class NativeTabbarTestController < Rho::RhoController
         bkg_color = 0x000F4F
     end
     Rho::NativeTabbar.create(:tabs => tabbar, :background_color => bkg_color)
+    Rho::NativeTabbar.set_tab_badge( 1, '12')
     $tabbar_active = true
     Rho::NativeTabbar.switch_tab(0)
   end
