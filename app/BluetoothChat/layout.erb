@@ -4,8 +4,8 @@
   <head>
     <title>BluetoothChat</title>
     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
-    <% if System::get_property('platform') == 'WINDOWS' && System::get_property('webview') !~ /^WEBKIT/ %>
-    <% elsif System::get_property('platform') != 'Blackberry' || System::get_property('webview') =~ /^WEBKIT/ %>
+    <% if System::get_property('platform') == 'WINDOWS' && System::get_property('webview_framework') !~ /^WEBKIT/ %>
+    <% elsif System::get_property('platform') != 'Blackberry' || System::get_property('webview_framework') =~ /^WEBKIT/ %>
       <script src="/public/jqtouch/jquery.1.3.2.min.js"></script>
     <% end %>
   </head>

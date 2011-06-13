@@ -7,8 +7,8 @@ if (location.search =='?settings=true') {
 </script>
 
 <% 
-    webview = System::get_property('webview')
-    is_webkit = (!webview.nil? and  webview.start_with?('WEBKIT'))
+    webview = System::get_property('webview_framework')
+    is_webkit = (!webview.nil? and webview.start_with?('WEBKIT'))
 %>
 
 Device capabilities:
