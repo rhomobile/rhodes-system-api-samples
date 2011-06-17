@@ -5,6 +5,13 @@
 
 <% if ((System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE')) %>
 
+<br>
+Found cameras :
+<br>
+<b>Main Camera : </b><%=$camera_main%>
+<br>
+<b>Front Camera : </b><%=$camera_front%>
+<br>
   <INPUT type="button" id="id_button1" value="Take Picture" name="id_button1" onClick="onCameraTake();">
 
 <br>

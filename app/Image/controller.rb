@@ -3,10 +3,22 @@ require 'rho/rhocontroller'
 class ImageController < Rho::RhoController
   #@layout = :simplelayout
   @layout = 'Image/layout'
+
+  $camera_main = 'NONE'
+  $camera_front = 'NONE'
   
   def index
     puts "Camera index controller"
     @images = Image.find(:all)
+
+    main_info = Camera::get_camera_info('main')
+    if main_info != nil
+         $camera_main = 'YES , '+main_info['max_resolution']['width'].to_s+'x'+main_info['max_resolution']['height'].to_s
+    end	
+    front_info = Camera::get_camera_info('front')
+    if front_info != nil
+         $camera_front = 'YES , '+front_info['max_resolution']['width'].to_s+'x'+front_info['max_resolution']['height'].to_s
+    end
     render :back => '/app'
   end
 
@@ -53,6 +65,12 @@ class ImageController < Rho::RhoController
       image = Image.new({'image_uri'=>@params['image_uri']})
       image.save
       puts "new Image object: " + image.inspect
+      if ((System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE'))
+           img_width = @params['image_width']
+           img_height = @params['image_height']
+           img_format = @params['image_format']
+           puts ' Captured Image  Size:  '+img_width.to_s+'x'+img_height.to_s+',  Format: '+img_format
+      end
     end  
     WebView.navigate( url_for :action => :index )
     #WebView::refresh
