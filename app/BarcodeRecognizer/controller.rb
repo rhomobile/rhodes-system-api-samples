@@ -20,6 +20,28 @@ class BarcodeRecognizerController < Rho::RhoController
     redirect :action => :index
   end
 
+  def take
+      Barcode.take_barcode(url_for :action => :take_callback)
+      redirect :action => :index
+  end
+
+  def take_callback
+      status = @params['status']
+      barcode = @params['barcode']
+
+      puts 'BarcodeRecognizer::take_callback !'
+      puts 'status = '+status.to_s unless status == nil
+      puts 'barcode = '+barcode.to_s unless barcode == nil
+
+      if status == 'ok'
+           show_barcode_info(barcode)
+      end
+      if status == 'cancel'
+           Alert.show_popup  ('Barcode taking was canceled !')  
+      end
+      redirect :action => :index
+  end
+
   def edit
     Camera::choose_picture(url_for :action => :camera_callback)
     #redirect :action => :index
@@ -78,7 +100,7 @@ class BarcodeRecognizerController < Rho::RhoController
   end
 
   def show_barcode_info(recognized_code)
-    Alert.show_popup  ('Barcode['+recognized_code+']')  
+    Alert.show_popup  ('Barcode['+recognized_code.to_s+']')  
   end
 
 end
