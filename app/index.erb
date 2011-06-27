@@ -143,19 +143,10 @@ Rhodes API tests
     <li><a href="AsyncHttpsTest">Async HttpS test</a></li>
     <li><a href="AsyncDownloadFile">Async download file</a></li>
     <li><a href="AsyncUploadFile">Async upload file</a></li>
-  <% if System::get_property('platform') != 'WP7'%>
-      <li>
-        <a href="SystemTest">System test</a>
-      </li>
-  <% else %>
-  <li>
-    <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'System test'} %>">System test</a>
-  </li>
-  <% end %>  
-        <li>
-          <a href="Localization">Localization test</a>
-        </li>
+    <li><a href="SystemTest">System test</a></li>
+    <li><a href="Localization">Localization test</a></li>
     <li><a href="RhoTest">Rho test</a></li>    
+    
 <% if System::get_property('platform') != 'Blackberry' && System::get_property('platform') != 'WP7'%>
     <li><a href="NativeView">Native View</a></li>   
 <% else %>      
