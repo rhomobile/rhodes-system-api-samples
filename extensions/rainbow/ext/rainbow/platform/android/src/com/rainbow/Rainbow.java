@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.rhomobile.rhodes.RhodesActivity;
 import com.rhomobile.rhodes.RhodesService;
-import com.rhomobile.rhodes.Utils;
+import com.rhomobile.rhodes.util.Utils;
 
 import android.content.Context;
 import android.view.View;
