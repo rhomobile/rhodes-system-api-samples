@@ -16,6 +16,12 @@ My Status:
 <% else %>
   <INPUT type="button" id="id_button1" value="Connect as Server" name="id_button1" onClick="onConnectServer();">
   <INPUT type="button" id="id_button2" value="Connect as Client" name="id_button2" onClick="onConnectClient();">
+<% if System::get_property('platform') == 'APPLE' %>
+  <br>
+   Custom Connection (without platform UI) : <br>
+  <INPUT type="button" id="id_button3" value="Custom Server connect" name="id_button3" onClick="onConnectCustomServer();">
+  <INPUT type="button" id="id_button4" value="Custom Client connect" name="id_button4" onClick="onConnectCustomClient();">
+<% end %>
 <% end %>
 <% else %>
 
@@ -255,6 +261,17 @@ function onConnectClient() {
   return false;
 }
 
+function onConnectCustomServer() {
+  $.get('/app/BluetoothChat/on_connect_custom_server', {});
+  return false;
+}
+
+function onConnectCustomClient() {
+  $.get('/app/BluetoothChat/on_connect_custom_client', {});
+  return false;
+}
+
+
 function onDisconnect() {
   $.get('/app/BluetoothChat/on_disconnect', {});
   return false;
@@ -278,6 +295,11 @@ function setStatus(status) {
   document.getElementById("id_status").value = status;
 }
 
+function setDeviceName(name) {
+  document.getElementById("id_name").value = name;
+}
+
+
 function setButtonCaption(caption) {
   document.getElementById("id_button1").value = caption;
   document.getElementById("id_button2").value = caption;
@@ -286,6 +308,16 @@ function setButtonCaption(caption) {
 function restoreButtonCaption() {
   document.getElementById("id_button1").value = "Connect as Server";
   document.getElementById("id_button2").value = "Connect as Client";
+}
+
+function setCustomButtonCaption(caption) {
+  document.getElementById("id_button3").value = caption;
+  document.getElementById("id_button4").value = caption;
+}
+
+function restoreCustomButtonCaption() {
+  document.getElementById("id_button3").value = "Custom Server connect";
+  document.getElementById("id_button4").value = "Custom Client connect";
 }
 
 function onUnload() {

@@ -10,6 +10,7 @@ class BluetoothChatController < Rho::RhoController
   $current_status = 'Not connected'
   $history = '---'
   $is_blackberry = (System::get_property('platform') == 'Blackberry')
+  $is_custom_connecting_in_progress = false
   
   def index
     puts 'BluetoothChatController.index'
@@ -78,6 +79,65 @@ class BluetoothChatController < Rho::RhoController
   end
 
 
+
+
+
+  def on_connect_custom_server
+    puts 'BluetoothChatController.on_connect_custom_server'
+    if ($connected_device_name == nil) && (!$is_custom_connecting_in_progress)
+       puts 'BluetoothChat::on_connect()'
+       $current_status = 'Connecting ...'
+       execute_js('setStatus("'+$current_status+'");')
+       $is_custom_connecting_in_progress = true
+       Rho::BluetoothManager.set_device_name('rho_server')
+       $device_name = 'rho_server'
+       execute_js('setDeviceName("rho_server");')
+       Rho::BluetoothManager.create_server_and_wait_for_connection('rho_client', url_for(:action => :create_session_callback))
+       execute_js('setCustomButtonCaption("Cancel");')
+    else
+        if ($connected_device_name == nil)
+               Rho::BluetoothManager.stop_current_connection_process
+               $connected_device_name = nil
+               $current_status = 'Cancelled'
+               execute_js('setStatus("'+$current_status+'");')
+               execute_js('restoreCustomButtonCaption();')
+               $is_custom_connecting_in_progress = false
+        else
+               on_disconnect
+        end
+    end
+  end
+
+  def on_connect_custom_client
+    puts 'BluetoothChatController.on_connect_custom_client'
+    if ($connected_device_name == nil) && (!$is_custom_connecting_in_progress)
+       puts 'BluetoothChat::on_connect()'
+       $current_status = 'Connecting ...'
+       execute_js('setStatus("'+$current_status+'");')
+       $is_custom_connecting_in_progress = true
+       Rho::BluetoothManager.set_device_name('rho_client')
+       $device_name = 'rho_client'
+       execute_js('setDeviceName("rho_client");')
+       Rho::BluetoothManager.create_client_connection_to_device('rho_server', url_for(:action => :create_session_callback))
+       execute_js('setCustomButtonCaption("Cancel");')
+    else
+        if ($connected_device_name == nil)
+               Rho::BluetoothManager.stop_current_connection_process
+               $connected_device_name = nil
+               $current_status = 'Cancelled'
+               execute_js('setStatus("'+$current_status+'");')
+               execute_js('restoreCustomButtonCaption();')
+               $is_custom_connecting_in_progress = false
+        else
+               on_disconnect
+        end
+    end
+  end
+
+
+
+
+
   def on_disconnect
     puts 'BluetoothChatController.on_disconnect'
     if $connected_device_name == nil
@@ -88,6 +148,7 @@ class BluetoothChatController < Rho::RhoController
        $current_status = 'Disconnected'
        execute_js('setStatus("'+$current_status+'");')
        execute_js('restoreButtonCaption();')
+       execute_js('restoreCustomButtonCaption();')
        if $is_blackberry
          #redirect :action => :index
          WebView.navigate( url_for :action => :index )
@@ -114,7 +175,11 @@ class BluetoothChatController < Rho::RhoController
       $current_status = 'Connected to ['+$connected_device_name+']'
       Rho::BluetoothSession.set_callback($connected_device_name, url_for(:action => :session_callback))
       #Rho::BluetoothSession.write_string($connected_device_name, 'Hello another Bluetooth device !')	
-      execute_js('setButtonCaption("Disconnect");')
+      if ($is_custom_connecting_in_progress)
+             execute_js('setCustomButtonCaption("Disconnect");')
+      else  
+             execute_js('setButtonCaption("Disconnect");')
+      end
     else 
        if @params['status'] == Rho::BluetoothManager::CANCEL
          $current_status = 'Cancelled by User'
@@ -128,6 +193,7 @@ class BluetoothChatController < Rho::RhoController
       WebView.navigate( url_for :action => :index )
       ""
     end
+    $is_custom_connecting_in_progress = false
   end
 
   def on_data_received
@@ -166,6 +232,7 @@ class BluetoothChatController < Rho::RhoController
           $current_status = 'Disconnected'
           execute_js('setStatus("'+$current_status+'");')
           execute_js('restoreButtonCaption();')
+          execute_js('restoreCustomButtonCaption();')
           if $is_blackberry
             #redirect :action => :index
             WebView.navigate( url_for :action => :index )

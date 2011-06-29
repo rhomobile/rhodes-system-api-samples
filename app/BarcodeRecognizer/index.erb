@@ -2,7 +2,9 @@
 	<%= link_to '[Choose Picture]', { :action => :edit }%>
 	<% if System::get_property('has_camera') %>
     	<%= link_to '[Take Picture]', { :action => :new }%>
-    	<%= link_to '[Take Barcode]', { :action => :take }%>
+	<% if System::get_property('platform') == 'ANDROID' %>
+	    	<%= link_to '[Take Barcode]', { :action => :take }%>
+	<% end %>      
     <% end %>	
         
     <br/>
