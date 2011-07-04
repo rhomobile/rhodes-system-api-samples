@@ -3,7 +3,7 @@
 	<% if System::get_property('has_camera') %>
 
 
-<% if ((System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE')) %>
+<% if (((System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE')) && ($use_new_api)) %>
 
 <br>
 Found cameras :

@@ -6,18 +6,22 @@ class ImageController < Rho::RhoController
 
   $camera_main = 'NONE'
   $camera_front = 'NONE'
+
+  $use_new_api = false
   
   def index
     puts "Camera index controller"
     @images = Image.find(:all)
 
-    main_info = Camera::get_camera_info('main')
-    if main_info != nil
-         $camera_main = 'YES , '+main_info['max_resolution']['width'].to_s+'x'+main_info['max_resolution']['height'].to_s
-    end	
-    front_info = Camera::get_camera_info('front')
-    if front_info != nil
-         $camera_front = 'YES , '+front_info['max_resolution']['width'].to_s+'x'+front_info['max_resolution']['height'].to_s
+    if $use_new_api
+        main_info = Camera::get_camera_info('main')
+        if main_info != nil
+             $camera_main = 'YES , '+main_info['max_resolution']['width'].to_s+'x'+main_info['max_resolution']['height'].to_s
+        end	
+        front_info = Camera::get_camera_info('front')
+        if front_info != nil
+             $camera_front = 'YES , '+front_info['max_resolution']['width'].to_s+'x'+front_info['max_resolution']['height'].to_s
+        end
     end
     render :back => '/app'
   end
@@ -65,7 +69,7 @@ class ImageController < Rho::RhoController
       image = Image.new({'image_uri'=>@params['image_uri']})
       image.save
       puts "new Image object: " + image.inspect
-      if ((System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE'))
+      if (((System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE')) && ($use_new_api))
            img_width = @params['image_width']
            img_height = @params['image_height']
            img_format = @params['image_format']
