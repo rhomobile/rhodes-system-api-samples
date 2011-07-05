@@ -16,11 +16,12 @@ My Status:
 <% else %>
   <INPUT type="button" id="id_button1" value="Connect as Server" name="id_button1" onClick="onConnectServer();">
   <INPUT type="button" id="id_button2" value="Connect as Client" name="id_button2" onClick="onConnectClient();">
-<% if System::get_property('platform') == 'APPLE' %>
+<% if System::get_property('platform') == 'APPLE'  or   System::get_property('platform') == 'ANDROID' %>
   <br>
    Custom Connection (without platform UI) : <br>
-  <INPUT type="button" id="id_button3" value="Custom Server connect" name="id_button3" onClick="onConnectCustomServer();">
-  <INPUT type="button" id="id_button4" value="Custom Client connect" name="id_button4" onClick="onConnectCustomClient();">
+  <INPUT type="button" id="id_button3" value="Custom Server connect" name="id_button3" onClick="onConnectCustomServer();"><br>
+  <INPUT type="button" id="id_button4" value="Connect to" name="id_button4" onClick="onConnectCustomClient();">
+  <input id="id_server_name" type="text" name="id_server_name" value="<%= $server_name %>"  onChange="onServerNameChanged();"></input>
 <% end %>
 <% end %>
 <% else %>
@@ -271,6 +272,15 @@ function onConnectCustomClient() {
   return false;
 }
 
+function onServerNameChanged() {
+  $.get('/app/BluetoothChat/on_change_server_name', { device_name: document.getElementById("id_server_name").value});
+  return false;
+}
+
+function setServerName(name) {
+  document.getElementById("id_server_name").value = name;
+}
+
 
 function onDisconnect() {
   $.get('/app/BluetoothChat/on_disconnect', {});
@@ -317,7 +327,7 @@ function setCustomButtonCaption(caption) {
 
 function restoreCustomButtonCaption() {
   document.getElementById("id_button3").value = "Custom Server connect";
-  document.getElementById("id_button4").value = "Custom Client connect";
+  document.getElementById("id_button4").value = "Connect to";
 }
 
 function onUnload() {

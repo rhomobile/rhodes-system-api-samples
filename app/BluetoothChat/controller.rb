@@ -11,6 +11,7 @@ class BluetoothChatController < Rho::RhoController
   $history = '---'
   $is_blackberry = (System::get_property('platform') == 'Blackberry')
   $is_custom_connecting_in_progress = false
+  $server_name = '' 
   
   def index
     puts 'BluetoothChatController.index'
@@ -89,10 +90,7 @@ class BluetoothChatController < Rho::RhoController
        $current_status = 'Connecting ...'
        execute_js('setStatus("'+$current_status+'");')
        $is_custom_connecting_in_progress = true
-       Rho::BluetoothManager.set_device_name('rho_server')
-       $device_name = 'rho_server'
-       execute_js('setDeviceName("rho_server");')
-       Rho::BluetoothManager.create_server_and_wait_for_connection('rho_client', url_for(:action => :create_session_callback))
+       Rho::BluetoothManager.create_server_and_wait_for_connection(url_for(:action => :create_session_callback))
        execute_js('setCustomButtonCaption("Cancel");')
     else
         if ($connected_device_name == nil)
@@ -115,10 +113,7 @@ class BluetoothChatController < Rho::RhoController
        $current_status = 'Connecting ...'
        execute_js('setStatus("'+$current_status+'");')
        $is_custom_connecting_in_progress = true
-       Rho::BluetoothManager.set_device_name('rho_client')
-       $device_name = 'rho_client'
-       execute_js('setDeviceName("rho_client");')
-       Rho::BluetoothManager.create_client_connection_to_device('rho_server', url_for(:action => :create_session_callback))
+       Rho::BluetoothManager.create_client_connection_to_device($server_name, url_for(:action => :create_session_callback))
        execute_js('setCustomButtonCaption("Cancel");')
     else
         if ($connected_device_name == nil)
@@ -166,6 +161,10 @@ class BluetoothChatController < Rho::RhoController
      end
   end
 
+  def on_change_server_name
+       $server_name = @params['device_name']
+  end
+
   def create_session_callback
     puts 'BluetoothChat::create_session_callback'
     puts 'status = ' + @params['status']
@@ -173,6 +172,10 @@ class BluetoothChatController < Rho::RhoController
     puts 'connected_device_name = ' + $connected_device_name	
     if @params['status'] == Rho::BluetoothManager::OK
       $current_status = 'Connected to ['+$connected_device_name+']'
+      if System::get_property('platform') == 'APPLE'  or   System::get_property('platform') == 'ANDROID'
+          $server_name = $connected_device_name
+          execute_js('setServerName("'+$server_name+'");') 
+      end
       Rho::BluetoothSession.set_callback($connected_device_name, url_for(:action => :session_callback))
       #Rho::BluetoothSession.write_string($connected_device_name, 'Hello another Bluetooth device !')	
       if ($is_custom_connecting_in_progress)
@@ -240,7 +243,10 @@ class BluetoothChatController < Rho::RhoController
           end
        else
           $current_status = 'Error occured !'
+          $connected_device_name = nil
           execute_js('setStatus("'+$current_status+'");')
+          execute_js('restoreButtonCaption();')
+          execute_js('restoreCustomButtonCaption();')
           if $is_blackberry
             #redirect :action => :index
             WebView.navigate( url_for :action => :index )
