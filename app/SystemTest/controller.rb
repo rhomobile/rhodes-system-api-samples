@@ -4,11 +4,11 @@ class SystemTestController < Rho::RhoController
 
   #GET /SystemTest
   def index
-	puts "System index controller"
+    puts "System index controller"
 	
     $sleeping = true unless $sleeping
 
-	System.set_screen_rotation_notification( url_for(:action => :screen_rotation_callback), "")
+    System.set_screen_rotation_notification( url_for(:action => :screen_rotation_callback), "")
 	
     render :back => '/app'  	
   end
@@ -45,12 +45,22 @@ class SystemTestController < Rho::RhoController
     
   def call_js
     WebView.execute_js("test();", 0)
-    
     redirect :action => :index
   end  
 
   def show_alert
-	Alert.show_popup "Alert from AJAX call."
+    Alert.show_popup "Alert from AJAX call."
+  end
+
+  def set_cookie
+    WebView.set_cookie("http://127.0.0.1", "test_key_1=test_value_1")
+    WebView.set_cookie("http://127.0.0.1", "test_key_2=test_value_2")
+    redirect :action => :show_cookie
+  end
+
+  def show_cookie
+    WebView.execute_js("show_cookie();", 0)
+    redirect :action => :index
   end
 
   def start_music_app
@@ -60,15 +70,15 @@ class SystemTestController < Rho::RhoController
 
   def start_test_app
     
-if System::get_property('platform') == 'ANDROID'    
-    System.run_app('com.rhomobile.store', "security_token=123")
-elsif System::get_property('platform') == 'APPLE'    
-    System.run_app('store', "security_token=123")
-elsif System::get_property('platform') == 'Blackberry'    
-    System.run_app('store', "security_token=123")
-else
-    System.run_app('rhomobile store/store.exe', "security_token=123")
-end
+    if System::get_property('platform') == 'ANDROID'
+        System.run_app('com.rhomobile.store', "security_token=123")
+    elsif System::get_property('platform') == 'APPLE'
+        System.run_app('store', "security_token=123")
+    elsif System::get_property('platform') == 'Blackberry'
+        System.run_app('store', "security_token=123")
+    else
+        System.run_app('rhomobile store/store.exe', "security_token=123")
+    end
 
     redirect :action => :index
   end
@@ -100,7 +110,6 @@ end
     System.app_install url
     redirect :action => :index
   end
-
 
   def make_own_file
        fileNameW = File.join(Rho::RhoApplication::get_base_app_path(), 'tempfile.txt')
