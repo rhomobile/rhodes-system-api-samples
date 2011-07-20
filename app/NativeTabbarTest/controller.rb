@@ -177,7 +177,7 @@ class NativeTabbarTestController < Rho::RhoController
       new_index = @params['tab_index']
       puts '$$$ onChangeTab callback tab_index = '+new_index
       
-      if (!$reload_text)        
+      if (defined?($reload_text)).nil?
         $reload_text = ''
         $reload_count = 0 
       end  
