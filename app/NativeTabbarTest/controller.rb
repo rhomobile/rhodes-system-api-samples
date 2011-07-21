@@ -173,13 +173,14 @@ class NativeTabbarTestController < Rho::RhoController
     Rho::NativeTabbar.create(:tabs => tabbar, :on_change_tab_callback => url_for(:action => :tabbar_on_tab_change_callback))
   end
 
-  if (defined?($reload_text)).nil?
-    $reload_text = ''
-    $reload_count = 0 
-  end  
   def tabbar_on_tab_change_callback
       new_index = @params['tab_index']
       puts '$$$ onChangeTab callback tab_index = '+new_index
+
+      if (!$reload_text)
+        $reload_text = ''
+        $reload_count = 0 
+      end  
       
       if new_index.to_i == 1
           $reload_count = $reload_count+1 

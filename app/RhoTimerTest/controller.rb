@@ -7,11 +7,11 @@ class RhoTimerTestController < Rho::RhoController
     render :back => '/app'  	
   end
 
-  if (defined?(@@timer_result)).nil?
-    @@timer_result = ""  
-  end
   def get_timer_result
-    @@timer_result
+    if (!$rho_test_timer_result)
+      $rho_test_timer_result = ""  
+    end
+    $rho_test_timer_result
   end
   
   def start_timer
@@ -28,8 +28,8 @@ class RhoTimerTestController < Rho::RhoController
 
   def timer_callback
     puts "timer_callback: #{@params}"
-    
-    @@timer_result += "Timer works!<br/>"
+
+    $rho_test_timer_result += "Timer works!<br/>"
     WebView.refresh
   end
 end
