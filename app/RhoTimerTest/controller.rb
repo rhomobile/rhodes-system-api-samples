@@ -4,11 +4,12 @@ class RhoTimerTestController < Rho::RhoController
 
   #GET /RhoTimerTest
   def index
-	
     render :back => '/app'  	
   end
 
-  @@timer_result = ""  
+  if (defined?(@@timer_result)).nil?
+    @@timer_result = ""  
+  end
   def get_timer_result
     @@timer_result
   end
