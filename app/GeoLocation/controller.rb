@@ -29,19 +29,58 @@ class GeoLocationController < Rho::RhoController
      
      region = [@params['latitude'], @params['longitude'], 0.2, 0.2]     
      #region = {:center => @params['latitude'] + ',' + @params['longitude'], :radius => 0.2}
+
+     myannotations = []
+
+     myannotations <<   {:street_address => "Cupertino, CA 95014", :title => "Cupertino", :subtitle => "zip: 95014", :url => "/app/GeoLocation/show?city=Cupertino"}
+     myannotations << {:street_address => "Santa Clara, CA 95051", :title => "Santa Clara", :subtitle => "zip: 95051", :url => "/app/GeoLocation/show?city=Santa%20Clara"}
+
      map_params = {
           :provider => @params['provider'],
           :settings => {:map_type => "roadmap", :region => region,
-                        :zoom_enabled => true, :scroll_enabled => true, :shows_user_location => true},
-          :annotations => [{:latitude => @params['latitude'], :longitude => @params['longitude'], :title => "Current location", :subtitle => "test", :url => "/app/GeoLocation/show?city=Current Location"},
-                           {:street_address => "Cupertino, CA 95014", :title => "Cupertino", :subtitle => "zip: 95014", :url => "/app/GeoLocation/show?city=Cupertino"},
-                           {:street_address => "Santa Clara, CA 95051", :title => "Santa Clara", :subtitle => "zip: 95051", :url => "/app/GeoLocation/show?city=Santa%20Clara"}]
+                        :zoom_enabled => true, :scroll_enabled => true, :shows_user_location => true, :api_key => '0jDNua8T4Teq0RHDk6_C708_Iiv45ys9ZL6bEhw'},
+          :annotations => myannotations
      }
 
      puts map_params.inspect            
      MapView.create map_params
      redirect :action => :index
   end
+
+
+  def showmap_250
+     puts @params.inspect
+     #pin color
+     if @params['latitude'].to_i == 0 and @params['longitude'].to_i == 0
+       @params['latitude'] = '37.349691'
+       @params['longitude'] = '-121.983261'
+     end
+     
+     region = [@params['latitude'], @params['longitude'], 0.2, 0.2]     
+     #region = {:center => @params['latitude'] + ',' + @params['longitude'], :radius => 0.2}
+
+     myannotations = []
+     250.times do |j|
+          annotation = {:latitude => @params['latitude'], :longitude => @params['longitude'], :title => "Current location", :subtitle => "test", :url => "/app/GeoLocation/show?city=Current Location"}	
+          myannotations << annotation
+     end
+
+     myannotations <<   {:street_address => "Cupertino, CA 95014", :title => "Cupertino", :subtitle => "zip: 95014", :url => "/app/GeoLocation/show?city=Cupertino"}
+     myannotations << {:street_address => "Santa Clara, CA 95051", :title => "Santa Clara", :subtitle => "zip: 95051", :url => "/app/GeoLocation/show?city=Santa%20Clara"}
+
+     map_params = {
+          :provider => @params['provider'],
+          :settings => {:map_type => "roadmap", :region => region,
+                        :zoom_enabled => true, :scroll_enabled => true, :shows_user_location => true, :api_key => '0jDNua8T4Teq0RHDk6_C708_Iiv45ys9ZL6bEhw'},
+          :annotations => myannotations
+     }
+
+     puts map_params.inspect            
+     MapView.create map_params
+     redirect :action => :index
+  end
+
+
 
 def showmap_coding
      puts @params.inspect

@@ -31,6 +31,9 @@
 		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=Google"
 			target="_self">[show Google map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
     
+		<p><a href="/app/GeoLocation/showmap_250?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=Google"
+			target="_self">[show Google map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> with 250 pins]</a></p>
+
         <p><a href="/app/GeoLocation/showmap_coding?provider=Google" target="_self">[show Google map at location : NG10 3XL ]</a></p>    
 <% else %>      
 		<p><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Google Map'} %>"
@@ -41,6 +44,9 @@
 <br>
 		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=ESRI"
 			target="_self">[show ESRI map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
+
+		<p><a href="/app/GeoLocation/showmap_250?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=ESRI"
+			target="_self">[show ESRI map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> with 250 pins]</a></p>
 
         <p><a href="/app/GeoLocation/showmap_coding?provider=ESRI" target="_self">[show ESRI map at location : NG10 3XL ]</a></p>    
     
