@@ -6,3 +6,6 @@ Thumbs.db
 extensions/rainbow/ext/rainbow/platform/iphone/build
 rhosimulator/*
 .idea/
+.DS_Store
+rholog-*
+
