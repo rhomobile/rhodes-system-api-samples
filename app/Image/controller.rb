@@ -7,7 +7,7 @@ class ImageController < Rho::RhoController
   $camera_main = 'NONE'
   $camera_front = 'NONE'
 
-  $use_new_api = false
+  $use_new_api = true
   
   def index
     puts "Camera index controller"
@@ -46,7 +46,7 @@ class ImageController < Rho::RhoController
         height = 100
     end
 
-    settings = { :camera_type => @params['camera_type'], :color_model => @params['color_model'], :enable_editing => en_ed, :desired_width => width, :desired_height => height }
+    settings = { :camera_type => @params['camera_type'], :color_model => @params['color_model'], :enable_editing => en_ed, :desired_width => width, :desired_height => height, :flash_mode => 'auto' }
     Camera::take_picture(url_for(:action => :camera_callback), settings)
   end
 
