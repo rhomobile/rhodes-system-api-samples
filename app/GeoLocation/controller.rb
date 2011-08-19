@@ -33,9 +33,16 @@ class GeoLocationController < Rho::RhoController
      myannotations = []
 
      myannotations <<   {:street_address => "Cupertino, CA 95014", :title => "Cupertino", :subtitle => "zip: 95014", :url => "/app/GeoLocation/show?city=Cupertino"}
+
      myannotations << {:street_address => "Santa Clara, CA 95051", :title => "Santa Clara", :subtitle => "zip: 95051", :url => "/app/GeoLocation/show?city=Santa%20Clara"}
 
-     map_params = {
+     #  add annotation with customized image :
+     myannotations << {:latitude => '60.0270', :longitude => '30.299', :title => "Original Location", :subtitle => "orig test", :url => "/app/GeoLocation/show?city=Original Location"}	
+     myannotations << {:latitude => '60.0270', :longitude => '30.33', :title => "Red Location", :subtitle => "red test", :url => "/app/GeoLocation/show?city=Red Location", :image => '/public/images/marker_red.png', :image_x_offset => 8, :image_y_offset => 32 }	
+     myannotations << {:latitude => '60.0270', :longitude => '30.36', :title => "Green Location", :subtitle => "green test", :url => "/app/GeoLocation/show?city=Green Location", :image => '/public/images/marker_green.png', :image_x_offset => 8, :image_y_offset => 32 }	
+     myannotations << {:latitude => '60.0270', :longitude => '30.39', :title => "Blue Location", :subtitle => "blue test", :url => "/app/GeoLocation/show?city=Blue Location", :image => '/public/images/marker_blue.png', :image_x_offset => 8, :image_y_offset => 32 }	
+
+    map_params = {
           :provider => @params['provider'],
           :settings => {:map_type => "roadmap", :region => region,
                         :zoom_enabled => true, :scroll_enabled => true, :shows_user_location => true, :api_key => '0jDNua8T4Teq0RHDk6_C708_Iiv45ys9ZL6bEhw'},
