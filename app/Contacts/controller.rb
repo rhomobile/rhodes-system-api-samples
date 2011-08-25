@@ -5,14 +5,20 @@ class ContactsController < Rho::RhoController
  
   # GET /Contacts
   def index
-    @contacts = Rho::RhoContact.find(:all)
-    @contacts = {} unless @contacts
-    @contacts = @contacts.sort do |x,y| 
-      res = 1 if x[1]['first_name'].nil? 
-      res = -1 if y[1]['first_name'].nil?
-      res = x[1]['first_name'] <=> y[1]['first_name'] unless res
-      res
+    @count = Rho::RhoContact.find(:count)
+    if @params['offset']
+        @offset = @params['offset'].to_i
+    else
+        @offset = 0;
     end
+    @contacts = Rho::RhoContact.find({:max_results => 10, :offset => @offset})
+    @contacts = {} unless @contacts
+#    @contacts = @contacts.sort do |x,y| 
+#      res = 1 if x[1]['first_name'].nil? 
+#      res = -1 if y[1]['first_name'].nil?
+#      res = x[1]['first_name'] <=> y[1]['first_name'] unless res
+#      res
+#    end
     render :back => '/app'
   end
  

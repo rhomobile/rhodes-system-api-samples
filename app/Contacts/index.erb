@@ -9,4 +9,7 @@
 <%@contacts.each do |x|%>
 <li><%=link_to "#{x[1]['first_name']} #{x[1]['last_name']}", :action => :show, :id => x[1]['id']%></li>
 <%end%>
+<%if @offset+10 < @count %>
+<%=link_to "Next page >>", { :action => :index, :query => {:offset => @offset+10} }%>
+<%end%>
 </ul>
