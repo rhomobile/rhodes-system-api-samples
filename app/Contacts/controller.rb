@@ -56,5 +56,47 @@ class ContactsController < Rho::RhoController
     Rho::RhoContact.destroy(@params['id'])
     redirect :action => :index
   end
+
+  def test_create
+    contacts = []
+    contacts << {"first_name" => "A.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "B.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "C.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "D.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "E.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "F.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "G.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "H.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "I.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "J.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "K.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "L.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "M.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "N.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "O.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "P.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "Q.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "R.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "S.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+    contacts << {"first_name" => "T.", "last_name" => "RhoTest", "mobile_number" => "+12345678090"}
+
+    contacts.each do |contact|
+      Rho::RhoContact.create! contact
+    end
+
+    redirect :action => :index
+  end
+ 
+  def test_remove
+    contacts = Rho::RhoContact.find :all
+
+    contacts.each do |contact|
+      if contact[1]["last_name"] == "RhoTest"
+        Rho::RhoContact.destroy(contact[1]['id'])
+      end
+    end
+
+    redirect :action => :index
+  end
  
 end
