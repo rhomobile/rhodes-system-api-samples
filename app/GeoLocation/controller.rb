@@ -49,7 +49,9 @@ class GeoLocationController < Rho::RhoController
           :annotations => myannotations
      }
 
-     MapView.set_file_caching_enable(1)
+     if @params['provider'] == 'RhoGoogle'
+         MapView.set_file_caching_enable(1)
+     end 
 
      puts map_params.inspect            
      MapView.create map_params
