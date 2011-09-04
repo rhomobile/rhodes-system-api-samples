@@ -5,14 +5,30 @@ class GeoLocationController < Rho::RhoController
   
   def index
     puts "GeoLocation index controller"
-    set_geoview_notification( url_for(:action => :geo_viewcallback), "", 2)  if System::get_property('platform') == 'Blackberry'
+    if System::get_property('platform') == 'Blackberry'
+        set_geoview_notification url_for(:action => :geo_callback), "", 2
+    else
+        GeoLocation.set_notification url_for(:action => :geo_callback), "", 30
+    end
     render :back => '/app'
   end
   
-  def geo_viewcallback
-    puts "geo_viewcallback : #{@params}"
+  def geo_callback
+    puts "geo_callback : #{@params}"
+
+    if WebView.current_location !~ /GeoLocation/
+        puts "Stopping geo location since we are away of geo page"
+        GeoLocation.turnoff
+        return
+    end
     
-    WebView.refresh if @params['known_position'].to_i != 0 && @params['status'] =='ok'
+    if @params['known_position'].to_i != 0 && @params['status'] =='ok'
+        if System::get_property('platform') == 'Blackberry'
+            WebView.refresh
+        else
+            WebView.execute_js("updateLocation(#{@params['latitude']}, #{@params['longitude']})")
+        end
+    end
   end
   
   def show 

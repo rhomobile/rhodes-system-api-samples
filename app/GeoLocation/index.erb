@@ -1,11 +1,21 @@
+<script type="text/javascript">
+<!--
+function updateLocation(lat, lng) {
+     $('span.geoLat').html(lat);
+     $('span.geoLng').html(lng);
+}
+-->
+</script>
+
+
 <div align="center">
     <p>To get current location - Go outside building and wait 5-10 minutes</p>
-	<p>Your location using geo-tags:</p>
+	<!--p>Your location using geo-tags:</p>
 	<geolocation></geolocation>
 	<br/>
 	Latitude: <geolatitude></geolatitude><br/>
 	Longitude: <geolongitude></geolongitude>
-	<br/>
+	<br/-->
 	
 	<p>Your location using ruby api:</p>
 	<p>
@@ -19,14 +29,10 @@
     
 	</p>
 	<p>
-	Latitude: <%= GeoLocation.latitude.to_s %><br/>
-	Longitude: <%= GeoLocation.longitude.to_s %>
+	Latitude: <span class="geoLat"><%= GeoLocation.latitude.to_s %></span><br/>
+	Longitude: <span class="geoLng"><%= GeoLocation.longitude.to_s %></span>
 	</p>
 
-  	<p>Geo-location information available asynchronously, 
-	so you may have to <a href="/app/GeoLocation" target="_self">refresh page</a> 
-	to see results of ruby calls</p>
-	
 <% if System::get_property('platform') != 'WINDOWS' %>
 		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=Google"
 			target="_self">[show Google map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>

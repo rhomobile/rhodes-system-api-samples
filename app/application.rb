@@ -19,7 +19,7 @@ class AppApplication < Rho::RhoApplication
   def on_activate_app
     $mt_string += "Activation callback called<br/>"
     #start geolocation
-    GeoLocation.known_position?
+    #GeoLocation.known_position?
     #GeoLocation.set_notification("/app/Settings/geo_callback", "")
     
     System.set_push_notification("/app/Settings/push_callback", "")
