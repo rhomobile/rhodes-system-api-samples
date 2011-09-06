@@ -12,7 +12,7 @@ capabilities:
 bbver: 7.0
 sdk: c:/Projects/rhodes
 #sdk: "E:/_proj/rhomobile/rhodes"
-sdkversion: 3.0.1
+#sdkversion: 3.0.1
 
 applog: rholog.txt
 version: 1.0.7
