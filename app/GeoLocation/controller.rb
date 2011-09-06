@@ -5,14 +5,30 @@ class GeoLocationController < Rho::RhoController
   
   def index
     puts "GeoLocation index controller"
-    set_geoview_notification( url_for(:action => :geo_viewcallback), "", 2)  if System::get_property('platform') == 'Blackberry'
+    if System::get_property('platform') == 'Blackberry'
+        set_geoview_notification url_for(:action => :geo_callback), "", 2
+    else
+        GeoLocation.set_notification url_for(:action => :geo_callback), "", 30
+    end
     render :back => '/app'
   end
   
-  def geo_viewcallback
-    puts "geo_viewcallback : #{@params}"
+  def geo_callback
+    puts "geo_callback : #{@params}"
+
+    if WebView.current_location !~ /GeoLocation/
+        puts "Stopping geo location since we are away of geo page"
+        GeoLocation.turnoff
+        return
+    end
     
-    WebView.refresh if @params['known_position'].to_i != 0 && @params['status'] =='ok'
+    if @params['known_position'].to_i != 0 && @params['status'] =='ok'
+        if System::get_property('platform') == 'Blackberry'
+            WebView.refresh
+        else
+            WebView.execute_js("updateLocation(#{@params['latitude']}, #{@params['longitude']})")
+        end
+    end
   end
   
   def show 
@@ -38,9 +54,9 @@ class GeoLocationController < Rho::RhoController
 
      #  add annotation with customized image :
      myannotations << {:latitude => '60.0270', :longitude => '30.299', :title => "Original Location", :subtitle => "orig test", :url => "/app/GeoLocation/show?city=Original Location"}	
-     myannotations << {:latitude => '60.0270', :longitude => '30.33', :title => "Red Location", :subtitle => "red test", :url => "/app/GeoLocation/show?city=Red Location", :image => '/public/images/marker_red.png', :image_x_offset => 8, :image_y_offset => 32 }	
-     myannotations << {:latitude => '60.0270', :longitude => '30.36', :title => "Green Location", :subtitle => "green test", :url => "/app/GeoLocation/show?city=Green Location", :image => '/public/images/marker_green.png', :image_x_offset => 8, :image_y_offset => 32 }	
-     myannotations << {:latitude => '60.0270', :longitude => '30.39', :title => "Blue Location", :subtitle => "blue test", :url => "/app/GeoLocation/show?city=Blue Location", :image => '/public/images/marker_blue.png', :image_x_offset => 8, :image_y_offset => 32 }	
+     myannotations << {:latitude => '60.0270', :longitude => '30.33', :title => "Red", :subtitle => "r tst", :url => "/app/GeoLocation/show?city=Red Location", :image => '/public/images/marker_red.png', :image_x_offset => 8, :image_y_offset => 32 }	
+     myannotations << {:latitude => '60.0270', :longitude => '30.36', :title => "Green Location", :subtitle => "green test", :image => '/public/images/marker_green.png', :image_x_offset => 8, :image_y_offset => 32 }	
+     myannotations << {:latitude => '60.0270', :longitude => '30.39', :title => "Blue Location Bla-Bla-Bla !!!", :subtitle => "blue test1\nblue test2\nblue 1234567890 1234567890 1234567890 test3", :url => "/app/GeoLocation/show?city=Blue Location", :image => '/public/images/marker_blue.png', :image_x_offset => 8, :image_y_offset => 32 }	
 
     map_params = {
           :provider => @params['provider'],
@@ -48,6 +64,10 @@ class GeoLocationController < Rho::RhoController
                         :zoom_enabled => true, :scroll_enabled => true, :shows_user_location => true, :api_key => '0jDNua8T4Teq0RHDk6_C708_Iiv45ys9ZL6bEhw'},
           :annotations => myannotations
      }
+
+     if @params['provider'] == 'RhoGoogle'
+         MapView.set_file_caching_enable(1)
+     end 
 
      puts map_params.inspect            
      MapView.create map_params
@@ -67,7 +87,7 @@ class GeoLocationController < Rho::RhoController
      #region = {:center => @params['latitude'] + ',' + @params['longitude'], :radius => 0.2}
 
      myannotations = []
-     250.times do |j|
+     2500.times do |j|
           annotation = {:latitude => @params['latitude'], :longitude => @params['longitude'], :title => "Current location", :subtitle => "test", :url => "/app/GeoLocation/show?city=Current Location"}	
           myannotations << annotation
      end

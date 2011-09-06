@@ -141,4 +141,14 @@ class SystemTestController < Rho::RhoController
     render :action => :index
   end
 
+  def set_badge_5
+      System.set_application_icon_badge(5)
+      render :action => :index
+  end
+
+  def set_badge_0
+      System.set_application_icon_badge(0)
+      render :action => :index
+  end
+
 end
