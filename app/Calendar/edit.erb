@@ -50,17 +50,27 @@
     </div>
     <!-- Recurrency -->
     <div class="row">
-      <input type="checkbox" name="recurrence" value="<%= !@event[Rho::RhoEvent::RECURRENCE].nil? unless @event.nil? %>" />
+      <input type="checkbox" name="recurrence" <%= "checked='checked'" unless @event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil? %> />
       <label> Recurrent</label><br/>
       <label>Frequency: </label>
-      <select name="frequency" value="<%= @event[Rho::RhoEvent::RECURRENCE][Rho::RhoEvent::RECURRENCE_FREQUENCY] unless @event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil? %>">
-        <option><%= Rho::RhoEvent::RECURRENCE_FREQUENCY_DAILY %></option>
-        <option><%= Rho::RhoEvent::RECURRENCE_FREQUENCY_WEEKLY %></option>
-        <option><%= Rho::RhoEvent::RECURRENCE_FREQUENCY_MONTHLY %></option>
-        <option><%= Rho::RhoEvent::RECURRENCE_FREQUENCY_YEARLY %></option>
+      <%
+         is_off = "undefined"
+         is_daily = Rho::RhoEvent::RECURRENCE_FREQUENCY_DAILY
+         is_weekly = Rho::RhoEvent::RECURRENCE_FREQUENCY_WEEKLY
+         is_monthly = Rho::RhoEvent::RECURRENCE_FREQUENCY_MONTHLY
+         is_yearly = Rho::RhoEvent::RECURRENCE_FREQUENCY_YEARLY
+
+         freq = (@event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil?) ? is_off : @event[Rho::RhoEvent::RECURRENCE][Rho::RhoEvent::RECURRENCE_FREQUENCY]
+      %>
+      <select name="frequency">
+        <option value="<%= is_daily %>"   <%= "selected='selected'" if is_daily   == freq %>><%= is_daily %></option>
+        <option value="<%= is_weekly %>"  <%= "selected='selected'" if is_weekly  == freq %>><%= is_weekly %></option>
+        <option value="<%= is_monthly %>" <%= "selected='selected'" if is_monthly == freq %>><%= is_monthly %></option>
+        <option value="<%= is_yearly %>"  <%= "selected='selected'" if is_yearly  == freq %>><%= is_yearly %></option>
       </select><br/>
       <label>Interval: </label>
-      <input type="number" name="interval" value="<%= @event[Rho::RhoEvent::RECURRENCE][Rho::RhoEvent::RECURRENCE_INTERVAL] unless @event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil? %>" />
+      <input type="number" name="interval"
+             value="<%= @event[Rho::RhoEvent::RECURRENCE][Rho::RhoEvent::RECURRENCE_INTERVAL] unless @event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil? %>" />
     </div>
   </fieldset>
   <input type="submit" value="<%= button %>"/>

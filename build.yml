@@ -11,6 +11,8 @@ capabilities:
 
 bbver: 7.0
 sdk: c:/Projects/rhodes
+#sdk: "E:/_proj/rhomobile/rhodes"
+sdkversion: 3.0.1
 
 applog: rholog.txt
 version: 1.0.7
@@ -32,6 +34,7 @@ android:
   capabilities:
   - network_state
   - sdcard
+  - calendar
   mapping: yes
   version: 2.1
 
