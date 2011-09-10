@@ -40,6 +40,14 @@ function updateLocation(lat, lng) {
 		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=RhoGoogle"
 			target="_self">[show RhoGoogle map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
     
+		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=ESRI"
+			target="_self">[show ESRI map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
+
+		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=OSM"
+			target="_self">[show OSM map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> ]</a></p>
+
+		<p><a href="/app/GeoLocation/preload_map?provider=OSM&map_type=roadmap"
+			target="_self">preload OSM map for Saint-Petersburg </a></p>
 
 		<p><a href="/app/GeoLocation/showmap_250?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=Google"
 			target="_self">[show Google map at location <%= GeoLocation.latitude.to_s%>,longitude=<%= GeoLocation.longitude.to_s%> with 2500 pins]</a></p>
