@@ -17,7 +17,7 @@ class GeoLocationController < Rho::RhoController
     puts "geo_callback : #{@params}"
 
     if WebView.current_location !~ /GeoLocation/
-        puts "Stopping geo location since we are away of geo page"
+        puts "Stopping geo location since we are away of geo page: " + WebView.current_location
         GeoLocation.turnoff
         return
     end
