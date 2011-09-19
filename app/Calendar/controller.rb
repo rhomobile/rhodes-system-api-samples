@@ -47,6 +47,7 @@ class CalendarController < Rho::RhoController
 
   def save
     event = @params['event']
+    event[Rho::RhoEvent::END_DATE] = nil if event[Rho::RhoEvent::END_DATE] == ''
     recurrence = !@params['recurrence'].nil?
     frequency = @params['frequency']
     interval = @params['interval']
