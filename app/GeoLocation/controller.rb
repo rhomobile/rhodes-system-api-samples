@@ -50,11 +50,13 @@ class GeoLocationController < Rho::RhoController
      puts @params.inspect
      #pin color
      if @params['latitude'].to_i == 0 and @params['longitude'].to_i == 0
-       @params['latitude'] = '37.349691'
-       @params['longitude'] = '-121.983261'
+       #@params['latitude'] = '37.349691'
+       #@params['longitude'] = '-121.983261'
+       @params['latitude'] = '59.9'
+       @params['longitude'] = '30.3'
      end
      
-     region = [@params['latitude'], @params['longitude'], 0.2, 0.2]     
+     region = [@params['latitude'], @params['longitude'], 0.6, 0.6]     
      #region = {:center => @params['latitude'] + ',' + @params['longitude'], :radius => 0.2}
 
      myannotations = []
