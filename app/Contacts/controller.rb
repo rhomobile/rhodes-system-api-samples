@@ -101,7 +101,11 @@ class ContactsController < Rho::RhoController
   end
  
   def test_remove
-    contacts = Rho::RhoContact.find :all
+    if System::get_property('platform') == "ANDROID"
+        contacts = Rho::RhoContact.find :all, :select => ["last_name"]
+    else
+        contacts = Rho::RhoContact.find :all
+    end
 
     contacts.each do |contact|
       if contact[1]["last_name"] == "RhoTest"
