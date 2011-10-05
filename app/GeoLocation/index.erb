@@ -37,27 +37,31 @@ function updateLocation(lat, lng) {
 		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=Google"
 			target="_self">[show Google map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> ]</a></p>
     
-		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=RhoGoogle"
-			target="_self">[show RhoGoogle map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> ]</a></p>
-    
-		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=ESRI"
-			target="_self">[show ESRI map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> ]</a></p>
-
-		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=OSM"
-			target="_self">[show OSM map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> ]</a></p>
-
-		<p><a href="/app/GeoLocation/preload_map?provider=OSM&map_type=roadmap"
-			target="_self">preload OSM map for Saint-Petersburg </a></p>
-
 		<p><a href="/app/GeoLocation/showmap_250?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=Google"
 			target="_self">[show Google map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> with 2500 pins]</a></p>
 
         <p><a href="/app/GeoLocation/showmap_coding?provider=Google" target="_self">[show Google map at location : NG10 3XL ]</a></p>    
+    
 <% else %>      
 		<p><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Google Map'} %>"
 			target="_self">[show Google map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> ]</a></p>
     
 <% end %>      
+
+    <% if System::get_property('platform') == 'WINDOWS' || System::get_property('platform') == 'ANDROID'%>    
+		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=RhoGoogle"
+			target="_self">[show RhoGoogle map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> ]</a></p>
+    
+		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=OSM"
+			target="_self">[show OSM map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> ]</a></p>
+
+        <% if System::get_property('platform') != 'WINDOWS' %>
+		    <p><a href="/app/GeoLocation/preload_map?provider=OSM&map_type=roadmap"
+			    target="_self">preload OSM map for Saint-Petersburg </a></p>
+        <% end %>                  
+        
+    <% end %>      
+
     
 <br>
 		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=ESRI"
