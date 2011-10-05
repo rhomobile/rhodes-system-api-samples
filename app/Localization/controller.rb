@@ -9,4 +9,11 @@ class LocalizationController < Rho::RhoController
   
     render :back => '/app'
   end
+  
+  def change_locale_to_spanish
+  
+    System::set_locale("es")
+    redirect :action => :index  
+  end
+  
 end

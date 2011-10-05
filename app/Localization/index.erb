@@ -14,6 +14,9 @@
     <li>Date.today.strftime("%B %e, %Y"): <br/><%= Date.today.strftime("%B %e, %Y") %></li>
     <li>Rho::NumberHelper::number_to_currency(10000): <br/><%= Rho::NumberHelper.number_to_currency(10000) %></li>
 </ul>
+
+<%= link_to 'Change Locale to Spanish', { :action => :change_locale_to_spanish }%>
+
 <p>To test do the following</p>
 1. run on the phone with non-english default language(russian for example) <br/>
 2. see rhodes\lib\extensions\rholang for supported languages <br/>
