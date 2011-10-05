@@ -41,7 +41,17 @@ class GeoLocationController < Rho::RhoController
 
   def preload_map
       puts '$$$ preload map START'
-      count = MapView.preload_map_tiles(@params['provider'], @params['map_type'], 60.1, 30.0, 59.7, 30.6, 8, 10, url_for(:action => :preload_callback))    
+      
+      options = { :engine => @params['provider'],
+          :map_type => @params['map_type'],
+          :top_latitude => 60.1,
+          :left_longitude => 30.0,
+          :bottom_latitude => 59.7,
+          :right_longitude => 30.6,
+          :min_zoom => 9,
+          :max_zoom => 11
+        }
+      count = MapView.preload_map_tiles(options, url_for(:action => :preload_callback))    
       puts '$$$ preload map FINISH   count = '+count.to_s
       redirect :action => :index
   end
