@@ -41,13 +41,18 @@ class GeoLocationController < Rho::RhoController
 
   def preload_map
       puts '$$$ preload map START'
-      count = MapView.preload_map_tiles(@params['provider'], @params['map_type'], 60.1, 30.0, 59.7, 30.6, 3, 13, url_for(:action => :preload_callback))    
+      count = MapView.preload_map_tiles(@params['provider'], @params['map_type'], 60.1, 30.0, 59.7, 30.6, 8, 10, url_for(:action => :preload_callback))    
       puts '$$$ preload map FINISH   count = '+count.to_s
       redirect :action => :index
   end
 
   def showmap
      puts @params.inspect
+     
+    if System::get_property('platform') != 'Blackberry'
+        GeoLocation.set_notification "", ""
+    end
+     
      #pin color
      if @params['latitude'].to_i == 0 and @params['longitude'].to_i == 0
        #@params['latitude'] = '37.349691'
