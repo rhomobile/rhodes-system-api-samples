@@ -9,9 +9,9 @@ capabilities:
 - bluetooth
 - calendar
 
-bbver: 7.0
-sdk: c:/Projects/rhodes
-#sdk: "E:/_proj/rhomobile/rhodes"
+bbver: 5.0
+#sdk: c:/Projects/rhodes
+#sdk: C:\Ruby192\lib\ruby\gems\1.9.1\gems\rhodes-3.2.0.beta.4
 #sdkversion: 3.0.1
 
 applog: rholog.txt
