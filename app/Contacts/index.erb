@@ -4,10 +4,21 @@
 	</h1>
 </div>
 
+<%if System::get_property('platform') == "ANDROID"%>
+<div>Contacts count: <%=@count%><br/>Apply filter:<br/>
+<%=link_to "With phones only", { :action => :phones_only }%><br/>
+<%=link_to "With both phones and emails only", { :action => :phones_emails_only }%><br/>
+</div>
+<%end%>
+
 <ul id="contacts" title="Contacts">
 <%=link_to "New...", { :action => :new }, "class=\"button right_button\"" %>	
 <%@contacts.each do |x|%>
-<li><%=link_to "#{x[1]['first_name']} #{x[1]['last_name'] }: #{x[1]['mobile_number']}", :action => :show, :id => x[1]['id']%></li>
+<%if System::get_property('platform') == "ANDROID"%>
+<li><%=link_to "#{x[1]['display_name']}: #{x[1]['mobile_number']}", :action => :show, :id => x[1]['id']%></li>
+<%else%>
+<li><%=link_to "#{x[1]['first_name']} #{x[1]['last_name'] }", :action => :show, :id => x[1]['id']%></li>
+<%end%>
 <%end%>
 </ul>
 
@@ -18,7 +29,7 @@
 <%end%>
 <%end%>
 </div>
-
+&nbsp;<br/>
 <div>
 <%=link_to "Create test contacts", { :action => :test_create }%><br/>
 <%=link_to "Remove test contacts", { :action => :test_remove }%>

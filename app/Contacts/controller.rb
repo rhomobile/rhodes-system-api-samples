@@ -33,7 +33,45 @@ class ContactsController < Rho::RhoController
     end
     render :back => '/app'
   end
- 
+
+  def phones_only
+        @count = Rho::RhoContact.find(:count, :conditions => {:phone => 'not_nil'})
+        if @params['offset']
+            @offset = @params['offset'].to_i
+        else
+            @offset = 0;
+        end
+
+        @contacts = Rho::RhoContact.find(:all, :per_page => 10, :offset => @offset, :select => ["id", "display_name", "first_name", "last_name", "mobile_number"], :conditions => {:phone => 'not_nil'})
+        @contacts = {} unless @contacts
+        @contacts = @contacts.sort do |x,y| 
+          res = 1 if x[1]['display_name'].nil? 
+          res = -1 if y[1]['display_name'].nil?
+          res = x[1]['display_name'] <=> y[1]['display_name'] unless res
+          res
+        end
+        render :action => :phones_only
+  end 
+
+  def phones_emails_only
+        @count = Rho::RhoContact.find(:count, :conditions => {:phone => 'not_nil', :email => 'not_nil'})
+        if @params['offset']
+            @offset = @params['offset'].to_i
+        else
+            @offset = 0;
+        end
+
+        @contacts = Rho::RhoContact.find(:all, :per_page => 10, :offset => @offset, :select => ["id", "display_name", "first_name", "last_name", "mobile_number"], :conditions => {:phone => 'not_nil', :email => 'not_nil'})
+        @contacts = {} unless @contacts
+        @contacts = @contacts.sort do |x,y| 
+          res = 1 if x[1]['display_name'].nil? 
+          res = -1 if y[1]['display_name'].nil?
+          res = x[1]['display_name'] <=> y[1]['display_name'] unless res
+          res
+        end
+        render :action => :phones_emails_only
+  end 
+
   # GET /Contacts/1
   def show
     @contact = Rho::RhoContact.find(@params['id'])
@@ -107,9 +145,11 @@ class ContactsController < Rho::RhoController
         contacts = Rho::RhoContact.find :all
     end
 
-    contacts.each do |contact|
-      if contact[1]["last_name"] == "RhoTest"
-        Rho::RhoContact.destroy(contact[1]['id'])
+    if contacts
+      contacts.each do |contact|
+        if contact[1]["last_name"] == "RhoTest"
+          Rho::RhoContact.destroy(contact[1]['id'])
+        end
       end
     end
 

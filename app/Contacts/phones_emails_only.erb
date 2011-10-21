@@ -1,0 +1,22 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		Contacts with phones and emails
+	</h1>
+</div>
+
+<div>Contacts count: <%=@count%><br/>
+<%=link_to "Reset filter", :action => :index %><br/>
+</div>
+
+<ul id="contacts" title="Contacts">
+<%=link_to "New...", { :action => :new }, "class=\"button right_button\"" %>	
+<%@contacts.each do |x|%>
+<li><%=link_to "#{x[1]['display_name']}: #{x[1]['mobile_number']}", :action => :show, :id => x[1]['id']%></li>
+<%end%>
+</ul>
+
+<div>&nbsp;
+<%if @offset+10 < @count %>
+<%=link_to "Next page >>", { :action => :phones_emails_only, :query => {:offset => @offset+10} }%>
+<%end%>
+</div>
