@@ -4,6 +4,7 @@ require 'rho/rhoerror'
 require 'helpers/browser_helper'
 
 class JQueryMobileTestController < Rho::RhoController
+  @layout = 'JQueryMobileTest/layout'
   include BrowserHelper
   @@msg = ""
 

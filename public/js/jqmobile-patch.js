@@ -34,17 +34,39 @@
     });
 
     $.ajaxPrefilter(function(options, originalOptions, jqXHR){
-        var origSuccess = options.success;
+        // we may have no explicit success handler!
+        if (!options.success) return;
 
+        var origSuccess = options.success;
         options.success = function(html, textStatus, jqXHR) {
             if (jqXHR.getResponseHeader('Wait-Page')) {
-                // do nothing
+                // We cannot just do nothing on wait-page being received, because
+                // at this moment jQM already have isPageTransitioning lock is set.
+                // Due to this lock is private part of jQM we have no control on it.
+                // So we are going to tag Wait-Page HTML content by some HTML attribute
+                // to detect it in "pagebeforechange" event handler and then perform
+                // preventDefault() to let jQM to release isPageTransitioning lock.
+                origSuccess('<div data-role="page" data-rho-wait-page="true"><!-- intentionally empty --></div>');
             } else {
                 origSuccess(html);
             }
         }
 
     });
+
+    $(document).bind( "pagebeforechange", function(e, data) {
+        // We only want to handle changePage() calls where the caller is
+        // providing us an already loaded page.
+        if ( !(typeof data.toPage === "string") ) {
+            var pageDiv = data.toPage[0];
+            if ("true" === pageDiv.getAttribute("data-rho-wait-page")) {
+                //Make sure to tell changePage() we've handled this call so it doesn't
+                //have to do anything. So jQM can release isPageTransitioning lock
+                e.preventDefault();
+            }
+        }
+    });
+
 
     //shared page enhancements
 	function enhancePage( $page, role ) {
@@ -58,8 +80,11 @@
 		$page.page();
 	}
 
+    // hijack $.mobile.loadPage function
     var path = $.mobile.path;
     var original_loadPage = $.mobile.loadPage;
+    // introduce custom initialization parameter support
+    original_loadPage.defaults.loadMsgDelay = $.mobile.loadingMessageDelay || original_loadPage.defaults.loadMsgDelay;
 
     $.mobile.loadPage = function( url, options ) {
 
@@ -85,18 +110,29 @@
 			// page is loaded off the network.
 			dupCachedPage = null,
 
+			// determine the current base url
+			findBaseWithDefault = function(){
+				var closestBase = ( $.mobile.activePage && getClosestBaseUrl( $.mobile.activePage ) );
+				return closestBase || documentBase.hrefNoHash;
+			},
+
             /*
 			// The absolute version of the URL passed into the function. This
 			// version of the URL may contain dialog/subpage params in it.
-			absUrl = path.makeUrlAbsolute( url, documentBase.hrefNoHash );
+			absUrl = path.makeUrlAbsolute( url, findBaseWithDefault() );
             */
-        absUrl = "";
+            absUrl = "";
 
 		// If the caller provided data, and we're using "get" request,
 		// append the data to the URL.
 		if ( settings.data && settings.type === "get" ) {
 			absUrl = path.addSearchParams( absUrl, settings.data );
 			settings.data = undefined;
+		}
+
+		// If the caller is using a "post" request, reloadPage must be true
+		if(  settings.data && settings.type === "post" ){
+			settings.reloadPage = true;
 		}
 
 			// The absolute version of the URL minus any dialog/subpage params.
@@ -115,6 +151,21 @@
 
 		// Check to see if the page already exists in the DOM.
 		page = settings.pageContainer.children( ":jqmData(url='" + dataUrl + "')" );
+
+		// If we failed to find the page, check to see if the url is a
+		// reference to an embedded page. If so, it may have been dynamically
+		// injected by a developer, in which case it would be lacking a data-url
+		// attribute and in need of enhancement.
+		if ( page.length === 0 && dataUrl && !path.isPath( dataUrl ) ) {
+			page = settings.pageContainer.children( "#" + dataUrl )
+				.attr( "data-" + $.mobile.ns + "url", dataUrl )
+		}
+
+		// If we failed to find a page in the DOM, check the URL to see if it
+		// refers to the first page in the application.
+		if ( page.length === 0 && $.mobile.firstPage && absUrl && path.isFirstPageUrl( absUrl ) ) {
+			page = $( $.mobile.firstPage );
+		}
 
         /*
 		// Reset base to the default document base.
@@ -138,9 +189,35 @@
 		}
         */
 
-		if ( settings.showLoadMsg ) {
-			$.mobile.showPageLoadingMsg();
-		}
+        var mpc = settings.pageContainer,
+            pblEvent = new $.Event( "pagebeforeload" ),
+            triggerData = { url: url, absUrl: absUrl, dataUrl: dataUrl, deferred: deferred, options: settings };
+
+        // Let listeners know we're about to load a page.
+        mpc.trigger( pblEvent, triggerData );
+
+        // If the default behavior is prevented, stop here!
+        if( pblEvent.isDefaultPrevented() ){
+            return deferred.promise();
+        }
+
+        if ( settings.showLoadMsg ) {
+
+            // This configurable timeout allows cached pages a brief delay to load without showing a message
+            var loadMsgDelay = setTimeout(function(){
+                    $.mobile.showPageLoadingMsg();
+                }, settings.loadMsgDelay ),
+
+                // Shared logic for clearing timeout and removing message.
+                hideMsg = function(){
+
+                    // Stop message show timer
+                    clearTimeout( loadMsgDelay );
+
+                    // Hide loading message
+                    $.mobile.hidePageLoadingMsg();
+                };
+        }
 
         setHtml(options.html);
 
@@ -153,7 +230,7 @@
                     newPageTitle = html.match( /<title[^>]*>([^<]*)/ ) && RegExp.$1,
 
                     // TODO handle dialogs again
-                    pageElemRegex = new RegExp( ".*(<[^>]+\\bdata-" + $.mobile.ns + "role=[\"']?page[\"']?[^>]*>).*" ),
+                    pageElemRegex = new RegExp( "(<[^>]+\\bdata-" + $.mobile.ns + "role=[\"']?page[\"']?[^>]*>)" ),
                     dataUrlRegex = new RegExp( "\\bdata-" + $.mobile.ns + "url=[\"']?([^\"'>]*)[\"']?" );
 
 
@@ -165,6 +242,11 @@
                     && RegExp.$1 ) {
                 url = fileUrl = path.getFilePath( RegExp.$1 );
             }
+            /*
+            else{
+
+            }
+            */
 
             /*
             if ( base ) {
@@ -175,6 +257,11 @@
             //workaround to allow scripts to execute when included in page divs
             all.get( 0 ).innerHTML = html;
             page = all.find( ":jqmData(role='page'), :jqmData(role='dialog')" ).first();
+
+            //if page elem couldn't be found, create one and insert the body element's contents
+            if( !page.length ){
+                page = $( "<div data-" + $.mobile.ns + "role='page'>" + html.split( /<\/?body[^>]*>/gmi )[1] + "</div>" );
+            }
 
             if ( newPageTitle && !page.jqmData( "title" ) ) {
                 page.jqmData( "title", newPageTitle );
@@ -200,9 +287,16 @@
             }
 
             //append to page and enhance
+            // TODO taging a page with external to make sure that embedded pages aren't removed
+            //      by the various page handling code is bad. Having page handling code in many
+            //      places is bad. Solutions post 1.0
             page
                 .attr( "data-" + $.mobile.ns + "url", path.convertUrlToDataUrl( fileUrl ) )
+                .attr( "data-" + $.mobile.ns + "external-page", true )
                 .appendTo( settings.pageContainer );
+
+            // wait for page creation to leverage options defined on widget
+            page.one( 'pagecreate', $.mobile._bindPageRemove );
 
             enhancePage( page, settings.role );
 
@@ -213,23 +307,28 @@
                 page = settings.pageContainer.children( ":jqmData(url='" + dataUrl + "')" );
             }
 
+            //bind pageHide to removePage after it's hidden, if the page options specify to do so
+
             // Remove loading message.
             if ( settings.showLoadMsg ) {
-                $.mobile.hidePageLoadingMsg();
+                hideMsg();
             }
+
+            // Add the page reference to our triggerData.
+            triggerData.page = page;
+
+            // Let listeners know the page loaded successfully.
+            settings.pageContainer.trigger( "pageload", triggerData );
 
             deferred.resolve( absUrl, options, page, dupCachedPage );
         }
 
 		return deferred.promise();
 	};
+    // copy original defaults
+    $.mobile.loadPage.defaults = original_loadPage.defaults;
 
     function insertAsyncPage(data) {
-        setTimeout(function(){
-            /*$('.waiting').remove();*/
-            $.mobile.hidePageLoadingMsg();
-        },450);
-
         $.mobile.loadPage("inline://", {html: data})
             .done(function( url, options, newPage, dupCachedPage ) {
                 options.duplicateCachedPage = dupCachedPage;
