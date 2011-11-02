@@ -21,7 +21,8 @@ class BarcodeRecognizerController < Rho::RhoController
   end
 
   def take
-      Barcode.take_barcode(url_for :action => :take_callback)
+      Barcode.take_barcode(url_for(:action => :take_callback), {})
+      #Barcode.take_barcode(url_for(:action => :take_callback), {:camera => 'front'})
       redirect :action => :index
   end
 
