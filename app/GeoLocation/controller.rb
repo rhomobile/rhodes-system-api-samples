@@ -80,10 +80,10 @@ class GeoLocationController < Rho::RhoController
      myannotations << {:street_address => "Santa Clara, CA 95051", :title => "Santa Clara", :subtitle => "zip: 95051", :url => "/app/GeoLocation/show?city=Santa%20Clara", :pass_location => '1' }
 
      #  add annotation with customized image :
-     myannotations << {:latitude => '60.0270', :longitude => '30.299', :title => "Original Location", :subtitle => "orig test", :url => "/app/GeoLocation/show?city=Original Location", :pass_location => '1'}	
-     myannotations << {:latitude => '60.0270', :longitude => '30.33', :title => "Red", :subtitle => "r tst", :url => "/app/GeoLocation/show?city=Red Location", :image => '/public/images/marker_red.png', :image_x_offset => 8, :image_y_offset => 32, :pass_location => '1' }
+     myannotations << {:latitude => '60.0270', :longitude => '30.299', :title => "Original Location", :subtitle => "orig test", :url => "/app/GeoLocation/show?city=Original_Location", :pass_location => '1'}	
+     myannotations << {:latitude => '60.0270', :longitude => '30.33', :title => "Red", :subtitle => "r tst", :url => "/app/GeoLocation/show?city=Red_Location", :image => '/public/images/marker_red.png', :image_x_offset => 8, :image_y_offset => 32, :pass_location => '1' }
      myannotations << {:latitude => '60.0270', :longitude => '30.36', :title => "Green Location", :subtitle => "green test", :image => '/public/images/marker_green.png', :image_x_offset => 8, :image_y_offset => 32, :pass_location => '1' }
-     myannotations << {:latitude => '60.0270', :longitude => '30.39', :title => "Blue Location Bla-Bla-Bla !!!", :subtitle => "blue test1\nblue test2\nblue 1234567890 1234567890 1234567890 test3", :url => "/app/GeoLocation/show?city=Blue Location", :image => '/public/images/marker_blue.png', :image_x_offset => 8, :image_y_offset => 32, :pass_location => '1' }
+     myannotations << {:latitude => '60.0270', :longitude => '30.39', :title => "Blue Location Bla-Bla-Bla !!!", :subtitle => "blue test1\nblue test2\nblue 1234567890 1234567890 1234567890 test3", :url => "/app/GeoLocation/show?city=Blue_Location", :image => '/public/images/marker_blue.png', :image_x_offset => 8, :image_y_offset => 32, :pass_location => '1' }
 
 
      myannotations << {:latitude => '60.1', :longitude => '30.0', :title => "PRELOAD MARKER", :subtitle => ""}	
