@@ -5,7 +5,7 @@ class ContactsController < Rho::RhoController
  
   # GET /Contacts
   def index
-    if System::get_property('platform') == "ANDROID"
+    if System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'APPLE'
         @count = Rho::RhoContact.find(:count)
         if @params['offset']
             @offset = @params['offset'].to_i
@@ -15,10 +15,16 @@ class ContactsController < Rho::RhoController
 
         @contacts = Rho::RhoContact.find(:all, :per_page => 10, :offset => @offset, :select => ["id", "display_name", "first_name", "last_name", "mobile_number"])
         @contacts = {} unless @contacts
-        @contacts = @contacts.sort do |x,y| 
-          res = 1 if x[1]['display_name'].nil? 
-          res = -1 if y[1]['display_name'].nil?
-          res = x[1]['display_name'] <=> y[1]['display_name'] unless res
+        @contacts = @contacts.sort do |x,y|
+          if x[1]['display_name'].nil? and y[1]['display_name'].nil?
+            res = 1 if x[1]['first_name'].nil? 
+            res = -1 if y[1]['first_name'].nil?
+            res = x[1]['first_name'] <=> y[1]['first_name'] unless res
+          else
+            res = 1 if x[1]['display_name'].nil? 
+            res = -1 if y[1]['display_name'].nil?
+            res = x[1]['display_name'] <=> y[1]['display_name'] unless res
+          end
           res
         end
     else
@@ -153,6 +159,36 @@ class ContactsController < Rho::RhoController
       end
     end
 
+    redirect :action => :index
+  end
+  
+  def test_create_250
+    Alert.show_popup(
+        :message=>"Creating large amount of contacts may take long time.\nWould you like to proceed?",
+        :title=>"Create 250 contacts",
+        :buttons => ["Ok", "Cancel"],
+        :callback => url_for(:action => :create_250_alert)
+    )
+    render :action => :do_create
+  end
+  
+  def create_250_alert
+    puts @params.inspect
+    if @params['button_id'] == 'Ok'
+        WebView.navigate url_for :action => :do_create_250
+    else
+        WebView.navigate url_for :action => :index
+    end
+  end
+  
+  def do_create_250
+    250.times do |i|
+      contact = {"last_name" => "RhoTest", "mobile_number" => "+12345678091"}
+      contact["first_name"] = Time.new.nsec.to_s
+        
+      puts contact.inspect
+      Rho::RhoContact.create! contact
+    end
     redirect :action => :index
   end
  
