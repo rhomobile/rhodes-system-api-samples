@@ -15,5 +15,11 @@ class LocalizationController < Rho::RhoController
     System::set_locale("es")
     redirect :action => :index  
   end
+
+  def change_locale_to_english
+  
+    System::set_locale("en")
+    redirect :action => :index  
+  end
   
 end

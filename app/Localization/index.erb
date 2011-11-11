@@ -5,7 +5,10 @@
 </div>
 
 <ul id="home" selected="true">
+    
+  <% if System::get_property('platform') != 'WP7'%>    
     <li>UTF-8 encoded string: <br/><%= "Utf8 String".force_encoding( Encoding::UTF_8) %></li>
+  <% end %>
 
     <li>Russian text(7 Letters): Евгений</li>
     <li>Greeting text from app\lang\lang_* : <br/><%= Localization::Views[:greeting] %></li>
@@ -18,6 +21,7 @@
 </ul>
 
 <%= link_to 'Change Locale to Spanish', { :action => :change_locale_to_spanish }%>
+<%= link_to 'Change Locale to English', { :action => :change_locale_to_english }%>
 
 <p>To test do the following</p>
 1. run on the phone with non-english default language(russian for example) <br/>
