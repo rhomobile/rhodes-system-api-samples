@@ -53,6 +53,10 @@ ppi_x : <%=System.get_property('ppi_x') %> <br/>
 ppi_y : <%=System.get_property('ppi_y') %> <br/>
 has_camera : <%=System.get_property('has_camera') %> <br/>
 phone_number : <%=System.get_property('phone_number') %> <br/>
+<% if System::get_property('platform') == 'ANDROID' %>
+device owner name : <%=System.get_property('device_owner_name') %> <br/>
+device owner email : <%=System.get_property('device_owner_email') %> <br/>
+<% end %>  
 device_id : <%=System.get_property('device_id') %> <br/>
 phone_id : <%=System.get_property('phone_id') %> <br/>
 full_browser : <%=System.get_property('full_browser') %> <br/>
