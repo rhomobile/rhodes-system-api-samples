@@ -7,10 +7,11 @@ class CalendarController < Rho::RhoController
   @layout = 'Calendar/layout'
 
   def fetch_events
-    start = Time.utc(2007, 'jan', 1, 0, 0, 0)
-    finish = Time.utc(2012, 'dec', 31, 23, 59, 59)
-    @@events = Rho::RhoEvent.find(:all, :start_date => start, :end_date => finish, :find_type => 'starting', 
-        :include_repeating => true)
+    #start = Time.utc(Rho::RhoEvent::MIN_TIME.to_i)
+    #finish = Time.utc(2030, 'dec', 31, 23, 59, 59)
+    @@events = Rho::RhoEvent.find(:all,
+        :start_date => (Rho::RhoEvent::MIN_TIME + 1), :end_date => (Rho::RhoEvent::MAX_TIME - 1),
+        :find_type => 'starting', :include_repeating => false)
     puts "events : #{@@events}"
     
     @@events = @@events.sort do |x,y|
@@ -51,8 +52,11 @@ class CalendarController < Rho::RhoController
     recurrence = !@params['recurrence'].nil?
     frequency = @params['frequency']
     interval = @params['interval']
+    recurrence_end = @params['recurrence_end']
+    recurrence_times = @params['recurrence_times']
+    
     if recurrence
-      event['recurrence'] = { 'frequency' => frequency, 'interval' => interval }
+      event['recurrence'] = { 'frequency' => frequency, 'interval' => interval, 'end' => recurrence_end, 'times' => recurrence_times }
     end
     puts "event: #{event.inspect}"
     id = event[Rho::RhoEvent::ID]
