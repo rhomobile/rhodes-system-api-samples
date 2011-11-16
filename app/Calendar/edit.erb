@@ -24,11 +24,11 @@
       <input type="text" name="event[<%= Rho::RhoEvent::TITLE %>]" value="<%= @event[Rho::RhoEvent::TITLE] unless @event.nil? %>" />
     </div>
     <div class="row">
-      <label>Start Date: </label>
+      <label>Start Date/Time: </label>
       <input id="start_date" type="text" name="event[<%= Rho::RhoEvent::START_DATE %>]" value="<%= @event[Rho::RhoEvent::START_DATE] unless @event.nil? %>" <%= "readonly" unless System::get_property('platform') == 'Blackberry' ||System::get_property('platform') == 'WINDOWS' %> onClick="popupDateTimeAJPicker('Choose Start Date', 'start_date');" />
     </div>
     <div class="row">
-      <label>End Date: </label>
+      <label>End Date/Time: </label>
       <input id="end_date" type="text" name="event[<%= Rho::RhoEvent::END_DATE %>]" value="<%= @event[Rho::RhoEvent::END_DATE] unless @event.nil? %>" <%= "readonly" unless System::get_property('platform') == 'Blackberry' ||System::get_property('platform') == 'WINDOWS' %> onClick="popupDateTimeAJPicker('Choose End Date', 'end_date');" />
     </div>
     <div class="row">
@@ -51,7 +51,9 @@
     <!-- Recurrency -->
     <div class="row">
       <input type="checkbox" name="recurrence" <%= "checked='checked'" unless @event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil? %> />
-      <label> Recurrent</label><br/>
+      <label> Recurrent</label>
+    </div>
+    <div class="row">
       <label>Frequency: </label>
       <%
          is_off = "undefined"
@@ -67,10 +69,21 @@
         <option value="<%= is_weekly %>"  <%= "selected='selected'" if is_weekly  == freq %>><%= is_weekly %></option>
         <option value="<%= is_monthly %>" <%= "selected='selected'" if is_monthly == freq %>><%= is_monthly %></option>
         <option value="<%= is_yearly %>"  <%= "selected='selected'" if is_yearly  == freq %>><%= is_yearly %></option>
-      </select><br/>
+      </select>
+    </div>
+    <div class="row">
       <label>Interval: </label>
       <input type="number" name="interval"
              value="<%= @event[Rho::RhoEvent::RECURRENCE][Rho::RhoEvent::RECURRENCE_INTERVAL] unless @event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil? %>" />
+    </div>
+    <div class="row">
+      <label>Until Date:</label>
+      <input id="recurrence_end" type="text" name="recurrence_end" value="<%= @event[Rho::RhoEvent::RECURRENCE][Rho::RhoEvent::RECURRENCE_END] unless @event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil? %>" <%= "readonly" unless System::get_property('platform') == 'Blackberry' ||System::get_property('platform') == 'WINDOWS' %> onClick="popupDateTimeAJPicker('Choose Recurrence End Date', 'recurrence_end');" />
+    </div>
+    <div class="row">
+      <label>Times:</label>
+      <input type="number" name="recurrence_times"
+             value="<%= @event[Rho::RhoEvent::RECURRENCE][Rho::RhoEvent::RECURRENCE_COUNT] unless @event.nil? or @event[Rho::RhoEvent::RECURRENCE].nil? %>" />
     </div>
   </fieldset>
   <input type="submit" value="<%= button %>"/>

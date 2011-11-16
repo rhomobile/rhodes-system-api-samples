@@ -56,7 +56,11 @@ class CalendarController < Rho::RhoController
     recurrence_times = @params['recurrence_times']
     
     if recurrence
-      event['recurrence'] = { 'frequency' => frequency, 'interval' => interval, 'end' => recurrence_end, 'times' => recurrence_times }
+      event[Rho::RhoEvent::RECURRENCE] = {
+        Rho::RhoEvent::RECURRENCE_FREQUENCY => frequency,
+        Rho::RhoEvent::RECURRENCE_INTERVAL => interval,
+        Rho::RhoEvent::RECURRENCE_END => recurrence_end, 
+        Rho::RhoEvent::RECURRENCE_COUNT => recurrence_times }
     end
     puts "event: #{event.inspect}"
     id = event[Rho::RhoEvent::ID]
