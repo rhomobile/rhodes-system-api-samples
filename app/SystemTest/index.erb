@@ -53,6 +53,10 @@ ppi_x : <%=System.get_property('ppi_x') %> <br/>
 ppi_y : <%=System.get_property('ppi_y') %> <br/>
 has_camera : <%=System.get_property('has_camera') %> <br/>
 phone_number : <%=System.get_property('phone_number') %> <br/>
+<% if System::get_property('platform') == 'ANDROID' %>
+device owner name : <%=System.get_property('device_owner_name') %> <br/>
+device owner email : <%=System.get_property('device_owner_email') %> <br/>
+<% end %>  
 device_id : <%=System.get_property('device_id') %> <br/>
 phone_id : <%=System.get_property('phone_id') %> <br/>
 full_browser : <%=System.get_property('full_browser') %> <br/>
@@ -90,8 +94,15 @@ current_location : <%=WebView.current_location() %> <br/>
 <%= link_to 'Start Music app', url_for(:action => :start_music_app) %> <br/>
 <%= link_to 'Is Music app installed?', url_for(:action => :is_music_app_installed) %> <br/>
 <%= link_to 'Uninstall Music application', url_for(:action => :uninstall_music_app) %> <br/>
+hosts:
+<ul>
+<% open('/etc/hosts') do |file| 
+  file.each_line() do |line| %>
+    <li><%=line%></li>
+  <% end
+end %>
 <% end %>      
-<br/>
+</ul>
 <% if System::get_property('platform') == 'APPLE' %>
 <%= link_to 'Is Skype app installed?', url_for(:action => :is_skype_app_installed) %> <br/>
 <%= link_to 'Start Skype app', url_for(:action => :start_skype_app) %> <br/>
