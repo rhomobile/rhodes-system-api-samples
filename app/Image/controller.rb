@@ -73,7 +73,7 @@ class ImageController < Rho::RhoController
            img_width = @params['image_width']
            img_height = @params['image_height']
            img_format = @params['image_format']
-           puts ' Captured Image  Size:  '+img_width.to_s+'x'+img_height.to_s+',  Format: '+img_format
+           puts "Captured Image  Size: #{img_width}x#{img_height}, Format: #{img_format} "
       end
     end  
     WebView.navigate( url_for :action => :index )
