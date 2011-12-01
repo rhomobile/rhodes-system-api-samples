@@ -1,5 +1,8 @@
 <div>
     	<%= link_to '[Take Signature]', { :action => :new }%> <br>
+        <% if System::get_property('platform') == 'WINDOWS'%>               
+            <%= link_to '[Capture Signature]', { :action => :inline_capture }%> <br>
+        <% end %>                 
     <br/>
 	<% @signatures.reverse_each do |x|%>
  		<img src="<%=Rho::RhoApplication::get_blob_path(x.signature_uri)%>" width='300px'></img><a href="<%=url_for(:action => :delete, :id =>x.object)%>">Delete</a><br/>

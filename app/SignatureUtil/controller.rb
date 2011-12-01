@@ -14,7 +14,6 @@ class SignatureUtilController < Rho::RhoController
     redirect :action => :index
   end
 
-  
   def delete
     @signature = SignatureUtil.find(@params['id'])
     @signature.destroy
@@ -34,5 +33,17 @@ class SignatureUtilController < Rho::RhoController
     #render :action => :ok, :layout => false
     ""
   end
-      
+
+  def inline_capture
+    Rho::SignatureCapture.visible(true, :penColor => 0xff0000, :penWidth=>1, :border => true, :bgColor => 0x00ff00 )
+  end
+
+  def do_capture          
+    Rho::SignatureCapture.capture(url_for( :action => :signature_callback))    
+  end
+  
+  def clear_capture          
+    Rho::SignatureCapture.clear()    
+  end
+  
 end

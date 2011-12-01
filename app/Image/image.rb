@@ -1,7 +1,10 @@
 class Image
   include Rhom::PropertyBag
+  #include Rhom::FixedSchema
 
   enable :sync
-    
-  property :image_uri, :blob
+
+  property :name, :string
+  property :filename, :string
+  property :image_uri, :blob, :overwrite
 end
