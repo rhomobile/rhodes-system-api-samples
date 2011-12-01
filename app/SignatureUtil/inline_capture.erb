@@ -1,0 +1,24 @@
+<div>
+    inline capture signature
+
+    <a href="#" onclick="makeAjaxCall('/app/SignatureUtil/do_capture');return false;">Save</a>
+    <a href="#" onclick="makeAjaxCall('/app/SignatureUtil/clear_capture');return false;">Clear</a>
+</div>
+
+<script type="text/javascript">
+
+    function makeAjaxCall(url)
+    {
+        if (window.XMLHttpRequest)
+        {            
+            var xhr = new window.XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.send(null);
+        }else
+        {
+           	var xmlHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
+       		xmlHttpReq.open("GET", url, true);
+       		xmlHttpReq.send();
+        }
+    }
+</script>
