@@ -89,4 +89,26 @@ function updateLocation(lat, lng) {
 	<%= GeoLocation.haversine_distance(38.895, -77.036667, 40.716667, -74).to_s %> miles
 	</p>
 
+<br>
+
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'WINDOWS' %>
+
+  <input id="id_adress" type="text" name="id_adress" value=""></input>
+  <INPUT type="button" id="id_button_geo" value="request coordinates" name="id_button_geo" onClick="onGeoCodingRequest();">
+
+<% end %>
+
+
 </div>
+
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'WINDOWS' %>
+
+<script type="text/javascript">
+
+function onGeoCodingRequest() {
+  $.get('/app/GeoLocation/on_geocoding', { adress: document.getElementById("id_adress").value});
+  return false;
+}
+</script>
+
+<% end %>

@@ -168,4 +168,22 @@ def showmap_coding
      MapView.create map_params
      redirect :action => :index
   end        
+
+  def on_geocoding
+    adress_str = @params['adress']
+    GeoLocation.request_coordinates_by_adress({:adress => adress_str}, url_for(:action => :on_geocoding_callback))
+  end
+
+  def on_geocoding_callback
+      if @params['status'] =='ok'
+          Alert.show_popup  "GeoCoding result :  longitude="+@params['longitude'].to_s+"    latitude="+@params['latitude'].to_s
+      else
+          Alert.show_popup  "GeoCoding ERROR : "+@params['description'].to_s
+      end
+  end
+
+
+
+
+
 end
