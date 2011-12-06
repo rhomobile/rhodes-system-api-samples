@@ -165,7 +165,12 @@ Rhodes API tests
   <li>
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Video/audio test'} %>">Video/audio test</a>
   </li>
-  <% end %>   
+  <% end %>
+
+  <% if System::get_property('platform') == 'ANDROID' %>
+    <li><a href="<%= url_for :controller => :ZoomTest, :action => :index %>">Zoom test</a></li>
+  <% end %>
+
     <li><a href="UIFormDemo">UI Form Demo</a></li>
     <% if System::get_property('platform') != 'WP7' %>
     <li><a href="JQTouchTest">UI JQTouch Form Demo</a></li> 
