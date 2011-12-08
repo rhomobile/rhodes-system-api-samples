@@ -93,9 +93,14 @@ function updateLocation(lat, lng) {
 
 <% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'WINDOWS' %>
 
-Enter adress for GeoCoding :
+Enter adress for GeoCoding : <br>
   <input id="id_adress" type="text" name="id_adress" value=""></input> <br>
   <INPUT type="button" id="id_button_geo" value="request coordinates" name="id_button_geo" onClick="onGeoCodingRequest();">
+  <br>
+Enter coordinates for GeoCoding : <br>
+  Latitude :<input id="id_latitude" type="text" name="id_latitude" value=""></input> <br>
+  Longitude :<input id="id_longitude" type="text" name="id_longitude" value=""></input> <br>
+  <INPUT type="button" id="id_button_geo_inverse" value="request adress" name="id_button_geo_inverse" onClick="onGeoCodingInverseRequest();">
 
 <% end %>
 
@@ -110,6 +115,12 @@ function onGeoCodingRequest() {
   $.get('/app/GeoLocation/on_geocoding', { adress: document.getElementById("id_adress").value});
   return false;
 }
+
+function onGeoCodingInverseRequest() {
+  $.get('/app/GeoLocation/on_geocoding_inverse', { latitude: document.getElementById("id_latitude").value, longitude: document.getElementById("id_longitude").value});
+  return false;
+}
+
 </script>
 
 <% end %>
@@ -191,10 +202,49 @@ function ajaxCallWithParam(url, param_name, param_value)
   //alert("ajaxCallWithParam() FINISH");
 }
 
+function ajaxCallWithParam2(url, param_name, param_value, param_name2, param_value2)
+{
+  //alert("ajaxCallWithParam() START");
+        //Construct an XMLHTTP Object to handle our HTTP Request
+        if (xmlHttpReq != null){
+		xmlHttpReq = null;
+	}
+	if (xmlHttpReq == null) {
+		try { xmlHttpReq = new ActiveXObject("Msxml2.XMLHTTP"); }
+        	catch(e) {}
+	}
+	if (xmlHttpReq == null) {
+		try { xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP"); }
+        	catch(e) {}
+	}
+	if (xmlHttpReq == null) {
+        	alert("Can't make the call - xmlHttpReq is not available");
+        	return;
+	}
+  //alert("ajaxCallWithParam() 2");
+	//alert("about to open xmlHttpReq");
+        var params = '&' + param_name+'=' + encodeURIComponent(param_value) + '&' + param_name2+'=' + encodeURIComponent(param_value2);
+  //alert("ajaxCallWithParam() 3");
+	xmlHttpReq.open("GET", url+'?'+params, true);
+  //alert("ajaxCallWithParam() 4");
+        //xmlHttpReq.onreadystatechange = doHttpReadyStateChange;
+	//alert("about to send Req");
+   	xmlHttpReq.send();
+  //alert("ajaxCallWithParam() FINISH");
+}
+
+
+
 function onGeoCodingRequest() {
   ajaxCallWithParam('/app/GeoLocation/on_geocoding', 'adress', document.getElementById("id_adress").value);
   return false;
 }
+
+function onGeoCodingInverseRequest() {
+  ajaxCallWithParam('/app/GeoLocation/on_geocoding_inverse', 'latitude', document.getElementById("id_latitude").value , 'longitude', document.getElementById("id_longitude").value);
+  return false;
+}
+
 
 </script>
 

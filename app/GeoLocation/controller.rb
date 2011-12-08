@@ -171,12 +171,18 @@ def showmap_coding
 
   def on_geocoding
     adress_str = @params['adress']
-    GeoLocation.request_coordinates_by_adress({:adress => adress_str}, url_for(:action => :on_geocoding_callback))
+    GeoLocation.do_geocoding({:adress => adress_str}, url_for(:action => :on_geocoding_callback))
+  end
+
+  def on_geocoding_inverse
+    latitude = @params['latitude']
+    longitude = @params['longitude']
+    GeoLocation.do_geocoding({:latitude => latitude, :longitude => longitude}, url_for(:action => :on_geocoding_callback))
   end
 
   def on_geocoding_callback
       if @params['status'] =='ok'
-          Alert.show_popup  "GeoCoding result :  longitude="+@params['longitude'].to_s+"    latitude="+@params['latitude'].to_s
+          Alert.show_popup  "GeoCoding result :  longitude="+@params['longitude'].to_s+"    latitude="+@params['latitude'].to_s + "      adress="+@params['adress'].to_s
       else
           Alert.show_popup  "GeoCoding ERROR : "+@params['description'].to_s
       end
