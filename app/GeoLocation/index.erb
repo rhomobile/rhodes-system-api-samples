@@ -147,7 +147,6 @@ function setTag(tag,value) {
 
 function ajaxCall(url)
 {
-  //alert("ajaxCall() START");
         //Construct an XMLHTTP Object to handle our HTTP Request
         if (xmlHttpReq != null){
 		xmlHttpReq = null;
@@ -164,16 +163,12 @@ function ajaxCall(url)
         	alert("Can't make the call - xmlHttpReq is not available");
         	return;
 	}
-	//alert("about to open xmlHttpReq");
 	xmlHttpReq.open("GET", url, true);
-        //xmlHttpReq.onreadystatechange = doHttpReadyStateChange;
-	//alert("about to send Req");
    	xmlHttpReq.send();
 }
 
 function ajaxCallWithParam(url, param_name, param_value)
 {
-  //alert("ajaxCallWithParam() START");
         //Construct an XMLHTTP Object to handle our HTTP Request
         if (xmlHttpReq != null){
 		xmlHttpReq = null;
@@ -190,21 +185,13 @@ function ajaxCallWithParam(url, param_name, param_value)
         	alert("Can't make the call - xmlHttpReq is not available");
         	return;
 	}
-  //alert("ajaxCallWithParam() 2");
-	//alert("about to open xmlHttpReq");
         var params = param_name+'=' + encodeURIComponent(param_value);
-  //alert("ajaxCallWithParam() 3");
 	xmlHttpReq.open("GET", url+'?&'+params, true);
-  //alert("ajaxCallWithParam() 4");
-        //xmlHttpReq.onreadystatechange = doHttpReadyStateChange;
-	//alert("about to send Req");
    	xmlHttpReq.send();
-  //alert("ajaxCallWithParam() FINISH");
 }
 
 function ajaxCallWithParam2(url, param_name, param_value, param_name2, param_value2)
 {
-  //alert("ajaxCallWithParam() START");
         //Construct an XMLHTTP Object to handle our HTTP Request
         if (xmlHttpReq != null){
 		xmlHttpReq = null;
@@ -221,16 +208,9 @@ function ajaxCallWithParam2(url, param_name, param_value, param_name2, param_val
         	alert("Can't make the call - xmlHttpReq is not available");
         	return;
 	}
-  //alert("ajaxCallWithParam() 2");
-	//alert("about to open xmlHttpReq");
         var params = '&' + param_name+'=' + encodeURIComponent(param_value) + '&' + param_name2+'=' + encodeURIComponent(param_value2);
-  //alert("ajaxCallWithParam() 3");
 	xmlHttpReq.open("GET", url+'?'+params, true);
-  //alert("ajaxCallWithParam() 4");
-        //xmlHttpReq.onreadystatechange = doHttpReadyStateChange;
-	//alert("about to send Req");
    	xmlHttpReq.send();
-  //alert("ajaxCallWithParam() FINISH");
 }
 
 
@@ -241,7 +221,7 @@ function onGeoCodingRequest() {
 }
 
 function onGeoCodingInverseRequest() {
-  ajaxCallWithParam('/app/GeoLocation/on_geocoding_inverse', 'latitude', document.getElementById("id_latitude").value , 'longitude', document.getElementById("id_longitude").value);
+  ajaxCallWithParam2('/app/GeoLocation/on_geocoding_inverse', 'latitude', document.getElementById("id_latitude").value , 'longitude', document.getElementById("id_longitude").value);
   return false;
 }
 
