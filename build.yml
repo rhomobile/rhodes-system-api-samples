@@ -18,8 +18,8 @@ applog: rholog.txt
 version: 1.0.7
 vendor: rhomobile
 iphone: 
-  emulator: 4.0.2
-  sdk: iphonesimulator4.0
+  emulator: 5.0
+  sdk: iphonesimulator5.0
   codesignidentity: ""
   entitlements: ""
   configuration: Debug
