@@ -182,6 +182,10 @@ Rhodes API tests
     <li><a href="JQueryMobileTest">UI JQueryMobile Form Demo</a></li>
     <li><a href="RexmlTest">Rexml test</a></li>
     <li><a href="JsonTest">Json test</a></li>    
+
+  <% if (System::get_property('platform') == 'ANDROID') or (System::get_property('platform') == 'APPLE') or (System::get_property('platform') == 'WINDOWS') %>
+    <li><a href="Digest">Digest extension test</a></li>    
+  <% end %>  
    
 </ul>
 
