@@ -41,3 +41,5 @@ logname=sas
 
 # debug_host = '127.0.0.1'
 # debug_port = 9000
+
+use_bb_full_browser=6
