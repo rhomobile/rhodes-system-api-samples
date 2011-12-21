@@ -8,11 +8,10 @@ capabilities:
 - phone
 - bluetooth
 - calendar
+#- motorola
 
 bbver: 5.0
-#sdk: c:/Projects/rhodes
-#sdk: C:\Ruby192\lib\ruby\gems\1.9.1\gems\rhodes-3.2.0.beta.4
-#sdkversion: 3.0.1
+sdk: c:/Projects/rhodes
 
 applog: rholog.txt
 version: 1.0.7
@@ -26,9 +25,12 @@ iphone:
   extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1"]
   
 wm:
-  extensions: ["rainbow", "digest", "digest-md5", "digest-sha1"] #"barcode",
+  extensions: ["rainbow", "digest", "digest-md5", "digest-sha1", "barcode-moto", "webkit-browser"]
+  #sdk: "MC3000c50b (ARMV4I)"
+
 bb:
   extensions: ["barcode"]
+
 android:
   extensions: ["barcode", "rainbow", "nfc", "digest", "digest-md5", "digest-sha1"]
   capabilities:
