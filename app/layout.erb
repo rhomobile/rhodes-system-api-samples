@@ -7,9 +7,9 @@
     <% is_bb6 = System::get_property('platform') == 'Blackberry' && (System::get_property('os_version').split('.')[0].to_i >= 6) %>
 
     <% if is_bb6 %>
-        <meta name="viewport" content="width=device-width; height=device-height; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <% else %>
-        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <% end %>
 
     <% if System::get_property('platform') == 'WP7' %>

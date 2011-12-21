@@ -8,4 +8,4 @@ rhosimulator/*
 .idea/
 .DS_Store
 rholog-*
-
+*.ncb

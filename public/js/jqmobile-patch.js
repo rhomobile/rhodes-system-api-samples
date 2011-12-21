@@ -46,12 +46,31 @@
                 // So we are going to tag Wait-Page HTML content by some HTML attribute
                 // to detect it in "pagebeforechange" event handler and then perform
                 // preventDefault() to let jQM to release isPageTransitioning lock.
-                origSuccess('<div data-role="page" data-rho-wait-page="true"><!-- intentionally empty --></div>');
+                //origSuccess('<div data-role="page" data-rho-wait-page="true"><!-- intentionally empty --></div>');
+                origSuccess(html.replace(/data-role=["']page["']/,
+                    'data-role="page" data-rho-wait-page="true"'));
             } else {
                 origSuccess(html);
             }
         }
 
+    });
+
+/*
+    $(document).bind( "pagechange", function(e, data) {
+        // We only want to handle changePage() calls where the caller is
+        // providing us an already loaded page.
+        if ( !(typeof data.toPage === "string") ) {
+            var pageDiv = data.toPage[0];
+            if ("true" === pageDiv.getAttribute("data-rho-wait-page")) {
+                if (0 < $.mobile.urlHistory.activeIndex) {
+                    $.mobile.urlHistory.activeIndex--;
+                    $.mobile.urlHistory.clearForward();
+                } else {
+                    $.mobile.urlHistory.stack = [];
+                }
+            }
+        }
     });
 
     $(document).bind( "pagebeforechange", function(e, data) {
@@ -66,7 +85,7 @@
             }
         }
     });
-
+*/
 
     //shared page enhancements
 	function enhancePage( $page, role ) {
@@ -158,14 +177,30 @@
 		// attribute and in need of enhancement.
 		if ( page.length === 0 && dataUrl && !path.isPath( dataUrl ) ) {
 			page = settings.pageContainer.children( "#" + dataUrl )
-				.attr( "data-" + $.mobile.ns + "url", dataUrl )
+				.attr( "data-" + $.mobile.ns + "url", dataUrl );
 		}
 
 		// If we failed to find a page in the DOM, check the URL to see if it
-		// refers to the first page in the application.
-		if ( page.length === 0 && $.mobile.firstPage && absUrl && path.isFirstPageUrl( absUrl ) ) {
-			page = $( $.mobile.firstPage );
-		}
+		// refers to the first page in the application. If it isn't a reference
+		// to the first page and refers to non-existent embedded page, error out.
+        if ( page.length === 0 ) {
+            if ( $.mobile.firstPage && fileUrl && path.isFirstPageUrl( fileUrl ) ) {
+                // Check to make sure our cached-first-page is actually
+                // in the DOM. Some user deployed apps are pruning the first
+                // page from the DOM for various reasons, we check for this
+                // case here because we don't want a first-page with an id
+                // falling through to the non-existent embedded page error
+                // case. If the first-page is not in the DOM, then we let
+                // things fall through to the ajax loading code below so
+                // that it gets reloaded.
+                if ( $.mobile.firstPage.parent().length ) {
+                    page = $( $.mobile.firstPage );
+                }
+            } else if ( fileUrl && path.isEmbeddedPage( fileUrl )  ) {
+                deferred.reject( absUrl, options );
+                return deferred.promise();
+            }
+        }
 
         /*
 		// Reset base to the default document base.
@@ -264,6 +299,9 @@
             }
 
             if ( newPageTitle && !page.jqmData( "title" ) ) {
+                if ( ~newPageTitle.indexOf( "&" ) ) {
+                    newPageTitle = $( "<div>" + newPageTitle + "</div>" ).text();
+                }
                 page.jqmData( "title", newPageTitle );
             }
 
@@ -315,6 +353,8 @@
             }
 
             // Add the page reference to our triggerData.
+            //triggerData.xhr = xhr;
+            //triggerData.textStatus = textStatus;
             triggerData.page = page;
 
             // Let listeners know the page loaded successfully.
@@ -336,9 +376,98 @@
             });
     }
 
+    // It looks like fireOnce:true option of endlessScroll
+    // works quite unstable (so far it is version 1.4.8),
+    // so using lock variable here.
+    // Without this lock callback fired really twice each
+    // time on Google Nexus One. Also it fired twice from
+    // time to time on other browsers.
+    var endlessScrollInProgress = false;
+
+    // initialized pages (not instances!)
+    var endlessScrollPages = {};
+
+    // trigger flag for endless scroll reset
+    var doResetEndlessScroll = false;
+
+    // This function set scroll callback for active page instance.
+    // It doesn't set endless scroll event handler for whole document.
+    // usage sample:
+    //      setupEndlessScroll( "div.productPage", "ul.productList",
+    //                          "li.loadingMessage", "/app/Product/getpage?page=");
+    //
+    // scrollOptions is optional parameter, look at plugin documentation for details
+    function setupEndlessScroll(pageSelector, listSelector, loadingMsgItemSelector, pageBaseUrl, scrollOptions) {
+        // Do nothing if jquery.endless-scroll.js plugin is not available
+        if(!$.fn.endlessScroll) return;
+
+        // don't setup pageinit evebt handler twice for the same page!
+        if (endlessScrollPages[pageSelector]) return;
+        endlessScrollPages[pageSelector] = pageSelector;  // just to have debug info, any value will do indeed
+
+        $(pageSelector).live('pageshow', function(event) {
+            // trigger scroll pages counter reset
+            doResetEndlessScroll = true;
+
+            var list = $.mobile.activePage.find(listSelector);
+            $.mobile.activePage.endlessScrollCallback = function(i, scrollDone) {
+                // store list at very first call to optimize DOM searches number
+                //list = list || $.mobile.activePage.find(listSelector);
+
+                // it scrolls page top every time, so unable to be used
+                //$.mobile.showPageLoadingMsg('loading..');
+                // ---
+                // Instead, we turn "loading" message on in the last item
+                // look for definition in the /public/css/application.css
+                list.addClass("loading");
+
+                $.get(pageBaseUrl + i, function(data) {
+                    var loadingMsgItem = list.find(loadingMsgItemSelector);
+                    loadingMsgItem.before(data);
+                    list.listview("refresh");
+
+                    // turn "loading" message off in the last item
+                    list.removeClass("loading");
+                    //$.mobile.hidePageLoadingMsg();
+                    scrollDone();
+                });
+            };
+        });
+    }
+
+    // setup endless scroll plugin and
+    // common handler for a whole document
+    $(document).ready(function(){
+        if($.fn.endlessScroll) {
+            $(document).endlessScroll({
+                // let it be, but no much hope so far
+                fireOnce: true,
+                bottomPixels: 150,
+                resetCounter: function() {
+                    var doReset = doResetEndlessScroll;
+                    doResetEndlessScroll = false;
+                    return doReset;
+                },
+                callback: function(i) {
+                    // our own "fireOnce" feature
+                    if (endlessScrollInProgress) return;
+                    endlessScrollInProgress = true;
+
+                    if ($.mobile.activePage.endlessScrollCallback) {
+                        $.mobile.activePage.endlessScrollCallback(i, function(){ endlessScrollInProgress = false; });
+                    } else {
+                        endlessScrollInProgress = false;
+                    }
+                    return false;
+                }
+            });
+        }
+    });
+
     window.Rho = window.Rho || {};
     window.Rho.jqm = $.mobile;
     // Rho: add insertAsyncPage callback for transitions
     window.Rho.insertAsyncPage = insertAsyncPage;
+    window.Rho.setupEndlessScroll = setupEndlessScroll;
 
 })(jQuery);

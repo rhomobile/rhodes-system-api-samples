@@ -8,12 +8,12 @@ body {
     overflow-x: hidden;
 }
 
-div[data-role="header"] {
+div#pageTitle {
 	background: black;
     width: auto;
 }
 
-div[data-role="header"] h1 {
+div#pageTitle h1 {
 	margin: 0;
 	padding: 4px;
     width: auto;
@@ -27,7 +27,7 @@ div[data-role="header"] h1 {
 }
 
 /*toolbar */
-div[data-role="header"] {
+div#toolbar{
 	border-bottom:1px solid lightgray;
 	height: 25px;
 	line-height: 25px;
@@ -35,18 +35,18 @@ div[data-role="header"] {
 	width:100%;
 }
 
-div[data-role="header"] .noButton {
+div#toolbar .noButton {
     display:hidden;
 }
 
 /*content div styling*/
-div[data-role="content"] h2 {
+div#content h2 {
 	font-size:15px;
 	display:block;
 	margin:4px;
 }
 
-div[data-role="content"] h2.groupTitle{
+div#content h2.groupTitle{
 	background:black;
 	height:14px;
 	font-size:10px;
@@ -54,21 +54,21 @@ div[data-role="content"] h2.groupTitle{
 	border-bottom:1px solid lightgray;
 }
 
-div[data-role="content"] div.alert{
+div#content div.alert{
 	color:red;
 }
 
-div[data-role="content"] div.warning{
+div#content div.warning{
 	margin-left:4px;
 }
 
-div[data-role="content"] p{
+div#content p{
 	font-size:14px;
 }
 
 /* bb table styles */
 
-div[data-role="content"] table {
+div#content table {
     display:block;
 	border:none;
 	border-spacing:0;
@@ -76,23 +76,23 @@ div[data-role="content"] table {
     width:100%;
 }
 
-div[data-role="content"] table th {
+div#content table th {
 	width:100%;
 	display: block;
 	border-bottom:1px solid #BBBBBB;
 }
 
-div[data-role="content"] table tr {
+div#content table tr {
     width:100%;
 }
-div[data-role="content"] table tr td {
+div#content table tr td {
 	margin:0;
     border-bottom:1px solid lightgray;
 	height: 25px;
 	line-height:25px;
 }
 
-div[data-role="content"] table tr td a {
+div#content table tr td a {
 	text-decoration: none;
 	font-weight:bold;
 	color:black;
@@ -100,17 +100,17 @@ div[data-role="content"] table tr td a {
 	overflow: hidden;
 }
 
-div[data-role="content"] table tr td.recordLabel {
+div#content table tr td.recordLabel {
     width:100%;
     padding: 5px;
 }
 
-div[data-role="content"] table tr td.itemLabel {
+div#content table tr td.itemLabel {
     width:50%;
     font-weight:bold;
 }
 
-div[data-role="content"] table tr td.itemValue {
+div#content table tr td.itemValue {
     width:50%;
 }
 
