@@ -2,9 +2,9 @@
     Select scanner: 
     <select name="scanners">
         <% @scanners.each_index do |i| %>
-            <option value="<%= @scanners[i]['device'] %>"
+            <option value="<%= @scanners[i]['id'] %>"
                 <%= "selected" if i == 0 %> >
-                <%= @scanners[i]['frend'] %>
+                <%= @scanners[i]['name'] %>
             </option>
         <% end %>
 
