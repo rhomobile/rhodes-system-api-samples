@@ -1,0 +1,19 @@
+<div class="toolbar">
+    Barcode Multiscan              
+</div>
+
+To start scanning: Press hardware scan button or press Start button below.
+
+Scanned barcodes:
+    <ul id="barcodeList">
+
+      <% $barcodes.each do |barcode| %>
+          <li><%= barcode %></li>
+      <% end %>
+    </ul>
+<br/><br/>
+
+
+<%=link_to "Start", :action => :start_scan%>
+<%=link_to "Stop", :action => :stop_scan%>
+<%=link_to "Back", :action => :go_back%>
