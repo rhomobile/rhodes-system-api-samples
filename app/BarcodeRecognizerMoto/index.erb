@@ -1,0 +1,18 @@
+<div>
+    Select scanner: 
+    <select name="scanners">
+        <% @scanners.each_index do |i| %>
+            <option value="<%= @scanners[i]['device'] %>"
+                <%= "selected" if i == 0 %> >
+                <%= @scanners[i]['frend'] %>
+            </option>
+        <% end %>
+
+            
+    </select>
+<br/>
+    
+    <%= link_to '[Take Barcode]', { :action => :take }%>
+   	<%= link_to '[Multi scan]', { :action => :multiscan }%>
+
+</div>
