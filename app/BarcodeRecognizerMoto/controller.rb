@@ -42,7 +42,7 @@ class BarcodeRecognizerMotoController < Rho::RhoController
       end
 
       #Barcode.disable      
-      redirect :action => :index
+      WebView.navigate(url_for(:action => :index))
   end
 
   def multiscan
