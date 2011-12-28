@@ -53,8 +53,8 @@ class ImageController < Rho::RhoController
   def edit
     Camera::choose_picture(url_for :action => :camera_callback)
     
-    #redirect :action => :index
-    ""
+    redirect :action => :index
+    #""
   end
   
   def delete
