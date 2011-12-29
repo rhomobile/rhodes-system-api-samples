@@ -25,7 +25,7 @@ iphone:
   extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1"]
   
 wm:
-  extensions: ["rainbow", "digest", "digest-md5", "digest-sha1", "barcode-moto", "webkit-browser"]
+  extensions: ["rainbow", "digest", "digest-md5", "digest-sha1"] #, "barcode-moto", "webkit-browser"]
   #sdk: "MC3000c50b (ARMV4I)"
 
 bb:
