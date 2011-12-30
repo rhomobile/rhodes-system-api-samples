@@ -11,23 +11,22 @@ class BarcodeRecognizerMotoController < Rho::RhoController
     else
       @scanners = Barcode.enumerate()
     end
+
     puts "@scanners : #{@scanners}"
-    
     render :back => '/app'
   end
 
   def take
       #Barcode.stop
-  
-      Barcode.take_barcode(url_for(:action => :take_callback), {})
-      #Barcode.take_barcode(url_for(:action => :take_callback), {:camera => 'front'})
+      scanner = @params['scanner']
+      puts "take - using scanner: #{scanner}"
+      Barcode.take_barcode(url_for(:action => :take_callback), {:name => scanner})
       redirect :action => :wait
   end
 
   def cancel_take
       #Barcode.stop
       Barcode.disable
-      
       redirect :action => :index
   end
   
@@ -40,18 +39,27 @@ class BarcodeRecognizerMotoController < Rho::RhoController
       puts 'barcode = '+barcode.to_s unless barcode == nil
 
       if status == 'ok'
-           Alert.show_popup  ('Barcode['+barcode.to_s+']')  
+          Alert.show_popup(
+              :message => "Barcode["+barcode.to_s+"]",
+              :title => "Take barcode",
+              :buttons => ["Ok"]
+          )
       elsif status == 'cancel'
-           Alert.show_popup  ('Barcode taking was canceled !')  
+          Alert.show_popup(
+              :message => "Barcode taking was canceled !",
+              :title => "Take barcode",
+              :buttons => ["Ok"]
+          )
       end
-
-      #Barcode.disable      
-      redirect :action => :index
+      #Barcode.disable
+      WebView.navigate(url_for(:action => :index))
   end
 
   def multiscan
+    scanner = @params['scanner']
+    puts "multiscan - using scanner: #{scanner}"
     $barcodes = []
-    Barcode.enable( url_for(:action => :multi_callback), {})
+    Barcode.enable( url_for(:action => :multi_callback), {:name => scanner})
     redirect :action => :show_barcodes
   end
 
