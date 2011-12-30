@@ -21,8 +21,15 @@ iphone:
   sdk: iphonesimulator5.0
   codesignidentity: ""
   entitlements: ""
+  entitlements_file: "./production/Entitlements.plist"
   configuration: Debug
   extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1"]
+  production:
+    app_plist_title: "SAS"
+    app_plist_subtitle: "SAS"
+    app_plist_icon_url: "www.sas.com/icon.png"
+    app_plist_ipa_url: "www.sas.com/sas.ipa"
+    ipa_itunesartwork_image: "./production/image.jpg"  
   
 wm:
   extensions: ["rainbow", "digest", "digest-md5", "digest-sha1"] #, "barcode-moto", "webkit-browser"]
