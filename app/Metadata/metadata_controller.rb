@@ -2,7 +2,12 @@ require 'rho/rhocontroller'
 require 'helpers/browser_helper'
 
 class MetadataController < Rho::RhoController
+  @layout = 'Metadata/layout'
   include BrowserHelper
+
+  def index
+    render :back => '/app'
+  end
 
   def address
     @contacts = Metadata.find(:all)
@@ -18,7 +23,7 @@ class MetadataController < Rho::RhoController
     }
     puts @contacts.inspect
     puts Metadata.metadata.inspect
-    render :layout => false
+    render #:layout => false
   end
 
   def form_index

@@ -3,7 +3,8 @@ require 'rho/rhocontroller'
 require 'rho/rhoerror'
 
 class SettingsController < Rho::RhoController
-  
+  #@layout = 'Settings/layout'
+
   def index
     @msg = @params['msg']
     render
