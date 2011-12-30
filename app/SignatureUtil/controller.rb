@@ -10,7 +10,7 @@ class SignatureUtilController < Rho::RhoController
   end
 
   def new
-    SignatureTool::take_signature(url_for( :action => :signature_callback), 'jpg')
+    Rho::SignatureCapture.take(url_for( :action => :signature_callback), { :imageFormat => "jpg", :penColor => 0xff0000, :penWidth=>3, :border => true, :bgColor => 0x00ff00 })
     redirect :action => :index
   end
 
