@@ -6,7 +6,11 @@ class BarcodeRecognizerMotoController < Rho::RhoController
   def index
     puts "Moto Barcode index controller"
     
-    @scanners = Barcode.enumerate()
+    if System::get_property('platform') == 'ANDROID'
+      @scanners = [{'id'=>'SCN1', 'name'=>'Camera'}]
+    else
+      @scanners = Barcode.enumerate()
+    end
     puts "@scanners : #{@scanners}"
     
     render :back => '/app'
