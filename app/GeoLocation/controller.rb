@@ -180,11 +180,30 @@ def showmap_coding
     GeoLocation.do_geocoding({:latitude => latitude, :longitude => longitude}, url_for(:action => :on_geocoding_callback))
   end
 
+  def on_geocoding_bb
+    adress_str = @params['adress']
+    GeoLocation.do_geocoding({:adress => adress_str}, url_for(:action => :on_geocoding_callback))
+    
+    redirect :action => :wait
+  end
+
+  def on_geocoding_inverse_bb
+    latitude = @params['latitude']
+    longitude = @params['longitude']
+    GeoLocation.do_geocoding({:latitude => latitude, :longitude => longitude}, url_for(:action => :on_geocoding_callback))
+    
+    redirect :action => :wait
+  end
+  
   def on_geocoding_callback
       if @params['status'] =='ok'
           Alert.show_popup  "GeoCoding result :  longitude="+@params['longitude'].to_s+"    latitude="+@params['latitude'].to_s + "      adress="+@params['adress'].to_s
       else
           Alert.show_popup  "GeoCoding ERROR : "+@params['description'].to_s
+      end
+      
+      if System::get_property('platform') == 'Blackberry'
+        WebView.navigate url_for( :action => :index )
       end
   end
 

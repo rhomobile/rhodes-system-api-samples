@@ -104,7 +104,24 @@ Enter coordinates for GeoCoding : <br>
 
 <% end %>
 
+<% if System::get_property('platform') == 'Blackberry' %>
 
+Enter adress for GeoCoding : <br>
+<form method="POST" action="<%=url_for(:action => 'on_geocoding_bb')%>" >
+    <input id="id_adress" type="text" name="id_adress" value=""></input> <br>
+    <input type="submit" value="Geocoding"/>
+  <br>
+</form>
+    
+Enter coordinates for GeoCoding : <br>
+<form method="POST" action="<%=url_for(:action => 'on_geocoding_inverse_bb')%>" >    
+  Latitude :<input id="id_latitude" type="text" name="id_latitude" value=""></input> <br>
+  Longitude :<input id="id_longitude" type="text" name="id_longitude" value=""></input> <br>
+  <input type="submit" value="InverseGeocoding"/>
+  
+</form>
+<% end %>
+    
 </div>
 
 <% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
