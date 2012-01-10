@@ -7,7 +7,8 @@ class BarcodeRecognizerMotoController < Rho::RhoController
     puts "Moto Barcode index controller"
     
     if System::get_property('platform') == 'ANDROID'
-      @scanners = [{'id'=>'SCN1', 'name'=>'Camera'}]
+      Barcode.enumerate()
+      @scanners = [{'id'=>'SCN1', 'name'=>'SCANNER_INTERNAL'}]
     else
       @scanners = Barcode.enumerate()
     end
