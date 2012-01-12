@@ -1,0 +1,43 @@
+<div>
+<p>Geo Coding Test</p>
+<br>
+<br>
+Using of Google free GeoCoding web service.
+<br>
+<br>
+
+<b>Coordinates to Adress (inverse):</b><br>
+
+<form id="inverse_geocoding" 
+   method="POST" 
+   action="<%=url_for(:action => 'do_inverse_geocoding')%>" selected="true"> 
+
+  Latitude :  <input id="latitude" type="text" name="latitude" value =""></input><br>
+  Longitude :  <input id="longitude" type="text" name="longitude" value =""></input><br>
+
+  <br>
+  <a href="#" onclick="document.forms[0].submit(); return false;"><b>Request adress for coordinates</b></a>
+</form>
+
+  <br>
+
+<b>Adress to Coordinates (direct):</b><br>
+
+<form id="direct_geocoding" 
+   method="POST" 
+   action="<%=url_for(:action => 'do_direct_geocoding')%>" selected="true"> 
+
+  Adress :  <input id="adress" type="text" name="adress" value =""></input><br>
+  <br>
+  <a href="#" onclick="document.forms[1].submit(); return false;"><b>Request coordinates for adress</b></a>
+</form>
+
+<br><br>
+<b>Last Result :</b><br>
+<b>Status:</b> <%=$status%><br>
+<b>Adress:</b> <%=$adress%><br>
+<b>Latitude:</b> <%=$latitude%><br>
+<b>Longitude:</b> <%=$longitude%><br>
+<br>
+
+</div>
