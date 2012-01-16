@@ -32,7 +32,8 @@ iphone:
     ipa_itunesartwork_image: "./production/image.jpg"  
   
 wm:
-  extensions: ["rainbow", "digest", "digest-md5", "digest-sha1"] #, "barcode-moto", "webkit-browser"]
+  extensions: ["digest", "digest-md5", "digest-sha1"] #, "barcode-moto", "webkit-browser"]
+  #"rainbow"
   #sdk: "MC3000c50b (ARMV4I)"
 
 bb:
