@@ -64,15 +64,9 @@ Device capabilities:
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Date/Time picker using AJAX'} %>">Date/Time picker using AJAX</a></li>       
 <% end %>      
 
- <% if System::get_property('platform') != 'WP7'%>
     <li>
       <a href="Alert">Alerts/Audio file playback</a>
-    </li>
-  <% else %>
-  <li>
-    <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Alerts/Audio file playback'} %>">Alerts/Audio file playback</a>
-  </li>
-  <% end %>  
+    </li> 
     
 <% if System::get_property('platform') != 'APPLE' and  System::get_property('platform') != 'WP7'%>
     <li><a href="Ringtones">Ringtones</a></li>
