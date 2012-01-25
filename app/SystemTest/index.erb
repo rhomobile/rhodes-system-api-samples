@@ -1,35 +1,33 @@
-<head>
-    <script type="text/javascript">
-        function test() {
-            alert("Javascript alert");
-        }
-        
-        function getPage(url,execute)
+<script type="text/javascript">
+    function test() {
+        alert("Javascript alert");
+    }
+    
+    function getPage(url,execute)
+    {
+        if (window.XMLHttpRequest)
         {
-	        if (window.XMLHttpRequest)
+	        xmlhttp=new XMLHttpRequest();
+
+	        xmlhttp.open("GET",url,false);
+	        xmlhttp.send(null);
+	        if (xmlhttp.responseText != null)
 	        {
-		        xmlhttp=new XMLHttpRequest();
-
-		        xmlhttp.open("GET",url,false);
-		        xmlhttp.send(null);
-		        if (xmlhttp.responseText != null)
-		        {
-			        if(execute) { return eval('(' + xmlhttp.responseText + ')'); }
-		        }
+		        if(execute) { return eval('(' + xmlhttp.responseText + ')'); }
 	        }
-	        return -1;
         }
+        return -1;
+    }
 
-        function test_ajax() {
-	        return getPage('/app/SystemTest/show_alert',false);
-        }
-        
-        function show_cookie() {
-                alert(document.cookie);
-        }
+    function test_ajax() {
+        return getPage('/app/SystemTest/show_alert',false);
+    }
+    
+    function show_cookie() {
+            alert(document.cookie);
+    }
 
-    </script>
-</head>
+</script>
 
 <div class="toolbar">
 	<h1 id="pageTitle">
