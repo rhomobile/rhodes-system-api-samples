@@ -35,7 +35,7 @@ wm:
   extensions: ["digest", "digest-md5", "digest-sha1"] #, "barcode-moto", "webkit-browser"]
   #"rainbow"
   #sdk: "MC3000c50b (ARMV4I)"
-
+  #sdk: "Windows Mobile 6.5.3 Professional DTK (ARMV4I)"
 bb:
   extensions: ["barcode"]
 
