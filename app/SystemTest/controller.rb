@@ -112,7 +112,7 @@ class SystemTestController < Rho::RhoController
   end
 
   def make_own_file
-       fileNameW = File.join(Rho::RhoApplication::get_base_app_path(), 'tempfile.txt')
+       fileNameW = File.join(Rho::RhoApplication::get_user_path(), 'tempfile.txt')
        f = File.new(fileNameW, 'w+')
        f.write('my own file !')
        f.close  
@@ -121,7 +121,7 @@ class SystemTestController < Rho::RhoController
 
   def show_own_file
       content = ''
-      fileName = File.join(Rho::RhoApplication::get_base_app_path(), 'tempfile.txt')
+      fileName = File.join(Rho::RhoApplication::get_user_path(), 'tempfile.txt')
       if File.exist?(fileName)
            File.open(fileName).each do |line|
                content = content + "\n" + line
