@@ -10,7 +10,9 @@ class SignatureUtilController < Rho::RhoController
   end
 
   def new
-    Rho::SignatureCapture.take(url_for( :action => :signature_callback), { :imageFormat => "jpg", :penColor => 0xff0000, :penWidth=>3, :border => true, :bgColor => 0x00ff00 })
+    imgFormat = System::get_property('platform') == 'WINDOWS' ?  "bmp" : "jpg"
+    
+    Rho::SignatureCapture.take(url_for( :action => :signature_callback), { :imageFormat => imgFormat, :penColor => 0xff0000, :penWidth=>3, :border => true, :bgColor => 0x00ff00 })
     redirect :action => :index
   end
 
