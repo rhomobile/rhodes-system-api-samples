@@ -43,17 +43,24 @@ class BarcodeRecognizerMotoController < Rho::RhoController
           Alert.show_popup(
               :message => "Barcode["+barcode.to_s+"]",
               :title => "Take barcode",
-              :buttons => ["Ok"]
+              :buttons => ["Ok"],
+              :callback => url_for(:action => :popup_callback)
           )
       elsif status == 'cancel'
           Alert.show_popup(
               :message => "Barcode taking was canceled !",
               :title => "Take barcode",
-              :buttons => ["Ok"]
+              :buttons => ["Ok"],
+              :callback => url_for(:action => :popup_callback)
           )
       end
       #Barcode.disable
-      WebView.navigate(url_for(:action => :index))
+      #WebView.navigate(url_for(:action => :index))
+  end
+
+  def popup_callback
+    #puts "popup_callback: #{@params}"
+    WebView.navigate url_for(:action => :index)
   end
 
   def multiscan
