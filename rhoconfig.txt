@@ -35,6 +35,7 @@ sync_poll_interval=0
 geo_location_inactivity_timeout = 600
 
 full_screen = 0
+enable_screen_zoom = 1
 
 logserver = 'http://rhologs.heroku.com'
 logname=sas
