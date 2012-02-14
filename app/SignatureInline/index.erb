@@ -1,0 +1,7 @@
+<div>
+            <%= link_to '[Capture Signature Inline]', { :action => :inline_capture }%>
+    <br>
+	<% @signatures.reverse_each do |x|%>
+ 		<img src="<%=Rho::RhoApplication::get_blob_path(x.signature_uri)%>" width='300px'></img><a href="<%=url_for(:action => :delete, :id =>x.object)%>">Delete</a><br/>
+	<% end %>
+</div>
