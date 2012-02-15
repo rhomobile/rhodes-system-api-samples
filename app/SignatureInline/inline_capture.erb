@@ -1,5 +1,5 @@
 <div id="document_for_signature">
-<p>Inline Signature Capture</p>
+<p>Inline Signature Capture 2</p>
 <br>
 This is simple example document for show how create transparency (or not) signature capture window inside WebView and capture sigtature.
 Also you can see how control that windiw for basic commands.<br>
@@ -28,21 +28,22 @@ function pageX(elem) {
 
 
 function checkSize() {
-    var _left = pageX(document.getElementById('id_placeholder'));
-    var _top = pageY(document.getElementById('id_placeholder'));
-    var _width = document.getElementById('id_placeholder').width;
-    var _height = document.getElementById('id_placeholder').height;
+    var pixel_ratio = 1;
+
+<% if System::get_property('platform') == 'ANDROID'%>               
+    pixel_ratio = window.devicePixelRatio;
+<% end %>                 
+
+    var _left = Math.round(pageX(document.getElementById('id_placeholder')) * pixel_ratio);
+    var _top = Math.round(pageY(document.getElementById('id_placeholder')) * pixel_ratio);
+    var _width = Math.round(document.getElementById('id_placeholder').width * pixel_ratio);
+    var _height = Math.round(document.getElementById('id_placeholder').height * pixel_ratio);
     $.get('/app/SignatureInline/set_rect', {left: _left, top: _top, width: _width, height: _height});	
 }
 
-document.onload=checkSize;
 window.onresize = checkSize;
 
-<% if System::get_property('platform') == 'APPLE' %>
 $(window).ready(function(){checkSize();});
-<% end %>
-
-
 
 
 function onBack() {

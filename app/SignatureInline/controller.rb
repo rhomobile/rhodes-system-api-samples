@@ -18,7 +18,8 @@ class SignatureInlineController < Rho::RhoController
   end
 
   def set_rect
-     Rho::SignatureCapture.visible(true, :penColor => 0x7Fff0000, :penWidth=>1, :border => true, :bgColor => 0x4F00ff00, :left => @params['left'], :top => @params['top'], :width => @params['width'], :height => @params['height'] )
+     puts '############  setRect()'
+     Rho::SignatureCapture.visible(true, :penColor => 0x7Fff0000, :penWidth=>3, :border => true, :bgColor => 0x4F00ff00, :left => @params['left'], :top => @params['top'], :width => @params['width'], :height => @params['height'] )
   end
 
   def signature_callback
