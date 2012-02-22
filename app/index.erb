@@ -46,7 +46,7 @@ Device capabilities:
   </li>
   <% end %> 
     
-<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'WINDOWS' %>
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'WINDOWS' or System::get_property('platform') == 'Blackberry'%>
     <li><a href="SignatureUtil">Signature capture</a></li>   
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Signature capture'} %>">Signature capture</a></li>       
