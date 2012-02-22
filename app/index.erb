@@ -52,6 +52,13 @@ Device capabilities:
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Signature capture'} %>">Signature capture</a></li>       
 <% end %>
 
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID'%>
+    <li><a href="SignatureInline">Signature Inline capture</a></li>   
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Signature inline capture'} %>">Signature inline capture</a></li>       
+<% end %>
+
+
 <% if System::get_property('platform') != 'WP7'%>  
     <li><a href="DateTime">Date/Time picker</a></li>
 <% else %>
