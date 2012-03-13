@@ -2,6 +2,9 @@
 esri_map_url_roadmap = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/'
 esri_map_url_satellite = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/'
 
+#OSM map server URL
+OSM_map_url_roadmap = 'http://tile.openstreetmap.org/'
+
 # Startup page for your application
 start_path = '/app'
 
