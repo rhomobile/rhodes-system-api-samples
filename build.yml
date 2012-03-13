@@ -1,4 +1,5 @@
---- 
+---
+#app_type: rhoelements 
 name: rhodes-system-api-samples
 capabilities: 
 - gps
@@ -8,7 +9,9 @@ capabilities:
 - phone
 - bluetooth
 - calendar
-#- motorola
+
+#paths:
+#  extensions: C:\projects\MotoNeon2\vobs\NEON\R2D1\RhoElementsOneExtension\extensions
 
 bbver: 5.0
 #sdk: c:/Projects/rhodes
@@ -30,12 +33,16 @@ iphone:
     app_plist_icon_url: "www.sas.com/icon.png"
     app_plist_ipa_url: "www.sas.com/sas.ipa"
     ipa_itunesartwork_image: "./production/image.jpg"  
-  
+
+#buildcfg: 'Debug'  
+
 wm:
-  extensions: ["digest", "digest-md5", "digest-sha1"] #, "barcode-moto", "webkit-browser"]
+  extensions: ["digest", "digest-md5", "digest-sha1"]
   #"rainbow"
-  #sdk: "MC3000c50b (ARMV4I)"
+  sdk: "MC3000c50b (ARMV4I)"
   #sdk: "Windows Mobile 6.5.3 Professional DTK (ARMV4I)"
+  #emulator: "Windows Mobile 6.5.3 Professional Emulator"
+  #use_re_runtime: 1
 bb:
   extensions: ["barcode"]
 
