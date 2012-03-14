@@ -6,11 +6,16 @@ class BarcodeRecognizerMotoController < Rho::RhoController
   def index
     puts "Moto Barcode index controller"
 
-    if !$scanners
-        $scanners = []
-        Barcode.enumerate( url_for(:action => :enum_callback) )    
+    if System::get_property('platform') == 'ANDROID'
+        Barcode.enumerate()
+        $scanners = [{'deviceName'=>'SCN1', 'friendlyName'=>'SCANNER_INTERNAL'}]
+    else
+        if !$scanners
+            $scanners = []
+            Barcode.enumerate( url_for(:action => :enum_callback) )    
+        end
     end
-    
+
     redirect url_for(:action => :show_scanners)
   end
 
@@ -20,12 +25,6 @@ class BarcodeRecognizerMotoController < Rho::RhoController
     
   def enum_callback
     puts "enum_callback : #{@params}"
-    #if System::get_property('platform') == 'ANDROID'
-    #  Barcode.enumerate()
-    #  @scanners = [{'id'=>'SCN1', 'name'=>'SCANNER_INTERNAL'}]
-    #else
-      #@scanners = Barcode.enumerate()
-    #end
     $scanners = @params['scannerArray']
     
     puts "$scanners : #{$scanners}"
