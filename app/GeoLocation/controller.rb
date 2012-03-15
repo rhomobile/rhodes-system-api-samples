@@ -8,16 +8,18 @@ class GeoLocationController < Rho::RhoController
     if System::get_property('platform') == 'Blackberry'
         set_geoview_notification url_for(:action => :geo_callback), "", 2
     else
-        GeoLocation.set_notification url_for(:action => :geo_callback), "", 30
+        GeoLocation.set_notification url_for(:action => :geo_callback), "mytag=55", 3
     end
     render :back => '/app'
   end
   
   def geo_callback
+    puts "$$$$$$$$$$$ GEOCALLBACK : $$$$$$$$$$$$$$$"
     puts "geo_callback : #{@params}"
 
     if WebView.current_location !~ /GeoLocation/
         puts "Stopping geo location since we are away of geo page: " + WebView.current_location
+        puts "########## GEOLOCATION TURNOFF ###############"
         GeoLocation.turnoff
         return
     end
@@ -86,6 +88,9 @@ class GeoLocationController < Rho::RhoController
      myannotations << {:latitude => '60.0270', :longitude => '30.39', :title => "Blue Location Bla-Bla-Bla !!!", :subtitle => "blue test1\nblue test2\nblue 1234567890 1234567890 1234567890 test3", :url => "/app/GeoLocation/show?city=Blue_Location", :image => '/public/images/marker_blue.png', :image_x_offset => 8, :image_y_offset => 32, :pass_location => true }
 
 
+
+
+
      myannotations << {:latitude => '60.1', :longitude => '30.0', :title => "PRELOAD MARKER"}	
      myannotations << {:latitude => '59.7', :longitude => '30.0', :title => "PRELOAD MARKER"}	
      myannotations << {:latitude => '60.1', :longitude => '30.6', :title => "PRELOAD MARKER"}	
@@ -104,7 +109,37 @@ class GeoLocationController < Rho::RhoController
          MapView.set_file_caching_enable(1)
      #end 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
      puts map_params.inspect            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      MapView.create map_params
      redirect :action => :index
   end
