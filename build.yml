@@ -42,7 +42,7 @@ wm:
   sdk: "MC3000c50b (ARMV4I)"
   #sdk: "Windows Mobile 6.5.3 Professional DTK (ARMV4I)"
   #emulator: "Windows Mobile 6.5.3 Professional Emulator"
-  #use_re_runtime: 1
+  #use_shared_runtime: 1
 bb:
   extensions: ["barcode"]
 
