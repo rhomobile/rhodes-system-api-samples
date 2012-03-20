@@ -58,7 +58,7 @@ android:
 wp:
   productid: 'fd55c4d0-51fa-012e-7844-3caec51bd50e'
 
-extensions: ["json", "rhoxml", "rhodes_translator"]
+extensions: ["json", "rhoxml", "rhodes_translator", "color", "hoe", "transaction-simple", "pdf-writer", "thread", "uri"]
 
 symbian: 
   uid: 3780829571
