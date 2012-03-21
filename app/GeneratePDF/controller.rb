@@ -17,15 +17,20 @@ class GeneratePDFController < Rho::RhoController
         #
         # for generate PDF we use open source pure Ruby library PDF-Writer
         # Homepage::  http://rubyforge.org/projects/ruby-pdf/
-        # Copyright:: 2003?2005, Austin Ziegler
+        # Copyright:: 2003-2005, Austin Ziegler
         # 
         # PDF-Writer also require few additional Ruby libs:
         #   hoe
         #   color
         #   transaction-simple
+        #   thread
         #
-        # You can see their Ruby code in this application extension folder
+        # You can see their Ruby code in rodes platform extension folder:
+        #  [Rhodes root]/lib/extensions
         # 
+        # for include that libs to your application you should add next extsnions to your application extension list in your application build.yml :
+        # "pdf-writer", "thread"
+        #
 
         pdf = PDF::Writer.new
 
