@@ -20,7 +20,6 @@ class GeneratePDFController < Rho::RhoController
         # Copyright:: 2003-2005, Austin Ziegler
         # 
         # PDF-Writer also require few additional Ruby libs:
-        #   hoe
         #   color
         #   transaction-simple
         #   thread
