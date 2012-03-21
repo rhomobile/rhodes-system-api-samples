@@ -4,12 +4,122 @@
 <head><title>Sync Engine JS API Test</title>
     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
     <script src="/public/js/syncengine.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function put(msg, container) {
+            document.getElementById(container).innerHTML = msg;
+        }
+    </script>
 </head>
 <body>
 
 API functions tests:
 <ul>
-    <li><a href="#" onclick="window.Rho.dosync(); return false;">dosync()</a></li>
+    <li>
+        <a href="#" onclick="window.Rho.set_threaded_mode(true, function(res){put(res, 'result_set_threaded_mode');}); return false;">
+            set_threaded_mode(true)</a>&nbsp;
+        <span id="result_set_threaded_mode"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.enable_status_popup(true, function(res){put(res, 'result_enable_status_popup');}); return false;">
+            enable_status_popup(true)</a>&nbsp;
+        <span id="result_enable_status_popup"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.set_ssl_verify_peer(true, function(res){put(res, 'result_set_ssl_verify_peer');}); return false;">
+            set_ssl_verify_peer(true)</a>&nbsp;
+        <span id="result_set_ssl_verify_peer"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.register_push(function(res){put(res, 'result_register_push');}); return false;">register_push()</a>&nbsp;
+        <span id="result_register_push"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.set_syncserver('http://rhodes-samples-server.heroku.com/application', function(res){put(res, 'result_set_syncserver');}); return false;">
+            set_syncserver('http://rhodes-samples-server.heroku.com/application')</a>&nbsp;
+        <span id="result_set_syncserver"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.set_pollinterval(60, function(res){put(res, 'result_set_pollinterval');}); return false;">
+            set_pollinterval(60)</a>&nbsp;
+        <span id="result_set_pollinterval"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.get_pollinterval(function(res){put(res, 'result_get_pollinterval');}); return false;">
+            get_pollinterval()</a>&nbsp;
+        <span id="result_get_pollinterval"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.set_pagesize(100, function(res){put(res, 'result_set_pagesize');}); return false;">
+            set_pagesize(100)</a>&nbsp;
+        <span id="result_set_pagesize"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.get_pagesize(function(res){put(res, 'result_get_pagesize');}); return false;">
+            get_pagesize()</a>&nbsp;
+        <span id="result_get_pagesize"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.login('abc', '123', '',function(res){put(res, 'result_login');}); return false;">
+            login('abc', '123', '')</a>&nbsp;
+        <span id="result_login"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.logged_in(function(res){put(res, 'result_logged_in');}); return false;">
+            logged_in()</a>&nbsp;
+        <span id="result_logged_in"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.logout(function(res){put(res, 'result_logout');}); return false;">
+            logout()</a>&nbsp;
+        <span id="result_logout"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.dosync(false, '', function(res){put(res, 'result_dosync');}); return false;">
+            dosync()</a>&nbsp;
+        <span id="result_dosync"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.dosync_source('Metadata', false, '', function(res){put(res, 'result_dosync_source');}); return false;">
+            dosync_source('Metadata')</a>&nbsp;
+        <span id="result_dosync_source"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.is_syncing(function(res){put(res, 'result_is_syncing');}); return false;">
+            is_syncing()</a>&nbsp;
+        <span id="result_is_syncing"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.stop_sync(function(res){put(res, 'result_stop_sync');}); return false;">
+            stop_sync()</a>&nbsp;
+        <span id="result_stop_sync"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.set_objectnotify_url('someUrl', function(res){put(res, 'result_set_objectnotify_url');}); return false;">
+            set_objectnotify_url('someUrl')</a>&nbsp;
+        <span id="result_set_objectnotify_url"></span>
+    </li>
+
+    <li>
+        <a href="#" onclick="window.Rho.clean_objectnotify(function(res){put(res, 'result_clean_objectnotify');}); return false;">
+            clean_objectnotify()</a>&nbsp;
+        <span id="result_clean_objectnotify"></span>
+    </li>
 </ul>
 
 </body>
