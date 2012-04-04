@@ -26,7 +26,7 @@ iphone:
   entitlements: ""
   entitlements_file: "./production/Entitlements.plist"
   configuration: Debug
-  extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1"]
+  extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread"]
   production:
     app_plist_title: "SAS"
     app_plist_subtitle: "SAS"
@@ -47,7 +47,7 @@ bb:
   extensions: ["barcode"]
 
 android:
-  extensions: ["barcode", "rainbow", "nfc", "digest", "digest-md5", "digest-sha1"]
+  extensions: ["barcode", "rainbow", "nfc", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread"]
   capabilities:
   - network_state
   - sdcard
@@ -58,7 +58,7 @@ android:
 wp:
   productid: 'fd55c4d0-51fa-012e-7844-3caec51bd50e'
 
-extensions: ["json", "rhoxml", "rhodes_translator", "pdf-writer", "thread"]
+extensions: ["json", "rhoxml", "rhodes_translator"]
 
 symbian: 
   uid: 3780829571
