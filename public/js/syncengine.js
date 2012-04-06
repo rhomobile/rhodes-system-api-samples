@@ -41,43 +41,19 @@
                     xhr = window.createRequest();
                 } else if (window.ActiveXObject) {
                     try {
-                        //alert('xhr#1.1');
                         xhr = new ActiveXObject("MSXML2.XMLHTTP");
-                        //alert('xhr#1.2');
                     } catch(ex) {
-                        //alert('xhr#2.1');
                         xhr = new ActiveXObject("Microsoft.XMLHTTP");
-                        //alert('xhr#2.2');
                     }
                 } else {
-                    //alert('xhr#3');
+                    //alert('no xhr!');
                 }
             } catch(ex) {
-                //alert('xhr#4');
                 xhr = false;
             }
         }
 
-/*
-        if (window.XMLHttpRequest) {
-            xhr = new XMLHttpRequest();
-        }
-        else if (window.ActiveXObject) {
-            try {
-                xhr = new ActiveXObject("MSXML2.XMLHTTP");
-            }
-            catch(e) {
-                try {
-                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                catch(e) {
-                }
-            }
-        }
-*/
-
         if (xhr) {
-            //alert('req#1');
             // ensure required opts are defined
             if ('object' != typeof opts)
                 opts = {};
@@ -104,45 +80,29 @@
             if (0 < q.length)
                 q = '?' + q;
 
-            //alert('req#2.1 q: ' +q);
-            //alert('req#2.2 xhr: ' +xhr);
-
             xhr.open(opts.type, opts.url + q, true /*it is async request*/);
-            //alert('req#3.1');
             xhr.onreadystatechange = function () {
-                //alert('req#4.1');
                 if (xhr.readyState == 4) {
-                    //alert(xhr.response || xhr.responseText);
-                    //alert('req#4.2');
                     opts.success.apply('undefined' == typeof that ? this : that, [
                         xhr.response || xhr.responseText, xhr.status || xhr.statusText, xhr
                     ]);
-                    //alert('req#4.3');
                 }
             };
-            //alert('req#3.2');
             if (xhr.onerror) {
                 xhr.onerror = function () {
-                    //alert('req#5.1');
                     opts.error.apply('undefined' == typeof that ? this : that, [
                         xhr.response || xhr.responseText, "error", xhr
                     ]);
-                    //alert('req#5.2');
                 };
             }
-            //alert('req#3.3');
             if (xhr.ontimeout) {
                 xhr.ontimeout = function () {
-                    //alert('req#6.1');
                     opts.error.apply('undefined' == typeof that ? this : that, [
                         "", "timeout", xhr
                     ]);
-                    //alert('req#6.2');
                 };
             }
-            //alert('req#3.4');
             xhr.send(opts.body);
-            //alert('req#3.5');
         }
     }
 

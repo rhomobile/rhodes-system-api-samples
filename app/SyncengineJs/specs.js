@@ -41,13 +41,13 @@ describe("Syncengine API", function(){
             {
                 label: "should be able to toggle status popup",
                 funcNameSet: "enable_status_popup",
-                values: [false, true],
+                values: [true, false],
                 resultTest: resultIsOk
             },
             {
                 label: "should be able to toggle SSL peer verification",
                 funcNameSet: "set_ssl_verify_peer",
-                values: [false, true],
+                values: [true, false],
                 resultTest: resultIsOk
             },
             {
@@ -267,7 +267,7 @@ describe("Syncengine API", function(){
             runs(function(){
                 api.logout(okHdlr, errHdlr);
             });
-            waitsForSpies([okHdlr, errHdlr], 'login timeout', 1000);
+            waitsForSpies([okHdlr, errHdlr], 'logout timeout', 1000);
             runs(function(){
                 expect(errHdlr).not.toHaveBeenCalled();
                 if(0 < errHdlr.callCount) jasmine.log('errHdlr called with: ' +errHdlr.mostRecentCall.args);
