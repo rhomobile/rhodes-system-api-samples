@@ -9,6 +9,8 @@ capabilities:
 - phone
 - bluetooth
 - calendar
+- native_browser
+#- motorola_browser
 
 #paths:
 #  extensions: C:\projects\MotoNeon2\vobs\NEON\R2D1\RhoElementsOneExtension\extensions
@@ -39,7 +41,8 @@ iphone:
 wm:
   extensions: ["digest", "digest-md5", "digest-sha1"]
   #"rainbow"
-  sdk: "MC3000c50b (ARMV4I)"
+  #sdk: "MC3000c50b (ARMV4I)"
+  sdk: "Windows Mobile 6 Professional SDK (ARMV4I)"
   #sdk: "Windows Mobile 6.5.3 Professional DTK (ARMV4I)"
   #emulator: "Windows Mobile 6.5.3 Professional Emulator"
   #use_shared_runtime: 1

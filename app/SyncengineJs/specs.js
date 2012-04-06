@@ -197,6 +197,7 @@ describe("Syncengine API", function(){
                         expect("ok" == okHdlr.mostRecentCall.args[0]).toBeTruthy();
                     }
                 });
+                /*
                 runs(function(){
                     api.is_syncing(okHdlr, errHdlr);
                 });
@@ -210,6 +211,7 @@ describe("Syncengine API", function(){
                         expect("false" == okHdlr.mostRecentCall.args[0]).toBeTruthy();
                     }
                 });
+                */
             });
 
             it("should sync exact source", function(){
@@ -242,6 +244,7 @@ describe("Syncengine API", function(){
                         expect("ok" == okHdlr.mostRecentCall.args[0]).toBeTruthy();
                     }
                 });
+                /*
                 runs(function(){
                     api.is_syncing(okHdlr, errHdlr);
                 });
@@ -255,6 +258,7 @@ describe("Syncengine API", function(){
                         expect("false" == okHdlr.mostRecentCall.args[0]).toBeTruthy();
                     }
                 });
+                */
             });
 
         });
