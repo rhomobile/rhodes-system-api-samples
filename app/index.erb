@@ -82,13 +82,7 @@ Device capabilities:
 <% end %>      
     
     <li><a href="DynamicMenu">Native Menu</a></li>
-    
-<% if System::get_property('platform') != 'WINDOWS'  and  System::get_property('platform') != 'WP7'%>
     <li><a href="ScreenRotation">Screen rotation</a></li>   
-<% else %>      
-    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Screen rotation'} %>">Screen rotation</a></li>       
-<% end %>      
-    
     <li><a href="CustomUri">Hyperlinks for Email, Phone Dialing, SMS</a></li>
 
   <% if System.get_property('is_moto_device') %>
