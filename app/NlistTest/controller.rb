@@ -1,7 +1,7 @@
 require 'rho/rhocontroller'
 
 class NlistTestController < Rho::RhoController
-#  @layout = 'NlistTest/layout'
+  @layout = 'NlistTest/layout'
   
   def index
     render :back => '/app'
