@@ -10,7 +10,6 @@ if (location.search =='?settings=true') {
     webview = System::get_property('webview_framework')
     is_webkit = (!webview.nil? and webview.start_with?('WEBKIT'))
 %>
-
 Device capabilities:
 <ul id="home" selected="true" title="Device capabilities">
   <% if System::get_property('platform') != 'WP7'%>
@@ -161,6 +160,11 @@ Rhodes API tests
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Native View'} %>">Native View</a></li>       
 <% end %>      
+
+<% if System::get_property('platform') == 'APPLE' %>
+    <li><a href="NlistTest">Very long list with native extension</a></li>    
+<% end %>      
+
     
     <li><a href="AnimationTest">Animation test</a></li>
   <% if System::get_property('platform') != 'WP7' %>

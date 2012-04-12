@@ -1,0 +1,28 @@
+<table width="100%">
+<tr>
+<td rowspan=2>
+<img src="<%= '/public/images/custom/Car-3'+(@item%10).to_s+'.png' %>"/>
+</td>
+<td>
+<b>Title</b>
+</td>
+<td rowspan=2 align="right">
+<b><div id='item_number'>[ <%= @item.to_s %> ]</div></b>
+</td>
+</tr>
+<tr>
+<td>
+subtitle
+</td>
+</tr>
+</table>
+
+<script type="text/javascript">
+
+function nlist_set_data(number) {
+   document.getElementById('item_number').innerHTML = number;
+}
+
+</script>
+
+

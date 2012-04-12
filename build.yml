@@ -26,9 +26,9 @@ iphone:
   sdk: iphonesimulator5.0
   codesignidentity: ""
   entitlements: ""
+  extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread", "nlist"]
   entitlements_file: "./production/Entitlements.plist"
   configuration: Debug
-  extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread"]
   production:
     app_plist_title: "SAS"
     app_plist_subtitle: "SAS"

@@ -1,0 +1,338 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FAC155E7145855CF0016F3BD /* NList_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = FAD45FD51225FED600141873 /* NList_Prefix.pch */; };
+		FAC155E8145855CF0016F3BD /* NList.h in Headers */ = {isa = PBXBuildFile; fileRef = FAC155E01458523C0016F3BD /* NList.h */; };
+		FAC155EA145855CF0016F3BD /* nlist_wrap.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC155D614584FD80016F3BD /* nlist_wrap.c */; };
+		FAC155EB145855CF0016F3BD /* nlist.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC155D814584FE20016F3BD /* nlist.c */; };
+		FAC155EC145855CF0016F3BD /* NList.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC155DE145851440016F3BD /* NList.m */; };
+		FAC155EE145855CF0016F3BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		FAC155EF145855CF0016F3BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD4602C12260A8500141873 /* UIKit.framework */; };
+		FAE208CA15373E1B00429494 /* NListDataCache.h in Headers */ = {isa = PBXBuildFile; fileRef = FAE208C215373E1B00429494 /* NListDataCache.h */; };
+		FAE208CB15373E1B00429494 /* NListDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE208C315373E1B00429494 /* NListDataCache.m */; };
+		FAE208CC15373E1B00429494 /* NListItemView.h in Headers */ = {isa = PBXBuildFile; fileRef = FAE208C415373E1B00429494 /* NListItemView.h */; };
+		FAE208CD15373E1B00429494 /* NListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE208C515373E1B00429494 /* NListItemView.m */; };
+		FAE208CE15373E1B00429494 /* NListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = FAE208C615373E1B00429494 /* NListTableViewController.h */; };
+		FAE208CF15373E1B00429494 /* NListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE208C715373E1B00429494 /* NListTableViewController.m */; };
+		FAE208D015373E1B00429494 /* NListViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FAE208C815373E1B00429494 /* NListViewManager.h */; };
+		FAE208D115373E1B00429494 /* NListViewManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAE208C915373E1B00429494 /* NListViewManager.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FAC155D614584FD80016F3BD /* nlist_wrap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = nlist_wrap.c; path = ../../shared/ruby/nlist_wrap.c; sourceTree = "<group>"; };
+		FAC155D814584FE20016F3BD /* nlist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = nlist.c; path = ../../shared/src/nlist.c; sourceTree = "<group>"; };
+		FAC155DE145851440016F3BD /* NList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NList.m; path = Classes/NList.m; sourceTree = "<group>"; };
+		FAC155E01458523C0016F3BD /* NList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NList.h; path = Classes/NList.h; sourceTree = "<group>"; };
+		FAC155F3145855CF0016F3BD /* libNList.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNList.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAD45FD51225FED600141873 /* NList_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NList_Prefix.pch; sourceTree = "<group>"; };
+		FAD4602C12260A8500141873 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FAE208C215373E1B00429494 /* NListDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NListDataCache.h; path = Classes/NListDataCache.h; sourceTree = "<group>"; };
+		FAE208C315373E1B00429494 /* NListDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NListDataCache.m; path = Classes/NListDataCache.m; sourceTree = "<group>"; };
+		FAE208C415373E1B00429494 /* NListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NListItemView.h; path = Classes/NListItemView.h; sourceTree = "<group>"; };
+		FAE208C515373E1B00429494 /* NListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NListItemView.m; path = Classes/NListItemView.m; sourceTree = "<group>"; };
+		FAE208C615373E1B00429494 /* NListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NListTableViewController.h; path = Classes/NListTableViewController.h; sourceTree = "<group>"; };
+		FAE208C715373E1B00429494 /* NListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NListTableViewController.m; path = Classes/NListTableViewController.m; sourceTree = "<group>"; };
+		FAE208C815373E1B00429494 /* NListViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NListViewManager.h; path = Classes/NListViewManager.h; sourceTree = "<group>"; };
+		FAE208C915373E1B00429494 /* NListViewManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NListViewManager.mm; path = Classes/NListViewManager.mm; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAC155ED145855CF0016F3BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC155EE145855CF0016F3BD /* Foundation.framework in Frameworks */,
+				FAC155EF145855CF0016F3BD /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAC155F3145855CF0016F3BD /* libNList.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* Barcode */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = Barcode;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+				FAD4602C12260A8500141873 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FAC155DD1458511E0016F3BD /* iOS_specific */,
+				FAC155DA145850EB0016F3BD /* Shared */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FAD45FD51225FED600141873 /* NList_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		FAC155DA145850EB0016F3BD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FAC155DC145851020016F3BD /* src */,
+				FAC155DB145850F80016F3BD /* Ruby */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		FAC155DB145850F80016F3BD /* Ruby */ = {
+			isa = PBXGroup;
+			children = (
+				FAC155D614584FD80016F3BD /* nlist_wrap.c */,
+			);
+			name = Ruby;
+			sourceTree = "<group>";
+		};
+		FAC155DC145851020016F3BD /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FAC155D814584FE20016F3BD /* nlist.c */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FAC155DD1458511E0016F3BD /* iOS_specific */ = {
+			isa = PBXGroup;
+			children = (
+				FAC155E01458523C0016F3BD /* NList.h */,
+				FAC155DE145851440016F3BD /* NList.m */,
+				FAE208C215373E1B00429494 /* NListDataCache.h */,
+				FAE208C315373E1B00429494 /* NListDataCache.m */,
+				FAE208C415373E1B00429494 /* NListItemView.h */,
+				FAE208C515373E1B00429494 /* NListItemView.m */,
+				FAE208C615373E1B00429494 /* NListTableViewController.h */,
+				FAE208C715373E1B00429494 /* NListTableViewController.m */,
+				FAE208C815373E1B00429494 /* NListViewManager.h */,
+				FAE208C915373E1B00429494 /* NListViewManager.mm */,
+			);
+			name = iOS_specific;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FAC155E6145855CF0016F3BD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC155E7145855CF0016F3BD /* NList_Prefix.pch in Headers */,
+				FAC155E8145855CF0016F3BD /* NList.h in Headers */,
+				FAE208CA15373E1B00429494 /* NListDataCache.h in Headers */,
+				FAE208CC15373E1B00429494 /* NListItemView.h in Headers */,
+				FAE208CE15373E1B00429494 /* NListTableViewController.h in Headers */,
+				FAE208D015373E1B00429494 /* NListViewManager.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FAC155E5145855CF0016F3BD /* NList */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAC155F0145855CF0016F3BD /* Build configuration list for PBXNativeTarget "NList" */;
+			buildPhases = (
+				FAC155E6145855CF0016F3BD /* Headers */,
+				FAC155E9145855CF0016F3BD /* Sources */,
+				FAC155ED145855CF0016F3BD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NList;
+			productName = Barcode;
+			productReference = FAC155F3145855CF0016F3BD /* libNList.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Nlist" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 0867D691FE84028FC02AAC07 /* Barcode */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAC155E5145855CF0016F3BD /* NList */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAC155E9145855CF0016F3BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC155EA145855CF0016F3BD /* nlist_wrap.c in Sources */,
+				FAC155EB145855CF0016F3BD /* nlist.c in Sources */,
+				FAC155EC145855CF0016F3BD /* NList.m in Sources */,
+				FAE208CB15373E1B00429494 /* NListDataCache.m in Sources */,
+				FAE208CD15373E1B00429494 /* NListItemView.m in Sources */,
+				FAE208CF15373E1B00429494 /* NListTableViewController.m in Sources */,
+				FAE208D115373E1B00429494 /* NListViewManager.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB922308733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(RHO_ROOT)/platform/shared/common",
+					"$(RHO_ROOT)/platform/shared/rubyext",
+					"$(RHO_ROOT)/platform/shared/ruby/include",
+					"$(RHO_ROOT)/platform/shared/ruby/iphone",
+					"$(RHO_ROOT)/platform/shared",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				ONLY_ACTIVE_ARCH = NO;
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator4.1;
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+			};
+			name = Debug;
+		};
+		1DEB922408733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(RHO_ROOT)/platform/shared/common",
+					"$(RHO_ROOT)/platform/shared/rubyext",
+					"$(RHO_ROOT)/platform/shared/ruby/include",
+					"$(RHO_ROOT)/platform/shared/ruby/iphone",
+					"$(RHO_ROOT)/platform/shared",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				ONLY_ACTIVE_ARCH = NO;
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator4.1;
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+			};
+			name = Release;
+		};
+		FAC155F1145855CF0016F3BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/NList.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = NList_Prefix.pch;
+				INSTALL_PATH = /usr/local/lib;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PRODUCT_NAME = NList;
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "i386 armv6 armv7";
+			};
+			name = Debug;
+		};
+		FAC155F2145855CF0016F3BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				DSTROOT = /tmp/NList.dst;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = NList_Prefix.pch;
+				INSTALL_PATH = /usr/local/lib;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PRODUCT_NAME = NList;
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "i386 armv6 armv7";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Nlist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB922308733DC00010E9CD /* Debug */,
+				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAC155F0145855CF0016F3BD /* Build configuration list for PBXNativeTarget "NList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAC155F1145855CF0016F3BD /* Debug */,
+				FAC155F2145855CF0016F3BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
