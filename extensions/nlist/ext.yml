@@ -1,4 +1,5 @@
 entry: Init_NList_extension	
 javaentry: com.nlist.NList
+android_resources_addons: ext/nlist/platform/android/additional_files
 android_additional_sources_list: ext/nlist/platform/android/ext_build.files
 libraries: ["NList"]

@@ -161,7 +161,7 @@ Rhodes API tests
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Native View'} %>">Native View</a></li>       
 <% end %>      
 
-<% if System::get_property('platform') == 'APPLE' %>
+<% if System::get_property('platform') == 'APPLE' ||  System::get_property('platform') == 'ANDROID' %>
     <li><a href="NlistTest">Very long list with native extension</a></li>    
 <% end %>      
 

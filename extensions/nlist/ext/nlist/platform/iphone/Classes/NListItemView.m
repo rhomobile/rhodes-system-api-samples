@@ -87,7 +87,7 @@
 }
 
 -(void) runJSData:(NSString*)data {
-    NSString* js_code = [NSString stringWithFormat:@"nlist_set_data(\"%@\");", data];
+    NSString* js_code = [NSString stringWithFormat:@"nlist_set_data('%@');", data];
     [webView stringByEvaluatingJavaScriptFromString:js_code];
     [webView setNeedsDisplay];
     [data release];

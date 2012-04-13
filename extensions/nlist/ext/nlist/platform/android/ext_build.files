@@ -1,1 +1,5 @@
 ext/nlist/platform/android/src/com/nlist/NList.java
+ext/nlist/platform/android/src/com/nlist/NListView.java
+ext/nlist/platform/android/src/com/nlist/NListDataCache.java
+ext/nlist/platform/android/src/com/nlist/NListData.java
+ext/nlist/platform/android/src/com/nlist/NListAdapter.java

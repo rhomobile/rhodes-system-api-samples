@@ -13,7 +13,18 @@ class NlistTestController < Rho::RhoController
     #base_url = url_for(:action => :render_item)
     list_params = { :items_count => 10000, :item_height => 64, :item_request_url => base_url, :data_request_url => data_url, :item_data_cache_size => 300, :item_data_portion_size => 50}
     NList.open_list(list_params, url_for(:action => :nlist_callback))
-    render :index
+    render :action => :index, :back => 'callback:'+url_for(:action => :process_back) 
+  end
+
+  def process_back
+     puts '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+     puts '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+     puts '$$$$$$$        BACK          $$$$$$$$$$$$$$'
+     puts '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+     puts '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+     NList.close_list
+     #render :index
+     WebView.navigate(url_for :action => :index) 
   end
 
   def render_item
@@ -21,10 +32,13 @@ class NlistTestController < Rho::RhoController
   end
 
   def get_data_for_index(index)
-       return '[ '+index.to_s+' ]'
+       #return '[ '+index.to_s+' ]'
+       # return JSON data
+       return '{"title":"Title ( '+index.to_s+' )","subtitle":"Subtitle ( '+index.to_s+' )","number":"[ '+index.to_s+' ]"}'
   end
 
   def render_data
+       #return portion of JSON datas packed to XML
        start_index = @params['start_item'].to_i
        count = @params['items_count'].to_i
 
