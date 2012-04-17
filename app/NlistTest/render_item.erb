@@ -4,7 +4,7 @@
 <img src="<%= '/public/images/custom/Car-32.png' %>"/>
 </td>
 <td>
-<b><div id='item_title'>Title ...</div></b>
+<b><div id='item_title'>Title ( <%= @item.to_s %> )</div></b>
 </td>
 <td rowspan=2 align="right">
 <b><div id='item_number'>[ <%= @item.to_s %> ]</div></b>
@@ -12,7 +12,7 @@
 </tr>
 <tr>
 <td>
-<div id='item_subtitle'>subtitle ...</div>
+<div id='item_subtitle'>Subtitle ( <%= @item.to_s %> )</div>
 </td>
 </tr>
 </table>

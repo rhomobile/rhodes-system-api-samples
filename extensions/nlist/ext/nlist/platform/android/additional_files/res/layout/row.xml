@@ -6,7 +6,7 @@
     android:background="#FF000000"
     android:textColor="#FFFFFFFF"
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/itemimage"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_marginRight="6dip"

@@ -7,6 +7,8 @@
 
 #import "NListItemView.h"
 
+
+
 #import "NListViewManager.h"
 
 #include "RhodesApp.h"
@@ -116,8 +118,15 @@ static NSString* callbackURL;
     
     if ( !cell ) {
         cell = [[NListItemView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID height:itemHeight];
-        NSString* url = [NSString stringWithFormat:@"%@?&item=%d", itemBaseURL, index];
-        [cell setupWebView:url];
+        if (itemBaseURL != nil) {
+            // use cell with WebView inside
+            NSString* url = [NSString stringWithFormat:@"%@?&item=%d", itemBaseURL, index];
+            [cell setupWebView:url];
+        }
+        else {
+            // use pure native cell
+            [cell setupNativeView];
+        }
     }
     else {
         [dataCache cancelDataRequest:cell.data_index];

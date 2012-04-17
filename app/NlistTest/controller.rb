@@ -1,7 +1,6 @@
 require 'rho/rhocontroller'
 
 class NlistTestController < Rho::RhoController
-  @layout = 'NlistTest/layout'
   
   def index
     render :back => '/app'
@@ -11,17 +10,15 @@ class NlistTestController < Rho::RhoController
     base_url = WebView.current_location() + '/render_item'
     data_url = WebView.current_location() + '/render_data'
     #base_url = url_for(:action => :render_item)
-    list_params = { :items_count => 10000, :item_height => 64, :item_request_url => base_url, :data_request_url => data_url, :item_data_cache_size => 300, :item_data_portion_size => 50}
+    # use WebView inside each list Item
+    #list_params = { :items_count => 10000, :item_height => 64, :item_request_url => base_url, :data_request_url => data_url, :item_data_cache_size => 300, :item_data_portion_size => 50}
+    # use Native view at Item
+    list_params = { :items_count => 10000, :item_height => 64, :data_request_url => data_url, :item_data_cache_size => 300, :item_data_portion_size => 50}
     NList.open_list(list_params, url_for(:action => :nlist_callback))
-    render :action => :index, :back => 'callback:'+url_for(:action => :process_back) 
+    render :action => :selected, :back => 'callback:'+url_for(:action => :process_back) 
   end
 
   def process_back
-     puts '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
-     puts '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
-     puts '$$$$$$$        BACK          $$$$$$$$$$$$$$'
-     puts '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
-     puts '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
      NList.close_list
      #render :index
      WebView.navigate(url_for :action => :index) 
@@ -32,9 +29,9 @@ class NlistTestController < Rho::RhoController
   end
 
   def get_data_for_index(index)
-       #return '[ '+index.to_s+' ]'
        # return JSON data
-       return '{"title":"Title ( '+index.to_s+' )","subtitle":"Subtitle ( '+index.to_s+' )","number":"[ '+index.to_s+' ]"}'
+       image_path = File.join(Rho::RhoApplication::get_base_app_path(), '/public/images/custom/Car-3'+(index%10).to_s+'.png')
+       return '{"title":"Title ( '+index.to_s+' )","subtitle":"Subtitle ( '+index.to_s+' )","number":"[ '+index.to_s+' ]","image":"'+image_path+'"}'
   end
 
   def render_data
@@ -56,12 +53,8 @@ class NlistTestController < Rho::RhoController
       index = @params['selected_item'].to_i	
       NList.close_list
       $selected_item = index
-      puts '$$$$$$$$$$$$$$$$$ selected_item = '+$selected_item.to_s
-      WebView.navigate( url_for :action => :selected )
+      puts '$$$$$$$$$$$$$$$$$$$$$   JS = '+ "nlist_set_selected('"+index.to_s+"');"
+      WebView.execute_js('document.getElementById("selected_item").innerHTML = "'+index.to_s+'";')
   end
   
-  def selected
-       render
-  end
-
 end

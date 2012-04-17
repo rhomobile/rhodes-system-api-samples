@@ -13,6 +13,7 @@ public class NlistData  {
 	private String mTitle = null;
 	private String mSubtitle = null;
 	private String mNumber = null;
+	private String mImage = null;
 	
 	public NlistData(String jsonData) {
 		try {
@@ -20,6 +21,7 @@ public class NlistData  {
 			mTitle = jObject.getString("title");
 			mSubtitle = jObject.getString("subtitle");
 			mNumber = jObject.getString("number");
+			mImage = jObject.getString("image");
 		}
 		catch (Exception e) {
 			// TODO: handle exception
@@ -38,5 +40,8 @@ public class NlistData  {
 		return mNumber;
 	}
 
+	public String getImage() {
+		return mImage;
+	}
 	
 }
