@@ -126,7 +126,7 @@ describe("Syncengine API", function(){
                     expect("ok" == okHdlr.mostRecentCall.args[0]).toBeTruthy();
                 }
             });
-            waitsForSpies([callbackHdlr], 'login callback timeout', 7000);
+            waitsForSpies([callbackHdlr], 'login callback timeout', 10000);
             runs(function(){
                 expect(callbackHdlr).toHaveBeenCalled();
                 if (0 < callbackHdlr.callCount) {
