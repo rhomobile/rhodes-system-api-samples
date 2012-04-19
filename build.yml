@@ -9,7 +9,7 @@ capabilities:
 - phone
 - bluetooth
 - calendar
-- native_browser
+#- native_browser
 #- motorola_browser
 
 #paths:
