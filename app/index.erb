@@ -84,7 +84,7 @@ Device capabilities:
     <li><a href="ScreenRotation">Screen rotation</a></li>   
     <li><a href="CustomUri">Hyperlinks for Email, Phone Dialing, SMS</a></li>
 
-  <% if System.get_property('is_moto_device') %>
+  <% if System.get_property('is_motorola_device') %>
       <li><a href="BarcodeRecognizerMoto">Barcode</a></li> 
   <% elsif System::get_property('platform') != 'WP7' and System::get_property('platform') != 'WINDOWS'%>
      <li><a href="BarcodeRecognizer">Barcode</a></li> 
