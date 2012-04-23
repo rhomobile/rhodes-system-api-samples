@@ -64,5 +64,5 @@ wp:
 extensions: ["json", "rhoxml", "rhodes_translator"]
 
 symbian: 
-  uid: 3780829571
+  uid: 3780829575
 
