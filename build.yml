@@ -50,7 +50,8 @@ bb:
   extensions: ["barcode"]
 
 android:
-  extensions: ["barcode", "rainbow", "nfc", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread"]
+#"barcode", "rainbow", "nfc",
+  extensions: ["digest", "digest-md5", "digest-sha1", "pdf-writer", "thread"]
   capabilities:
   - network_state
   - sdcard
