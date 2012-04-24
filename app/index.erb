@@ -93,7 +93,7 @@ Device capabilities:
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Barcode'} %>">Barcode</a>
   </li>
   <% end %>  
-  <% if !System.get_property('is_moto_device') and  System::get_property('platform') != 'WP7' and System::get_property('platform') != 'WINDOWS' and System::get_property('platform') != 'Blackberry'%>
+  <% if !System.get_property('is_motorola_device') and  System::get_property('platform') != 'WP7' and System::get_property('platform') != 'WINDOWS' and System::get_property('platform') != 'Blackberry'%>
       <li><a href="BarcodeRecognizerMoto">Barcode Moto</a></li> 
   <% end %>  
 
