@@ -12,9 +12,6 @@ capabilities:
 #- native_browser
 #- motorola_browser
 
-#paths:
-#  extensions: C:\projects\MotoNeon2\vobs\NEON\R2D1\RhoElementsOneExtension\extensions
-
 bbver: 5.0
 #sdk: c:/Projects/rhodes
 
