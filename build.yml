@@ -20,7 +20,7 @@ version: 1.0.7
 vendor: rhomobile
 iphone: 
   emulator: 5.0
-  sdk: iphonesimulator5.0
+  sdk: iphonesimulator5.1
   codesignidentity: ""
   entitlements: ""
   extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread", "nlist"]
@@ -47,8 +47,7 @@ bb:
   extensions: ["barcode"]
 
 android:
-#"barcode", "rainbow", "nfc",
-  extensions: ["digest", "digest-md5", "digest-sha1", "pdf-writer", "thread"]
+  extensions: ["barcode", "rainbow", "nfc", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread"]
   capabilities:
   - network_state
   - sdcard
