@@ -32,10 +32,13 @@ public class Rainbow {
 				Context ctx = RhodesService.getInstance().getContext();
 		
 				ourView = new RainbowView(ctx, null);
-				ourView.setLayoutParams(new AbsoluteLayout.LayoutParams(200, 200, 10, 10));
-				WebView wv = getWebViewObject(0);
-				wv.addView(ourView);
-				wv.bringChildToFront(ourView);
+				//ourView.setLayoutParams(new AbsoluteLayout.LayoutParams(200, 200, 10, 10));
+				Object viewObj = getWebViewObject(-1);
+				if (viewObj instanceof AbsoluteLayout) {
+				    AbsoluteLayout wv = (AbsoluteLayout)viewObj;
+				    wv.addView(ourView, new AbsoluteLayout.LayoutParams(200, 200, 10, 10));
+				    wv.bringChildToFront(ourView);
+				}
 			}
 		});
 		
@@ -45,10 +48,13 @@ public class Rainbow {
 		RhodesActivity.getInstance().post( new Runnable() {
 			public void run() {
 				if (ourView != null) {
-					ViewGroup wv = getWebViewObject(0);
-					if (wv != null) {
-						ourView.stopAnimation();
-						wv.removeView(ourView);
+					Object viewObj = getWebViewObject(-1);
+					if (viewObj != null) {
+    					if (viewObj instanceof AbsoluteLayout) {
+    					    AbsoluteLayout wv = (AbsoluteLayout) viewObj;
+						    ourView.stopAnimation();
+						    wv.removeView(ourView);
+						}
 					}
 					ourView = null;
 				}
@@ -77,14 +83,9 @@ public class Rainbow {
 		}
 	}
 
-
-	// Part 2 - Native View entire WebView, open by view type name as prefix of URL
-	
-	
-	public static native WebView getWebViewObject(int tab_index);
-	//{
-	//	return RhodesService.getInstance().getMainView().getWebView(tab_index);
-	//}
+	// Part 2 - Native View which completely replaces WebView, open by view type name as prefix of URL
+		
+	public static native Object getWebViewObject(int tab_index);
 
 	public static int makeNativeView() {
 		Context ctx = RhodesService.getInstance().getContext();
