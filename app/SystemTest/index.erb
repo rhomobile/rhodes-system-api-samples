@@ -69,7 +69,7 @@ is_emulator : <%=System.get_property('is_emulator') %> <br/>
 has_calendar : <%=System.get_property('has_calendar') %> <br/>
 get_start_params : <%=System.get_start_params() %> <br/>
 has_touchscreen : <%=System.get_property('has_touchscreen') %> <br/>
-is_moto_device : <%=System.get_property('is_moto_device') %> <br/>
+is_motorola_device : <%=System.get_property('is_motorola_device') %> <br/>
 
 <% if System::get_property('platform') == 'APPLE' %>
 <%= link_to 'set application icon badge to [5]', url_for(:action => :set_badge_5) %> <br/>
