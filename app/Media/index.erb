@@ -1,4 +1,28 @@
-<div>
-	<p>Test audio/video</p>
-  <a href="http://videos3.netprofesseur.com/1/videos/130/BRICOLAGE_Changer_un_joints.mp4">Play mp4 online video</a><br/>
-</div>
+<!doctype html>
+<html>
+<head><title>HTML5 Media</title>
+  <script type="text/javascript" src="/public/jquery/jquery-1.6.4.min.js"></script>
+
+  <script type="text/javascript">
+    $(window).load(function(){
+        setTimeout(function(){
+            $('#myVideo')[0].play();
+        }, 1);
+    });
+  </script>
+
+</head>
+<body>
+
+<p>HTML5 embedded video</p>
+<video id="myVideo"
+       src="/public/media/demo.mp4"
+       controls="controls"
+       width="480"
+       height="270"
+>
+  This browser doesn't support HTML5 video!
+</video>
+
+</body>
+</html>
