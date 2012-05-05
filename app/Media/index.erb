@@ -5,24 +5,48 @@
 
   <script type="text/javascript">
     $(window).load(function(){
+
+        // w/o this minor timeout it hangs on video load
         setTimeout(function(){
-            $('#myVideo')[0].play();
+            $('#video1')[0].play();
         }, 1);
+
+        $('#customPlay').click(function(){
+            $('#video2')[0].play();
+            return false;
+        });
+        $('#customPause').click(function(){
+            $('#video2')[0].pause();
+            return false;
+        });
     });
   </script>
 
 </head>
 <body>
 
-<p>HTML5 embedded video</p>
-<video id="myVideo"
-       src="/public/media/demo.mp4"
+<h3>HTML5 video autoplay</h3>
+<video id="video1"
+       src="/public/media/nfc.mp4"
        controls="controls"
-       width="480"
-       height="270"
+       width="320"
+       height="240"
 >
   This browser doesn't support HTML5 video!
 </video>
+
+<h3>HTML5 video with custom control</h3>
+<video id="video2"
+       width="480"
+       height="270"
+>
+  <source src="/public/media/demo.mp4" type="video/mp4">
+  This browser doesn't support HTML5 video!
+</video>
+<br>
+<button id="customPlay">&nbsp;&nbsp;|&gt;&nbsp;&nbsp;</button>
+&nbsp;&nbsp;
+<button id="customPause">&nbsp;&nbsp;||&nbsp;&nbsp;</button>
 
 </body>
 </html>
