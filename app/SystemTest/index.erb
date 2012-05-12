@@ -2,6 +2,10 @@
     function test() {
         alert("Javascript alert");
     }
+
+    function test_prompt() {
+        prompt("Javascript prompt", "default value");
+    }
     
     function getPage(url,execute)
     {
@@ -86,6 +90,8 @@ is_motorola_device : <%=System.get_property('is_motorola_device') %> <br/>
 <br/>WebView class:<br/>
 <a href="#" onclick="test();">JS Popup</a><br/>
 <a href="#" onclick="test_ajax();">AJAX Popup</a><br/>
+<a href="#" onclick="test_prompt();">JS Prompt</a><br/>
+<a href="http://www.htmliseasy.com/keeper/mystash/secretstuff.html">Autentification</a><br/>
 current_location : <%=WebView.current_location() %> <br/>
 <%=link_to "execute_js", :action => :call_js%><br/>
 <%=link_to "set_cookie", :action => :set_cookie%> - <%=link_to "show cookies", :action => :show_cookie%><br/>
