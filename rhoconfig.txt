@@ -31,6 +31,7 @@ ExcludeLogCategories =
 KeepTrackOfLastVisitedPage = 0 
 LastVisitedPage = ''
 MaxLogFileSize=0
+#LogMemPeriod=5000
 
 syncserver = 'http://rhodes-samples-server.heroku.com/application'
 sync_poll_interval=0
