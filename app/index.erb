@@ -12,14 +12,14 @@ if (location.search =='?settings=true') {
 %>
 Device capabilities:
 <ul id="home" selected="true" title="Device capabilities">
-  <% if System::get_property('platform') != 'WP7'%>
+  <% if System::get_property('platform') != 'WP7' and System::get_property('device_name') != 'Win32' %>
      <li><a href="Contacts">Contacts</a></li>
   <% else %>
   <li>
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Contacts'} %>">Contacts</a>
   </li>
   <% end %>
-  <% if System::get_property('platform') != 'WP7'%>
+  <% if System::get_property('platform') != 'WP7' and System::get_property('device_name') != 'Win32' %>
   <li>
     <a href="Calendar">Calendar</a>
   </li>
@@ -28,7 +28,7 @@ Device capabilities:
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Calendar'} %>">Calendar</a>
   </li>
   <% end %>
-  <% if System::get_property('platform') != 'WP7'%>    
+  <% if System::get_property('platform') != 'WP7' and System::get_property('device_name') != 'Win32' %>    
   <li>
     <a href="GeoLocation">Geo Location/Native Map</a>
   </li>
@@ -37,7 +37,7 @@ Device capabilities:
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Geo Location/Native Map'} %>">Geo Location/Native Map</a>
   </li>
   <% end %>
-      <% if System::get_property('platform') != 'WP7'%>    
+      <% if System::get_property('platform') != 'WP7' and System::get_property('device_name') != 'Win32' %>    
      <li><a href="Image">Camera</a></li>  
   <% else %>
   <li>
@@ -45,7 +45,7 @@ Device capabilities:
   </li>
   <% end %> 
     
-<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'WINDOWS' or System::get_property('platform') == 'Blackberry'%>
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or (System::get_property('platform') == 'WINDOWS' and System::get_property('device_name') != 'Win32' ) or System::get_property('platform') == 'Blackberry'%>
     <li><a href="SignatureUtil">Signature capture</a></li>   
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Signature capture'} %>">Signature capture</a></li>       
@@ -74,14 +74,21 @@ Device capabilities:
       <a href="Alert">Alerts/Audio file playback</a>
     </li> 
     
-<% if System::get_property('platform') != 'APPLE' and  System::get_property('platform') != 'WP7'%>
+<% if System::get_property('platform') != 'APPLE' and  System::get_property('platform') != 'WP7' and System::get_property('device_name') != 'Win32' %>
     <li><a href="Ringtones">Ringtones</a></li>
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Ringtones'} %>">Ringtones</a></li>       
 <% end %>      
     
     <li><a href="DynamicMenu">Native Menu</a></li>
+    
+<% if System::get_property('device_name') != 'Win32' %>
     <li><a href="ScreenRotation">Screen rotation</a></li>   
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Screen rotation'} %>">Screen rotation</a></li>       
+<% end %>      
+    
+    
     <li><a href="CustomUri">Hyperlinks for Email, Phone Dialing, SMS</a></li>
 
   <% if System.get_property('is_motorola_device') %>
@@ -99,7 +106,7 @@ Device capabilities:
 
 
  
-  <% if System::get_property('platform') != 'WP7'%>
+  <% if System::get_property('platform') != 'WP7' and System::get_property('device_name') != 'Win32' %>
          <li><a href="BluetoothChat">Bluetooth</a></li>
   <% else %>
   <li>
@@ -155,7 +162,7 @@ Rhodes API tests
     <li><a href="Localization">Localization test</a></li>
     <li><a href="RhoTest">Rho test</a></li>    
     
-<% if System::get_property('platform') != 'Blackberry' && System::get_property('platform') != 'WP7'%>
+<% if System::get_property('platform') != 'Blackberry' and System::get_property('platform') != 'WP7' and System::get_property('device_name') != 'Win32' %>
     <li><a href="NativeView">Native View</a></li>   
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Native View'} %>">Native View</a></li>       

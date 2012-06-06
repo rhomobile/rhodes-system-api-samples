@@ -95,7 +95,11 @@ class SettingsController < Rho::RhoController
     elsif platform == 'Blackberry'
         @ns_platform = 'Blackberry'
     elsif platform == 'WINDOWS'
-        @ns_platform = 'Windows Mobile'
+        if System::get_property('device_name') == 'Win32'
+            @ns_platform = 'Windows'
+        else    
+            @ns_platform = 'Windows Mobile'
+        end    
     end
         
     render
