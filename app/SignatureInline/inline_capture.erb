@@ -4,7 +4,7 @@
 This is simple example document for show how create transparency (or not) signature capture window inside WebView and capture sigtature.
 Also you can see how control that windiw for basic commands.<br>
 <br>
-Signature:   <img src="signature_placeholder.png" id="id_placeholder" width="40%" height="35%"/>
+Signature:   <img src="signature_placeholder.png" id="id_placeholder" width="40%" height="35%" onload="checkSize()"/>
 <br>
 <br>
 <INPUT type="button" id="id_button_back" value="BACK" name="id_button_back" onClick="onBack();">
@@ -28,6 +28,10 @@ function pageX(elem) {
 
 
 function checkSize() {
+    if (!document.getElementById('id_placeholder')) {
+        return;
+    }
+
     var pixel_ratio = 1;
 
 <% if System::get_property('platform') == 'ANDROID'%>               
@@ -42,8 +46,6 @@ function checkSize() {
 }
 
 window.onresize = checkSize;
-
-$(window).ready(function(){checkSize();});
 
 
 function onBack() {

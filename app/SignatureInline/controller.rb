@@ -8,6 +8,7 @@ class SignatureInlineController < Rho::RhoController
     puts "Signature Inline index controller"
     @signatures = SignatureInline.find(:all)
     Rho::SignatureCapture.visible(false, nil )
+
     render :back => '/app'  
   end
 
@@ -23,6 +24,7 @@ class SignatureInlineController < Rho::RhoController
   end
 
   def signature_callback
+     puts '############  signature_callback'
     if @params['status'] == 'ok'
       #create signature record in the DB
       signature = SignatureInline.new({'signature_uri'=>@params['signature_uri']})

@@ -26,7 +26,7 @@ class NativeTabbarTestController < Rho::RhoController
     tabbar = [
       {:label => 'Native Tabbar', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
       {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
-      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
+      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => false}
     ]
     Rho::NativeTabbar.create(tabbar)
     Rho::NativeTabbar.set_tab_badge( 1, '12')
