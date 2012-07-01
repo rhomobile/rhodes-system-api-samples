@@ -45,7 +45,7 @@ wm:
   #use_shared_runtime: 1
 
 win32:
-  extensions: ["digest", "digest-md5", "digest-sha1"]
+  extensions: ["digest", "digest-md5", "digest-sha1", "openssl"]
 
 bb:
   extensions: ["barcode"]
