@@ -36,7 +36,7 @@ iphone:
 #buildcfg: 'Debug'  
 
 wm:
-  extensions: ["digest", "digest-md5", "digest-sha1"]
+  extensions: ["digest", "digest-md5", "digest-sha1", "openssl"]
   #"rainbow"
   #sdk: "MC3000c50b (ARMV4I)"
   sdk: "Windows Mobile 6 Professional SDK (ARMV4I)"
