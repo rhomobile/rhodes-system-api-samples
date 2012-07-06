@@ -36,7 +36,7 @@ iphone:
 #buildcfg: 'Debug'  
 
 wm:
-  extensions: ["digest", "digest-md5", "digest-sha1", "openssl"]
+  extensions: ["digest", "digest-md5", "digest-sha1", "digest-sha2", "openssl", "ezcrypto"]
   #"rainbow"
   #sdk: "MC3000c50b (ARMV4I)"
   sdk: "Windows Mobile 6 Professional SDK (ARMV4I)"
@@ -45,7 +45,7 @@ wm:
   #use_shared_runtime: 1
 
 win32:
-  extensions: ["digest", "digest-md5", "digest-sha1", "openssl"]
+  extensions: ["digest", "digest-md5", "digest-sha1", "digest-sha2", "openssl", "ezcrypto"]
 
 bb:
   extensions: ["barcode"]
