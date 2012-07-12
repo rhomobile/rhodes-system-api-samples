@@ -200,7 +200,7 @@ Rhodes API tests
     <li><a href="RexmlTest">Rexml test</a></li>
     <li><a href="JsonTest">Json test</a></li>
 
-  <% if (System::get_property('platform') == 'WINDOWS') || (System::get_property('platform') == 'WINDOWS_DESKTOP') || defined?( RHODES_EMULATOR ) %>
+  <% if (System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'WINDOWS') || (System::get_property('platform') == 'WINDOWS_DESKTOP') || defined?( RHODES_EMULATOR ) %>
     <li><a href="OpenSSL">OpenSSL extension test</a></li>
   <% end %>  
 
