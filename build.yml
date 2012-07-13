@@ -23,7 +23,7 @@ iphone:
   sdk: iphonesimulator5.1
   codesignidentity: ""
   entitlements: ""
-  extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread", "nlist"]
+  extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread", "nlist", "digest-sha2", "openssl.so", "openssl", "ezcrypto"]
   entitlements_file: "./production/Entitlements.plist"
   configuration: Debug
   production:
