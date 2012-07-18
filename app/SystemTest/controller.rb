@@ -68,18 +68,40 @@ class SystemTestController < Rho::RhoController
     redirect :action => :index
   end
 
-  def start_test_app
-    
+  def get_start_test_app_ID
     if System::get_property('platform') == 'ANDROID'
-        System.run_app('com.rhomobile.store', "security_token=123")
+        return 'com.rhomobile.store'
     elsif System::get_property('platform') == 'APPLE'
-        System.run_app('store', "security_token=123")
+        return 'store'
     elsif System::get_property('platform') == 'Blackberry'
-        System.run_app('store', "security_token=123")
+        return 'store'
+    elsif System::get_property('platform') == 'WINDOWS_DESKTOP'
+        return 'rhomobile/store/store.exe'
     else
-        System.run_app('rhomobile store/store.exe', "security_token=123")
+        return 'rhomobile store/store.exe'
     end
+  
+  end
 
+  def install_test_app
+    url = 'http://localhost:42877/store-setup.exe'
+    System.app_install url
+    redirect :action => :index
+  end
+  
+  def start_test_app
+    System.run_app(get_start_test_app_ID, "security_token=123")    
+    redirect :action => :index
+  end
+
+  def is_test_app_installed
+    installed = System.app_installed?(get_start_test_app_ID())
+    Alert.show_popup(installed ? "installed" : "not installed")
+    redirect :action => :index
+  end
+
+  def uninstall_test_app
+    System.app_uninstall(get_start_test_app_ID())
     redirect :action => :index
   end
 

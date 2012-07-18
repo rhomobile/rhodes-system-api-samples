@@ -97,7 +97,11 @@ current_location : <%=WebView.current_location() %> <br/>
 <%=link_to "set_cookie", :action => :set_cookie%> - <%=link_to "show cookies", :action => :show_cookie%><br/>
 <br/>
 <%= link_to 'Read log', url_for(:action => :read_log) %> <br/>
+<%= link_to 'Install test app', url_for(:action => :install_test_app) %> <br/>
 <%= link_to 'Start Test app', url_for(:action => :start_test_app) %> <br/>
+<%= link_to 'Is Test app installed?', url_for(:action => :is_test_app_installed) %> <br/>
+<%= link_to 'Uninstall Test application', url_for(:action => :uninstall_test_app) %> <br/>
+
 <br/>
 <% if System::get_property('platform') == 'ANDROID' %>
 <%= link_to 'Install simple app', url_for(:action => :install_apk) %> <br/>
