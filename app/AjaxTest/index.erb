@@ -1,5 +1,12 @@
 <script src="/public/jquery/jquery-1.6.4.min.js" type="text/javascript"></script>
-
+<script type="text/javascript">
+  function showResult(data) {
+      var abc = $.parseJSON(data);
+      $('#result_a').html(abc["a"]);
+      $('#result_b').html(abc["b"]);
+      $('#result_c').html(abc["c"]);
+  }
+</script>
 <div class="toolbar">
 	<h1 id="pageTitle">
 		AJAX test
@@ -7,11 +14,13 @@
 </div>
 
 <ul id="home">
-  <li>To reset result just reload the page..</li>
+  <li><p>To reset result just reload the page..</p></li>
   <li><a href="#"
-     onclick="$.get('<%= url_for :action => :get_result %>').success(function(data){$('#result').html(data);}); return false;">
-    Read HTML via AJAX call
+     onclick="$.get('<%= url_for :action => :get_result %>').success(function(data){showResult(data)}); return false;">
+    Read JSON object via AJAX call
   </a></li>
 </ul>
 
-<div id="result"></div>
+<div>A = <span id="result_a"></span></div>
+<div>B = <span id="result_b"></span></div>
+<div>C = <span id="result_c"></span></div>

@@ -9,7 +9,7 @@ class AjaxTestController < Rho::RhoController
   end
   
   def get_result
-    render :string => '--> this is an AJAX result <--'
+    render :string => '{"a": 1, "b": 2, "c": 3}'
   end
 
 end
