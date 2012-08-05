@@ -45,7 +45,7 @@ class SystemTestController < Rho::RhoController
     
   def call_js
     WebView.execute_js("test();", 0)
-    redirect :action => :index
+    render :action => :call_js_result
   end  
 
   def show_alert
