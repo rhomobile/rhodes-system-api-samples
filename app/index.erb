@@ -37,7 +37,7 @@ Device capabilities:
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Geo Location/Native Map'} %>">Geo Location/Native Map</a>
   </li>
   <% end %>
-      <% if System::get_property('platform') != 'WP7' and System::get_property('device_name') != 'Win32' %>    
+      <% if System::get_property('platform') != 'WP7' %>    
      <li><a href="Image">Camera</a></li>  
   <% else %>
   <li>
