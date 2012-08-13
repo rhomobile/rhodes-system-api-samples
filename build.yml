@@ -67,3 +67,9 @@ extensions: ["json", "rhoxml", "rhodes_translator"]
 symbian: 
   uid: 3780829575
 
+
+excludedirs:
+  bb:
+    - "**/*.mp4"
+  bb6:
+    - "**/*.mp4"

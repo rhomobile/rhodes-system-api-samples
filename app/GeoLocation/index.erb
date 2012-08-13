@@ -71,16 +71,14 @@ function updateLocation(lat, lng) {
 			target="_self">[show ESRI map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> with 250 pins]</a></p>
 
         <p><a href="/app/GeoLocation/showmap_coding?provider=ESRI" target="_self">[show ESRI map at location : NG10 3XL ]</a></p>    
+
     
 <% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
   <a href='/app/ESRI'>[show ESRI map]</a><br/>
 <% end %>
 
-        <p>Static Google map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%>:<br>
-            <img src="http://maps.googleapis.com/maps/api/staticmap?center=<%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%>&zoom=12&size=200x200&format=png32&sensor=true">
-            </img> 
-        </p>
-
+        <p><a href="/app/GeoLocation/showmap_static" target="_self">[Show Static Google map at location : <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> ]</a></p>    
+    
 	<p>Distance calculation test:</p>
 	<p> Distance between Washington, D.C. and Moscow, Russia: expected  4856.99 miles, geolocation returns
 	<%= GeoLocation.haversine_distance(38.895, -77.036667, 55.755786, 37.617633).to_s %> miles
