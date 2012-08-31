@@ -143,6 +143,10 @@ Device capabilities:
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'RhoTimer'} %>">RhoTimer</a>
   </li>
  <% end %>  
+<% if System::get_property('platform') == 'ANDROID' %>
+    <li><a href="NetworkStatus">Network status notification</a></li>
+<% end %>
+
      
 <li><a href="Metadata">Metadata Test</a></li>  
 <li><a href="GeoCoding">GeoCoding Example</a></li>

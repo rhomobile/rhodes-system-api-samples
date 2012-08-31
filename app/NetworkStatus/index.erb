@@ -1,0 +1,21 @@
+<div class="toolbar">
+    <h1 id="pageTitle">
+        Network status notification
+    </h1>
+</div>
+
+Enable or disable network connection to catch call
+<br>
+Current callback state :
+<br>
+<b><%=$callback_state%></b>
+<br>
+<br>
+<%= link_to '[ set Network status callback]', { :action => :set_callback }%>
+<br>
+<%= link_to '[ unset Network status callback]', { :action => :unset_callback }%>
+
+
+
+        
+
