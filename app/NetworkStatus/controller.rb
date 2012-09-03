@@ -5,7 +5,7 @@ class NetworkStatusController < Rho::RhoController
   $callback_state = 'network status callback is not setted'  
 
   def set_callback
-    System::set_network_status_notify( url_for( :action => :networkStatusCallback), 20 )
+    System::set_network_status_notify( url_for( :action => :networkStatusCallback), 5 )
     $callback_state = 'network status callback is setted'  
     redirect :action => :index
   end
