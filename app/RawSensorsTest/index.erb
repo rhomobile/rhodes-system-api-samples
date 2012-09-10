@@ -1,0 +1,59 @@
+<div data-role="page">
+
+  <div data-role="header" data-position="inline">
+    <h1>RawSensors Extension Test</h1>
+      
+  </div>
+
+  <div data-role="content">
+
+<br>
+This page require [rawsensors] extension !
+<br>
+
+Sensors on this device :
+<br>
+<b>Accelerometer : </b><%=$accelerator_available%>
+<br>
+<b>Magnetometer : </b><%=$magnetometer_available%>
+<br>
+<br>
+  <INPUT type="button" id="id_button1" value=" START update " name="id_button1" onClick="onStartUpdate();">
+  <INPUT type="button" id="id_button2" value=" STOP update " name="id_button2" onClick="onStopUpdate();">
+<br>
+
+AccelerometerX <input id="id_accelerometer_x" type="text" name="id_accelerometer_x" value =""></input>
+<br>
+AccelerometerY <input id="id_accelerometer_y" type="text" name="id_accelerometer_y" value =""></input>
+<br>
+AccelerometerZ <input id="id_accelerometer_z" type="text" name="id_accelerometer_z" value =""></input>
+<br>
+MagnetometerX <input id="id_magnetometer_x" type="text" name="id_magnetometer_x" value =""></input>
+<br>
+MagnetometerY <input id="id_magnetometer_y" type="text" name="id_magnetometer_y" value =""></input>
+<br>
+MagnetometerZ <input id="id_magnetometer_z" type="text" name="id_magnetometer_z" value =""></input>
+<br>
+
+
+
+
+
+  </div>
+
+</div>
+
+  <script type="text/javascript">
+
+
+function onStartUpdate() {
+$.get('/app/RawSensorsTest/start_update', {});
+}
+
+function onStopUpdate() {
+$.get('/app/RawSensorsTest/stop_update', {});
+}
+
+
+
+  </script>

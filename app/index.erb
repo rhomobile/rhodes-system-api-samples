@@ -153,6 +153,13 @@ Device capabilities:
 <li><a href="GeneratePDF">Generate PDF and open/print it</a></li>
 
 <li><a href="SyncEngineJs/index.htm">SyncEngine JS API</a></li>
+
+
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
+    <li><a href="RawSensorsTest">RawSensors test</a></li>
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'RawSensors'} %>">RawSensors</a></li>       
+<% end %>  
      
 </ul>
     
