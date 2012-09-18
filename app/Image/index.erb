@@ -59,7 +59,11 @@ Allow Editing :
     <br/>
 	<% @images.reverse_each do |x|%>
         <% if x.image_uri %>
-            <img src="<%=Rho::RhoApplication::get_blob_path(x.image_uri)%>" width='300px'></img><a href="<%=url_for(:action => :delete, :id =>x.object)%>">Delete</a><br/>
+            <img src="<%=Rho::RhoApplication::get_blob_path(x.image_uri)%>" width='300px'></img><a href="<%=url_for(:action => :delete, :id =>x.object)%>">Delete</a>
+			<% if (System::get_property('platform') == 'APPLE') %>
+				<br/><a href="<%=url_for(:action => :save_to_gallery, :id =>x.object)%>">Save to gallery</a>
+			<% end %>
+			<br/>
         <% end %>        
 	<% end %>
 </div>

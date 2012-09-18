@@ -62,6 +62,12 @@ class ImageController < Rho::RhoController
     @image.destroy
     redirect :action => :index
   end
+	
+  def save_to_gallery
+	  img = Image.find(@params['id'])
+	  Camera::save_image_to_device_gallery(Rho::RhoApplication::get_blob_path(img.image_uri))
+	  redirect :action => :index
+  end
 
   def camera_callback
     if @params['status'] == 'ok'
