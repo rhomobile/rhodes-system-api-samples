@@ -1,0 +1,14 @@
+<div class="toolbar">
+	<h1 id="pageTitle">
+		Resize Window test
+	</h1>
+</div>
+<ul>
+<%= link_to 'Move window to top left coner (0,0)', url_for(:action => :move_window_to_default_position) %> <br/>
+<%= link_to 'Move window to (100,100)', url_for(:action => :move_window_to_test_position) %> <br/>
+<%= link_to 'Set default Win32 resolution (400x600)', url_for(:action => :set_default_screen_size) %> <br/>
+<%= link_to 'Set iPhone 3GS resolution (320x480)', url_for(:action => :set_iphone3gs_screen_size) %> <br/>
+<%= link_to 'Set iPad 2 resolution (1024x768)', url_for(:action => :set_ipad2_screen_size) %> <br/>
+<%= link_to 'Disable window resize', url_for(:action => :disable_resize) %> <br/>
+<%= link_to 'Enable window resize', url_for(:action => :enable_resize) %> <br/>
+</ul>

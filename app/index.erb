@@ -207,11 +207,16 @@ Rhodes API tests
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'UI JQTouch Form Demo'} %>">UI JQTouch Form Demo</a>
   </li>
   <% end %>  
-    <li><a href="JQueryMobileTest">UI JQueryMobile Form Demo</a></li>
-    <li><a href="RexmlTest">Rexml test</a></li>
-    <li><a href="JsonTest">JSON test</a></li>
-    <li><a href="AjaxTest">AJAX test</a></li>
 
+  <li><a href="JQueryMobileTest">UI JQueryMobile Form Demo</a></li>
+  <li><a href="RexmlTest">Rexml test</a></li>
+  <li><a href="JsonTest">JSON test</a></li>
+  <li><a href="AjaxTest">AJAX test</a></li>
+
+  <% if (System::get_property('platform') == 'WINDOWS_DESKTOP') || defined?( RHODES_EMULATOR ) %>
+    <li><a href="ResizeAppWindow">Resize Window test</a></li>
+  <% end %>  
+   
   <% if (System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE') || (System::get_property('platform') == 'WINDOWS') || (System::get_property('platform') == 'WINDOWS_DESKTOP') || defined?( RHODES_EMULATOR ) %>
     <li><a href="OpenSSL">OpenSSL extension test</a></li>
   <% end %>  
@@ -219,7 +224,7 @@ Rhodes API tests
   <% if (System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE') || (System::get_property('platform') == 'WINDOWS') || (System::get_property('platform') == 'WINDOWS_DESKTOP') || defined?( RHODES_EMULATOR ) %>
     <li><a href="Digest">Digest extension test</a></li>
   <% end %>  
-   
+
 </ul>
 
 <%= $mt_string %>
