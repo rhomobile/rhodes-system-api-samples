@@ -143,7 +143,7 @@ Device capabilities:
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'RhoTimer'} %>">RhoTimer</a>
   </li>
  <% end %>  
-<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'WINDOWS'%>
     <li><a href="NetworkStatus">Network status notification</a></li>
 <% end %>
 
