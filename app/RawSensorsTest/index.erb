@@ -20,6 +20,7 @@ Sensors on this device :
 <br>
   <INPUT type="button" id="id_button1" value=" START update " name="id_button1" onClick="onStartUpdate();">
   <INPUT type="button" id="id_button2" value=" STOP update " name="id_button2" onClick="onStopUpdate();">
+  <INPUT type="button" id="id_button3" value=" FIRE update" name="id_button3" onClick="onFireUpdate();">
 <br>
 
 AccelerometerX <input id="id_accelerometer_x" type="text" name="id_accelerometer_x" value =""></input>
@@ -54,6 +55,9 @@ function onStopUpdate() {
 $.get('/app/RawSensorsTest/stop_update', {});
 }
 
+function onFireUpdate() {
+$.get('/app/RawSensorsTest/fire_update', {});
+}
 
 
   </script>

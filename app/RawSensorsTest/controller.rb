@@ -62,9 +62,16 @@ class RawSensorsTestController < Rho::RhoController
   end
 
 
+  def fire_update
+      RawSensors::minimumInterval = 10000
+      RawSensors::all = true
+      RawSensors::getSensorData	
+  end
+
   def start_update
       puts 'RawSensorsTest::start_update'
       RawSensors::all = true
+      RawSensors::minimumInterval = 200
   end
 
   def stop_update
