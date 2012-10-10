@@ -1,0 +1,46 @@
+<div data-role="page">
+
+  <div data-role="header" data-position="inline">
+    <h1>AudioCapture Extension Test</h1>
+      
+  </div>
+
+  <div data-role="content">
+
+<br>
+This page require [audiocapture] extension !
+<br>
+
+
+<br>
+  <INPUT type="button" id="id_button1" value=" START " name="id_button1" onClick="onSCStart();">
+  <INPUT type="button" id="id_button2" value=" STOP " name="id_button2" onClick="onSCStop();">
+  <INPUT type="button" id="id_button3" value=" CANCEL " name="id_button3" onClick="onSCCancel();">
+  <INPUT type="button" id="id_button4" value=" PLAY " name="id_button4" onClick="onSCPlay();">
+<br>
+
+  </div>
+
+</div>
+
+  <script type="text/javascript">
+
+
+function onSCStart() {
+$.get('/app/AudioCaptureTest/sc_start', {});
+}
+
+function onSCStop() {
+$.get('/app/AudioCaptureTest/sc_stop', {});
+}
+
+function onSCCancel() {
+$.get('/app/AudioCaptureTest/sc_cancel', {});
+}
+
+function onSCPlay() {
+$.get('/app/AudioCaptureTest/sc_play', {});
+}
+
+
+  </script>
