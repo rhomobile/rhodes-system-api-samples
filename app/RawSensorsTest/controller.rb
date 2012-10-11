@@ -1,7 +1,6 @@
 require 'rho/rhocontroller'
 require 'helpers/application_helper'
 require 'helpers/browser_helper'
-require 'rawsensors'
 
 class RawSensorsTestController < Rho::RhoController
   include BrowserHelper
@@ -23,8 +22,8 @@ class RawSensorsTestController < Rho::RhoController
   def index
     $accelerator_available = RawSensors.is_available(RawSensors::ACCELEROMETER)
     $magnetometer_available = RawSensors.is_available(RawSensors::MAGNETOMETER)
-    RawSensors::sensorEvent = url_for(:action => :sensors_callback)
-    RawSensors::minimumInterval = 200
+    RawSensors.sensorEvent = url_for(:action => :sensors_callback)
+    RawSensors.minimumInterval = 200
     render :back => '/app'
   end
 
@@ -63,20 +62,20 @@ class RawSensorsTestController < Rho::RhoController
 
 
   def fire_update
-      RawSensors::minimumInterval = 10000
-      RawSensors::all = true
-      RawSensors::getSensorData	
+      RawSensors.minimumInterval = 10000
+      RawSensors.all = true
+      RawSensors.getSensorData	
   end
 
   def start_update
       puts 'RawSensorsTest::start_update'
-      RawSensors::all = true
-      RawSensors::minimumInterval = 200
+      RawSensors.all = true
+      RawSensors.minimumInterval = 200
   end
 
   def stop_update
       puts 'RawSensorsTest::stop_update'
-      RawSensors::all = false
+      RawSensors.all = false
       WebView.execute_js('document.getElementById("id_accelerometer_x").value=""')
       WebView.execute_js('document.getElementById("id_accelerometer_y").value=""')
       WebView.execute_js('document.getElementById("id_accelerometer_z").value=""')

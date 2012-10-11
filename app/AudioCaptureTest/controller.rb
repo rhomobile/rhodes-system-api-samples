@@ -1,7 +1,6 @@
 require 'rho/rhocontroller'
 require 'helpers/application_helper'
 require 'helpers/browser_helper'
-require 'audiocapture'
 
 class AudioCaptureTestController < Rho::RhoController
   include BrowserHelper
@@ -17,21 +16,21 @@ class AudioCaptureTestController < Rho::RhoController
   def sc_start
 
       #AudioCapture::name = 'mysound.wav'
-      AudioCapture::destination = File.join(Rho::RhoApplication::get_user_path(), 'mysound.wav')
-      AudioCapture::duration = 5000
-      AudioCapture::audioSaveEvent = url_for(:action => :sc_callback)
-      AudioCapture::start
+      AudioCapture.destination = File.join(Rho::RhoApplication::get_user_path(), 'mysound.wav')
+      AudioCapture.duration = 5000
+      AudioCapture.audioSaveEvent = url_for(:action => :sc_callback)
+      AudioCapture.start
 
   end
 
 
   def sc_stop
-      AudioCapture::stop
+      AudioCapture.stop
   end
 
 
   def sc_cancel
-      AudioCapture::cancel
+      AudioCapture.cancel
   end
 
 
