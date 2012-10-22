@@ -34,7 +34,7 @@ class JsonTestController < Rho::RhoController
 
   def webservicetest
     Rho::AsyncHttp.get(
-      :url => 'http://rhostore.heroku.com/products.json',
+      :url => 'http://rhostore.herokuapp.com/products.json',
       :callback => (url_for :action => :httpget_callback),
       :callback_param => "" )
       

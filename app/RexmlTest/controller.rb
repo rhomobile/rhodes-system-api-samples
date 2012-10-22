@@ -29,7 +29,7 @@ class RexmlTestController < Rho::RhoController
 
   def webservicetest
     Rho::AsyncHttp.get(
-      :url => 'http://rhostore.heroku.com/products.xml',
+      :url => 'http://rhostore.herokuapp.com/products.xml',
       :callback => (url_for :action => :httpget_callback),
       :callback_param => "" )
       
