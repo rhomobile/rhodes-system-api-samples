@@ -6,6 +6,7 @@
 
 <%if System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'APPLE'%>
 <div>Contacts count: <%=@count%><br/>
+Contacts Authorization Status: <b><%=@authorization_status%></b><br/>
 <%if System::get_property('platform') == 'ANDROID'%>
 Apply filter:<br/>
 <%=link_to 'With phones only', { :action => :phones_only }%><br/>

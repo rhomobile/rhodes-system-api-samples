@@ -7,6 +7,7 @@ class ContactsController < Rho::RhoController
   def index
     if System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'APPLE'
         @count = Rho::RhoContact.find(:count)
+        @authorization_status = Rho::RhoContact.get_authorization_status
         if @params['offset']
             @offset = @params['offset'].to_i
         else

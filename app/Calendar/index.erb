@@ -5,6 +5,10 @@
 </div>
 
 <ul id="calendar" title="Calendar">
+<%if System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'APPLE'%>
+Calendar Authorization Status: <b><%=@authorization_status%></b><br/>
+<%end%>
+
   <%=link_to "New event", { :action => :new }, "class=\"button right_button\"" %>
   <% get_events().each_index do |i| %>
     <li><%= link_to get_events()[i][Rho::RhoEvent::TITLE], { :action => :edit, :id => i } %></li>

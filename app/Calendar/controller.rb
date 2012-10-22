@@ -9,6 +9,8 @@ class CalendarController < Rho::RhoController
   def fetch_events
     #start = Time.utc(Rho::RhoEvent::MIN_TIME.to_i)
     #finish = Time.utc(2030, 'dec', 31, 23, 59, 59)
+    @authorization_status = Rho::RhoEvent.get_authorization_status
+
     @@events = Rho::RhoEvent.find(:all,
         :start_date => (Rho::RhoEvent::MIN_TIME + 1), :end_date => (Rho::RhoEvent::MAX_TIME - 1),
         :find_type => 'starting', :include_repeating => false)
