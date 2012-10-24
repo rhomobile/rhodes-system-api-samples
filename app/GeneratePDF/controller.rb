@@ -81,12 +81,7 @@ class GeneratePDFController < Rho::RhoController
         pdf.save_as(fileNameW)
 
   end
-
-
-
-
-
-
+  
   def open_pdf
         # open/print PDF on iOS by open in standart preview contol
         # in this control user can make with showed file few things:
@@ -103,5 +98,25 @@ class GeneratePDFController < Rho::RhoController
 
   end
 
+  def capture_html
+    filename = File.join(Rho::RhoApplication::get_user_path(), 'capture.mhtml')
+    #filename = '/sdcard/capture.mht'
+    WebView.save 'html', filename
+    Rho::Timer.start(500, url_for(:action => :capture_callback), "filename=#{filename}")
+    redirect :action => :index
+  end
   
+  def capture_jpeg
+    filename = File.join(Rho::RhoApplication::get_user_path(), 'capture.jpeg')
+    #filename = '/sdcard/capture.jpg'
+    WebView.save 'jpeg', filename    
+    Rho::Timer.start(500, url_for(:action => :capture_callback), "filename=#{filename}")
+    redirect :action => :index
+  end
+  
+  def capture_callback
+    filename = @params['filename']
+    puts "trying to open #{filename}"    
+    System.open_url filename
+  end
 end

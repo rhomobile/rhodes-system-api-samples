@@ -1,9 +1,16 @@
-<h3>Generate PDF and open it on platform</h3>
+<h3>Capture and PDF</h3>
 <div>
+    <% if System::get_property('platform') == 'APPLE' %>
     <br>
-    On iOS platform prepared PDF opened in special platform preview control.<br>
+    PDF file has to open with special platform preview control.<br>
     In this control you can view PDF/print it/send via mail/open in another application.
     <br>
     <br>
-    <%= link_to '[Generate and open PDF file]', { :action => :open_pdf }%><br/>
+    <% end %>
+    <%= link_to 'Generate and open PDF file', { :action => :open_pdf }%><br/>
+
+    <% if System::get_property('platform') == 'ANDROID' %>
+    <%= link_to 'Capture current page as HTML', { :action => :capture_html } %><br/>
+    <%= link_to 'Capture current page as JPEG', { :action => :capture_jpeg } %><br/>
+    <% end %>
 </div>
