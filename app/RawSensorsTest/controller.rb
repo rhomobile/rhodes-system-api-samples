@@ -20,8 +20,8 @@ class RawSensorsTestController < Rho::RhoController
 
 
   def index
-    $accelerator_available = RawSensors.is_available(RawSensors::ACCELEROMETER)
-    $magnetometer_available = RawSensors.is_available(RawSensors::MAGNETOMETER)
+    $accelerator_available = RawSensors.is_available('accelerometer')
+    $magnetometer_available = RawSensors.is_available('magnetometer')
     RawSensors.sensorEvent = url_for(:action => :sensors_callback)
     RawSensors.minimumInterval = 200
     render :back => '/app'
