@@ -13,5 +13,13 @@
 	</buildSpec>
 	<natures>
 		<nature>com.rhomobile.rhostudio.rhogenNature</nature>
+		<nature>org.eclipse.dltk.ruby.core.nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>framework</name>
+			<type>2</type>
+			<location>C:/MotorolaRhoMobileSuite2.2.1.11/ruby/lib/ruby/gems/1.9.1/gems/rhodes-3.5.1.11/lib/framework</location>
+		</link>
+	</linkedResources>
 </projectDescription>
