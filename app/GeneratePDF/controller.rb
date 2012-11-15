@@ -98,14 +98,6 @@ class GeneratePDFController < Rho::RhoController
 
   end
 
-  def capture_html
-    filename = File.join(Rho::RhoApplication::get_user_path(), 'capture.mhtml')
-    #filename = '/sdcard/capture.mht'
-    WebView.save 'html', filename
-    Rho::Timer.start(500, url_for(:action => :capture_callback), "filename=#{filename}")
-    redirect :action => :index
-  end
-  
   def capture_jpeg
     filename = File.join(Rho::RhoApplication::get_user_path(), 'capture.jpeg')
     #filename = '/sdcard/capture.jpg'

@@ -10,7 +10,6 @@
     <%= link_to 'Generate and open PDF file', { :action => :open_pdf }%><br/>
 
     <% if System::get_property('platform') == 'ANDROID' %>
-    <%= link_to 'Capture current page as HTML', { :action => :capture_html } %><br/>
     <%= link_to 'Capture current page as JPEG', { :action => :capture_jpeg } %><br/>
     <% end %>
 </div>
