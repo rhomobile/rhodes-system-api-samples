@@ -55,11 +55,6 @@ function updateLocation(lat, lng) {
 		<p><a href="/app/GeoLocation/showmap?latitude=<%= GeoLocation.latitude.to_s%>&longitude=<%= GeoLocation.longitude.to_s%>&provider=OSM"
 			target="_self">[show OSM map at location <%= GeoLocation.latitude.to_s%>,<%= GeoLocation.longitude.to_s%> ]</a></p>
 
-        <% if System::get_property('platform') != 'WINDOWS' %>
-		    <p><a href="/app/GeoLocation/preload_map?provider=OSM&map_type=roadmap"
-			    target="_self">preload OSM map for Saint-Petersburg </a></p>
-        <% end %>                  
-        
     <% end %>      
 
     
