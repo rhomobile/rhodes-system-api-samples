@@ -126,7 +126,7 @@ Device capabilities:
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Tabbar/Toolbar'} %>">Tabbar/Toolbar</a></li>       
 <% end %>      
     
-<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or is_webkit  or System::get_property('platform') == 'WP7' %>
+<% if (System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' or is_webkit  or System::get_property('platform') == 'WP7') and !(System.get_property('webview_framework') =~ /MOTOROLA/) %>
     <li><a href="NativeTabbarTest">Native Tabbar test</a></li>
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Tabbar bar'} %>">Tabbar bar</a></li>
