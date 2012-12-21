@@ -1,0 +1,46 @@
+<div data-role="page">
+
+  <div data-role="header" data-position="inline">
+    <h1>VideoCapture Extension Test</h1>
+      
+  </div>
+
+  <div data-role="content">
+
+<br>
+This page require [videocapture] extension !
+<br>
+
+
+<br>
+  <INPUT type="button" id="id_button1" value=" START " name="id_button1" onClick="onVCStart();">
+  <INPUT type="button" id="id_button2" value=" STOP " name="id_button2" onClick="onVCStop();">
+  <INPUT type="button" id="id_button3" value=" CANCEL " name="id_button3" onClick="onVCCancel();">
+  <INPUT type="button" id="id_button4" value=" PLAY " name="id_button4" onClick="onVCPlay();">
+<br>
+
+  </div>
+
+</div>
+
+  <script type="text/javascript">
+
+
+function onVCStart() {
+$.get('/app/RhoVideoCaptureTest/vc_start', {});
+}
+
+function onVCStop() {
+$.get('/app/RhoVideoCaptureTest/vc_stop', {});
+}
+
+function onVCCancel() {
+$.get('/app/RhoVideoCaptureTest/vc_cancel', {});
+}
+
+function onVCPlay() {
+$.get('/app/RhoVideoCaptureTest/vc_play', {});
+}
+
+
+  </script>

@@ -165,6 +165,11 @@ Device capabilities:
 <% else %>      
     <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'audioCapture'} %>">audioCapture</a></li>       
 <% end %>  
+<% if System::get_property('platform') == 'APPLE' or System::get_property('platform') == 'ANDROID' %>
+    <li><a href="RhoVideoCaptureTest">RhoVideoCapture test</a></li>
+<% else %>      
+    <li><a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'videoCapture'} %>">videoCapture</a></li>       
+<% end %>  
      
 </ul>
     
