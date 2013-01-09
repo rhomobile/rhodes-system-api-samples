@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 
 import com.rhomobile.rhodes.extmanager.AbstractRhoExtension;
-import com.rhomobile.rhodes.extmanager.IRhoExtData;
 import com.rhomobile.rhodes.extmanager.IRhoExtManager;
 import com.rhomobile.rhodes.extmanager.IRhoExtension;
+import com.rhomobile.rhodes.extmanager.IRhoWebView;
 import com.rhomobile.rhodes.extmanager.RhoExtManager;
 import com.rhomobile.rhodes.util.PerformOnUiThread;
 
@@ -43,9 +43,10 @@ public class Nlist {
 		}
 		if (ourExtListener == null) {
 			ourExtListener = new AbstractRhoExtension() {
-				public void onBeforeNavigate(IRhoExtManager extManager, String url,
-						IRhoExtData ext) {
+				public boolean onBeforeNavigate(IRhoExtManager extManager, String url,
+						IRhoWebView webView, boolean res) {
 					closeViewCommand();
+					return res;
 				}
 			};
 			RhoExtManager.getInstance().registerExtension("nlist", ourExtListener);
