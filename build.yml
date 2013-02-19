@@ -13,14 +13,14 @@ capabilities:
 #- motorola_browser
 
 bbver: 5.0
-#sdk: c:/Projects/rhodes
+sdk: c:/Projects/rhodes
 
 applog: rholog.txt
 version: 1.0.7
 vendor: rhomobile
 iphone: 
   emulator: 5.0
-  sdk: iphonesimulator5.1
+  sdk: iphonesimulator6.0
   codesignidentity: ""
   entitlements: ""
   extensions: ["barcode", "rainbow", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread", "nlist", "digest-sha2", "openssl.so", "openssl", "ezcrypto", "rawsensors", "audiocapture", "videocapture"]
@@ -36,16 +36,16 @@ iphone:
 #buildcfg: 'Debug'  
 
 wm:
-  extensions: ["digest", "digest-md5", "digest-sha1", "digest-sha2", "openssl.so", "openssl", "ezcrypto"]
+  #extensions: ["digest", "digest-md5", "digest-sha1", "digest-sha2", "openssl.so", "openssl", "ezcrypto"]
   #"rainbow"
   #sdk: "MC3000c50b (ARMV4I)"
-  sdk: "Windows Mobile 6 Professional SDK (ARMV4I)"
+  #sdk: "Windows Mobile 6 Professional SDK (ARMV4I)"
   #sdk: "Windows Mobile 6.5.3 Professional DTK (ARMV4I)"
   #emulator: "Windows Mobile 6.5.3 Professional Emulator"
   #use_shared_runtime: 1
 
 win32:
-  extensions: ["digest", "digest-md5", "digest-sha1", "digest-sha2", "openssl.so", "openssl", "ezcrypto"]
+  #extensions: ["digest", "digest-md5", "digest-sha1", "digest-sha2", "openssl.so", "openssl", "ezcrypto"]
 
 bb:
   extensions: ["barcode"]
