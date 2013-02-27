@@ -53,6 +53,12 @@ screen_height : <%=System.get_property('screen_height') %> <br/>
 real_screen_width : <%=System.get_property('real_screen_width') %> <br/>
 real_screen_height : <%=System.get_property('real_screen_height') %> <br/>
 screen_orientation : <%=System.get_property('screen_orientation') %> <br/>
+<%if System::get_property('platform') == 'ANDROID'%>
+screenAutoRotate : <%= Rho::System.screenAutoRotate %> <br/>
+<%= link_to 'enable screen auto rotation', url_for(:action => :enable_autorotate) %> <br/>
+<%= link_to 'disable screen auto rotation', url_for(:action => :disable_autorotate) %> <br/>
+fullScreen : <%=Rho::System.fullScreen %> <br/>
+<%end%>
 <%= link_to 'enable full screen', url_for(:action => :enable_fullscreen) %> <br/>
 <%= link_to 'disable full screen', url_for(:action => :disable_fullscreen) %> <br/>
 ppi_x : <%=System.get_property('ppi_x') %> <br/>

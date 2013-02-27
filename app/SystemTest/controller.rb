@@ -25,15 +25,37 @@ class SystemTestController < Rho::RhoController
   end
 
   def enable_fullscreen
-    WebView.full_screen_mode(1)
+    if System::get_property('platform') == 'ANDROID'
+        Rho::System.fullScreen= true
+    else
+        WebView.full_screen_mode(1)
+    end
     render :action => :index
   end
 
   def disable_fullscreen
-    WebView.full_screen_mode(0)
+    if System::get_property('platform') == 'ANDROID'
+        Rho::System.fullScreen= false
+    else
+        WebView.full_screen_mode(0)
+    end
+    render :action => :index
+  end
+
+  def disable_autorotate
+    if System::get_property('platform') == 'ANDROID'
+        Rho::System.screenAutoRotate= false
+    end
     render :action => :index
   end
   
+  def enable_autorotate
+    if System::get_property('platform') == 'ANDROID'
+        Rho::System.screenAutoRotate= true
+    end
+    render :action => :index
+  end
+
   def app_exit
     System.exit
   end
