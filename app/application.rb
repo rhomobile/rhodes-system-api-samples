@@ -13,8 +13,9 @@ class AppApplication < Rho::RhoApplication
                       "Close" => :close } 
     $mt_string = ""
     #Rho::RHO.get_instance().load_all_sync_sources()
-   
+if System.get_property('platform') != 'WP8'   
     SyncEngine.set_notification(-1, "/app/Settings/sync_notify", '')    
+end
   end
   
   def on_activate_app
