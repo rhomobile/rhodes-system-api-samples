@@ -19,6 +19,23 @@
 	        {
 		        if(execute) { return eval('(' + xmlhttp.responseText + ')'); }
 	        }
+        }else
+        {
+            var xmlHttpReq;
+        	try {
+            	xmlHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
+        	} catch (err) {
+            	alert("Can't make the call using Msxml2.XMLHTTP");
+            	try {
+                	xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (err2) {
+            		alert("Can't make the call - xmlHttpReq is not available");
+            		return;
+            	}
+        	}
+        
+       		xmlHttpReq.open("GET", url, true);
+       		xmlHttpReq.send();
         }
         return -1;
     }

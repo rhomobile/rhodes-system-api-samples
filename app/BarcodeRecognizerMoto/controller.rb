@@ -35,7 +35,8 @@ class BarcodeRecognizerMotoController < Rho::RhoController
       #Barcode.stop
       scanner = @params['scanner']
       puts "take - using scanner: #{scanner}"
-      Barcode.take_barcode(url_for(:action => :take_callback), {:deviceName => scanner})
+      #Barcode.take_barcode(url_for(:action => :take_callback), {:deviceName => scanner})
+      $scanners[scanner.to_i()].take( nil, url_for(:action => :take_callback) )
       redirect :action => :wait
   end
 
@@ -81,15 +82,17 @@ class BarcodeRecognizerMotoController < Rho::RhoController
     scanner = @params['scanner']
     puts "multiscan - using scanner: #{scanner}"
     #$barcodes = []
-    Barcode.enable( url_for(:action => :multi_callback), {:deviceName => scanner})
+    #Barcode.enable( url_for(:action => :multi_callback), {:deviceName => scanner})
+    $scanners[scanner.to_i()].enable( nil, url_for(:action => :multi_callback) )    
     redirect :action => :show_barcodes
   end
 
   def multi_callback
-      status = @params['status']
-      barcode = @params['barcode']
+      puts "multi_callback : #{@params}"
+  
+      status = "ok" #@params['status']
+      barcode = @params['data']
 
-      puts 'multi_callback'
       puts 'status = '+status.to_s unless status == nil
       puts 'barcode = '+barcode.to_s unless barcode == nil
 
