@@ -24,9 +24,9 @@ class NativeTabbarTestController < Rho::RhoController
   def set_tabbar
     save_location
     tabbar = [
-      {:label => 'Native Tabbar', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
-      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
-      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => false}
+      {:label => 'Tab', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
+      {:label => 'Main',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
+      {:label => 'Main 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => false}
     ]
     Rho::NativeTabbar.create(tabbar)
     Rho::NativeTabbar.set_tab_badge( 1, '12')
@@ -42,9 +42,9 @@ class NativeTabbarTestController < Rho::RhoController
   def set_tabbar_bottom
     save_location
     tabbar = [
-      {:label => 'Native Tabbar', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
-      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
-      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
+      {:label => 'Tab', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
+      {:label => 'Main',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
+      {:label => 'Main 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
     Rho::NativeTabbar.create(:tabs => tabbar, :place_tabs_bottom => true)
     Rho::NativeTabbar.set_tab_badge( 1, '12')
@@ -57,9 +57,9 @@ class NativeTabbarTestController < Rho::RhoController
     puts 'switch_to_tabs start'
     save_location
     tabbar = [
-      {:label => 'Native Tabbar', :icon => '/public/images/bar/gears.png', :use_current_view_for_tab => true},
-      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
-      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
+      {:label => 'Tab', :icon => '/public/images/bar/gears.png', :use_current_view_for_tab => true},
+      {:label => 'Main',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
+      {:label => 'Main 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
     Rho::NativeTabbar.create(tabbar)
     $tabbar_active = true
@@ -78,11 +78,11 @@ class NativeTabbarTestController < Rho::RhoController
   def set_tabbar_new
     save_location
     tabbar = [
-      {:label => 'Native Tabbar', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :selected_color => 0xFF0000, :web_bkg_color => 0x7F7F7F},
-      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :selected_color => 0xFFFF00},
-      {:label => 'Main page 1',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :selected_color => 0xFFFF00, :disabled => true},
-      {:label => 'Main page 2',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :selected_color => 0xFFFF00},
-      {:label => 'Main page 3', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true, :selected_color => 0xFFFF00}
+      {:label => 'Tab', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :selected_color => 0xFF0000, :web_bkg_color => 0x7F7F7F},
+      {:label => 'Main',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :selected_color => 0xFFFF00},
+      {:label => 'Main 1',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :selected_color => 0xFFFF00, :disabled => true},
+      {:label => 'Main 2',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :selected_color => 0xFFFF00},
+      {:label => 'Main 3', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true, :selected_color => 0xFFFF00}
     ]
     bkg_color = 0x008FFF 
     if System::get_property('platform') == 'APPLE' 
@@ -98,11 +98,11 @@ class NativeTabbarTestController < Rho::RhoController
   def set_tabbar_new2
     save_location
     tabbar = [
-      {:label => 'Native Tabbar', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
-      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
-      {:label => 'Main page 1',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :disabled => true},
-      {:label => 'Main page 2',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
-      {:label => 'Main page 3', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
+      {:label => 'Tab', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
+      {:label => 'Main',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
+      {:label => 'Main 1',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true, :disabled => true},
+      {:label => 'Main 2',  :action => '/app',               :icon => '/public/images/bar/colored_btn.png', :reload => true},
+      {:label => 'Main 3', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
     Rho::NativeTabbar.create( tabbar)
     $tabbar_active = true
@@ -114,15 +114,15 @@ class NativeTabbarTestController < Rho::RhoController
   def set_tabbar_many_items
     save_location
     tabbar = [
-      {:label => 'Native Tabbar', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
-      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
-      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true},
-      {:label => 'Native Tabbar A', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
-      {:label => 'Main page B',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
-      {:label => 'Main page C', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true},
-      {:label => 'Native Tabbar D', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
-      {:label => 'Main page E',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
-      {:label => 'Main page G', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
+      {:label => 'Tab', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
+      {:label => 'Main',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Main 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Tab A', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
+      {:label => 'Main B',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Main C', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Tab D', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
+      {:label => 'Main E',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Main G', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
     Rho::NativeTabbar.create(tabbar)
     Rho::NativeTabbar.set_tab_badge(7, '12')
@@ -138,9 +138,9 @@ class NativeTabbarTestController < Rho::RhoController
   def set_iPad_tabbar
     save_location
     tabbar = [
-      {:label => 'Native Tabbar', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
-      {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
-      {:label => 'Main page 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
+      {:label => 'Tab', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true, :web_bkg_color => 0x7F7F7F},
+      {:label => 'Main',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload => true},
+      {:label => 'Main 2', :action => 'callback:' + url_for(:action => :show_main_page), :icon => '/public/images/bar/home_btn.png', :reload => true}
     ]
     Rho::NativeTabbar.create_vertical(tabbar)
     $tabbar_active = true
@@ -167,8 +167,8 @@ class NativeTabbarTestController < Rho::RhoController
   def tabbar_with_callback
     save_location
     tabbar = [
-      {:label => 'Native Tabbar', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
-      {:label => 'Test Page', :action => '/app/NativeTabbarTest/reload_page', :icon => '/public/images/bar/home_btn.png',    :reload => false},
+      {:label => 'Tab', :action => '/app/NativeTabbarTest', :icon => '/public/images/bar/gears.png',    :reload => true},
+      {:label => 'Test', :action => '/app/NativeTabbarTest/reload_page', :icon => '/public/images/bar/home_btn.png',    :reload => false},
     ]
     Rho::NativeTabbar.create(:tabs => tabbar, :on_change_tab_callback => url_for(:action => :tabbar_on_tab_change_callback))
   end
