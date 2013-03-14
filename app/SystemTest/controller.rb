@@ -5,7 +5,8 @@ class SystemTestController < Rho::RhoController
   #GET /SystemTest
   def index
     puts "System index controller"
-	
+
+    #puts "#{Rho::WebView.nativeMenu}"	
     $sleeping = true unless $sleeping
 
     System.set_screen_rotation_notification( url_for(:action => :screen_rotation_callback), "")
@@ -44,8 +45,9 @@ class SystemTestController < Rho::RhoController
   end
     
   def call_js
-    WebView.execute_js("test();", 0)
-    render :action => :call_js_result
+    WebView.execute_js("test();")
+    #render :action => :call_js_result
+    redirect :action => :call_js_result
   end  
 
   def show_alert
@@ -59,7 +61,7 @@ class SystemTestController < Rho::RhoController
   end
 
   def show_cookie
-    WebView.execute_js("show_cookie();", 0)
+    WebView.execute_js("show_cookie();")
     redirect :action => :index
   end
 
