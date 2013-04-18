@@ -1,0 +1,22 @@
+<div>
+	<%= link_to '[Choose Picture]', { :action => :edit }%>
+	<% if System::get_property('has_camera') %>
+    	<%= link_to '[Take Picture]', { :action => :new }%>
+	<% if System::get_property('platform') == 'ANDROID' or System::get_property('platform') == 'APPLE' or (System::get_property('platform') == 'WINDOWS' and System.get_property('is_motorola_device')) %>
+	    	<%= link_to '[Take Barcode]', { :action => :take }%>
+	<% end %>      
+    <% end %>	
+        
+    <br/>
+
+    <% if System::get_property('platform') != 'WINDOWS'  %>
+	    <img src="<%=File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'Barcode_UPC_01.png')%>" width='300px'></img><br/><a href="<%=url_for(:action => :scan1)%>">Scan</a><br/>
+	    <img src="<%=File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'Barcode_UPC_02.jpg')%>" width='300px'></img><br/><a href="<%=url_for(:action => :scan2)%>">Scan</a><br/>
+
+	    <% if System::get_property('platform') == 'Blackberry' or System::get_property('platform') == 'ANDROID'  or System::get_property('platform') == 'APPLE' %>
+		    <img src="<%=File.join(Rho::RhoApplication::get_model_path('app','BarcodeRecognizer'), 'Barcode_QR_01.png')%>" width='300px'></img><br/><a href="<%=url_for(:action => :scan3)%>">Scan</a><br/>
+	    <% end %>      
+
+    <% end %>	
+
+</div>

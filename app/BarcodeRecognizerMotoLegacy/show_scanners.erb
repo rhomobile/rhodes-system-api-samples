@@ -1,0 +1,12 @@
+<div>
+<div>Available scanners:</div>
+<ol>
+  <% $scanners.each do |scan| %>
+    <li><%= scan['friendlyName'] %>:</li>
+    <ul>
+      <li><%= link_to 'Take Barcode', { :action => :take, :query => {:scanner => scan['deviceName']} }%></li>
+      <li><%= link_to 'Multi Scan', { :action => :multiscan, :query => {:scanner => scan['deviceName']} }%></li>
+    </ul>
+  <% end %>
+</ol>
+</div>

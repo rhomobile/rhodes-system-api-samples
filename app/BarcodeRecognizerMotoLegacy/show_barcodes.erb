@@ -1,0 +1,43 @@
+<div class="toolbar">
+    Barcode Multiscan              
+</div>
+
+<script type="text/javascript">
+
+    function addBarcode(val)
+    {
+        var ul = document.getElementById('barcodeList');
+        var li = document.createElement('li');
+        var text = document.createTextNode(val);
+        ul.appendChild(li);
+        li.appendChild(text);
+    }
+    
+    function doAction(val)
+    {
+        url = "/app/BarcodeRecognizerMoto/"+val
+        if (window.XMLHttpRequest)
+        {            
+            var xhr = new window.XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.send(null);
+        }else
+        {
+           	var xmlHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
+       		xmlHttpReq.open("GET", url, true);
+       		xmlHttpReq.send();
+        }
+        
+    }
+</script>
+
+To start scanning: Press hardware scan button or press Start button below.
+
+Scanned barcodes:
+    <ul id="barcodeList">
+    </ul>
+
+<a href='#' onclick="doAction('start_scan'); return false;"  >Start</a>
+<a href='#' onclick="doAction('stop_scan'); return false;"  class='ui-btn-right'>Stop</a>
+
+<%=link_to "Back", :action => :go_back%>
