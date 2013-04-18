@@ -25,7 +25,7 @@ class BarcodeRecognizerMotoController < Rho::RhoController
     
   def enum_callback
     puts "enum_callback : #{@params}"
-    $scanners = @params['scannerArray']
+    $scanners = @params['result']
     
     puts "$scanners : #{$scanners}"
     WebView.navigate( url_for(:action => :show_scanners) ) 
