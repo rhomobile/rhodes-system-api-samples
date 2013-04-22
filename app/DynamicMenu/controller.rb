@@ -8,7 +8,8 @@ class DynamicMenuController < Rho::RhoController
     @menu = { "Go Home" => :home, "Refresh" => :refresh, "Options" => :options, 
                 :separator => nil, "Log" => :log, "Go to Settings" => "/app/Settings",
                 "Call callback" => 'callback:' + url_for(:action => :callback),
-                "Full screen" => 'fullscreen' }
+                "Full screen" => 'fullscreen',
+                "Call js callback" => 'javascript:callback_func();' }
 
     render :back => '/app'
   end
