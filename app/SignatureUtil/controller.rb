@@ -23,9 +23,10 @@ class SignatureUtilController < Rho::RhoController
   end
 
   def signature_callback
+    puts "@params : #{@params}"
     if @params['status'] == 'ok'
       #create signature record in the DB
-      signature = SignatureUtil.new({'signature_uri'=>@params['signature_uri']})
+      signature = SignatureUtil.new({'signature_uri'=> Rho::Application.relativeDatabaseBlobFilePath(@params['signature_uri'])})
       signature.save
       puts "new Signature object: " + signature.inspect
     end  
