@@ -26,8 +26,11 @@ class SignatureInlineController < Rho::RhoController
   def signature_callback
      puts '############  signature_callback'
     if @params['status'] == 'ok'
+       #tmp_uri = @params['signature_uri']
+       #uri = tmp_uri.sub(Rho::Application.databaseBlobFolder(), "db/db-files")
+
       #create signature record in the DB
-      signature = SignatureInline.new({'signature_uri'=>@params['signature_uri']})
+      signature = SignatureInline.new({'signature_uri'=> Rho::Application.relativeDatabaseBlobFilePath(@params['signature_uri']) })
       signature.save
       puts "new Signature object: " + signature.inspect
     end  
