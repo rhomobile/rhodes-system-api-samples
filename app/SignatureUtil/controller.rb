@@ -12,7 +12,9 @@ class SignatureUtilController < Rho::RhoController
   def new
     imgFormat = System::get_property('platform') == 'WINDOWS' ?  "bmp" : "jpg"
     
-    Rho::SignatureCapture.take(url_for( :action => :signature_callback), { :imageFormat => imgFormat, :penColor => 0xff0000, :penWidth=>5, :border => true, :bgColor => 0x00ff00 })
+    Rho::SignatureCapture.take(url_for( :action => :signature_callback), { :imageFormat => imgFormat, :penColor => 0xff0000, :penWidth=>5, :border => true, :bgColor => 0x00ff00,
+        :fileName => File.join( Rho::Application.databaseBlobFolder(), "/Image_" + Time.now.to_i.to_s() ) })
+        
     redirect :action => :index
   end
 
@@ -38,7 +40,8 @@ class SignatureUtilController < Rho::RhoController
   end
 
   def inline_capture
-    Rho::SignatureCapture.visible(true, :penColor => 0xff0000, :penWidth=>1, :border => true, :bgColor => 0x00ff00 )
+    Rho::SignatureCapture.visible(true, :penColor => 0xff0000, :penWidth=>1, :border => true, :bgColor => 0x00ff00,
+        :fileName => File.join( Rho::Application.databaseBlobFolder(), "/Image_" + Time.now.to_i.to_s() ) )
   end
 
   def do_capture          
