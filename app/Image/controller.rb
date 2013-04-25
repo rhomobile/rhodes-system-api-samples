@@ -54,7 +54,6 @@ class ImageController < Rho::RhoController
     Camera::choose_picture(url_for :action => :camera_callback)
     
     redirect :action => :index
-    #""
   end
   
   def delete
@@ -67,6 +66,12 @@ class ImageController < Rho::RhoController
 	  img = Image.find(@params['id'])
 	  Camera::save_image_to_device_gallery(Rho::RhoApplication::get_blob_path(img.image_uri))
 	  redirect :action => :index
+  end
+  
+  def open_image
+    puts @params.inspect
+    Rho::System.open_url(@params['url'])
+    redirect :action => :index
   end
 
   def camera_callback
