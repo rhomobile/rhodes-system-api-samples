@@ -23,12 +23,15 @@ class CameraController < Rho::RhoController
   end
   
   def takePicture
+    
     options = {
         :outputFormat => @params['outputFormat'],
         :colorModel => @params['colorModel'],
-        :fileName => "#{Rho::Application.databaseBlobFolder}/sample",
-        :desiredWidth => $cameraSizeList[@params['size'].to_i]['width'].to_s,
-        :desiredHeight => $cameraSizeList[@params['size'].to_i]['height'].to_s}
+        :fileName => "#{Rho::Application.databaseBlobFolder}/sample"}
+    if @params['size']
+        options[:desiredWidth] = $cameraSizeList[@params['size'].to_i]['width'].to_s
+        options[:desiredHeight] = $cameraSizeList[@params['size'].to_i]['height'].to_s
+    end
     options['saveToDeviceGallery'] = 'true' if (@params['target'] == 'gallery')
     
     $cameraList[@params['cameraIdx'].to_i].takePicture options, url_for(:action => :takeCallback)

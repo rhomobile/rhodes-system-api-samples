@@ -7,12 +7,13 @@
   <div data-role="content">
     <form method="POST" action="<%= url_for :action => :takePicture %>">
         <input type="hidden" name="cameraIdx" value="<%=@params['cameraIdx']%>">
-        
+<% 
+$cameraSizeList = $cameraList[@params['cameraIdx'].to_i].supportedSizeList
+if $cameraSizeList
+%>        
         <label>Image Size:</label>
         <select name="size">
 <%
-$cameraSizeList = $cameraList[@params['cameraIdx'].to_i].supportedSizeList
-if $cameraSizeList
   sizeIdx = 0
   $cameraSizeList.each do |size|%>
             <option value="<%=sizeIdx%>"><%=size['width']%>X<%=size['height']%></option>
