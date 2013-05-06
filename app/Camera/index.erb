@@ -1,0 +1,28 @@
+<div data-role="page">
+
+  <div data-role="header" data-position="inline">
+    <h1>Select Action</h1>
+  </div>
+
+  <div data-role="content">
+    <ul data-role="listview">
+      <% if $cameraList %>
+      <% idx = 0
+        $cameraList.each do |camera|%>
+      <li><a href="<%=url_for(:action => :camera, :query => {'cameraIdx' => idx})%>"><%= camera.cameraType %> camera</a></li>
+      <%  idx = idx + 1 
+        end %>
+      <li><a href="<%=url_for(:action => :systemApp)%>">System Camera</a></li>
+      <%
+      end %>
+      <li><a href="<%=url_for(:action => :choose)%>">Gallery...</a></li>
+      <% if $sample %>
+      <% until $sample.match('^data:')%>
+      <li><a href="<%=url_for(:action => :open, :query => {'url' => $sample})%>">Open last image...</a></li>
+      <% end %>
+      <li><img src=<%=$sample%> /></li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

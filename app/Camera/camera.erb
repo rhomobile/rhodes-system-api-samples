@@ -1,0 +1,42 @@
+<div data-role="page">
+
+  <div data-role="header" data-position="inline">
+    <h1>Configure Camera</h1>
+  </div>
+
+  <div data-role="content">
+    <form method="POST" action="<%= url_for :action => :takePicture %>">
+        <input type="hidden" name="cameraIdx" value="<%=@params['cameraIdx']%>">
+        
+        <label>Image Size:</label>
+        <select name="size">
+<%
+$cameraSizeList = $cameraList[@params['cameraIdx'].to_i].supportedSizeList
+if $cameraSizeList
+  sizeIdx = 0
+  $cameraSizeList.each do |size|%>
+            <option value="<%=sizeIdx%>"><%=size['width']%>X<%=size['height']%></option>
+    <% 
+    sizeIdx = sizeIdx + 1
+  end 
+end%>
+        </select><br/>
+        <label>Format:</label>
+        <select name="outputFormat">
+            <option value="image">Image</option>
+            <option value="dataUri">Data URI</option>
+        </select><br/>
+        <label>Color Effect:</label>
+        <select name="colorModel" id="colorModel">
+            <option value="color">Full color</option>
+            <option value="grayscale">Grayscale</option>
+        </select><br/>
+        <label>Save to:</label>
+        <select name="target" id="target">
+            <option value="fs">File System</option>
+            <option value="gallery">Gallery</option>
+        </select><br/>
+        <input type="submit" value="Take Photo" />
+    </form>
+  </div>
+</div>

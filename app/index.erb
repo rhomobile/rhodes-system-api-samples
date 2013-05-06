@@ -39,6 +39,9 @@ Device capabilities:
   <% end %>
       <% if System::get_property('platform') != 'WP7' %>    
      <li><a href="Image">Camera</a></li>  
+     <% if Rho::System.platform == 'ANDROID' or Rho::System.platform == 'APPLE' %>
+     <li><a href="Camera">Camera 4</a></li>
+     <% end %>
   <% else %>
   <li>
     <a href="<%= url_for :controller => :Settings, :action => :not_supported, :query => {:feature => 'Camera'} %>">Camera</a>
@@ -91,7 +94,6 @@ Device capabilities:
     
     <li><a href="CustomUri">Hyperlinks for Email, Phone Dialing, SMS</a></li>
 
-<% if System::get_property('platform') != 'ANDROID'%>
   <% if System.get_property('is_motorola_device') %>
       <li><a href="BarcodeRecognizerMoto">Barcode</a></li> 
   <% elsif System::get_property('platform') != 'WP7' and System::get_property('platform') != 'WINDOWS'%>
@@ -104,16 +106,6 @@ Device capabilities:
   <% if !System.get_property('is_motorola_device') and  System::get_property('platform') != 'WP7' and System::get_property('platform') != 'WINDOWS' and System::get_property('platform') != 'Blackberry'%>
       <li><a href="BarcodeRecognizerMoto">Barcode Moto</a></li> 
   <% end %>  
-<% else %>
-  <% if System.get_property('is_motorola_device') %>
-      <li><a href="BarcodeRecognizerMotoLegacy">Barcode</a></li> 
-  <% else %>
-     <li><a href="BarcodeRecognizerLegacy">Barcode</a></li> 
-  <% end %>  
-  <% if !System.get_property('is_motorola_device') %>
-      <li><a href="BarcodeRecognizerMotoLegacy">Barcode Moto</a></li> 
-  <% end %>  
-<% end %>
  
   <% if System::get_property('platform') != 'WP7' and System::get_property('device_name') != 'Win32' %>
          <li><a href="BluetoothChat">Bluetooth</a></li>
