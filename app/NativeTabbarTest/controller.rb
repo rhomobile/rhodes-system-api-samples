@@ -18,7 +18,7 @@ class NativeTabbarTestController < Rho::RhoController
     save_location
     Rho::NativeTabbar.remove
     $tabbar_active = false
-    render :action => :index
+    render :action => :index, :back => '/app'
   end
 
   def set_tabbar
@@ -203,7 +203,7 @@ class NativeTabbarTestController < Rho::RhoController
     save_location
     Rho::NativeTabbar.remove
     $tabbar_active = false
-    render :action => :index
+    render :action => :index, :back => '/app'
   end
  
 end
