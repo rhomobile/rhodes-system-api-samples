@@ -1,0 +1,15 @@
+<div class="toolbar">
+    <h1 id="pageTitle">
+        Detect connection
+    </h1>
+</div>
+
+Monitor network connection status
+
+Connection detection:
+<br>
+<%= link_to '[ start connection detection ]', { :action => :start_connection_detection } %>
+<br>
+<%= link_to '[ stop connection detection ]', { :action => :stop_connection_detection } %>
+<br>
+<b><%= $connection_status %></b>
