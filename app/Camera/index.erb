@@ -17,7 +17,7 @@
       end %>
       <li><a href="<%=url_for(:action => :choose)%>">Gallery...</a></li>
       <% if $sample %>
-      <% until $sample.match('^data:')%>
+      <% unless $sample.match('^data:')%>
       <li><a href="<%=url_for(:action => :open, :query => {'url' => $sample})%>">Open last image...</a></li>
       <% end %>
       <li><img src=<%=$sample%> /></li>

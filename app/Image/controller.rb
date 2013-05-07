@@ -77,7 +77,7 @@ class ImageController < Rho::RhoController
   def camera_callback
     if @params['status'] == 'ok'
       #create image record in the DB
-      image = Image.new({'image_uri'=>@params['image_uri']})
+      image = Image.new({'image_uri'=>Rho::Application.relativeDatabaseBlobFilePath(@params['image_uri'])})
       image.save
       puts "new Image object: " + image.inspect
       if (((System::get_property('platform') == 'ANDROID') || (System::get_property('platform') == 'APPLE')) && ($use_new_api))

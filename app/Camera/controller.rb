@@ -27,7 +27,8 @@ class CameraController < Rho::RhoController
     options = {
         :outputFormat => @params['outputFormat'],
         :colorModel => @params['colorModel'],
-        :fileName => "#{Rho::Application.databaseBlobFolder}/sample"}
+        :fileName => File.join(Rho::Application.databaseBlobFolder, 'sample')
+              }
     if @params['size']
         options[:desiredWidth] = $cameraSizeList[@params['size'].to_i]['width'].to_s
         options[:desiredHeight] = $cameraSizeList[@params['size'].to_i]['height'].to_s
@@ -35,7 +36,7 @@ class CameraController < Rho::RhoController
     options['saveToDeviceGallery'] = 'true' if (@params['target'] == 'gallery')
     
     $cameraList[@params['cameraIdx'].to_i].takePicture options, url_for(:action => :takeCallback)
-    render :index
+    redirect :action => :index
   end
   
   def systemApp
@@ -47,7 +48,7 @@ class CameraController < Rho::RhoController
   def choose
     options = {:fileName => "#{Rho::Application.databaseBlobFolder}/sample"}
     Rho::Camera.choosePicture options, url_for(:action => :takeCallback)
-    render :index
+    redirect :action => :index
   end
   
   def open
