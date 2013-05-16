@@ -3,9 +3,9 @@ rholog.txt
 RhoLog.txt
 sim-public
 Thumbs.db
-extensions/rainbow/ext/rainbow/platform/iphone/build
 rhosimulator/*
 .idea/
 .DS_Store
 rholog-*
 *.ncb
+extensions/*/ext/*/platform/*/build/
