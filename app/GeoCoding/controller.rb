@@ -1,4 +1,5 @@
 require 'rho/rhocontroller'
+require 'json'
 
 class GeoCodingController < Rho::RhoController
 
@@ -51,6 +52,7 @@ $longitude = ''
   def httpget_callback
       body = @params['body']
       # body already converted to Hash because it is JSON data !      
+      body = Rho::JSON.parse(body)
 
       $adress = ''
       $latitude = ''
