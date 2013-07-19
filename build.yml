@@ -57,7 +57,7 @@ android:
   - sdcard
   - calendar
   mapping: yes
-  version: 2.1
+  version: 2.3.3
 
 wp:
   productid: 'fd55c4d0-51fa-012e-7844-3caec51bd50e'
