@@ -7,11 +7,11 @@ URL based Native View
   <li><%= link_to "Switch to Native View(Red)", :action => :goto_red %></li>
   <li><%= link_to "Switch to Native View(Green)", :action => :goto_green %></li>
   <li><%= link_to "Switch to Native View(Blue)", :action => :goto_blue %></li>
-<% if System::get_property('platform') != 'WINDOWS' %>  
-  <li><%= link_to "Switch to TabBar Views", :action => :goto_tabs %></li>
+<% if System::get_property('platform') != 'WINDOWS' %>
+ <!-- <li><%= link_to "Switch to TabBar Views", :action => :goto_tabs %></li>
   <li><%= link_to "Switch to ToolBar WebView", :action => :goto_single %></li>
-  <li><%= link_to "Switch to NoBar WebView", :action => :goto_nobar %></li>
-<% end %>        
+  <li><%= link_to "Switch to NoBar WebView", :action => :goto_nobar %></li>-->
+<% end %>
 </ul>
 <br>
 Small Native View
