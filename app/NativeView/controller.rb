@@ -1,5 +1,8 @@
 require 'rho/rhocontroller'
 require 'rho/rhonativeviewmanager'
+require 'rho/rhotoolbar'
+require 'rho/rhotabbar'
+
 
 class NativeViewController < Rho::RhoController
 
@@ -123,8 +126,8 @@ class NativeViewController < Rho::RhoController
       {:label => 'Native View', :action => '/app/NativeView', :icon => '/public/images/bar/gears.png',    :reload => false},
       {:label => 'Main page',  :action => '/app',               :icon => '/public/images/bar/home_btn.png', :reload =>false}
     ]
-    NativeBar.create(Rho::RhoApplication::TABBAR_TYPE, tabbar)
-    NativeBar.switch_tab(0)
+    Rho::NativeTabbar.create(tabbar)
+    Rho::NativeTabbar.switch_tab(0)
  end
 
   def goto_single
@@ -138,13 +141,13 @@ class NativeViewController < Rho::RhoController
       {:action => 'callback:' + url_for(:action => :callback), :label => 'Callback' },
       {:action => :options}
     ]
-    NativeBar.create(Rho::RhoApplication::TOOLBAR_TYPE, toolbar)
+    Rho::NativeToolbar.create(toolbar)
     render :action => :index
    end
 
   def goto_nobar
    save_location
-    NativeBar.create(Rho::RhoApplication::NOBAR_TYPE, [])
+    Rho::NativeToolbar.remove
     render :action => :index   
   end
 end
