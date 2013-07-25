@@ -24,13 +24,13 @@ public class Nlist {
 	
 	public static void openViewCommand() {
 		
-		View w = (View)RhoExtManager.getInstance().getWebView().getView();
+		View w = (View)RhoExtManager.getInstance().getWebView().getContainerView();
 		
 		ourListView = new NlistView(ourAdapter);
 		
 		ourListView.setLayoutParams(
-				new AbsoluteLayout.LayoutParams(	AbsoluteLayout.LayoutParams.MATCH_PARENT, 
-													AbsoluteLayout.LayoutParams.MATCH_PARENT, 
+				new AbsoluteLayout.LayoutParams(	ViewGroup.LayoutParams.MATCH_PARENT, 
+													ViewGroup.LayoutParams.MATCH_PARENT, 
 													0, 
 													0));
 		//ViewGroup wv = (ViewGroup)(((View)w).getParent());
@@ -55,7 +55,7 @@ public class Nlist {
 	}
 	
 	public static void closeViewCommand() {
-		View w = (View)RhoExtManager.getInstance().getWebView().getView();
+		View w = (View)RhoExtManager.getInstance().getWebView().getContainerView();
 		//ViewGroup wv = (ViewGroup)(((View)w).getParent());
 		ViewGroup wv = (ViewGroup)(((View)w));
 		if ((wv != null) && (ourListView != null)) {
