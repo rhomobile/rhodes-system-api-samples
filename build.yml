@@ -13,7 +13,7 @@ capabilities:
 #- motorola_browser
 
 bbver: 5.0
-#sdk: c:/Projects/rhodes
+#sdk: ../rhodes
 
 applog: rholog.txt
 version: 1.0.7
@@ -51,13 +51,13 @@ bb:
   extensions: ["barcode"]
 
 android:
-  extensions: ["barcode", "rainbow", "nfc", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread", "digest-sha2", "openssl.so", "openssl", "ezcrypto", "audiocapture", "nlist"]
+  extensions: ["rainbow", "nlist", "nfc", "barcode", "digest", "digest-md5", "digest-sha1", "pdf-writer", "thread", "digest-sha2", "openssl.so", "openssl", "ezcrypto", "audiocapture", "gmaps"]
   capabilities:
   - network_state
   - sdcard
   - calendar
-  mapping: yes
-  version: 2.3.3
+  version: 4.2.2
+  apikey: GoogleApiKey
 
 wp:
   productid: 'fd55c4d0-51fa-012e-7844-3caec51bd50e'
