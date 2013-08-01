@@ -39,7 +39,7 @@ static RainbowEffectView *view = NULL;
 
 - (void)openViewCommand:(NSObject*)args {
 	if (view != NULL) {
-		[self closeViewCommand];
+		[self closeViewCommand:nil];
 	}
 	view = [[RainbowEffectView alloc] initWithFrame:CGRectMake(20,20,280,100)];
 	UIWebView* wv = (UIWebView*)RhoNativeViewManager::getWebViewObject(-1);
