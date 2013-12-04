@@ -16,7 +16,9 @@ My Status:
 <% else %>
   <INPUT type="button" id="id_button1" value="Connect as Server" name="id_button1" onClick="onConnectServer();">
   <INPUT type="button" id="id_button2" value="Connect as Client" name="id_button2" onClick="onConnectClient();">
-<% if System::get_property('platform') == 'APPLE'  or   System::get_property('platform') == 'ANDROID' %>
+<% if System::get_property('platform') == 'APPLE'  or 
+      System::get_property('platform') == 'ANDROID' or 
+      System::get_property('platform') == 'WINDOWS' %>
   <br>
    Custom Connection (without platform UI) : <br>
   <INPUT type="button" id="id_button3" value="Custom Server connect" name="id_button3" onClick="onConnectCustomServer();"><br>
@@ -82,7 +84,6 @@ Message:<br>
 <br>
 
 
-
 <% if System::get_property('platform') == 'WINDOWS' %>
 
 <script type="text/javascript">
@@ -103,6 +104,14 @@ function ajaxCall(url)
 {
   //alert("ajaxCall() START");
         //Construct an XMLHTTP Object to handle our HTTP Request
+      if (window.XMLHttpRequest) 
+      {
+         var xhr = new window.XMLHttpRequest();
+         xhr.open("GET", url, true);
+         xhr.send(null);
+      }
+     else 
+      {
         if (xmlHttpReq != null){
 		xmlHttpReq = null;
 	}
@@ -123,12 +132,22 @@ function ajaxCall(url)
         //xmlHttpReq.onreadystatechange = doHttpReadyStateChange;
 	//alert("about to send Req");
    	xmlHttpReq.send();
+     }
 }
 
 function ajaxCallWithParam(url, param_name, param_value)
 {
-  //alert("ajaxCallWithParam() START");
-        //Construct an XMLHTTP Object to handle our HTTP Request
+      var params = param_name+'=' + encodeURIComponent(param_value);
+
+      //Construct an XMLHTTP Object to handle our HTTP Request
+      if (window.XMLHttpRequest) 
+      {
+         var xhr = new window.XMLHttpRequest();
+         xhr.open("GET", url+'?&'+params, true);
+         xhr.send(null);
+      }
+     else 
+     {
         if (xmlHttpReq != null){
 		xmlHttpReq = null;
 	}
@@ -144,16 +163,10 @@ function ajaxCallWithParam(url, param_name, param_value)
         	alert("Can't make the call - xmlHttpReq is not available");
         	return;
 	}
-  //alert("ajaxCallWithParam() 2");
-	//alert("about to open xmlHttpReq");
-        var params = param_name+'=' + encodeURIComponent(param_value);
-  //alert("ajaxCallWithParam() 3");
+
 	xmlHttpReq.open("GET", url+'?&'+params, true);
-  //alert("ajaxCallWithParam() 4");
-        //xmlHttpReq.onreadystatechange = doHttpReadyStateChange;
-	//alert("about to send Req");
    	xmlHttpReq.send();
-  //alert("ajaxCallWithParam() FINISH");
+     }
 }
 
 
@@ -169,7 +182,11 @@ function onConnectServer() {
 
 function onConnectClient() {
   ajaxCall("/app/BluetoothChat/on_connect_client");
-  //ajaxCall('/app/BluetoothChat/on_connect_client');
+  return false;
+}
+
+function onConnectCustomClient() {
+  $.get('/app/BluetoothChat/on_connect_custom_client', {});
   return false;
 }
 
@@ -191,7 +208,7 @@ function onMessageSend() {
 
 function setHistory(shistory) {
   //alert("setHistory() called");	
-  document.getElementById("id_history").value = shistory;
+  document.getElementById("id_history").value = "\"" + shistory + "\"";
 }
 
 function setName(name) {
@@ -217,30 +234,21 @@ function onUnload() {
   return false;
 }
 
+function setCustomButtonCaption(caption) {
+  document.getElementById("id_button3").value = caption;
+  document.getElementById("id_button4").value = caption;
+}
 
+function restoreCustomButtonCaption() {
+  document.getElementById("id_button3").value = "Custom Server connect";
+  document.getElementById("id_button4").value = "Connect to";
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function setServerName(name) {
+  document.getElementById("id_server_name").value = name;
+}
 
 </script>
-
 
 <% elsif System::get_property('platform') != 'Blackberry' %>
 

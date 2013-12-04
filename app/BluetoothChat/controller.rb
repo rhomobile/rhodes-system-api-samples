@@ -16,6 +16,7 @@ class BluetoothChatController < Rho::RhoController
   def index
     puts 'BluetoothChatController.index'
     $device_name = Rho::BluetoothManager.get_device_name()
+    puts "$device_name=" + $device_name.to_s
     render
   end
 
@@ -30,7 +31,8 @@ class BluetoothChatController < Rho::RhoController
   def on_send
     puts 'BluetoothChatController.on_send'
     message = @params['message']
-    $history = $device_name+':'+ message + '\n'+$history
+    puts 'history ' + $history.to_s
+    $history = message + '\n'+$history
     Rho::BluetoothSession.write_string($connected_device_name, message)
     execute_js('setHistory("'+$history+'");')
     if $is_blackberry
@@ -79,10 +81,6 @@ class BluetoothChatController < Rho::RhoController
     end
   end
 
-
-
-
-
   def on_connect_custom_server
     puts 'BluetoothChatController.on_connect_custom_server'
     if ($connected_device_name == nil) && (!$is_custom_connecting_in_progress)
@@ -129,10 +127,6 @@ class BluetoothChatController < Rho::RhoController
     end
   end
 
-
-
-
-
   def on_disconnect
     puts 'BluetoothChatController.on_disconnect'
     if $connected_device_name == nil
@@ -162,7 +156,8 @@ class BluetoothChatController < Rho::RhoController
   end
 
   def on_change_server_name
-       $server_name = @params['device_name']
+    puts "on_change_server_name with " + @params['device_name'].to_s
+    $server_name = @params['device_name']
   end
 
   def create_session_callback
@@ -172,7 +167,10 @@ class BluetoothChatController < Rho::RhoController
     puts 'connected_device_name = ' + $connected_device_name	
     if @params['status'] == Rho::BluetoothManager::OK
       $current_status = 'Connected to ['+$connected_device_name+']'
-      if System::get_property('platform') == 'APPLE'  or   System::get_property('platform') == 'ANDROID'
+      if System::get_property('platform') == 'APPLE' ||
+         System::get_property('platform') == 'ANDROID' ||
+         System::get_property('platform') == 'WINDOWS' 
+
           $server_name = $connected_device_name
           execute_js('setServerName("'+$server_name+'");') 
       end
