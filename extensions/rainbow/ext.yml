@@ -1,4 +1,6 @@
 entry: Init_Rainbow
 javaentry: com.rho.rubyext.RainbowExtension
-android_additional_sources_list: ext/rainbow/platform/android/ext_build.files
 libraries: ["Rainbow"]
+android:
+  exttype: rakefile
+  source_list: ext/rainbow/platform/android/ext_build.files

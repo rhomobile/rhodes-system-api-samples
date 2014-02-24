@@ -1,0 +1,2 @@
+ext/rainbow/platform/android/jni/src/rainbow.cpp
+ext/rainbow/shared/ruby/rainbow_wrap.c
