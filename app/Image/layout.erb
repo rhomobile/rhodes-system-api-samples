@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
     <% if System::get_property('platform') == 'WINDOWS' && System::get_property('webview_framework') !~ /^WEBKIT/ %>
       </head>
-      <body">
+      <body>
     <% elsif System::get_property('platform') != 'Blackberry' || System::get_property('webview_framework') =~ /^WEBKIT/ %>
       <script src="/public/jquery/jquery-1.6.4.min.js"></script>
       
