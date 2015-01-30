@@ -56,11 +56,6 @@ namespace "build" do
 
     args = ['build', '-target', 'Rainbow', '-configuration', $configuration, '-sdk', $sdk]
 
-    if simulator
-        args << '-arch'
-        args << 'i386'
-    end
-
    include_dirs = ENV['USER_HEADER_SEARCH_PATHS']
    include_dirs = '' if include_dirs.nil?
 
